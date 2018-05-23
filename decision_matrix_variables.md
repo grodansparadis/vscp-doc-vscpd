@@ -8,27 +8,21 @@ In the decision matrix you can
 
 
 *  Store a value to a variable
-
 *  Add a value to a variable
-
 *  Subtract a value from a variable
-
 *  Multiply a value to a variable.
-
 *  Divide a value with a variable.
-
 *  Make decisions based on variable values.
-
 *  Read/Write variables in LUA scripts.
 
 The first time variable is used it is constructed. So if you for example add a value to a variable that does not exist it will first be created. For add/subtract/multiply/divide variables that does not exist will be created as a floating point value. The store variable on the other hand let you select the type.
 
 
-Note that there is possible to create dynamically created variables by using the [available escapes](vscp_daemon_decision_matrix#variable_substitution_for_parameters). As an example a variable **energy_usage_%monthtxtfull_%year** can be created that will have names like "//energy_usage_october_2014//", *energy_usage_november_2014*". So if you create a decision matrix entry that trigger on the **CLASS1.MEASUREMENT, Type=13, Energy** and where the action adds the measurement to the variable  **energy_usage_%monthtxtfull_%year** you will get the energy usage for each month of a year in it's own clearly named variable. Variables that can be fetched and presented to a user in a diagram for example.
+Note that there is possible to create dynamically created variables by using the [available escapes](decision_matrix_variables.md#variable_substitution_for_parameters). As an example a variable **energy_usage_%monthtxtfull_%year** can be created that will have names like "//energy_usage_october_2014//", *energy_usage_november_2014*". So if you create a decision matrix entry that trigger on the **CLASS1.MEASUREMENT, Type=13, Energy** and where the action adds the measurement to the variable  **energy_usage_%monthtxtfull_%year** you will get the energy usage for each month of a year in it's own clearly named variable. Variables that can be fetched and presented to a user in a diagram for example.
 
 ## Variable types
 
-Action that store variables and variables that are written in the the [TCP/IP interface](http://www.vscp.org/docs/vscpd/doku.php?id=vscp_daemon_tcp_ip_protocol_description#variable) and in the [websocket interface](http://www.vscp.org/docs/vscpd/doku.php?id=vscp_daemon_websocket_protocol_description) have a string format. This format is described in the table below
+Action that store variables and variables that are written in the the [TCP/IP interface](https://www.vscp.org/docs/vscpd/doku.php?id=vscp_daemon_tcp_ip_protocol_description#variable) and in the [websocket interface](https://www.vscp.org/docs/vscpd/doku.php?id=vscp_daemon_websocket_protocol_description) have a string format. This format is described in the table below
 
 **Note** Types with **base64**=//yes// will be read (and should be set) as base64 encoded values.
 
@@ -568,8 +562,5 @@ You are not limited to handle variables in the [decision matrix](http://www.vscp
 
 Variables is a powerful tool that makes your work easier.
 
-\\ 
-----
-{{  ::copyright.png?600  |}}
 
-`<HTML>``<p style="color:red;text-align:center;">``<a href="http://www.grodansparadis.com">`Grodans Paradis AB`</a>``</p>``</HTML>`
+{% include "./bottom_copyright.md" %}

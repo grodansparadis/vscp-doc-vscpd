@@ -5,17 +5,17 @@
 
 ## Setup your system on OpenWrt
 
-General information is [here](http://www.vscp.org/docs/vscpd/doku.php?id=setting_up_the_system_on_openwrt)
+General information is [here](./setting_up_the_system_on_openwrt.md)
 
 ## VSCP & Friends on OpenWrt/Carambola
 
-From version 0.4.0.11 VSCP & Friends compiles and installs on the Carambola board available from [8Devices](http://8devices.com/) with web/libwebsocket and all drivers and also other OpenWrt platforms.  
+From version 0.4.0.11 VSCP & Friends compiles and installs on the Carambola board available from [8Devices](https://8devices.com/) with web/libwebsocket and all drivers and also other OpenWrt platforms.  
 
 The files needed to install is available in the 
 
 ## Install binaries
 
-From version 0.4.0.11 I will try to maintain a binary distribution for OpenWrt. You can find these files at [Sourceforge](https///sourceforge.net/projects/m2m/files/VSCP%20binaries/openwrt/). The binary package builds all drivers so it use a lot of flash but you can remove the drivers you don't need after everything is installed to save space.
+From version 0.4.0.11 I will try to maintain a binary distribution for OpenWrt. You can find these files at [Sourceforge](https://sourceforge.net/projects/m2m/files/VSCP%20binaries/openwrt/). The binary package builds all drivers so it use a lot of flash but you can remove the drivers you don't need after everything is installed to save space.
 
 The first thing you have to do before installing VSCP itself is to install the libraries it depends on. For your convenience they are added to the binary distribution.
 
@@ -23,81 +23,102 @@ Connect to the board with ssh which must be Internet connected and install as of
 
 #####  Step 1
 
+```bash
     wget http://sourceforge.net/projects/m2m/files/VSCP%20binaries/openwrt/openwrt_0.4.0.11/terminfo_5.7-5_ramips.ipk/download
     opkg install terminfo_5.7-5_ramips.ipk
     rm terminfo_5.7-5_ramips.ipk
+```    
     
 #####  Step 2
 
+```bash
     wget http://sourceforge.net/projects/m2m/files/VSCP%20binaries/openwrt/openwrt_0.4.0.11/libncurses_5.7-5_ramips.ipk/download
     opkg install libncurses_5.7-5_ramips.ipk
     rm libncurses_5.7-5_ramips.ipk
+```
     
 ##### Step 3
 
-    
+ ```bash   
     wget http://sourceforge.net/projects/m2m/files/VSCP%20binaries/openwrt/openwrt_0.4.0.11/uclibcxx_0.2.4-1_ramips.ipk/download
     opkg install uclibcxx_0.2.4-1_ramips.ipk
     rm uclibcxx_0.2.4-1_ramips.ipk
+```    
 
 ##### Step 4
 
+```bash
     wget http://sourceforge.net/projects/m2m/files/VSCP%20binaries/openwrt/openwrt_0.4.0.11/libstdcpp_4.7-linaro-1_ramips.ipk/download  
     opkg install libstdcpp_4.7-linaro-1_ramips.ipk
     rm libstdcpp_4.7-linaro-1_ramips.ipk
+```
     
 #####  Step 5
 
-    
+```bash    
     wget http://sourceforge.net/projects/m2m/files/VSCP%20binaries/openwrt/openwrt_0.4.0.11/zlib_1.2.7-1_ramips.ipk/download
     opkg install zlib_1.2.7-1_ramips.ipk
     rm zlib_1.2.7-1_ramips.ipk
+```    
 
 ##### Step 6
 
+```bash
     wget http://sourceforge.net/projects/m2m/files/VSCP%20binaries/openwrt/openwrt_0.4.0.11/libopenssl_1.0.1c-1_ramips.ipk/download
     opkg install libopenssl_1.0.1c-1_ramips.ipk
     rm libopenssl_1.0.1c-1_ramips.ipk
+```    
 
 ##### Step 7
 
+```bash
     wget http://sourceforge.net/projects/m2m/files/VSCP%20binaries/openwrt/openwrt_0.4.0.11/libexpat_2.0.1-1_ramips.ipk/download
     opkg install libexpat_2.0.1-1_ramips.ipk
     rm libexpat_2.0.1-1_ramips.ipk
+```    
 
 ##### Step 8
 
+```bash
     wget http://sourceforge.net/projects/m2m/files/VSCP%20binaries/openwrt/openwrt_0.4.0.11/libwxbase_2.8.10-1_ramips.ipk/download
     opkg install libwxbase_2.8.10-1_ramips.ipk
     rm libwxbase_2.8.10-1_ramips.ipk
-
+```
 
 ##### Step 9
 
+```bash
     wget http://sourceforge.net/projects/m2m/files/VSCP%20binaries/openwrt/openwrt_0.4.0.11/libmosquitto-nossl_1.0.3-1_ramips.ipk/download
     opkg install libmosquitto-nossl_1.0.3-1_ramips.ipk
     rm libmosquitto-nossl_1.0.3-1_ramips.ipk
-    
+```
+
 #####  Step 10
 
     
 This one is actually not needed if you will not develop with mosquitto
 
+```bash
     wget http://sourceforge.net/projects/m2m/files/VSCP%20binaries/openwrt/openwrt_0.4.0.11/libmosquitto_1.0.3-1_ramips.ipk/download
     opkg install libmosquitto_1.0.3-1_ramips.ipk
     rm libmosquitto_1.0.3-1_ramips.ipk
+```
 
 ##### Step 11
 
+```bash
     wget http://sourceforge.net/projects/m2m/files/VSCP%20binaries/openwrt/openwrt_0.4.0.11/libmicrohttpd_0.9.19-1_ramips.ipk/download
     opkg install libmicrohttpd_0.9.19-1_ramips.ipk
     rm libmicrohttpd_0.9.19-1_ramips.ipk
+```
 
 ##### Step 12
 
+```bash
     wget http://sourceforge.net/projects/m2m/files/VSCP%20binaries/openwrt/openwrt_0.4.0.11/vscp_0.4.0.11-Fluorine_ramips.ipk/download
     opkg install vscp_0.4.0.11-Fluorine_ramips.ipk
     rm vscp_0.4.0.11-Fluorine_ramips.ipk
+```
 
 ##### Step 13
 
@@ -126,11 +147,13 @@ instead.
 
 ##### Step 2
 
+```bash
     scripts/feeds install uclibcxx
     scripts/feeds install libwxbase
     scripts/feeds install libgnutls-openssl 
     scripts/feeds install libpcap
     scripts/feeds install libmosquitto
+```    
 
 Then issue
 
@@ -183,19 +206,12 @@ and your system would build with VSCP support.
     
 ## Related Links
 
-*  Home for the thingi - [http://www.8devices.com](http://www.8devices.com)
-
-*  Using sysupgrade to upgrade firmware - http://8devices.com/wiki_carambola/doku.php/firmware_upgrade:sysupgrade
-
+*  Home for the thingi - [https://www.8devices.com](https://www.8devices.com)
+*  Using sysupgrade to upgrade firmware - https://8devices.com/wiki_carambola/doku.php/firmware_upgrade:sysupgrade
 *  http://lnxpps.de/can2udpe/smallest-rocrail-server-ever/
-
 *  http://lnxpps.de/can2udpe/openwrt/
-
 *  Old VSCP daemon precompiled - http://geomi.org/vscp/carambola/
 
-\\ 
-----
-{{  ::copyright.png?600  |}}
 
-`<HTML>``<p style="color:red;text-align:center;">``<a href="http://www.grodansparadis.com">`Grodans Paradis AB`</a>``</p>``</HTML>`
- 
+
+{% include "./bottom_copyright.md" %}

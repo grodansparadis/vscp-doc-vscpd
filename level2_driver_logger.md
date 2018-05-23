@@ -41,8 +41,5 @@ If your driver name contains spaces, for example "name of driver" it will get a 
     `<guid>`00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00`</guid>`            
 `</driver>` 
 `</code>`
-\\ 
-----
-{{  ::copyright.png?600  |}}
 
-`<HTML>``<p style="color:red;text-align:center;">``<a href="http://www.grodansparadis.com">`Grodans Paradis AB`</a>``</p>``</HTML>`
+{% include "./bottom_copyright.md" %}

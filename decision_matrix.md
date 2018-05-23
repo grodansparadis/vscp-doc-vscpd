@@ -2025,10 +2025,6 @@ BASE64:dmFyIGRkID0gdnNjcF9yZWFkVmFyaWFibGUodnNjcF9jbGllbnRJdGVtLCJ0ZXN0MSIpOw0KI
 Events of this type can be used for timekeeping and many more things. As an example the [CLASS2.VSCP, Type=7, Hour](http://www.vscp.org/docs/vscpspec/doku.php?id=class2.vscpd#type_7_0x0007_hour) can be used to perform things on a specific hour of the day. 
 
 
-\\ 
-----
-{{  ::copyright.png?600  |}}
-
-`<HTML>``<p style="color:red;text-align:center;">``<a href="http://www.grodansparadis.com">`Grodans Paradis AB`</a>``</p>``</HTML>`
+{% include "./bottom_copyright.md" %}
 
 

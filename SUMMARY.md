@@ -1,297 +1,297 @@
 # Summary
 
-* [Start](vscp_daemon_start.md)
-* [Introduction](vscp_daemon_introduction.md)
+* [Start](start.md)
+* [Introduction](introduction.md)
 
 ## Setup
 
-* [Setting up the system](setting_up_the_system)
-* [Linux/Unix](setting_up_the_system_on_unix)
-* [Windows](setting_up_the_system_on_windows)
-* [Macintosh](setting_up_the_system_on_macintosh)
-* [Rasperry Pi](setting_up_the_system_on_rasperry_pi)
-* [Beaglebone](setting_up_the_system_on_beaglebone)
-* [OpenWrt](setting_up_the_system_on_openwrt)
-* [Carambola](setting_up_the_system_on_8devices_carambola)
-* [ArchLinuxArm](setting_up_)
+* [Setting up the system - intro](setting_up_the_system.md)
+    * [Linux/Unix](setting_up_the_system_on_unix.md)
+    * [Windows](setting_up_the_system_on_windows.md)
+    * [Macintosh](setting_up_the_system_on_macintosh.md)
+    * [Rasperry Pi](setting_up_the_system_on_rasperry_pi.md)
+    * [Beaglebone](setting_up_the_system_on_beaglebone.md)
+    * [OpenWrt](setting_up_the_system_on_openwrt.md)
+    * [Carambola](setting_up_the_system_on_8devices_carambola.md)
+    * [ArchLinuxArm](setting_up_the_system_on_an_embeded_archlinuxarm_system.md)
 
 ## Configure
 
-* [Files and directory structure](files_and_directory_structure)
-* [Configuration file format](configuring_the_vscp_daemon)
-* [Startup switches](vscp_daemon_startup_switches)
+* [Files and directory structure](files_and_directory_structure.md)
+* [Configuration file format](configuring_the_vscp_daemon.md)
+* [Startup switches](startup_switches.md)
 
 ## Server/Service Discovery
 
-* [General](server_disovery)
-* [High end server probe](server_disovery_probe)
-* [Heartbeats](server_disovery_heartbeats)	
+* [General](server_disovery.md)
+* [High end server probe](server_disovery_probe.md)
+* [Heartbeats](server_disovery_heartbeats.md)	
 
 ## Security
 
-* [General](security_general)
-
-## Webserver
-
-* [Web Server Interface](web_server_interface)
-* [Security](vscp_daemon_web_server_interface_security)
-
-## UDP
-
-* [General](daemon_udp_protocol_description_general)
-
-## Multicast  
-
-* [General](daemon_multicast_protocol_description_general)
-* [Announce](daemon_multicast_protocol_description_announce)
-* [Channels](daemon_multicast_protocol_description_channels)
-
-## TCPIP Interface
-
-* [TCP/IP Control Interface](interface)
-* [Security](security)
-* [TCP/IP Protocol Description](description)
-
-    ### TCP/IP commands
-    
-    * [NOOP](noop)
-    * [QUIT](quit)
-    * [HELP](help)
-    * [USER](vscp_daemon_tcp_ip_protocol_description#use)
-    * [PASS](vscp_daemon_tcp_ip_protocol_description#pass)
-    * [CHALLENGE](vscp_daemon_tcp_ip_protocol_description#challenge)
-    * [RESTART](vscp_daemon_tcp_ip_protocol_description#restart)
-    * [SHUTDOWN](vscp_daemon_tcp_ip_protocol_description#shutdown)
-    * [SEND](vscp_daemon_tcp_ip_protocol_description#send_-_send_an_event)
-    * [RETR](vscp_daemon_tcp_ip_protocol_description#retr_-_retrieve)
-    * [RCVLOOP](vscp_daemon_tcp_ip_protocol_description#rcvloop_-_send_)
-    * [QUITLOOP](vscp_daemon_tcp_ip_protocol_description#quitloop_-_qui)
-    * [CHKDATA](vscp_daemon_tcp_ip_protocol_description#cdta_chkdata_-_che)
-    * [CLRALL](vscp_daemon_tcp_ip_protocol_description#clra_clrall_-_clear_)
-    * [STAT](vscp_daemon_tcp_ip_protocol_description#stat_-_get_statistics)
-    * [NFO](vscp_daemon_tcp_ip_protocol_description#info_-_get_st)
-    * [CHID](vscp_daemon_tcp_ip_protocol_description#chid_-_get_channel_id)
-    * [SETGUID](vscp_daemon_tcp_ip_protocol_description#sgid_setguid_-_set)
-    * [GETGUID](vscp_daemon_tcp_ip_protocol_description#ggid_getguid_-_get_g)
-    * [VERS](vscp_daemon_tcp_ip_protocol_description#vers_version_-_get_vsc)
-    * [SETFILTER](vscp_daemon_tcp_ip_protocol_description#sflt_setfilter_-_)
-    * [SETMASK](vscp_daemon_tcp_ip_protocol_description#smsk_setmask_-_set)
-    * [WCYD](vscp_daemon_tcp_ip_protocol_description#wcyd_whatcanyoudo_-_as)
-    * [MEASUREMENT](vscp_daemon_tcp_ip_protocol_description#measurement_-_)
-
-    * [DRIVER](vscp_daemon_tcp_ip_protocol_description#driver)
-        * [ INSTALL](vscp_daemon_tcp_ip_protocol_description#driver_install)
-        * [ UNINSTALL](vscp_daemon_tcp_ip_protocol_description#driver_)
-        * [ START](vscp_daemon_tcp_ip_protocol_description#driver_start)
-        * [ STOP](vscp_daemon_tcp_ip_protocol_description#driver_stop)
-        * [ RELOAD](vscp_daemon_tcp_ip_protocol_description#driver_reload)
-        * [ UPGRADE](vscp_daemon_tcp_ip_protocol_description#driver_upgrade)
-
-    * [FILE](vscp_daemon_tcp_ip_protocol_description#file)
-        * [DIR](vscp_daemon_tcp_ip_protocol_description#dir)
-        * [COPY](vscp_daemon_tcp_ip_protocol_description#copy)
-        * [MOVE](vscp_daemon_tcp_ip_protocol_description#move)
-        * [DELETE](vscp_daemon_tcp_ip_protocol_description#delete)
-        * [LIST](vscp_daemon_tcp_ip_protocol_description#list)
-
-    * [UDP](vscp_daemon_tcp_ip_protocol_description#udp)
-        * [ENABLE](vscp_daemon_tcp_ip_protocol_description#enable)
-        * [DISABLE](vscp_daemon_tcp_ip_protocol_description#disable)
-          
-    * [REMOTE](vscp_daemon_tcp_ip_protocol_description#remote)
-        * [LIST](vscp_daemon_tcp_ip_protocol_description#list1)
-        * [ADD](vscp_daemon_tcp_ip_protocol_description#add)
-        * [REMOVE](vscp_daemon_tcp_ip_protocol_description#remove)
-        * [PRIVELEGE](vscp_daemon_tcp_ip_protocol_description#privilege)
-        * [PASSWORD](vscp_daemon_tcp_ip_protocol_description#password)
-        * [HOST-LIST](vscp_daemon_tcp_ip_protocol_description#host-list)
-        * [EVENT_LIST](vscp_daemon_tcp_ip_protocol_description#event-list)
-        * [FILTER](vscp_daemon_tcp_ip_protocol_description#filter)
-        * [MASK](vscp_daemon_tcp_ip_protocol_description#mask)
-
-    * [ INTERFACE](vscp_daemon_tcp_ip_protocol_description#interface)
-        * [list2](vscp_daemon_tcp_ip_protocol_description)
-        * [close](vscp_daemon_tcp_ip_protocol_description)
-
-    * [DM](vscp_daemon_tcp_ip_protocol_description#dm)
-        * [ENABLE](vscp_daemon_tcp_ip_protocol_description#enable1)
-        * [DISABLE](vscp_daemon_tcp_ip_protocol_description#disable1)
-        * [LIST](vscp_daemon_tcp_ip_protocol_description#list3)
-        * [ADD](vscp_daemon_tcp_ip_protocol_description#add1)
-        * [DELETE](vscp_daemon_tcp_ip_protocol_description#delete1)
-        * [RESET](vscp_daemon_tcp_ip_protocol_description#reset)
-        * [CLRTRIG](vscp_daemon_tcp_ip_protocol_description#clrtrig)
-        * [CLRERR](vscp_daemon_tcp_ip_protocol_description#clrerr)
-        * [SAVE](vscp_daemon_tcp_ip_protocol_description#save)
-        * [LOAD](vscp_daemon_tcp_ip_protocol_description#load)
-
-    * [VAR](vscp_daemon_tcp_ip_protocol_description#var)
-        * [LIST](vscp_daemon_tcp_ip_protocol_description#list4)
-        * [WRITE](vscp_daemon_tcp_ip_protocol_description#write)
-        * [READ](vscp_daemon_tcp_ip_protocol_description#read)
-        * [READVALUE](vscp_daemon_tcp_ip_protocol_description#readvalue)
-        * [WRITEVALUE](vscp_daemon_tcp_ip_protocol_description#writevalue)
-        * [READNOTE](vscp_daemon_tcp_ip_protocol_description#readnote)
-        * [WRITENOTE](vscp_daemon_tcp_ip_protocol_description#writenote)
-        * [RESET](vscp_daemon_tcp_ip_protocol_description#reset1)
-        * [READRESET](vscp_daemon_tcp_ip_protocol_description#readreset)
-        * [REMOVE](vscp_daemon_tcp_ip_protocol_description#remove1)
-        * [READREMOVE](vscp_daemon_tcp_ip_protocol_description#readremove)
-        * [LENGTH](vscp_daemon_tcp_ip_protocol_description#length)
-        * [SAVE](vscp_daemon_tcp_ip_protocol_description#save1)
-        * [LOAD](vscp_daemon_tcp_ip_protocol_description#load1)
-
-        ## Table 
-        * [TABLE](vscp_daemon_tcp_ip_protocol_description#table)
-        * [LIST all](vscp_daemon_tcp_ip_protocol_description#list5)
-        * [LIST table](vscp_daemon_tcp_ip_protocol_description#list_table-)
-        * [GET](vscp_daemon_tcp_ip_protocol_description#get_table-name_from)
-        * [GETRAW](vscp_daemon_tcp_ip_protocol_description#getraw_table-name)
-        * [LOG](vscp_daemon_tcp_ip_protocol_description#log_table-name_value)
-        * [LOGSQL](vscp_daemon_tcp_ip_protocol_description#logsql_table-nam)
-        * [RECORDS](vscp_daemon_tcp_ip_protocol_description#records_table-n)
-        * [FIRSTDATE](vscp_daemon_tcp_ip_protocol_description#firstdate_tab)
-        * [LASTDATE](vscp_daemon_tcp_ip_protocol_description#lastdate_table)
-        * [SUM](vscp_daemon_tcp_ip_protocol_description#sum_table-name_fr)
-        * [SUM](vscp_daemon_tcp_ip_protocol_description#sum_table-name_fro)
-        * [MIN](vscp_daemon_tcp_ip_protocol_description#min_table-name_from)
-        * [MAX](vscp_daemon_tcp_ip_protocol_description#max_table-name_from)
-        * [AVERAGE](vscp_daemon_tcp_ip_protocol_description#average_table-n)
-        * [MEDIAN](vscp_daemon_tcp_ip_protocol_description#median_table-nam)
-        * [STDDEV](vscp_daemon_tcp_ip_protocol_description#stddev_table-name)  
-        * [VARIANCE](vscp_daemon_tcp_ip_protocol_description#variance_table)
-        * [MODE](vscp_daemon_tcp_ip_protocol_description#mode_table-name_fro)
-        * [LOWERQ](vscp_daemon_tcp_ip_protocol_description#lowerq_table-nam)
-        * [UPPERQ](vscp_daemon_tcp_ip_protocol_description#upperq_table-nam)
-        * [CLEAR](vscp_daemon_tcp_ip_protocol_description#clear_table-name_t)
-        * [CREATE](vscp_daemon_tcp_ip_protocol_description#create_table-name)
-
-## Websocket interface
-* [Websocket Interface](websocket_interface)
-* [Security](interface_security)
-* [Errors](protocol_description)
- * [Protocol Description](protocol_description)
-
-    ## Websocket Commands
-    * [Send Events](vscp_daemon_websocket_protocol_description#send_events)
-    * [NOOP](vscp_daemon_websocket_protocol_description#noop)
-    * [CHALLENGE](vscp_daemon_websocket_protocol_description#challenge)
-    * [ AUTH](vscp_daemon_websocket_protocol_description#auth )
-    * [ OPEN](vscp_daemon_websocket_protocol_description#open )
-    * [ CLOSE](vscp_daemon_websocket_protocol_description#close )
-    * [ CLRQ](vscp_daemon_websocket_protocol_description#clrq )
-    * [ SF](vscp_daemon_websocket_protocol_description#sf )
-    * [ RVAR](vscp_daemon_websocket_protocol_description#rvar )
-    * [ WVAR](vscp_daemon_websocket_protocol_description#wvar )
-    * [ CVAR](vscp_daemon_websocket_protocol_description#cvar )
-    * [ DELVAR](vscp_daemon_websocket_protocol_description#delvar )
-    * [ LSTVAR](vscp_daemon_websocket_protocol_description#lstvar )
-    * [ RSTVAR](vscp_daemon_websocket_protocol_description#rstvar )
-    * [ LENVAR](vscp_daemon_websocket_protocol_description#lenvar )
-    * [ LCVAR](vscp_daemon_websocket_protocol_description#lcvar )
-    * [ GT](vscp_daemon_websocket_protocol_description#gt )
-    * [ MEASUREMENT](vscp_daemon_websocket_protocol_description#measurement )
-
-## REST interface
-
-* [REST Interface](vscp_daemon_vscp_daemon_rest_interface)
-* [Security](vscp_daemon_rest_interface_security)
-* [REST Protocol Description](vscp_daemon_rest_protocol)
-
-## JavaScript interface
-
-* [Widgets and Javascript library](vscp_daemon_widgets_and_javascript_library)
-  
-    ### Widgets
-
-    * [vscpws_Event](vscpws_event)
-    * [vscpws_Variable](vscpws_variable)
-    * [vscpws_stateButton](vscpws_statebutton)
-    * [vscpws_simpleText](vscpws_simpletext)
-    * [vscpws_thermometerCelsius](vscpws_thermometercelsius)
-    * [vscpws_speedometerCelsius](vscpws_speedometercelsius)
-
-## Commands
-
-* [ Open session](vscp_daemon_rest_interface_open)
-* [ Close session](vscp_daemon_rest_interface_close)
-* [ Get status](vscp_daemon_rest_interface_status)
-* [ Send Event](vscp_daemon_rest_interface_sendevent)
-* [ Read Event](vscp_daemon_rest_interface_readevent)
-* [ Set Filter](vscp_daemon_rest_interface_setfilter)
-* [ Clear Input queue](vscp_daemon_rest_interface_clearinqueue)
-* [ Create variable](vscp_daemon_rest_interface_creatvar)
-* [ Delete variable](vscp_daemon_rest_interface_delvar)
-* [ Read variable](vscp_daemon_rest_interface_readvar)
-* [ Write variable](vscp_daemon_rest_interface_writevar)
-* [ List variables](vscp_daemon_rest_interface_listvar)
-* [ Send a measurement](vscp_daemon_rest_interface_measurement)
-* [ Get Table](vscp_daemon_rest_interface_table)
-* [ Get MDF](vscp_daemon_rest_interface_mdf)
+* [General](security_general.md)
 
 ## Decision Matrix
 
-* [Decision Matrix](vscp_daemon_decision_matrix)
-* [Actions](vscp_daemon_decision_matrix#actions)
-* [Lua scripts](lua_callbacks)
-* [JavaScript scripts](javascript_callbacks)
-* [Escapes](vscp_daemon_decision_matrix#variable_substitution_for_)
-* [Debugging](vscp_daemon_decision_matrix_debug)
-* [Examples](decision_matrix_examples)
+* [Decision Matrix](decision_matrix.md)
+* [Actions](decision_matrix.md#actions)
+* [Lua scripts](lua_callbacks.md)
+* [JavaScript scripts](javascript_callbacks.md)
+* [Escapes](decision_matrix.md#variable_substitution_for_)
+* [Debugging](decision_matrix_debug.md)
+* [Examples](decision_matrix_examples.md)
+
+## Webserver
+
+* [Web Server Interface](web_server_interface.md)
+* [Security](web_server_interface_security.md)
+
+## UDP
+
+* [General](udp_protocol_description_general.md)
+
+## Multicast  
+
+* [General](multicast_protocol_description_general.md)
+* [Announce](multicast_protocol_description_announce.md)
+* [Channels](multicast_protocol_description_channels.md)
+
+## TCPIP Interface
+
+* [TCP/IP Control Interface](tcp_ip_control_interface.md)
+* [Security](tcp_ip_control_interface_security.md)
+* [TCP/IP Protocol Description](tcp_ip_protocol_description.md)
+
+    ### TCP/IP commands
+    
+    * [noop](tcp_ip_protocol_description.md#noop)
+    * [quit](tcp_ip_protocol_description.md#quit)
+    * [help](tcp_ip_protocol_description.md#help)
+    * [user](tcp_ip_protocol_description.md#use)
+    * [pass](tcp_ip_protocol_description.md#pass)
+    * [challenge](tcp_ip_protocol_description.md#challenge)
+    * [restart](tcp_ip_protocol_description.md#restart)
+    * [shutdown](tcp_ip_protocol_description.md#shutdown)
+    * [send](tcp_ip_protocol_description.md#send_-_send_an_event)
+    * [retr](tcp_ip_protocol_description.md#retr_-_retrieve)
+    * [rcvloop](tcp_ip_protocol_description.md#rcvloop_-_send_)
+    * [quitloop](tcp_ip_protocol_description.md#quitloop_-_qui)
+    * [chkdata](tcp_ip_protocol_description.md#cdta_chkdata_-_che)
+    * [clrall](tcp_ip_protocol_description.md#clra_clrall_-_clear_)
+    * [stat](tcp_ip_protocol_description.md#stat_-_get_statistics)
+    * [info](tcp_ip_protocol_description.md#info_-_get_st)
+    * [chid](tcp_ip_protocol_description.md#chid_-_get_channel_id)
+    * [setguid](tcp_ip_protocol_description.md#sgid_setguid_-_set)
+    * [getguid](tcp_ip_protocol_description.md#ggid_getguid_-_get_g)
+    * [vers](tcp_ip_protocol_description.md#vers_version_-_get_vsc)
+    * [setfilter](tcp_ip_protocol_description.md#sflt_setfilter_-_)
+    * [setmask](tcp_ip_protocol_description.md#smsk_setmask_-_set)
+    * [wcyd](tcp_ip_protocol_description.md#wcyd_whatcanyoudo_-_as)
+    * [measurement](tcp_ip_protocol_description.md#measurement_-_)
+
+    * [driver](tcp_ip_protocol_description.md#driver)
+        * [install](tcp_ip_protocol_description.md#driver_install)
+        * [uninstall](tcp_ip_protocol_description.md#driver_)
+        * [start](tcp_ip_protocol_description.md#driver_start)
+        * [stop](tcp_ip_protocol_description.md#driver_stop)
+        * [reload](tcp_ip_protocol_description.md#driver_reload)
+        * [upgrade](tcp_ip_protocol_description.md#driver_upgrade)
+
+    * [file](tcp_ip_protocol_description.md#file)
+        * [dir](tcp_ip_protocol_description.md#dir)
+        * [copy](tcp_ip_protocol_description.md#copy)
+        * [move](tcp_ip_protocol_description.md#move)
+        * [delete](tcp_ip_protocol_description.md#delete)
+        * [list](tcp_ip_protocol_description.md#list)
+
+    * [udp](tcp_ip_protocol_description.md#udp)
+        * [enable](tcp_ip_protocol_description.md#enable)
+        * [disable](tcp_ip_protocol_description.md#disable)
+          
+    * [remote](tcp_ip_protocol_description.md#remote)
+        * [list](tcp_ip_protocol_description.md#list1)
+        * [add](tcp_ip_protocol_description.md#add)
+        * [remove](tcp_ip_protocol_description.md#remove)
+        * [privelege](tcp_ip_protocol_description.md#privilege)
+        * [password](tcp_ip_protocol_description.md#password)
+        * [host-list](tcp_ip_protocol_description.md#host-list)
+        * [event-list](tcp_ip_protocol_description.md#event-list)
+        * [filter](tcp_ip_protocol_description.md#filter)
+        * [mask](tcp_ip_protocol_description.md#mask)
+
+    * [interface](tcp_ip_protocol_description.md#interface)
+        * [list2](tcp_ip_protocol_description.md)
+        * [close](tcp_ip_protocol_description.md)
+
+    * [dm](tcp_ip_protocol_description.md#dm)
+        * [enable](tcp_ip_protocol_description.md#enable1)
+        * [disable](tcp_ip_protocol_description.md#disable1)
+        * [list](tcp_ip_protocol_description.md#list3)
+        * [add](tcp_ip_protocol_description.md#add1)
+        * [delete](tcp_ip_protocol_description.md#delete1)
+        * [reset](tcp_ip_protocol_description.md#reset)
+        * [clrtrig](tcp_ip_protocol_description.md#clrtrig)
+        * [clrerr](tcp_ip_protocol_description.md#clrerr)
+        * [save](tcp_ip_protocol_description.md#save)
+        * [load](tcp_ip_protocol_description.md#load)
+
+    * [var](tcp_ip_protocol_description.md#var)
+        * [list](tcp_ip_protocol_description.md#list4)
+        * [write](tcp_ip_protocol_description.md#write)
+        * [read](tcp_ip_protocol_description.md#read)
+        * [readvalue](tcp_ip_protocol_description.md#readvalue)
+        * [writevalue](tcp_ip_protocol_description.md#writevalue)
+        * [readnote](tcp_ip_protocol_description.md#readnote)
+        * [writenote](tcp_ip_protocol_description.md#writenote)
+        * [reset](tcp_ip_protocol_description.md#reset1)
+        * [readreset](tcp_ip_protocol_description.md#readreset)
+        * [remove](tcp_ip_protocol_description.md#remove1)
+        * [readremove](tcp_ip_protocol_description.md#readremove)
+        * [length](tcp_ip_protocol_description.md#length)
+        * [save](tcp_ip_protocol_description.md#save1)
+        * [load](tcp_ip_protocol_description.md#load1)
+
+        ## Table 
+        * [table](tcp_ip_protocol_description.md#table)
+        * [list all](tcp_ip_protocol_description.md#list5)
+        * [list table](tcp_ip_protocol_description.md#list_table-)
+        * [get](tcp_ip_protocol_description.md#get_table-name_from)
+        * [getraw](tcp_ip_protocol_description.md#getraw_table-name)
+        * [log](tcp_ip_protocol_description.md#log_table-name_value)
+        * [logsql](tcp_ip_protocol_description.md#logsql_table-nam)
+        * [records](tcp_ip_protocol_description.md#records_table-n)
+        * [firstdate](tcp_ip_protocol_description.md#firstdate_tab)
+        * [lastdate](tcp_ip_protocol_description.md#lastdate_table)
+        * [sum](tcp_ip_protocol_description.md#sum_table-name_fr)
+        * [sum](tcp_ip_protocol_description.md#sum_table-name_fro)
+        * [min](tcp_ip_protocol_description.md#min_table-name_from)
+        * [max](tcp_ip_protocol_description.md#max_table-name_from)
+        * [average](tcp_ip_protocol_description.md#average_table-n)
+        * [median](tcp_ip_protocol_description.md#median_table-nam)
+        * [stddev](tcp_ip_protocol_description.md#stddev_table-name)  
+        * [variance](tcp_ip_protocol_description.md#variance_table)
+        * [mode](tcp_ip_protocol_description.md#mode_table-name_fro)
+        * [lowerq](tcp_ip_protocol_description.md#lowerq_table-nam)
+        * [upperq](tcp_ip_protocol_description.md#upperq_table-nam)
+        * [clear](tcp_ip_protocol_description.md#clear_table-name_t)
+        * [create](tcp_ip_protocol_description.md#create_table-name)
+
+## Websocket interface
+* [Websocket Interface](websocket_interface.md)
+* [Security](websocket_interface_security.md)
+* [Errors](websocket_protocol_description.md)
+* [Protocol Description](websocket_protocol_description.md)
+
+    ## Websocket Commands
+    * [Send Events](websocket_protocol_description.md#send_events)
+    * [NOOP](websocket_protocol_description.md#noop)
+    * [CHALLENGE](websocket_protocol_description.md#challenge)
+    * [ AUTH](websocket_protocol_description.md#auth )
+    * [ OPEN](websocket_protocol_description.md#open )
+    * [ CLOSE](websocket_protocol_description.md#close )
+    * [ CLRQ](websocket_protocol_description.md#clrq )
+    * [ SF](websocket_protocol_description.md#sf )
+    * [ RVAR](websocket_protocol_description.md#rvar )
+    * [ WVAR](websocket_protocol_description.md#wvar )
+    * [ CVAR](websocket_protocol_description.md#cvar )
+    * [ DELVAR](websocket_protocol_description.md#delvar )
+    * [ LSTVAR](websocket_protocol_description.md#lstvar )
+    * [ RSTVAR](websocket_protocol_description.md#rstvar )
+    * [ LENVAR](websocket_protocol_description.md#lenvar )
+    * [ LCVAR](websocket_protocol_description.md#lcvar )
+    * [ GT](websocket_protocol_description.md#gt )
+    * [ MEASUREMENT](websocket_protocol_description.md#measurement )
+
+## REST interface
+
+* [REST Interface](rest_interface.md)
+* [Security](rest_interface_security.md)
+* [REST Protocol Description](rest_protocol.md)
+
+## Commands
+
+* [ Open session](rest_interface_open.md)
+* [ Close session](rest_interface_close.md)
+* [ Get status](rest_interface_status.md)
+* [ Send Event](rest_interface_sendevent.md)
+* [ Read Event](rest_interface_readevent.md)
+* [ Set Filter](rest_interface_setfilter.md)
+* [ Clear Input queue](rest_interface_clearinqueue.md)
+* [ Create variable](rest_interface_createvar.md)
+* [ Delete variable](rest_interface_delvar.md)
+* [ Read variable](rest_interface_readvar.md)
+* [ Write variable](rest_interface_writevar.md)
+* [ List variables](rest_interface_listvar.md)
+* [ Send a measurement](rest_interface_measurement.md)
+* [ Get Table](rest_interface_table.md)
+* [ Get MDF](rest_interface_mdf.md)
+
+## JavaScript interface
+
+* [Widgets and Javascript library](widgets_and_javascript_library.md)
+  
+    ### Widgets
+
+    * [vscpws_Event](vscpws_event.md)
+    * [vscpws_Variable](vscpws_variable.md)
+    * [vscpws_stateButton](vscpws_statebutton.md)
+    * [vscpws_simpleText](vscpws_simpletext.md)
+    * [vscpws_thermometerCelsius](vscpws_thermometercelsius.md)
+    * [vscpws_speedometerCelsius](vscpws_speedometercelsius.md)
 
 ## Tables
 
-* [How to use tables](vscp-tables)
+* [How to use tables](vscp-tables.md)
 
 ## Remote Variables
 
-* [Variables Introduced](decision_matrix_varaibles)
-* [Variable Types](decision_matrix_varaibles#variable_types)
-* [Variable write format](decision_matrix_varaibles#variable_types)
-* [Variable persistent storage format](decision_matrix_varaibles#persistent)
+* [Variables Introduced](decision_matrix_variables.md)
+* [Variable Types](decision_matrix_varaibles.md#variable_types)
+* [Variable write format](decision_matrix_varaibles.md#variable_types)
+* [Variable persistent storage format](decision_matrix_varaibles.md#persistent)
 
 ## Drivers
 
-*  [Driver Interfaces](vscp_daemon_driver_interfaces)
+*  [Driver Interfaces](driver_interfaces.md)
 
-    * [Level I Drivers](vscp_daemon_level_i_drivers)
-        * [API](canal_interface_specification)
-        * [8Devices USB2CAN Driver](level1_driver_usb2can)
-        * [Apox Driver](level1_driver_apox)
-        * [CAN4VSCP Driver](level1_driver_can4vscp)
-        * [CCS CAN Driver](level1_driver_ccs)
-        * [IXATT VCI Driver](level1_driver_ixxat)
-        * [Lawicel CAN232 Driver](level1_driver_can232)
-        * [level1_driver_canusb](Lawicel_CANUSB_Driver)
-        * [LIRC Driver](level1_driver_lirc)
-        * [Logger Driver](level1_driver_logger)
-        * [PEAK CAN Adapter Driver](level1_driver_peak)
-        * [Socketcan Driver](level1_driver_socketcan)
-        * [Tellstick Driver](level1_driver_tellstick)
-        * [Vector CAN Driver](level1_driver_vector)
-        * [Zanthic CAN Driver](level1_driver_zanthic)
+    * [Level I Drivers](level_i_drivers.md)
+        * [API](canal_interface_specification.md)
+        * [8Devices USB2CAN Driver](level1_driver_usb2can.md)
+        * [Apox Driver](level1_driver_apox.md)
+        * [CAN4VSCP Driver](level1_driver_can4vscp.md)
+        * [CCS CAN Driver](level1_driver_ccs.md)
+        * [IXATT VCI Driver](level1_driver_ixxat.md)
+        * [Lawicel CAN232 Driver](level1_driver_can232.md)
+        * [level1_driver_canusb](level1_driver_canusb.md)
+        * [LIRC Driver](level1_driver_lirc.md)
+        * [Logger Driver](level1_driver_logger.md)
+        * [PEAK CAN Adapter Driver](level1_driver_peak.md)
+        * [Socketcan Driver](level1_driver_socketcan.md)
+        * [Tellstick Driver](level1_driver_tellstick.md)
+        * [Vector CAN Driver](level1_driver_vector.md)
+        * [Zanthic CAN Driver](level1_driver_zanthic.md)
 
-    * [Level II Drivers](vscp_daemon_level_ii_drivers)
+    * [Level II Drivers](level_ii_drivers.md)
 
-        * [API](vscp_daemon_level_ii_driver_api)
-        * [Bluetooth proximity driver](level2_driver_bluetooth_proximity)
-        * [LM-sensors driver](level2_driver_lm_sensors)
-        * [Logger driver](level2_driver_logger)
-        * [MQTT driver](level2_driver_mqtt)
-        * [Raw Ethernet driver](level2_driver_raw_ethernet)
-        * [Socketcan driver](level2_driver_socketcan)
-        * [TCP/IP link driver](level2_driver_tcpip/link)
-        * [Linux 1-wire driver](level2_driver_wire1)
-        * [Raspberry Pi Linux GPIO driver](level2_driver_rpigpio)
-        * [Simulation driver](level2_driver_simulation)
+        * [API](level_ii_driver_api.md)
+        * [Bluetooth proximity driver](level2_driver_bluetooth_proximity.md)
+        * [LM-sensors driver](level2_driver_lm_sensors.md)
+        * [Logger driver](level2_driver_logger.md)
+        * [MQTT driver](level2_driver_mqtt.md)
+        * [Raw Ethernet driver](level2_driver_raw_ethernet.md)
+        * [Socketcan driver](level2_driver_socketcan.md)
+        * [TCP/IP link driver](level2_driver_tcpip_link.md)
+        * [Linux 1-wire driver](level2_driver_wire1.md)
+        * [Raspberry Pi Linux GPIO driver](level2_driver_rpigpio.md)
+        * [Simulation driver](level2_driver_simulation.md)
 
 **Appendix**
 
-* [History](history)
-* [Variable persistent storage format](vscp_daemon_variable_persistent_sto)
-* [Variable write format](vscp_daemon_variable_string_write_format)
-* [CANAL](canal_interface_specification)
-* [Test events](Test_events)
+* [History](history.md)
+* [Variable persistent storage format](variable_persistent_storage_format.md)
+* [Variable write format](variable_types.md)
+* [CANAL](canal_interface_specification.md)
+* [Test events](test_events.md)
 
 ## Other documentation
 

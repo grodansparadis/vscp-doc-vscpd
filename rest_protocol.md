@@ -41,19 +41,19 @@ The available operations currently are
 
  | operation token                                                                                  | Code | Description                        | 
  | ---------------                                                                                  | ---- | -----------                        | 
- | [STATUS](http://www.vscp.org/docs/vscpd/doku.php?id=vscp_daemon_rest_interface_status)           | 0    | Gives status for session           | 
- | [OPEN](http://www.vscp.org/docs/vscpd/doku.php?id=vscp_daemon_rest_interface_open)               | 1    | Open a new session session         | 
- | [CLOSE](http://www.vscp.org/docs/vscpd/doku.php?id=vscp_daemon_rest_interface_close)             | 2    | Close a session                    | 
- | [SENDEVENT](http://www.vscp.org/docs/vscpd/doku.php?id=vscp_daemon_rest_interface_sendevent)     | 3    | Send VSCP Event                    | 
- | [READEVENT](http://www.vscp.org/docs/vscpd/doku.php?id=vscp_daemon_rest_interface_readevent)     | 4    | Read VSCP Event                    | 
- | [SETFILTER](http://www.vscp.org/docs/vscpd/doku.php?id=vscp_daemon_rest_interface_setfilter)     | 5    | Set filter for this session        | 
- | [CLEARQUEUE](http://www.vscp.org/docs/vscpd/doku.php?id=vscp_daemon_rest_interface_clearinqueue) | 6    | Clear input queue for this session | 
- | [LISTVAR](http://www.vscp.org/docs/vscpd/doku.php?id=vscp_daemon_rest_interface_listvar)         | 12   | List variables variable            | 
- | [READVAR](http://www.vscp.org/docs/vscpd/doku.php?id=vscp_daemon_rest_interface_readvar)         | 7    | Read the value of a variable       | 
- | [WRITEVAR](http://www.vscp.org/docs/vscpd/doku.php?id=vscp_daemon_rest_interface_writevar)       | 8    | Write the value of a variable      | 
- | [CREATEVAR](http://www.vscp.org/docs/vscpd/doku.php?id=vscp_daemon_rest_interface_creatvar)      | 9    | Create a variable                  | 
- | [MEASUREMENT](http://www.vscp.org/docs/vscpd/doku.php?id=vscp_daemon_rest_interface_measurement) | 10   | Send a measurement                 | 
- | [TABLE](http://www.vscp.org/docs/vscpd/doku.php?id=vscp_daemon_rest_interface_table)             | 11   | Read a table                       | 
+ | [status](rest_interface_status.md)           | 0    | Gives status for session           | 
+ | [open](rest_interface_open.md)               | 1    | Open a new session session         | 
+ | [close](rest_interface_close.md)             | 2    | Close a session                    | 
+ | [sendevent](rest_interface_sendevent.md)     | 3    | Send VSCP Event                    | 
+ | [readevent](rest_interface_readevent.md)     | 4    | Read VSCP Event                    | 
+ | [setfilter](rest_interface_setfilter.md)     | 5    | Set filter for this session        | 
+ | [clearqueue](rest_interface_clearinqueue.md) | 6    | Clear input queue for this session | 
+ | [listvar](rest_interface_listvar.md)         | 12   | List variables variable            | 
+ | [readvar](rest_interface_readvar.md)         | 7    | Read the value of a variable       | 
+ | [writevar](rest_interface_writevar.md)       | 8    | Write the value of a variable      | 
+ | [createvar](rest_interface_createvar.md)      | 9    | Create a variable                  | 
+ | [measurement](rest_interface_measurement.md) | 10   | Send a measurement                 | 
+ | [table](rest_interface_table.md)             | 11   | Read a table                       | 
 
 ## Errors
 

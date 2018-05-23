@@ -8,10 +8,6 @@ One important design goal when this interface was designed was to create an inte
 
 If you want to test this there is a simple [walkthrough](http://www.vscp.org/wiki/doku.php/howto/howto_start_websockets).  The Javascript library and samples can be found on [GitHub](https///github.com/grodansparadis/vscp_html5) 
 
-\\ 
-----
-{{  ::copyright.png?600  |}}
-
-`<HTML>``<p style="color:red;text-align:center;">``<a href="http://www.grodansparadis.com">`Grodans Paradis AB`</a>``</p>``</HTML>`
+{% include "./bottom_copyright.md" %}
 
 

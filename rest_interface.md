@@ -44,8 +44,4 @@ If you are using JavaScript in a web browser to retrieve data, then you might be
 Unlike all of the other methods, JSONP responses will always be sent with the HTTP 200 success code. We respond this way for the JSONP format because browsers will not parse the response body when the server replies with a HTTP error code.
 
 
-\\ 
-----
-{{  ::copyright.png?600  |}}
-
-`<HTML>``<p style="color:red;text-align:center;">``<a href="http://www.grodansparadis.com">`Grodans Paradis AB`</a>``</p>``</HTML>`
+{% include "./bottom_copyright.md" %}

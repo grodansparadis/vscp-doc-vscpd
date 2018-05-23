@@ -3,9 +3,9 @@
  
 To install VSCP & Friends on Unix you need to build the system from source. The build process is simple and it usually don't give any problems. All packages are available for download at [Sourceforge](https///sourceforge.net/projects/m2m/files/VSCP%20Software/). Download the .zip or the .tgz archives of the package.
 
-The build process is described in the file __BUILD_UNIX__ in the root of the source folder. You find the source in the same folder as the installation packages. The source for the system is also available on [GitHub](https///github.com/grodansparadis/vscp_software) if you want to use unstable code or just prefers GitHub for some other reason.
+The build process is described in the file **BUILD_UNIX** in the root of the source folder. You find the source in the same folder as the installation packages. The source for the system is also available on [GitHub](https///github.com/grodansparadis/vscp_software) if you want to use unstable code or just prefers GitHub for some other reason.
 
-A sample configuration file for Unix is [here](https///github.com/grodansparadis/vscp_software/blob/master/config_examples/vscpd.conf_unix_distro).
+A sample configuration file for Unix is [here](https://github.com/grodansparadis/vscp/blob/master/config_examples/vscpd.conf_unix_distro).
 
 
 
@@ -34,7 +34,7 @@ If you don't have a build environment on your system follow the steps on [this p
     apt-get update && apt-get upgrade
     apt-get install build-essential
 
-If you are in a real hurry (or can't read) do
+If you are in a real hurry (*or can't read*) do
 
     apt-get install git build-essential libwxbase3.0-dev  libssl-dev libpcap0.8-dev libcurl4-openssl-dev libpcap-dev libcurl4-openssl-dev
 
@@ -54,9 +54,9 @@ or if you **want graphics support (VSCP Works builds)**
 
     apt-get install libwxgtk3.0-dev
 
-Building GTK versions will build [VSCP Works](http://www.vscp.org/docs/vscpworks/doku.php) and other graphical components.
+Building GTK versions will build [VSCP Works](https://www.vscp.org/docs/vscpworks/doku.php) and other graphical components.
 
-If you want wxWidgets 3.0 on Raspberry Pi read note [here](http://www.vscp.org/docs/vscpd/doku.php?id=setting_up_the_system_on_rasperry_pi).
+If you want wxWidgets 3.0 on Raspberry Pi read note [here](./setting_up_the_system_on_rasperry_pi.md).
 
 ###  Step 3
 
@@ -69,7 +69,7 @@ If you want to get the source from GitHub you may want to install Git.
     
 ###  Step 5 (optional)
 
-If you want MQTT driver support (recommended). You need to install Mosquitto. Se [Installing mosquitto for use with VSCP](Installing moquitto for use with VSCP) for instructions.
+If you want MQTT driver support (recommended). You need to install Mosquitto. Se [Installing mosquitto for use with VSCP](installing_moquitto_for_use_with_vscp.md) for instructions.
 
 The installation only affect the build of the MQTT driver so if you don't need that driver you can skip this step.
  
@@ -127,7 +127,7 @@ Then unpack the archive with
 
 There is a scripts that can be used to do these steps automagically for you    
 
-    wget http://sourceforge.net/projects/m2m/files/VSCP%20Software/1.0.0%20Neon/fetch_master/download
+    wget https://sourceforge.net/projects/m2m/files/VSCP%20Software/1.0.0%20Neon/fetch_master/download
     chmod a+x fetch_master
     sudo ./fetchmaster
 
@@ -135,6 +135,7 @@ will fetch the latest code, build it and install it for you.
 
 or add this to a a file
 
+```bash
     #!/bin/sh
     sudo rm -rf vscp_software-master
     sudo wget https://github.com/grodansparadis/vscp_software/archive  /master.zip
@@ -143,6 +144,7 @@ or add this to a a file
     cd vscp_software-master
     sudo ./configure
     sudo make
+```    
 
 make it executable with 
 
@@ -232,7 +234,7 @@ installs default web content.
 
 This is done with script 
 
- do_web_download
+    do_web_download
 
 which downloads and installs the latest UX code in the default folder. This script is located in the project root folder and can be used without the makefile also.
 
@@ -261,7 +263,7 @@ Default install directory is /usr/local/bin
 
 ###  Step 16
 
-Not taking your newly installed system for a test ride \\  [ Take VSCP & Friends for a test ride](http://www.vscp.org/docs/vscpd/doku.php?id=new_system_install_test_ride )
+Not taking your newly installed system for a test ride \\  [ Take VSCP & Friends for a test ride](new_system_install_test_ride.md)
 
 
 ----
@@ -307,8 +309,4 @@ Build statically
 
 If your system does not have C++11 (Ubuntu Trusty) see this https://askubuntu.com/questions/428198/getting-installing-gcc-g-4-9-on-ubuntu  
 
-\\ 
-----
-{{  ::copyright.png?400  |}}
-
-`<HTML>``<p style="color:red;text-align:center;">``<a href="http://www.grodansparadis.com">`Grodans Paradis AB`</a>``</p>``</HTML>`
+{% include "./bottom_copyright.md" %}

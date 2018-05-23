@@ -71,8 +71,4 @@ This is the access level this user have. This is a 32-bit value where the lower 
 Level II drivers is started through the normal driver interface, but after the start it also do some of its communication through the TCP/IP interface. It can also use the variables defined in the system for its own configuration and state. A driver of this type needs a username/password pair and it could be defined for the driver in the configuration but an internal schema create these credentials automatically if they are not manually configured. The Host-list for the user drivers to be used, should always be the Localhost to increase security.
 
 
-\\ 
-----
-{{  ::copyright.png?600  |}}
-
-`<HTML>``<p style="color:red;text-align:center;">``<a href="http://www.grodansparadis.com">`Grodans Paradis AB`</a>``</p>``</HTML>`
+{% include "./bottom_copyright.md" %}

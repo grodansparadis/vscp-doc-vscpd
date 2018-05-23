@@ -115,6 +115,4 @@ And the end result is data filled into your database.
 
 
 
-\\ 
-----
-Copyright (c) 2000-2017 [Åke Hedman](mailto/akhe@grodansparadis.com), [Paradise of the Frog / Grodans Paradis AB](http://www.grodansparadis.com)
+{% include "./bottom_copyright.md" %}

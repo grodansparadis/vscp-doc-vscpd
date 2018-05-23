@@ -6,7 +6,7 @@ MQTT provides a lightweight method of carrying out messaging using a publish/sub
 
 This driver allow publishing of VSCP events as well as subscribing to VSCP events.
 
-To build and use the driver you need yo install the Mosquitto library. You can find instruction on how to do that [here](installing_moquitto_for_use_with_vscp).
+To build and use the driver you need yo install the Mosquitto library. You can find instruction on how to do that [here](installing_moquitto_for_use_with_vscp.md).
 
 
 ## Driver
@@ -19,7 +19,7 @@ The configuration string have the following format
 
     “sessionid";"subscribe”|”publish”;channel;host;user;password;keepalive;filter;mask
 
-The first configuration parameter is a unique id like "mysession22" for your connection. The second parameter tell if the intention is to subscribe (“subscribe”) to an existing MQTT channel or to publish (“publish”) events on a channel. The second parameter is the topic. This is a text string identifying the topic. It is recommended that this string starts with “vscp/”. Host is the host where the MQTT broker is located (defaults to "localhost:1883"). __Note that port must be included in the hostname.__ User/password is credentials for the channel if they are needed. 
+The first configuration parameter is a unique id like "mysession22" for your connection. The second parameter tell if the intention is to subscribe (“subscribe”) to an existing MQTT channel or to publish (“publish”) events on a channel. The second parameter is the topic. This is a text string identifying the topic. It is recommended that this string starts with “vscp/”. Host is the host where the MQTT broker is located (defaults to "localhost:1883"). **Note that port must be included in the hostname.** User/password is credentials for the channel if they are needed. 
 
 **Note**
 "sessionid" is introduced from version 1.1.0.22 Sodium. Skip for earlier versions.
@@ -59,7 +59,7 @@ For a publishing channel it may be wise to set a filter in the driver so only th
 
 The format for the simplicity variable varies for the VSCP class one want to use
 
-**[CLASS1.MEASUREMENT](http://www.vscp.org/docs/vscpspec/doku.php?id=class1.measurement)**
+**[CLASS1.MEASUREMENT](https://grodansparadis.gitbooks.io/the-vscp-specification/content/class1.measurement.html)**
 
 Only **string** and **float** coding is allowed. For string the number can be a maximum of seven characters.
 
@@ -67,15 +67,15 @@ The variable format is
 
     10, vscp-type,float|string, sensoridx(0-7), unit(0-7)
 
-([VSCP types are here](http://www.vscp.org/docs/vscpspec/doku.php?id=class1.measurement)) so if you code a simplify variable as
+([VSCP types are here](https://grodansparadis.gitbooks.io/the-vscp-specification/content/class1.measurement.html)) so if you code a simplify variable as
 
     10,6,float,3,1
 
-for a subscribe setup a number like "23.78" send over MQTT will be converted to a valid VSCP event [CLASS1.MEASUREMENT, Type=6, temperature](http://www.vscp.org/docs/vscpspec/doku.php?id=class1.measurement#type_6_0x06_temperature) and with unit set to degrees Celsius and sensor index set to 2 and where the data is a single precision floating point number (32-bit). The setup is of course the same for a publish setup. __The GUID for the interface will be used__.
+for a subscribe setup a number like "23.78" send over MQTT will be converted to a valid VSCP event [CLASS1.MEASUREMENT, Type=6, temperature](https://grodansparadis.gitbooks.io/the-vscp-specification/content/class1.measurement.html#type6-0x06-temperature) and with unit set to degrees Celsius and sensor index set to 2 and where the data is a single precision floating point number (32-bit). The setup is of course the same for a publish setup. __The GUID for the interface will be used__.
 
 If you select a float or a string is just a matter of preference in most cases but the floating point value is often the best choice.
 
-**[CLASS2.MEASUREMENT_FLOAT](http://www.vscp.org/docs/vscpspec/doku.php?id=class2.measurement_float)**
+**[CLASS2.MEASUREMENT_FLOAT](https://grodansparadis.gitbooks.io/the-vscp-specification/content/class2.measurement_float.html)**
 
 If you need a floating point value with more precision this is the choice. It uses a double (64-bit) double precision floating point number.
 
@@ -83,9 +83,9 @@ The variable format is
 
     1060, vscp-type, sensoridx(0-255), unit(0-255), zone(0-255), subzone(0-255)
 
-([VSCP types are here](http://www.vscp.org/docs/vscpspec/doku.php?id=class1.measurement))
+([VSCP types are here](https://grodansparadis.gitbooks.io/the-vscp-specification/content/class1.measurement.html))
 
-**[CLASS2.MEASUREMENT_STR](http://www.vscp.org/docs/vscpspec/doku.php?id=class2.measurement_str)**
+**[CLASS2.MEASUREMENT_STR](https://grodansparadis.gitbooks.io/the-vscp-specification/content/class2.measurement_str.html)**
 
 This measurement format allow for a decimal measurement ("." is decimal separator) which allow for a maximum of 483 digits including a possible decimal point. So if you need a lot of numbers this is the format for you.
 
@@ -93,21 +93,22 @@ The variable format is
 
     1040, vscp-type, sensoridx(0-255), unit(0-255), zone(0-255), subzone(0-255)
 
-([VSCP types are here](http://www.vscp.org/docs/vscpspec/doku.php?id=class1.measurement))
+([VSCP types are here](https://grodansparadis.gitbooks.io/the-vscp-specification/content/class1.measurement.html))
+
 ## vscpd.conf example
 
-`<code="xml">`
-`<driver enable="true" >`                 
-    `<name>`mqtt1`</name>`
-    `<path>`/usr/local/lib/vscp2drv_mqtt.so`</path>`
-    `<config>`"mysession1";publish;vscp;localhost:1883`</config>`                 
-    `<guid>`00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00`</guid>`             
-`</driver>`
-`</code>`
+```xml
+<driver enable="true" >
+    <name>mqtt1`</name>
+    <path>/usr/local/lib/vscp2drv_mqtt.so</path>
+    <config>"mysession1";publish;vscp;localhost:1883</config>
+    <guid>`00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00</guid>
+</driver>
+```
 
 The format for data on the MQTT wire is the same as the format for sends and receives in the TCP/IP interface. This means they look like this
 
-    head,class,type,obid,time-stamp,GUID,data0,data1,data2,...........
+    head,class,type,obid,datetime,timestamp,GUID,data0,data1,data2,..........
 
 and as usual the GUID can be replaced by “-” to use the interface GUID.
 
@@ -130,7 +131,7 @@ For measurements it be as easy as 1-2-3. You just send or fetch data and the dri
 
 *I have tested this on several Debian and Ubuntu boxes and on a Rasbian driven Raspberry Pi board. On all I tested you can jump directly to step 4. If that does not work start at step 1.*
 
-To use the driver the MQTT [ Mosquitto](http://mosquitto.org/ ) or similar broker is needed. To do this follow the steps below. Taken from [here](installing_moquitto_for_use_with_vscp)
+To use the driver the MQTT [ Mosquitto](https://mosquitto.org/ ) or similar broker is needed. To do this follow the steps below. Taken from [here](installing_moquitto_for_use_with_vscp.md)
 
 ##### Install a MQTT broker and a client
 
@@ -162,24 +163,23 @@ as before. If this does not work you may need to open the 1883 port in your fire
     sudo iptables -A INPUT -p tcp -m tcp --dport 1883 -j ACCEPT
     
 
-    
-
-
 ## Setting up the MQTT driver
 
-The driver is fully documented in the specification document section 28.12.6. You can find this document [here](http://vscp.org/docs.php) either as a [pdf](http://sourceforge.net/projects/m2m/files/VSCP%20Specification/) or as an [online-page](http://vscp.org/vscpspec/vscp_spec_latest.xhtml).
+You can find the documentation for the driver [here](./level2_driver_mqtt.md)
 
 ### Publish
 
 The first thing you should do is to add the driver to the VSCP daemon configuration file. To do this look up the `<vscpdriver>`  ...  `</vscpdriver>` tags in the file and add
 
-    `<driver enable="true" >`
-    `<name>`VSCP MQTT Publisher driver 1`</name>`
-    `<path>`/usr/local/lib/vscpl2drv_mqtt.so`</path>`
-    `<config>`mysession2;publish;vscp;localhost:1883`</config>`
-    `<guid>`00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00`</guid>`
-    `</driver>`
-    
+```xml
+<driver enable="true">
+    <name>VSCP MQTT Publisher driver 1</name>
+    <path>/usr/local/lib/vscpl2drv_mqtt.so</path>
+    <config>mysession2;publish;vscp;localhost:1883</config>
+    <guid>00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00`</guid>
+</driver>`
+```
+
 Select a name that works for you. **enable** should be set to *true* for the driver to be loaded and to *false* if not. This can be convenient if you want to have a driver in the configuration file but not want to enable it.
 
 The **path** may be different on your system but */usr/local/bin* is the default installation path on most systems. Replace with the correct path if its different on your system.
@@ -206,21 +206,16 @@ and subscribe to the published events with
 
 Events is presented in the form
 
-    head,class,type,obid,time-stamp,GUID,data0,data1,data2,...........
+    head,class,type,obid,datetime,timestamp,GUID,data0,data1,data2,...........
     
 by default (this can be changed see below). You can use the  helper library and the methods
 
 
 *  writeVscpEventToString
-
 *  writeVscpEventExToString
-
 *  getVscpEventFromString 
-
 *  getVscpEventExFromString
-
 *  getVSCPDataCodingAsString
-
 *  getDataCodingFloat
 
 to easily interpret the event.
@@ -235,7 +230,7 @@ replacing
     
 with your actual host and port. This will show something like this
 
-{{:drivers:mqtt:interfaces2.png?500|}}
+   ![interfaces2.png](./images/drivers/mqtt/interfaces2.png)
 
 where the driver with the name you given it will be visible in the list.     
 
@@ -244,14 +239,14 @@ where the driver with the name you given it will be visible in the list.
     
 To subscribe to events on a channel use *subscribe* instead of *publish* above.
 
-
-    `<driver enable="true" >`
-    `<name>`VSCP MQTT Subscriber driver 1`</name>`
-    `<path>`/usr/local/lib/vscp2drv_mqtt.so`</path>`
-    `<config>`subscribe;vscp;localhost:1883`</config>`
-    `<guid>`00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00`</guid>`
-    `</driver>`
-    
+```xml
+<driver enable="true" >
+    <name>VSCP MQTT Subscriber driver 1</name>
+    <path>/usr/local/lib/vscp2drv_mqtt.so</path>
+    <config>subscribe;vscp;localhost:1883</config>
+    <guid>00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00</guid>
+</driver>
+ ```   
 
  When the server is restarted and the driver is loaded you can publish VSCP events with
 
@@ -261,7 +256,7 @@ or
 
     $ mosquitto_pub -d -t vscp -m "0,20,3,0,0,-,0,1,35"
 
-both of these will publish the VSCP event CLASS1.INFORMATION TYPE=3 ON event, for zone=1, sub-zone=35 typically used to tell that something has been turned on in zone=1, subzone=35. In the first case a specific GUID is used (0:1:2:3:4:5:6:7:8:9:10:11:12:13:14:15) and in the second the GUID of the interface has been used. You can use the interface GUID also by specifying the GUID to all nills (00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00) as always.
+both of these will publish the VSCP event [CLASS1.INFORMATION TYPE=3 ON](https://grodansparadis.gitbooks.io/the-vscp-specification/content/class1.information.html#type--3-0x03-on) event, for zone=1, sub-zone=35 typically used to tell that something has been turned on in zone=1, subzone=35. In the first case a specific GUID is used (0:1:2:3:4:5:6:7:8:9:10:11:12:13:14:15) and in the second the GUID of the interface has been used. You can use the interface GUID also by specifying the GUID to all nills (00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00) as always.
 
 Use VSCP Works to examine published events received by the MQTT driver in a user friendly way or telnet to the TCP/IP interface of the daemon
 
@@ -292,16 +287,16 @@ to see incoming events (use 'quitloop' to terminate the loop). The "+OK" you may
 
 In both cases events will be presented as
 
-    head,class,type,obid,time-stamp,GUID,data0,data1,data2,...........
+    head,class,type,obid,datetime,timestamp,GUID,data0,data1,data2,...........
     
-All command of the daemon is described [here](http://www.vscp.org/docs/vscpd/doku.php?id=vscp_daemon_tcp_ip_control_interface).  
+All command of the daemon is described [here](./tcp_ip_control_interface.md).  
 
 ### Using variables
 
 
 The configure string in the VSCP daemon driver configuration can be replaced by VSCP variables instead. Actually a value specified in a variable will be used before a value in a configuration string. So if you have both the variable value will have precedence.
  
-All the variables for the MQTT driver is defined [here](http://www.vscp.org/docs/vscpd/doku.php?id=level2_driver_mqtt). There is one each for the configuration values defined above.
+All the variables for the MQTT driver is defined [here](./level2_driver_mqtt.md). There is one each for the configuration values defined above.
 
 There is **_type** which in our case is the variable **vscp_mqtt_publisher_driver_1_type** and **vscp_mqtt_subscriber_driver_1_type**. As you see the driver name is prepended to the variable name (with spaces replaced by "_") to get the actual variable name. This method makes it possible to have serveral channels open at the same time with different configurations as long as they have different names. The _type variable can have the value "subscribe" or "publish" and is a variable of string type. 
 
@@ -309,19 +304,23 @@ You can create a variable in two ways.
 
 Either you add them by hand to the variables configuration file in */etc/vscp/variables.xml*. So in this case you enter
 
-    variable type="string" >
-    `<name>`vscp_mqtt_publisher_driver_1_type`</name>`
-    `<value>`publish`</value>`
-    `<note>`bla bla bla bla`</note>`
-    `</variable>`
+```xml
+<variable type="string" >
+    <name>vscp_mqtt_publisher_driver_1_type</name>
+    <value>publish</value>
+    <note>bla bla bla bla</note>
+</variable>
+```
 
 and/or
 
-    variable type="string" >
-    `<name>`vscp_mqtt_subscriber_driver_1_type`</name>`
-    `<value>`subscribe`</value>`
-    `<note>`bla bla bla bla`</note>`
-    `</variable>`  
+```xml
+<variable type="string" >
+    <name>vscp_mqtt_subscriber_driver_1_type</name>
+    <value>subscribe</value>
+    <note>bla bla bla bla</note>
+</variable>
+```
 
 but is is probably easier to use the built in web interface of the daemon to do the same thing. Head your browser to 
 
@@ -332,33 +331,33 @@ replacing [http://localhost:8080](http://localhost:8080) with your actual *host*
 
 In this first screen you select the value to be a *string* and then move on with the *next*  button \\ 
 
-{{:drivers:mqtt:variable_string_edit_step1.png?500|}} 
+![](./images/drivers/mqtt/variable_string_edit_step1.png)
 
- \\ 
 
-In the next screen you enter the name and the value for the variable as you did above and also make sure to mark persistent so the variable will be saved and thus available also after the daemon has been restarted. When you are ready press save \\ \\ \\ 
+
+In the next screen you enter the name and the value for the variable as you did above and also make sure to mark persistent so the variable will be saved and thus available also after the daemon has been restarted. When you are ready press save 
     
-{{:drivers:mqtt:variable_string_edit_step2.png?500|}}
-
- \\ 
-
-which will take you back to the variable list where you can click on any item to edit it.\\ 
+[](./images/drivers/mqtt/variable_string_edit_step2.png)
 
 
-{{:drivers:mqtt:variable_string_edit_step3.png?500|}}
+which will take you back to the variable list where you can click on any item to edit it.
 
- \\  
+
+[](./images/drivers/mqtt/variable_string_edit_step3.png)
+
 
 ### Example: Subscribing
 
 If you enter a driver entry like this in the */etc/vscp/vscpd.conf* file
 
-    `<driver enable="true" >`
-      `<name>`VSCPMQTTDriver1`</name>`             
-      `<path>`/usr/local/lib/vscp2drv_mqtt.so`</path>`
-      `<config>`mysession3;publish;vscp1;localhost:1883`</config>`
-      `<guid>`00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00`</guid>`
-    `</driver>`
+```xml
+<driver enable="true" >
+    <name>VSCPMQTTDriver1</name>
+    <path>/usr/local/lib/vscp2drv_mqtt.so</path>
+    <config>mysession3;publish;vscp1;localhost:1883</config>
+    <guid>00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00</guid>
+</driver>
+```    
     
 you can subscribe to the events published using  
 
@@ -370,7 +369,7 @@ And if for instance you have a temperature sensor in your system you will get ev
 
 This is the textual representation of a VSCP event. It has the form
 
-    head,class,type,obid,timestamp,guid,data,,,
+    head,class,type,obid,datetime,timestamp,guid,data,,,
 
 The **GUID** (always presented in hexadecimal) tells from which interface or device/sensor this event comes from. It as all data in VSCP comes with the MSB byte first. 
 
@@ -385,24 +384,13 @@ The lowest three bits are all zero here but could have been an index (0-7) to a 
 ### More to read
 
 
-*  [Using the VSCP MQTT driver Part 1](http://grodansparadis.com/wordpress/?p=1533)
-
-*  [Using the VSCO MQTT driver Part 2](http://grodansparadis.com/wordpress/?p=1528)
-    
-
-*  MQ Telemetry Transport - http://mqtt.org/
-
-*  MQTT V3.1 Protocol Specification - http://public.dhe.ibm.com/software/dw/webservices/ws-mqtt/mqtt-v3r1.html#keep-alive-timer
-
-*  Mosquitto - http://mosquitto.org/
-
-*  Using the API - http://www.eclipse.org/paho/files/mqttdoc/Cclient/
-
-*  MQTT på arduino - http://knolleary.net/arduino-client-for-mqtt/
+* [Using the VSCP MQTT driver Part 1](https://grodansparadis.com/wordpress/?p=1533)
+* [Using the VSCO MQTT driver Part 2](https//grodansparadis.com/wordpress/?p=1528)
+* MQ Telemetry Transport - https://mqtt.org/
+* MQTT V3.1 Protocol Specification - https://public.dhe.ibm.com/software/dw/webservices/ws-mqtt/mqtt-v3r1.html#keep-alive-timer
+* Mosquitto - https://mosquitto.org/
+*  Using the API - https://www.eclipse.org/paho/files/mqttdoc/Cclient/
+*  MQTT på arduino - https://knolleary.net/arduino-client-for-mqtt/
 
 
-\\ 
-----
-{{  ::copyright.png?600  |}}
 
-`<HTML>``<p style="color:red;text-align:center;">``<a href="http://www.grodansparadis.com">`Grodans Paradis AB`</a>``</p>``</HTML>`
