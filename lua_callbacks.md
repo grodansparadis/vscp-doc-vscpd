@@ -31,9 +31,9 @@ Can be used for debugging when the server is started in non-debug mode. Output w
 
 ### Parameters
 
-`<code="lua">`
+```lua
 vscp.print("This is a very extensive test!");
-`</code>`
+```
 
 ---
 
@@ -43,9 +43,9 @@ Log data to the VSCP daemon logs. Very well suited for reporting errors and log 
 
 ### Parameters
 
-`<code="lua">`
+```lua
 vscp.log("message"[,nDebugLevel, nType] );
-`</code>`
+```
 
 
 *  **message** is required and is the message that is sent to the logs. Please end this message with a new line.
@@ -60,11 +60,11 @@ This function will always return a boolean true.
 
 ### Example
 
-This script write out the current date on ISO format (YYMMDD) and "Hello World!" to the general log file. The **%isodate** is a [decision matrix escape](http://www.vscp.org/docs/vscpd/doku.php?id=vscp_daemon_decision_matrix#variable_substitution_for_parameters_escapes) and it is replaces with information before the script is executed.
+This script write out the current date on ISO format (YYMMDD) and "Hello World!" to the general log file. The **%isodate** is a [decision matrix escape](./decision_matrix.md#variable_substitution_for_parameters_escapes) and it is replaces with information before the script is executed.
 
-`<code="lua">`
+```lua
 vscp.log("%isodate  Hello World! \n" );
-`</code>`
+```
 
 ---
 
@@ -74,9 +74,9 @@ Sleep a number of milliseconds.
 
 ### Parameters
 
-`<code="lua">`
-vscp.sleep(sleeptime );
-`</code>`
+```lua
+vscp.sleep( sleeptime );
+```
 
 
 *  **sleeptime** Time to sleep in milliseconds.
@@ -87,14 +87,14 @@ This function will always return a boolean true.
 
 ### Example
 
-`<code="lua">`
+```lua
 vscp.log('Before sleep 1')
 vscp.sleep(5000)
 vscp.log('After sleep 1')
 vscp.sleep(5000)
 vscp.log('After sleep 2')
 vscp.log('THE END')
-`</code>`
+```
 
 ---
 
@@ -104,9 +104,9 @@ BASE64 encode a string
 
 ### Parameters
 
-`<code="lua">`
+```lua
 encoded_str =  vscp.base64encode("This is a string")
-`</code>`
+```
 
 ### Returns
 
@@ -120,9 +120,9 @@ BASE64 decode a string
 
 ### Parameters
 
-`<code="lua">`
+```lua
 decoded_str = vscp.base64decode("VGhpcyBpcyBhIHN0cmluZw==")
-`</code>`
+```
 
 ### Returns
 
@@ -137,11 +137,12 @@ Returns a BASE64 decoded string
 Fetch a VSCP remote variable by name. Variable information is returned in string (default), XML, JSON format or as only the value or as the note. An error is returned if no variable with that name exists. An error is returned if no variable with that name exists. You must be the owner of a variable or have read rights to read it.
 
 String type values and notes are returned BASE65 encoded. You can use **vscp.base64decode** to decode them.
+
 ### Parameters
 
-`<code="lua">`
+```lua
 vscp.readvariable( "name"[,format]);
-`</code>`
+```
 
 
 *  **name** of variable.
@@ -154,17 +155,17 @@ Variable information is returned in string (default), XML, JSON format or as onl
 
 #### String
 
-`<code="javascript">`
+```javascript
 name;type;persistence;user;access-rights;last-change;value;note
-`</code>`
+```
 
-The variable types are [listed here](http://www.vscp.org/docs/vscpd/doku.php?id=decision_matrix_varaibles#variable_types).
+The variable types are [listed here](./decision_matrix_variables.md#variable_types).
 
 The variable value will be BASE64 encoded for certain variable types. The note will always be BASE64 encoded.
 
 #### XML
 
-`<code="xml">`
+```xml
 <variable
     name="variable-name"
     type="1"
@@ -174,15 +175,15 @@ The variable value will be BASE64 encoded for certain variable types. The note w
     last-change="YYYYMMDDTHHMMSS"
     value="Variable value"
     note="Variable note" />
-`</code>`
+```
 
-The variable types are [listed here](http://www.vscp.org/docs/vscpd/doku.php?id=decision_matrix_varaibles#variable_types).
+The variable types are [listed here](./decision_matrix_variables.md#variable_types).
 
 The variable value will be BASE64 encoded for certain variable types. The note will always be BASE64 encoded.
 
 #### JSON
 
-`<code="javascript">`
+```javascript
 {  
     "name": "variable-name",
     "type": 1,
@@ -195,9 +196,9 @@ The variable value will be BASE64 encoded for certain variable types. The note w
     "value": "Variable value"|Variable value,
     "note": "Variable note"
 }
-`</code>`
+```
 
-The variable types are [listed here](http://www.vscp.org/docs/vscpd/doku.php?id=decision_matrix_varaibles#variable_types).
+The variable types are [listed here](./decision_matrix_variables.md#variable_types).
 
 
 *  **bnumeric** is true for a numerical variable. 
@@ -218,7 +219,7 @@ The variable note. The note is always BASE64 encoded.
  
 ### Example 1
 
-`<code="lua">`
+```lua
 local str 
 
 -- Read variable in string format
@@ -247,7 +248,7 @@ str = vscp.readvariable('vscp.version.str',4)
 vscp.log( str )
 
 vscp.log('THE END')
-`</code>`
+```
 
 
 
@@ -255,14 +256,14 @@ vscp.log('THE END')
 
 This example reads the variable **test1** which is a numerical VSCP remote variable in the default configuration, it increase the value of it with one and then write it back and finally write the value to the general log file.
 
-`<code="lua">`
+```lua
 local value
 value = vscp.readVariable("test1",3);              // Read the remote variable 'test1'
 value = value + 1;                                 // Increase its value 
 vscp.writeVariablevalue("test1",value);            // Write the new value
 value = vscp_readVariable("test1",3);              // Read back the remote variable value
 vscp.log("Variable value = " + value + "\n" );     // Log 
-`</code>`
+```
 
 
 ----
@@ -274,28 +275,28 @@ Create or change a VSCP remote variable. The variable is created if it does not 
 
 ### Parameters
 
-`<code="lua">`
+```lua
 vscp.writeVariable(variable[,format]);
-`</code>`
+```
 
 
 *  **variable:** The variable defined either as *string*, *XML* or *JSON* format.
 
 *  **format:** If format is set to **0** the variable is in string format (default), if format is set to **1** the variable is in XML format and if format is set to **2** the variable is in JSON format.
 
-The variable types are [listed here](http://www.vscp.org/docs/vscpd/doku.php?id=decision_matrix_varaibles#variable_types).
+The variable types are [listed here](./decision_matrix_variables.md#variable_types).
 
 #### String defined variable
 
-`<code="javascript">`
+```javascript
 name;type;persistence;user;access-rights;value;note
-`</code>`
+```
 
 **Warning!** The semicolon (;) is a reserved character and can't be used in values or notes. The solution is to BASE64 encode the string.
 
 #### XML defined variable
 
-`<code="xml">`
+```xml
 <variable
     name="variable-name"
     type="1|STRING"
@@ -310,7 +311,7 @@ name;type;persistence;user;access-rights;value;note
     notebase64="variable note"
     
 `</variable>`
-`</code>`
+```
 
 `<value>` and `<valuebase64** (__you should never have both defined at the same time__) set the same value but in different ways. **<value>` set  the value as is. So depending on the type it should be BASE64 encoded or not. The `<valuebase64>` always base64 encode the value before setting it.
 
@@ -320,7 +321,7 @@ name;type;persistence;user;access-rights;value;note
 
 #### JSON defined variable
 
-`<code="javascript">`
+```javascript
 {  
     "name": "variable-name",
     "type": 1,
@@ -333,7 +334,7 @@ name;type;persistence;user;access-rights;value;note
     "valuebase64": "Variable value"|Variable value,
     "notebase64": "Variable note"
 }
-`</code>`
+```
 
 The **value** item string should be BASE64 encoded if the type require that. You can use **valuebase64** to encode your value before it is stored. 
 
@@ -346,8 +347,7 @@ The **note** item string should always be BASE64 encoded. You can use **notebase
 Returns error message on failure.
 
 **Example 1**
-`<code="lua">`
-
+```lua
 -- Create string variable testa
 vscp.writevariable('testa;0x01;false;0;0x777;VGhpcyBpcyBhIHRlc3QgdmFyaWFibGU=;VGhpcyBpcyBhIG5vdGU=')
 
@@ -357,13 +357,13 @@ vscp.writevariable('testb;string;false;0;0x777;BASE64:This is a test;BASE64:Supe
 -- Create floating point variable testc
 vscp.writevariable('testc;flot;false;0;0x777;3.14;BASE64:Important constant')
 
-`</code>`
+```
 
 **Example 2**
 
 __Create__ a string variable with name test1 that is readable/writable by all and own by the admin used (0). If the variable already exists it's data will be updated. 
 
-`<code="lua">`
+```lua
 local str 
 
 -- Create variable from XML
@@ -376,10 +376,10 @@ str = '&lt;variable \
     value="This is a test" \
     note="test" /&gt;'
 vscp.writevariable(str,1)
-`</code>`
+```
 
 **Example 2**
-`<code="lua">`
+```lua
 local str 
 
 -- Create string variable from JSON
@@ -395,7 +395,7 @@ str = '{ \
 vscp.print( "JSON str =  ", str )
 
 vscp.writevariable(str,2)
-`</code>`
+```
 
 
 ---
@@ -406,9 +406,9 @@ Write a new value to an existing variable.
 
 ### Parameters
 
-`<code="lua">`
+```lua
 vscp.writevariablevalue(name,value[,bBase64]);
-`</code>`
+```
 
 
 *  **name** Name for variable.
@@ -422,7 +422,7 @@ vscp.writevariablevalue(name,value[,bBase64]);
 
 Increase a numerical variable value by one and save the variable again
 
-`<code="lua">`
+```lua
 local val
 
 -- Read value for test1
@@ -432,22 +432,22 @@ val = val + 1
 vscp.writevariablevalue("test1",val)
 val = vscp.readvariable("test1",3)
 vscp_log("Variable value = " + val )
-`</code>`
+```
 
 **Example 2**
 
 This is a complete decision matrix element that creates an integer  variable 'testint" when the VSCP server is started and then add one to this variable every second
 
-`<code="xml">`
-`<?xml version = "1.0" encoding = "UTF-8" ?>`
+```xml
+<?xml version = "1.0" encoding = "UTF-8" ?>
 
-`<dm>`
+<dm>
        
-    `<row enable="true" groupid="test" >`
+    <row enable="true" groupid="test" >
     
-    `<comment>`
+    <comment>
         Create string variable from string
-    `</comment>`
+    </comment>
         
     <mask  priority="0"  
              class="65535"  
@@ -459,8 +459,8 @@ This is a complete decision matrix element that creates an integer  variable 'te
              type="23"  
              GUID=" 00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:01" />    
     
-    `<action>`0x100`</action>`   
-    `<param>`
+    <action>`0x100`</action>
+    <param>
        local str 
 
        -- Create integer variable from JSON
@@ -476,23 +476,23 @@ This is a complete decision matrix element that creates an integer  variable 'te
        
        vscp.print( "JSON str =  ", str )
        vscp.writevariable(str,2)
-    `</param>`
+    </param>
 
 
-    `<allowed_from>``</allowed_from>`
-    `<allowed_to>``</allowed_to>`
-    `<allowed_weekdays>``</allowed_weekdays>`
-    `<allowed_time>``</allowed_time>`
+    <allowed_from></allowed_from>
+    <allowed_to></allowed_to>
+    <allowed_weekdays></allowed_weekdays>
+    <allowed_time></allowed_time>
 
-`</row>`
+</row>
 
 
 
-`<row enable="true" groupid="test" >`
+<row enable="true" groupid="test" >
     
-    `<comment>`
+    <comment>
         Add one to integer variable every second
-    `</comment>`
+    </comment>
         
     <mask  priority="0"  
              class="65535"  
@@ -504,8 +504,8 @@ This is a complete decision matrix element that creates an integer  variable 'te
              type="5"  
              GUID=" 00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:01" />    
     
-    `<action>`0x100`</action>`   
-    `<param>`
+    <action>0x100</action>
+    <param>
         local val 
 
         -- Read integer value
@@ -513,18 +513,18 @@ This is a complete decision matrix element that creates an integer  variable 'te
         vscp.print("value =", val )
         val = val + 1;
         vscp.writevariable("testint",3,val)
-    `</param>`
+    </param>
 
 
-    `<allowed_from>``</allowed_from>`
-    `<allowed_to>``</allowed_to>`
-    `<allowed_weekdays>``</allowed_weekdays>`
-    `<allowed_time>``</allowed_time>`
+    <allowed_from></allowed_from>
+    <allowed_to></allowed_to>
+    <allowed_weekdays></allowed_weekdays>
+    <allowed_time></allowed_time>
 
-    `</row>`
+    </row>
     
-`</dm>`
-`</code>`
+</dm>
+```
 
 
 ---
@@ -537,9 +537,9 @@ Write the note of an existing variable.
 
 ### Parameters
 
-`<code="lua">`
+```lua
 vscp.writevariablenote(name,note,bBase64);
-`</code>`
+```
 
 
 *  **name** Name of an existing variable.
@@ -559,9 +559,9 @@ Delete a VSCP remote variable. You must be the owner of a variable or have write
 
 ### Parameters
 
-`<code="lua">`
+```lua
 vscp.deletevariable( name );
-`</code>`
+```
 
 
 *  **name** Name of variable.
@@ -572,14 +572,14 @@ Return boolean *true* on success and *false* on failure.
 
 ### Example
 
-`<code=lua">`
+```lua
 if ( vscp.deletevariable( "testVariable" ) ) {
     vscp_log("Variable deleted.\n" )
 }
 else {
     vscp_log("Failed to delete variable!\n" )
 }
-`</code>`
+```
 
 
 ---
@@ -590,12 +590,13 @@ Check if variable has a value that is BASE64 encoded.
 
 ### Parameter
 
-`<code="lua">`
+```lua
 local result = vscp.isVariableBase64Encoded(name);
-`</code>`
+```
 
 
 *  **name** Name of variable.
+*  
 ### Return
 
 Boolean true if the variables value is BASE64 encoded, false otherwise.
@@ -608,12 +609,13 @@ Check if a variable is persistent.
 
 ### Parameter
 
-`<code="lua">`
+```lua
 local result = vscp.isVariablePersistent(name);
-`</code>`
+```
 
 
 *  **name** Name of variable.
+*  
 ### Return
 
 Boolean true if the variables is persistent, false otherwise.
@@ -626,12 +628,12 @@ Check if a variable is numerical.
 
 ### Parameter
 
-`<code="lua">`
+```lua
 local result = vscp.isVariableNumerical(name);
-`</code>`
-
+```
 
 *  **name** Name of variable.
+*  
 ### Return
 
 Boolean true if the variables is numerical, false otherwise.
@@ -644,12 +646,13 @@ Check if a variable is a stock variable.
 
 ### Parameter
 
-`<code="lua">`
+```lua
 local result = vscp.isStockVariable(name);
-`</code>`
+```
 
 
 *  **name** Name of variable.
+
 ### Return
 
 Boolean true if the variables is a stock variable, false otherwise.
@@ -662,24 +665,24 @@ Send a VSCP event.
 
 ### Parameters
 
-`<code="lua">`
+```lua
 vscp.sendevent( event[,format] );
-`</code>`
+```
 
-    * **event** The VSCP event to send. It can be on string, XML or JSON format.
-    * **format** The format of the event. If format = 0 the event is in string form, if format = 1 the event is in XML form. if format = 2 the event is in JSON form.
+* **event** The VSCP event to send. It can be on string, XML or JSON format.
+* **format** The format of the event. If format = 0 the event is in string form, if format = 1 the event is in XML form. if format = 2 the event is in JSON form.
 
 #### String format
 
 obid, datetime, timestamp and GUID can be left empty and if so will be set to default values.
 
-`<code="javascript">`
+```javascript
 head,class,type,obid,datetime,timestamp,GUID,data1,data2,data3....
-`</code>`
+```
 
 #### XML format
 
-`<code="xml">`
+```xml
 <event 
     head="96" 
     obid="0" 
@@ -689,11 +692,11 @@ head,class,type,obid,datetime,timestamp,GUID,data1,data2,data3....
     type="6" 
     guid="00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00" 
     data="0x8A,0x81,0,0xca" />
-`</code>`
+```
 
 #### JSON format
 
-`<code="lua">`
+```lua
 {
     "datetime": "20161102T190032",
     "head": 96,
@@ -704,7 +707,7 @@ head,class,type,obid,datetime,timestamp,GUID,data1,data2,data3....
     "guid": "00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00",
     "data": [138,129,0,202]
 }
-`</code>`
+```
 
 **note** has no use in this case and can be left out. **head** if left out defaults to 96 which is *normal priority*. **timestamp** and **obid** both defaults to zero meaning they will be filled in by the system. **guid** can be set to "-" or all nulls (same as being omitted) and the GUID of the interface is then used. **data** can be omitted and is in that case the same as no data. If "time" is left out the current UTC time is used. 
 
@@ -714,11 +717,11 @@ Error message on failure.
 
 ### Example 1
 
-send [CLASS1.MEASUREMENT, TYpe=6,Temperature](http://www.vscp.org/docs/vscpspec/doku.php?id=class1.measurement#type_6_0x06_temperature) event. The temperature 20.4C is sent (unit=1 which is centigrades).
+send [CLASS1.MEASUREMENT, TYpe=6,Temperature](https://grodansparadis.gitbooks.io/the-vscp-specification/content/class1.measurement.html#type6-0x06-temperature) event. The temperature 20.4C is sent (unit=1 which is centigrades).
 
 Note that no values are given for obid,timestamp,datetime and GUID. This will set them to default values. obid is set to the interface id, timestamp to a current timestamp, datetime to the UTC date + time, GUID to the GUID of the interface.
 
-`<code="lua">`
+```lua
 local strevent 
 
 -- Create string event
@@ -726,13 +729,13 @@ strevent = "0,10,6,,,,,0x8A,0x81,0,0xca"
 
 vscp.sendevent(strevent)
 vscp.log("Event successfully sent from Lua script.")
-`</code>`
+```
 
 ### Example 2
 
-send [CLASS1.MEASUREMENT, TYpe=6,Temperature](http://www.vscp.org/docs/vscpspec/doku.php?id=class1.measurement#type_6_0x06_temperature) event from XML string. The temperature 20.4C is sent (unit=1 which is centigrades).
+send [CLASS1.MEASUREMENT, TYpe=6,Temperature](https://grodansparadis.gitbooks.io/the-vscp-specification/content/class1.measurement.html#type6-0x06-temperature) event from XML string. The temperature 20.4C is sent (unit=1 which is centigrades).
 
-`<code="lua">`
+```lua
 local strevent 
 
 -- Create string event
@@ -747,16 +750,16 @@ strevent = '&lt;event \
     
 vscp.sendevent(strevent,1)
 vscp.log("Event successfully sent from Lua script.")
-`</code>`
+```
 
 
 ###  Example 3
 
-send [CLASS1.MEASUREMENT, TYpe=6,Temperature](http://www.vscp.org/docs/vscpspec/doku.php?id=class1.measurement#type_6_0x06_temperature) event from JSON string. The temperature 20.4C is sent (unit=1 which is centigrades).
+send [CLASS1.MEASUREMENT, TYpe=6,Temperature](https://grodansparadis.gitbooks.io/the-vscp-specification/content/class1.measurement.html#type6-0x06-temperature) event from JSON string. The temperature 20.4C is sent (unit=1 which is centigrades).
 
-`<code="lua">`
+```lua
 
-`</code>`
+```
 
 ---
 
@@ -766,23 +769,23 @@ Receive a VSCP event from the local queue.
 
 ### Parameters
 
-`<code="lua">`
+```lua
 var event = vscp.receiveevent([format])
-`</code>`
+```
 
 
 * * format Optional format for received event. If format = 0 (default) the event is returned on the string form. If format = 1 the event is returned on XML form. If format = 2 the event is returned on JSON form.
 
 ####  Format for event on string form 
 
-`<code="javascript">`
+```javascript
 head,class,type,obid,datetime,timestamp,GUID,data1,data2,data3....
-`</code>`
+```
 
 
 ####  Format for event on XML form 
 
-`<code="xml">`
+```xml
 <event 
     head="96" 
     obid="0" 
@@ -793,11 +796,11 @@ head,class,type,obid,datetime,timestamp,GUID,data1,data2,data3....
     guid="00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00"
     sizedata="4" 
     data="0x8A,0x81,0,0xca" />
-`</code>`
+```
 
 ####  Format for event on JSON form 
 
-`<code="lua">`
+```lua
 {
     "datetime": "20161102T190032",
     "head": 96,
@@ -808,7 +811,7 @@ head,class,type,obid,datetime,timestamp,GUID,data1,data2,data3....
     "guid": "00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00",
     "data": [138,129,0,202]
 }
-`</code>`
+```
 
 ### Return
 
@@ -818,7 +821,7 @@ Return VSCP Event on success, null if there is no event to fetch and an error on
 
 Wait until any event is received and print out the received event.
 
-`<code=lua">`
+```lua
 local event   
 local bQuit = false
 
@@ -841,7 +844,7 @@ while not bQuit do
 end
 
 vscp.log("Done!\n")
-`</code>`
+```
 
 
 ---
@@ -852,9 +855,9 @@ Return number of VSCP events in the local queue.
 
 ### Parameters
 
-`<code="lua">`
+```lua
 cnt = vscp.countevents()
-`</code>`
+```
 
 ### Return
 
@@ -864,7 +867,7 @@ Return the number of events waiting in the client queue. A client is opened when
 
 Check the client queue ten times with a one second delay between the checks.  
 
-`<code="lua">`
+```lua
 local cnt   
 
 for i=0,10 do
@@ -874,7 +877,7 @@ for i=0,10 do
 end
 
 vscp.log("Done!\n")
-`</code>`
+```
 
 
 ---
@@ -886,22 +889,22 @@ Set a VSCP filter for this clients local queue. This filter limits the events re
 
 ### Parameters
 
-`<code="lua">`
+```lua
 vscp.setfilter( filter[,format] )
-`</code>`
+```
 
-    * **filter** A filter specifying a complete VSCP receive filter (mask + filter).
-    * **format** If format = 0 (default) the filter is expected to be on string form. If format = 1 the filter is expected to be on XML form. If format = 2 the filter is expected to be on JSON format.
+* **filter** A filter specifying a complete VSCP receive filter (mask + filter).
+* **format** If format = 0 (default) the filter is expected to be on string form. If format = 1 the filter is expected to be on XML form. If format = 2 the filter is expected to be on JSON format.
 
 #### Filter on string format
 
-`<code="javascript">`
+```javascript
 filter-priority,filter-class,filter-type,filter-GUID,mask-priority, mask-class,mask-type,mask-GUID
-`</code>`
+```
 
 #### Filter on XML format
 
-`<code="xml">`
+```xml
 <filter mask_priority="number"
     mask_class="number"
     mask_type="number"
@@ -910,11 +913,11 @@ filter-priority,filter-class,filter-type,filter-GUID,mask-priority, mask-class,m
     filter_class="number"
     filter_type="number"
     filter_guid="string" />
-`</code>`
+```
 
 #### Filter on JSON format
 
-`<code="javascript">`
+```javascript
 {
     "mask_priority": number,
     "mask_class": number,
@@ -925,7 +928,7 @@ filter-priority,filter-class,filter-type,filter-GUID,mask-priority, mask-class,m
     "filter_type": number,
     "filter_guid" : "string"
 }
-`</code>`
+```
 
 ### Return
 
@@ -933,21 +936,21 @@ Return an error on failure.
 
 ### Example 1
 
-Using format=0 (string) set filer so that only [CLASS1.MEASUREMENT](http://www.vscp.org/docs/vscpspec/doku.php?id=class1.measurement) events is received.
+Using format=0 (string) set filer so that only [CLASS1.MEASUREMENT](https://grodansparadis.gitbooks.io/the-vscp-specification/content/class1.measurement.html) events is received.
 
-`<code="javascript">`
+```javascript
 local filter
 
 filter="0,10,0,-,0,0xffff,0,-"
 vscp.setfilter( filter )
 vscp.log("Done!\n")
-`</code>`
+```
 
 ### Example 2
 
-Using format=2 (XML) set filer so that only [CLASS1.MEASUREMENT](http://www.vscp.org/docs/vscpspec/doku.php?id=class1.measurement) events is received.
+Using format=2 (XML) set filer so that only [CLASS1.MEASUREMENT](https://grodansparadis.gitbooks.io/the-vscp-specification/content/class1.measurement.html) events is received.
 
-`<code="lua">`
+```lua
 local filter
 
 filter='&lt;filter mask_priority="0"\
@@ -960,13 +963,13 @@ filter='&lt;filter mask_priority="0"\
     filter_guid="-" /&gt;'
 vscp.setfilter( filter, 1 )
 vscp.log("Done!\n")
-`</code>`
+```
 
 ### Example 3
 
-Using format=2 (JSON) set filer so that only [CLASS1.MEASUREMENT](http://www.vscp.org/docs/vscpspec/doku.php?id=class1.measurement) events is received. 
+Using format=2 (JSON) set filer so that only [CLASS1.MEASUREMENT](https://grodansparadis.gitbooks.io/the-vscp-specification/content/class1.measurement.html) events is received. 
 
-`<code="lua">`
+```lua
 -- Allow only CLASS1.MEASUREMENT events, from all, 
 -- with all priorities
 local filter = '{\
@@ -983,7 +986,7 @@ local filter = '{\
 -- Set the filter
 vscp.setfilter( filter,2 )
 vscp_log("Filter set successfully!\n")
-`</code>`
+```
 
 ---
 
@@ -993,14 +996,14 @@ Send a measurement event. A level I or Level II measurement event can be sent wi
 
 ### Parameters
 
-`<code="lua">`
+```lua
 vscp.sendmeasurement( level, bString, value, guid, vscp-type[, unit, sensor-index, zone, subzone]  );
-`</code>`
+```
 
 
 *  **level** Set to 1 to send a level I event, set to 2 to send a level II event.
 
-*  **bString** Only valid for Level II events. If true a [CLASS2.MEASUREMENT_STR](http://www.vscp.org/docs/vscpspec/doku.php?id=class2.measurement_str). If false a [CLASS2.MEASUREMENT_FLOAT](http://www.vscp.org/docs/vscpspec/doku.php?id=class2.measurement_float).
+*  **bString** Only valid for Level II events. If true a [CLASS2.MEASUREMENT_STR](https://grodansparadis.gitbooks.io/the-vscp-specification/content/class2.measurement_str.html). If false a [CLASS2.MEASUREMENT_FLOAT](https://grodansparadis.gitbooks.io/the-vscp-specification/content/class2.measurement_float.html).
 
 *  **value** A double representing the measurement value. __ **Note** as with all decimal numbers in VSCP a period is used as decial separator.__ 
 
@@ -1026,7 +1029,7 @@ Return errot on failure.
 
 ### Example 1
 
-`<code="lua>`
+```lua
 -- Send a measurement
 -- Level 1, temperature, floating point value
 
@@ -1034,21 +1037,20 @@ Return errot on failure.
 -- Send the measurement
 vscp.sendmeasurement( 1, false, 123.5, "00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00", 6, 1 )
 vscp.log("Sent measurement event successfully!\n")
-`</code>`
+```
 
 
 
 ### Example 2
 
-`<code="lua>`
+```lua
 -- Send a measurement
 -- Level II, force, string, default unit
-
-    
+  
 -- Send the meaurement
 vscp.sendmeasurement( 2, true, 0.678956 , "00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00", 11, 0 )
 vscp.log("Sent measurement event successfully!\n")
-`</code>`
+```
 
 ---
 
@@ -1058,9 +1060,9 @@ Check if this VSCP event is a measurement event.
 
 ### Parameters
 
-`<code="lua">`
+```lua
 result = vscp.ismeasurement( event[, format] )
-`</code>`
+```
 
 
 *  **event** A string that holds a VSCP event.
@@ -1071,13 +1073,13 @@ result = vscp.ismeasurement( event[, format] )
 
 obid, datetime, timestamp and GUID can be left empty and if so will be set to default values.
 
-`<code="javascript">`
+```javascript
 head,class,type,obid,datetime,timestamp,GUID,data1,data2,data3....
-`</code>`
+```
 
 #### XML format
 
-`<code="xml">`
+```xml
 <event 
     head="96" 
     obid="0" 
@@ -1087,11 +1089,11 @@ head,class,type,obid,datetime,timestamp,GUID,data1,data2,data3....
     type="6" 
     guid="00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00" 
     data="0x8A,0x81,0,0xca" />
-`</code>`
+```
 
 #### JSON format
 
-`<code="lua">`
+```json
 {
     "datetime": "20161102T190032",
     "head": 96,
@@ -1102,7 +1104,7 @@ head,class,type,obid,datetime,timestamp,GUID,data1,data2,data3....
     "guid": "00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00",
     "data": [138,129,0,202]
 }
-`</code>`
+```
 
 **note** has no use in this case and can be left out. **head** if left out defaults to 96 which is *normal priority*. **timestamp** and **obid** both defaults to zero meaning they will be filled in by the system. **guid** can be set to "-" or all nulls (same as being omitted) and the GUID of the interface is then used. **data** can be omitted and is in that case the same as no data. If "time" is left out the current UTC time is used. 
 
@@ -1120,9 +1122,9 @@ Get a measurement value from a VSCP measurement event.
 
 ### Parameters
 
-`<code="lua">`
+```lua
 value = vscp.getmeasurementvalue( event[, format] )
-`</code>`
+```
 
 
 *  **event** A string that holds a VSCP event.
@@ -1133,13 +1135,13 @@ value = vscp.getmeasurementvalue( event[, format] )
 
 obid, datetime, timestamp and GUID can be left empty and if so will be set to default values.
 
-`<code="javascript">`
+```javascript
 head,class,type,obid,datetime,timestamp,GUID,data1,data2,data3....
-`</code>`
+```
 
 #### XML format
 
-`<code="xml">`
+```xml
 <event 
     head="96" 
     obid="0" 
@@ -1149,11 +1151,11 @@ head,class,type,obid,datetime,timestamp,GUID,data1,data2,data3....
     type="6" 
     guid="00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00" 
     data="0x8A,0x81,0,0xca" />
-`</code>`
+```
 
 #### JSON format
 
-`<code="lua">`
+```json
 {
     "datetime": "20161102T190032",
     "head": 96,
@@ -1164,7 +1166,7 @@ head,class,type,obid,datetime,timestamp,GUID,data1,data2,data3....
     "guid": "00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00",
     "data": [138,129,0,202]
 }
-`</code>`
+```
 
 **note** has no use in this case and can be left out. **head** if left out defaults to 96 which is *normal priority*. **timestamp** and **obid** both defaults to zero meaning they will be filled in by the system. **guid** can be set to "-" or all nulls (same as being omitted) and the GUID of the interface is then used. **data** can be omitted and is in that case the same as no data. If "time" is left out the current UTC time is used. 
 
@@ -1183,9 +1185,9 @@ Get a measurement unit from a VSCP measurement event.
 
 ### Parameters
 
-`<code="lua">`
+```lua
 result = vscp.getmeasurementunit( event[, format] )
-`</code>`
+```
 
 
 *  **event** A string that holds a VSCP event.
@@ -1196,13 +1198,13 @@ result = vscp.getmeasurementunit( event[, format] )
 
 obid, datetime, timestamp and GUID can be left empty and if so will be set to default values.
 
-`<code="javascript">`
+```javascript
 head,class,type,obid,datetime,timestamp,GUID,data1,data2,data3....
-`</code>`
+```
 
 #### XML format
 
-`<code="xml">`
+```xml
 <event 
     head="96" 
     obid="0" 
@@ -1212,11 +1214,11 @@ head,class,type,obid,datetime,timestamp,GUID,data1,data2,data3....
     type="6" 
     guid="00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00" 
     data="0x8A,0x81,0,0xca" />
-`</code>`
+```
 
 #### JSON format
 
-`<code="lua">`
+```json
 {
     "datetime": "20161102T190032",
     "head": 96,
@@ -1227,7 +1229,7 @@ head,class,type,obid,datetime,timestamp,GUID,data1,data2,data3....
     "guid": "00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00",
     "data": [138,129,0,202]
 }
-`</code>`
+```
 
 **note** has no use in this case and can be left out. **head** if left out defaults to 96 which is *normal priority*. **timestamp** and **obid** both defaults to zero meaning they will be filled in by the system. **guid** can be set to "-" or all nulls (same as being omitted) and the GUID of the interface is then used. **data** can be omitted and is in that case the same as no data. If "time" is left out the current UTC time is used. 
 
@@ -1246,9 +1248,9 @@ Get a measurement sensor index from a VSCP measurement event.
 
 ### Parameters
 
-`<code="lua">`
+```lua
 result = vscp.getmeasurementsensorindex( event[, format] )
-`</code>`
+```
 
 
 *  **event** A string that holds a VSCP event.
@@ -1259,13 +1261,13 @@ result = vscp.getmeasurementsensorindex( event[, format] )
 
 obid, datetime, timestamp and GUID can be left empty and if so will be set to default values.
 
-`<code="javascript">`
+```javascript
 head,class,type,obid,datetime,timestamp,GUID,data1,data2,data3....
-`</code>`
+```
 
 #### XML format
 
-`<code="xml">`
+```xml
 <event 
     head="96" 
     obid="0" 
@@ -1275,11 +1277,11 @@ head,class,type,obid,datetime,timestamp,GUID,data1,data2,data3....
     type="6" 
     guid="00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00" 
     data="0x8A,0x81,0,0xca" />
-`</code>`
+```
 
 #### JSON format
 
-`<code="lua">`
+```json
 {
     "datetime": "20161102T190032",
     "head": 96,
@@ -1290,7 +1292,7 @@ head,class,type,obid,datetime,timestamp,GUID,data1,data2,data3....
     "guid": "00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00",
     "data": [138,129,0,202]
 }
-`</code>`
+```
 
 **note** has no use in this case and can be left out. **head** if left out defaults to 96 which is *normal priority*. **timestamp** and **obid** both defaults to zero meaning they will be filled in by the system. **guid** can be set to "-" or all nulls (same as being omitted) and the GUID of the interface is then used. **data** can be omitted and is in that case the same as no data. If "time" is left out the current UTC time is used. 
 
@@ -1309,9 +1311,9 @@ Get a measurement zone from a VSCP measurement event.
 
 ### Parameters
 
-`<code="lua">`
+```lua
 result = vscp.getmeasurementzone( event[, format] )
-`</code>`
+```
 
 
 *  **event** A string that holds a VSCP event.
@@ -1322,13 +1324,13 @@ result = vscp.getmeasurementzone( event[, format] )
 
 obid, datetime, timestamp and GUID can be left empty and if so will be set to default values.
 
-`<code="javascript">`
+```javascript
 head,class,type,obid,datetime,timestamp,GUID,data1,data2,data3....
-`</code>`
+```
 
 #### XML format
 
-`<code="xml">`
+```xml
 <event 
     head="96" 
     obid="0" 
@@ -1338,11 +1340,11 @@ head,class,type,obid,datetime,timestamp,GUID,data1,data2,data3....
     type="6" 
     guid="00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00" 
     data="0x8A,0x81,0,0xca" />
-`</code>`
+```
 
 #### JSON format
 
-`<code="lua">`
+```json
 {
     "datetime": "20161102T190032",
     "head": 96,
@@ -1353,7 +1355,7 @@ head,class,type,obid,datetime,timestamp,GUID,data1,data2,data3....
     "guid": "00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00",
     "data": [138,129,0,202]
 }
-`</code>`
+```
 
 **note** has no use in this case and can be left out. **head** if left out defaults to 96 which is *normal priority*. **timestamp** and **obid** both defaults to zero meaning they will be filled in by the system. **guid** can be set to "-" or all nulls (same as being omitted) and the GUID of the interface is then used. **data** can be omitted and is in that case the same as no data. If "time" is left out the current UTC time is used. 
 
@@ -1373,9 +1375,9 @@ Get a measurement Sib Zone from a VSCP measurement event.
 
 ### Parameters
 
-`<code="lua">`
+```lua
 result = vscp.getmeasurementsubzone( event[, format] )
-`</code>`
+```
 
 
 *  **event** A string that holds a VSCP event.
@@ -1386,13 +1388,13 @@ result = vscp.getmeasurementsubzone( event[, format] )
 
 obid, datetime, timestamp and GUID can be left empty and if so will be set to default values.
 
-`<code="javascript">`
+```javascript
 head,class,type,obid,datetime,timestamp,GUID,data1,data2,data3....
-`</code>`
+```
 
 #### XML format
 
-`<code="xml">`
+```xml
 <event 
     head="96" 
     obid="0" 
@@ -1402,11 +1404,11 @@ head,class,type,obid,datetime,timestamp,GUID,data1,data2,data3....
     type="6" 
     guid="00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00" 
     data="0x8A,0x81,0,0xca" />
-`</code>`
+```
 
 #### JSON format
 
-`<code="lua">`
+```json
 {
     "datetime": "20161102T190032",
     "head": 96,
@@ -1417,7 +1419,7 @@ head,class,type,obid,datetime,timestamp,GUID,data1,data2,data3....
     "guid": "00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00",
     "data": [138,129,0,202]
 }
-`</code>`
+```
 
 **note** has no use in this case and can be left out. **head** if left out defaults to 96 which is *normal priority*. **timestamp** and **obid** both defaults to zero meaning they will be filled in by the system. **guid** can be set to "-" or all nulls (same as being omitted) and the GUID of the interface is then used. **data** can be omitted and is in that case the same as no data. If "time" is left out the current UTC time is used. 
 
@@ -1432,43 +1434,28 @@ This library offers these functions:
  
 
 *  lfs.attributes (filepath [, attributename])
-
 *  lfs.chdir (path)
-
 *  lfs.currentdir ()
-
 *  lfs.dir (path)
-
 *  lfs.lock (fh, mode)
-
 *  lfs.lock_dir (path)
-
 *  lfs.mkdir (path)
-
 *  lfs.rmdir (path)
-
 *  lfs.setmode (filepath, mode)
-
 *  lfs.symlinkattributes (filepath [, attributename]) -- thanks to Sam Roberts
-
 *  lfs.touch (filepath [, atime [, mtime]])
-
 *  lfs.unlock (fh)
 
 ## LuaXML
 
-See documentation [here](https///github.com/LuaDist/luaxml).
+See documentation [here](https://github.com/LuaDist/luaxml).
 
 
 ## LuaSqlite3
 
-See documentation [here](https///github.com/LuaDist/lsqlite3).
+See documentation [here](https://github.com/LuaDist/lsqlite3).
 
 
-\\ 
-----
-{{  ::copyright.png?600  |}}
-
-`<HTML>``<p style="color:red;text-align:center;">``<a href="http://www.grodansparadis.com">`Grodans Paradis AB`</a>``</p>``</HTML>`
+{% include "./bottom_copyright.md" %}
 
 

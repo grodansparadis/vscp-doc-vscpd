@@ -1960,7 +1960,7 @@ BASE64:dmFyIGRkID0gdnNjcF9yZWFkVmFyaWFibGUodnNjcF9jbGllbnRJdGVtLCJ0ZXN0MSIpOw0KI
 
 ##  Internal Decision Matrix Events 
 
-   CLASS2.VSCPD (65535)
+    CLASS2.VSCPD (65535)
 
 [CLASS2.VSCPD](https://grodansparadis.gitbooks.io/the-vscp-specification/content/class2.vscpd.html#type--29-0x001d-timer-elapsed) is reserved for internal events used by the decision matrix mechanism of the VSCP daemon. Events of this type is never be visible on a physical bus. 
 
