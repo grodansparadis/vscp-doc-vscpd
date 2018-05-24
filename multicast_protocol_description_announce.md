@@ -9,16 +9,16 @@ The group used for VSCP multicast announcements is the VSCP assigned **group 224
 
 ## Configuration
 
-The configuration of the multicast announce interface can be done in the VSCP server configuration file (/etc/vscp/vscpd.conf) or in the configuration database. The configuratiion is [fully described here](http://www.vscp.org/docs/vscpd/doku.php?id=configuring_the_vscp_daemon#multicast_announce_interface).
+The configuration of the multicast announce interface can be done in the VSCP server configuration file (/etc/vscp/vscpd.conf) or in the configuration database. The configuratiion is [fully described here](./configuring_the_vscp_daemon.md#multicast_announce_interface).
 
 The first option is to decide if the service should be enabled or not. This is set by setting enable equal to "true" or "false". It is strongly recommended that this service is enabled.
 
-Next setting is to decide what interface of the machine should be used for announcements and what port they will be sent on. The default is `<nowiki>`udp://9598`</nowiki>` which is announcements on all interfaces using the standard port 9598.
+Next setting is to decide what interface of the machine should be used for announcements and what port they will be sent on. The default is udp://9598 which is announcements on all interfaces using the standard port 9598.
 
 Next set **ttl (time to live)** for multicast frames. 
 
  | TTL | Scope                                                                            | 
- | --- | -----                                                                            | 
+ | :---: | -----                                                                            | 
  | 0   | Are restricted to the same host. Won't be output by any interface.               | 
  | 1   | Are restricted to the same subnet. Won't be forwarded by a router. (**default**) | 
  | 32  | Are restricted to the same site, organization or department.                     | 
@@ -30,11 +30,7 @@ Next set **ttl (time to live)** for multicast frames.
 
 ## Sample code
 
-You can find sample code (C/C++/Python) [here](https///github.com/grodansparadis/vscp/tree/master/tests/multicast) for both multicast announce and multicast channel interfacing. More will follow.
+You can find sample code (C/C++/Python) [here](https://github.com/grodansparadis/vscp/tree/master/tests/multicast) for both multicast announce and multicast channel interfacing. More will follow.
 
 
-\\ 
-----
-{{  ::copyright.png?600  |}}
-
-`<HTML>``<p style="color:red;text-align:center;">``<a href="http://www.grodansparadis.com">`Grodans Paradis AB`</a>``</p>``</HTML>`
+{% include "./bottom_copyright.md" %}
