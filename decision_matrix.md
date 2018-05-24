@@ -21,7 +21,7 @@ The **mask** tag specify the mask for which part of an event that is of interest
 Simplest way of looking on the mask is to set it to zero if the tag should not be compared or to the max value if not. Max values are
 
  | Tag           | Max value            | 
- | ---           | ---------            | 
+ | :---           | ---------            | 
  | **Priority**  | 0x0f/15              | 
  | **Class**     | 0xFFFF/65535         | 
  | **Type**      | 0xFFFF/65535         | 
@@ -29,25 +29,25 @@ Simplest way of looking on the mask is to set it to zero if the tag should not b
 
 To trigger on a specific event. Set the mask for the class and the type both to 0xffff and the corresponding class/type of the filter to the event of interest. So in the sample below events of any priority and from any GUID will trigger if the class/type is the same as set in the filter.
 
-`<code=xml>`
+```xml
 <mask 
     priority="0" 
     class="0xFFFF" 
     type="0xFFFF" 
     guid="00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00">
-`</mask>`
-`</code>`
+</mask>
+```
 
 The sample below will not test priority,class, and the upper fifteen bytes of the GUID. But will test the LSB. So events of any priority and with any class/type but with the LSB if the GUID set to the value set in the corresponding GUID position of teh filter will trigger the DM action.
 
-`<code=xml>`
+```xml
 <mask 
     priority="0" 
     class="0" 
     type="0" 
     guid="00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:FF">
-`</mask>`
-`</code>`
+</mask>
+```
 
 
 ### Default
@@ -69,8 +69,8 @@ Another way one can use to match a single event is to set both filter and mask t
 The truth table for all this looks like this:
 
 
- | filter `<nowiki>` | `</nowiki>` event-bit | mask | result | 
- | --------------- | ------------------- | ---- | ------ | 
+ | filter \^ event-bit | mask | result | 
+ | :---------------: | :-------------------: | :----: | ------ | 
  | 0               | 0                   | 1    |       
  | 0               | 1                   | 1    |       
  | 1               | 0                   | 1    |       
@@ -88,20 +88,20 @@ If mask/filter is omitted every event is accepted.
 
 This is the 32-bit DM control word.  
 
- | Bit | Description                                                                                      | 
- | --- | -----------                                                                                      | 
- | 31  | Reserved.                                                                                        | 
- | 30  | This bit can be used to disable all decision matrix entries below the row that has this bit set. | 
- | 5   | Specifies that the index should be checked.                                                      | 
- | 4   | Specifies that the zone should be checked.                                                       | 
- | 3   | Specifies that the sub-zone should be checked.                                                   | 
+ | Bit | Description    | 
+ | :---: | -----------  | 
+ | 31  | Reserved.      | 
+ | 30  | This bit can be used to disable all decision  matrix entries below the row that has this bit set. | 
+ | 5   | Specifies that the index should be checked. | 
+ | 4   | Specifies that the zone should be checked.   | 
+ | 3   | Specifies that the sub-zone should be checked. | 
 
 
 ### index
 
 **Index** is in the first data byte for events that support it. If  specified a check will be done to check if the value set here is equal to the first byte of the incoming events data. 
 
-If **measurementindex** attribute is set to *true* the measurement index will be checked instead of the event index. Measurement events (for example [CLASS1.MEASUREMENT events](http://www.vscp.org/docs/vscpspec/doku.php?id=class1.measurement)) usually have an index that identify a specific sensor (0-7 or 0-255). A check will be done to check if the measurement index of the incoming event have a value equal to the one set here. 
+If **measurementindex** attribute is set to *true* the measurement index will be checked instead of the event index. Measurement events (for example [CLASS1.MEASUREMENT events](https://grodansparadis.gitbooks.io/the-vscp-specification/content/class1.measurement.htmlt)) usually have an index that identify a specific sensor (0-7 or 0-255). A check will be done to check if the measurement index of the incoming event have a value equal to the one set here. 
 
 ### zone
 
@@ -136,21 +136,18 @@ This is a string that tells at which time(s) a DM event is allowed to occur at. 
 You can set any of the items to a * meaning any time so
 
 	
-
 	  *-*-* *:*:*
 
 
 is any time. You can also use a slash to give a list of times. So
 
 	
-
 	  *-*-* *:0/5/10:0
 
 
 will trigger the DM action every hour, five minutes over the hour and ten minutes over the hour, every day, every month, every year. On the other hand
 
 	
-
 	  *-1/6-* *:0/5/10:0
 
 
@@ -162,29 +159,29 @@ You can omit this tag or set it to '*' which means always.
 
 *Added in version 1.12.11.0*
 
-This makes it possible to compare a measurement value for measurement events (for example [CLASS1.MEASUREMENT events](http://www.vscp.org/docs/vscpspec/doku.php?id=class1.measurement)) with a pre-set value defined here. 
+This makes it possible to compare a measurement value for measurement events (for example [CLASS1.MEASUREMENT events](https://grodansparadis.gitbooks.io/the-vscp-specification/content/class1.measurement.html)) with a pre-set value defined here. 
 
 Format is
 
-	
-	  <measurement compare="noop|eq|neq|gt|gteq|lt|lteq" 
-	                unit="0" 
-	                value="78.2" />
-
+```xml	
+<measurement compare="noop|eq|neq|gt|gteq|lt|lteq" 
+                unit="0" 
+	            value="78.2" />
+```
 
 where the comparison value is represented by "78.2" here and unit is set to the default value zero.
 
 The attribute **compare** defines which comparison that should be performed with the following possible values
 
- | Comparison           | Alternative             | Internal code | Description                      | 
- | ----------           | -----------             | ------------- | -----------                      | 
- | **noop**             | empty                   | 0             | No comparison. **Default**       | 
- | **eq**               | **==**                  | 1             | Check for equal.                 | 
- | **neq**              | **!=**                  | 2             | Check for NOT equal.             | 
- | **gt**               | **>**                   | 3             | Check for greater than.          | 
- | **gteq** or **eqgt** | **>=**                  | 4             | Check for greater than or equal. | 
- | **lt**               | **<**                   | 5             | Check for less than.             | 
- | **lteq** or **eqlt** | `<nowiki>``<=</nowiki>` | 6             | Check for less than or equal.    | 
+ | Comparison | Alternative | Internal code | Description | 
+ | :----------: | :-----------: | :-------------: | ----------- | 
+ | **noop** | empty | 0 | No comparison. **Default**  | 
+ | **eq**   | **==** | 1 | Check for equal. | 
+ | **neq**  | **!=** | 2 | Check for NOT equal. | 
+ | **gt**   | **>**  | 3 | Check for greater than. | 
+ | **gteq** or **eqgt** | **>=** | 4 | Check for greater than or equal. | 
+ | **lt**  | **<** | 5 | Check for less than. | 
+ | **lteq** or **eqlt** | `<nowiki>``<=</nowiki>` | 6  | Check for less than or equal. | 
 
 The attribute **unit** is a numerical code that specifies which unit the incoming value should have (0-3 for Level I/0-255 for Level II).
 
@@ -192,11 +189,11 @@ The attribute **unit** is a numerical code that specifies which unit the incomin
 
 ### action
 
-This is a 32-bit action code that specifies which action should be executed if the row is triggered. Actions and their codes are described [here](vscp_daemon_decision_matrix#actions).
+This is a 32-bit action code that specifies which action should be executed if the row is triggered. Actions and their codes are described [here](./decision_matrix.md#actions).
 
 ### param
 
-The parameter is a text string that makes it possible to control how the action is performed. Before the action is performed the string is checked for escapes and this makes it possible to pass run time information in an easy way. Escapes are defined [here](vscp_daemon_decision_matrix#variable_substitution_for_parameters).
+The parameter is a text string that makes it possible to control how the action is performed. Before the action is performed the string is checked for escapes and this makes it possible to pass run time information in an easy way. Escapes are defined [here](./decision_matrix.md#variable_substitution_for_parameters).
 
 ### comment
 
@@ -204,7 +201,7 @@ Make your own comments of what the row is there for here.
 
 ## The decision matrix XML file
 
-:!: **Note!** *The XML file format is deprecated and replaced by a database which is edited in the web interface. It is however still possible to read DM entries from the XML file but the rows that is read from a disk file can not be edited and saved.* 
+**Note!** *The XML file format is deprecated and replaced by a database which is edited in the web interface. It is however still possible to read DM entries from the XML file but the rows that is read from a disk file can not be edited and saved.* 
 
 When the daemon is started up the internal decision matrix is loaded from the dm.xml in the folder set as configuration path. 
 
@@ -216,71 +213,69 @@ if VSCP daemon is on a local host.
 
 The format for the dm.xml file is as follows
 
-`<code=xml>`
-`<?xml version = "1.0" encoding = "UTF-8" ?>`
+```xml
+<?xml version = "1.0" encoding = "UTF-8" ?>
 
-`<!-- 2017-12-02                                                -->` 
-`<!-- This files holds the decision matrix for the daemon       -->` 
+<!-- This files holds the decision matrix for the daemon  -->
 
-`<dm>`  
-    `<!-- Enabled row, belongs to group "test" -->`  
-    `<row enabled="true" groupid="test">`     
+<dm>    
+    <!-- Enabled row, belongs to group "test" -->
+    <row enabled="true" groupid="test">
 
-        `<!-- Mask to trigger row -->`            
-        <mask 
-                 priority="1" 
-                 class="0xFFFF" 
-                 type="55" 
-                 guid="0F:0E:0D:0C:0B:0A:09:08:07:06:05:04:03:02:01:00">
-        `</mask>`         
+        <!-- Mask to trigger row -->
+        <mask priority="1"
+                class="0xFFFF"
+                type="55"
+                guid="0F:0E:0D:0C:0B:0A:09:08:07:06:05:04:03:02:01:00">
+        </mask>
 
-        `<!-- Filter to trigger row -->`         
-        <filter
-                 priority="7" 
-                 class="1000" 
-                 type="0xAA" 
-                 guid="FF:EE:DD:CC:BB:AA:99:88:77:66:55:44:33:22:11:00">
-        `</filter>`         
+        <!-- Filter to trigger row -->
+        <filter priority="7" 
+                    class="1000" 
+                    type="0xAA" 
+                    guid="FF:EE:DD:CC:BB:AA:99:88:77:66:55:44:33:22:11:00">
+        </filter>
 	
-        `<!-- Date and time from which action should trigger -->`         
-        `<allowed_from>`1970-01-01 00:00:00`</allowed_from>`         
+        <!-- Date and time from which action should trigger -->    
+        <allowed_from>1970-01-01 00:00:00</allowed_from> 
 		
-        `<!-- Date and time up to which action should trigger -->`         
-        `<allowed_to>`2099-12-31 23:59:59`</allowed_to>`         
+        <!-- Date and time up to which action should trigger --> 
+        <allowed_to>2099-12-31 23:59:59</allowed_to>
 	
-        `<!-- List of weekdays which action should trigger -->`        
-        `<allowed_weekdays>`mtwtfss`</allowed_weekdays>`         
+        <!-- List of weekdays which action should trigger -->   
+        <allowed_weekdays>mtwtfss</allowed_weekdays>        
 		
-        `<!-- A specific time (or pattern) when the action should trigger -->`
-        `<allowed_time>`-*-* *:0/5/10:0`</allowed_time>` 
-                              `<!-- Every zero,five and ten minutes-->`      
-        `<!-- Optional - Set Index to check -->`
-        `<!-- if measurementindex is true the measurement index is -->`
-        `<!-- checked instead of the event index (byte 0). -->`
-        `<index measurementindex="true|false">`0`</index>`
+        <!-- A specific time (or pattern) when the action should trigger -->
+        <!-- Here every zero,five and ten minutes-->
+        <allowed_time>-*-* *:0/5/10:0</allowed_time> 
+    
+        <!-- Optional - Set Index to check -->
+        <!-- if measurementindex is true the measurement index is -->
+        <!-- checked instead of the event index (byte 0). -->
+        <index measurementindex="true|false">`0</index>
 
-        `<!-- Optional - Set Zone to check -->`         
-        `<zone>`0`</zone>`
+        <!-- Optional - Set Zone to check -->
+        <zone>0</zone>
 
-        `<!-- Optional - Set Subzone to check -->`         
-        `<subzone>`0`</subzone>`
-          
-        `<!-- measurement -->`         
-        `<measurement bEnable="true|false" compare="eq|neq|gt|gteq|lt|lteq" unit="0">`78.2`</measurement>`
+        <!-- Optional - Set Subzone to check -->
+        <subzone>0</subzone>
 
-        `<!-- Action code -->`
-        `<action>`0x10`</action>`
+        <!-- measurement -->
+        <measurement bEnable="true|false" compare="eq|neq|gt|gteq|lt|lteq" unit="0">78.2</measurement>
+
+        <!-- Action code -->
+        <action>0x10</action>
 	
-        `<!-- Action parameter -->`         
-        `<param>`1,t44;canal;12;25;abc;90`</param>`         
+        <!-- Action parameter -->
+        <param>1,t44;canal;12;25;abc;90</param>
 	
-        `<!-- Comment for decion matrix row -->`         
-        `<comment>`This is a dumb comment`</comment>`   
+        <!-- Comment for decion matrix row -->
+        <comment>This is a dumb comment</comment>
 
-    `</row>`     
+    </row>    
 
-`</dm>`
-`</code>`
+</dm>
+```
 
 ## Timing parameter data format
 
@@ -313,95 +308,95 @@ The daemon itself place some events on the DM queue. See Internal DM events belo
 
 Action parameters are strings that are passed to actions and in that way can be used to configure the action to solve different problems. The action string can contain escape values which are replaced with real values before the action is performed. The following escapes are currently defined. 
 
- | Escape sequence                         | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | 
- | ---------------                         | -----------                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | 
- | ** `<nowiki>`%%`</nowiki>` **               | The character `<nowiki>`%`</nowiki>`                                                                                                                                                                                                                                                                                                                                                                                                                                           | 
- | ** %; **                                | The character ';'. Semicolon is normally used to separates arguments of an action.                                                                                                                                                                                                                                                                                                                                                                                           | 
- | ** %cr **                               | A carriage return.                                                                                                                                                                                                                                                                                                                                                                                                                                                           | 
- | ** %lf **                               | A line feed.                                                                                                                                                                                                                                                                                                                                                                                                                                                                 | 
- | ** %crlf **                             | A carriage return + a line feed.                                                                                                                                                                                                                                                                                                                                                                                                                                             | 
- | ** %tab **                              | A tab.                                                                                                                                                                                                                                                                                                                                                                                                                                                                       | 
- | ** %bell **                             | A bell.                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | 
- | ** %amp **                              | Insert an ampersand character                                                                                                                                                                                                                                                                                                                                                                                                                                                | 
- | ** %amp-html **                         | Insert HTML representation of ampersand (&amp;).                                                                                                                                                                                                                                                                                                                                                                                                                             | 
- | ** %lt **                               | Insert a less than character                                                                                                                                                                                                                                                                                                                                                                                                                                                 | 
- | ** %lt-html **                          | Insert HTML representation of less than (&lt;).                                                                                                                                                                                                                                                                                                                                                                                                                              | 
- | ** %gt **                               | Insert a greater than character                                                                                                                                                                                                                                                                                                                                                                                                                                              | 
- | ** %gt-html **                          | Insert HTML representation of greater than (&gt;).                                                                                                                                                                                                                                                                                                                                                                                                                           | 
- | ** %variable:[**//variable_name//**]**  | Value of a variable. BASE64 data **is not** decoded.                                                                                                                                                                                                                                                                                                                                                                                                                         | 
- | ** %vardecode:[**//variable_name//**]** | Value of a variable. BASE64 data **is** decoded.                                                                                                                                                                                                                                                                                                                                                                                                                             | 
- | ** %file:[**//path//**]**               | Content of a named file.                                                                                                                                                                                                                                                                                                                                                                                                                                                     | 
- | ** %event **                            | A full event in the standard text form.                                                                                                                                                                                                                                                                                                                                                                                                                                      | 
- | ** %event.class **                      | The class for the event as a number.                                                                                                                                                                                                                                                                                                                                                                                                                                         | 
- | ** %event.class.str **                  | The class for the event as a a descriptive string.                                                                                                                                                                                                                                                                                                                                                                                                                           | 
- | ** %event.type **                       | The type for the event as a number.                                                                                                                                                                                                                                                                                                                                                                                                                                          | 
- | ** %event.type.str **                   | The type for the event as a a descriptive string.                                                                                                                                                                                                                                                                                                                                                                                                                            | 
- | ** %event.head **                       | head of the event.                                                                                                                                                                                                                                                                                                                                                                                                                                                           | 
- | ** %event.priority **                   | The priority for the event (from head).                                                                                                                                                                                                                                                                                                                                                                                                                                      | 
- | ** %event.sizedata **                   | The number of databytes the event have.                                                                                                                                                                                                                                                                                                                                                                                                                                      | 
- | ** %event.data **                       | All data-bytes as a comma separated list. If no data 'empty' is set.                                                                                                                                                                                                                                                                                                                                                                                                         | 
- | ** %event.data[n] **                    | Data byte n. If no data 'empty' is set.                                                                                                                                                                                                                                                                                                                                                                                                                                      | 
- | ** %event.hexdata[n] **                 | Data byte n in hex. If no data 'empty' is set.                                                                                                                                                                                                                                                                                                                                                                                                                               | 
- | ** %event.data.bit[n] **                | print the value of a bit. Bits are counted from left to right. That is bit=9 is bit 7 in byte 1 of the data.                                                                                                                                                                                                                                                                                                                                                                 | 
- | ** %event.bool[n] **                    | Boolean value for byte n printed as "true" or "false".                                                                                                                                                                                                                                                                                                                                                                                                                       | 
- | ** %event.data.int8[n] **               | Data byte n as a signed int8_t.                                                                                                                                                                                                                                                                                                                                                                                                                                              | 
- | ** %event.data.uint8[n] **              | Data byte n as an unsigned uint8_t                                                                                                                                                                                                                                                                                                                                                                                                                                           | 
- | ** %event.hexdata.uint8[n] **           | Data byte n is printed in hex.                                                                                                                                                                                                                                                                                                                                                                                                                                               | 
- | ** %event.data.int16[n] **              | Data byte n/n+1 printed as a signed int16_t                                                                                                                                                                                                                                                                                                                                                                                                                                  | 
- | ** %event.data.uint16_t[n] **           | Data byte n/n+1 printed out as an unsigned uint16_t.                                                                                                                                                                                                                                                                                                                                                                                                                         | 
- | ** %event.hexdata.uint16_t[n] **        | Data byte n/n+1 printed out as a hex uint16_t.                                                                                                                                                                                                                                                                                                                                                                                                                               | 
- | ** %event.data.int32[n] **              | Data byte n/n+1/n+2/n+3 printed out as a signed int32_t.                                                                                                                                                                                                                                                                                                                                                                                                                     | 
- | ** %event.data.uint32[n] **             | Data byte n/n+1/n+2/n+3 printed out as an unsigned uint32_t.                                                                                                                                                                                                                                                                                                                                                                                                                 | 
- | ** %event.hexdata.uint32[n] **          | Data byte n/n+1/n+2/n+3 printed out as an unsigned uint32_t.                                                                                                                                                                                                                                                                                                                                                                                                                 | 
- | ** %event.data.float[n] **              | Data byte n/n+1/n+2/n+3 as a floating point value.                                                                                                                                                                                                                                                                                                                                                                                                                           | 
- | ** %event.data.double[n] **             | Data byte n/n+1/n+2/n+3/n+4/n+5/n+6/n+7 as a double precision floating point value.                                                                                                                                                                                                                                                                                                                                                                                          | 
- | ** %event.obid **                       | obid of event.                                                                                                                                                                                                                                                                                                                                                                                                                                                               | 
- | ** %event.hardcoded **                  | Hardcoded bit f head as 0/1.                                                                                                                                                                                                                                                                                                                                                                                                                                                 | 
- | ** %event.guid **                       | GUID of the event.                                                                                                                                                                                                                                                                                                                                                                                                                                                           | 
- | ** %event.nickname **                   | nickname for the GUID of the event (LSB of GUID).                                                                                                                                                                                                                                                                                                                                                                                                                            | 
- | ** %event.timestamp **                  | Timestamp of the event.                                                                                                                                                                                                                                                                                                                                                                                                                                                      | 
- | ** %event.index **                      | This is the same as %event.data[0].                                                                                                                                                                                                                                                                                                                                                                                                                                          | 
- | ** %event.zone **                       | This is the same as %event.data[1].                                                                                                                                                                                                                                                                                                                                                                                                                                          | 
- | ** %event.subzone **                    | This is the same as %event.data[2].                                                                                                                                                                                                                                                                                                                                                                                                                                          | 
- | ** %isodate **                          | Date in ISO format YY-MM-DD                                                                                                                                                                                                                                                                                                                                                                                                                                                  | 
- | ** %isotime **                          | Time in ISO form HH:MM:SS.                                                                                                                                                                                                                                                                                                                                                                                                                                                   | 
- | ** %isoboth **                          | Date + Time in ISO form YY-MM-DDTHH:MM:SS.                                                                                                                                                                                                                                                                                                                                                                                                                                   | 
- | ** %isobothms **                        | Date + Time + milliseconds in ISO form YY-MM-DDTHH:MM:SS.nnn.                                                                                                                                                                                                                                                                                                                                                                                                                | 
- | ** %unixtime **                         | Unix time as a 32-bit unsigned number.                                                                                                                                                                                                                                                                                                                                                                                                                                       | 
- | ** %mstime **                           | Current time in milliseconds.                                                                                                                                                                                                                                                                                                                                                                                                                                                | 
- | ** %hour **                             | Current hour.                                                                                                                                                                                                                                                                                                                                                                                                                                                                | 
- | ** %minute **                           | Current minute.                                                                                                                                                                                                                                                                                                                                                                                                                                                              | 
- | ** %second **                           | Current second.                                                                                                                                                                                                                                                                                                                                                                                                                                                              | 
- | ** %week0  **                           | Current week number (1-52(53)). Week starts with Sunday.                                                                                                                                                                                                                                                                                                                                                                                                                     | 
- | ** %week1 **                            | Current week number (1-52(53)). Week starts with Monday.                                                                                                                                                                                                                                                                                                                                                                                                                     | 
- | ** %weektxt **                          | Get week name in textual short form.                                                                                                                                                                                                                                                                                                                                                                                                                                         | 
- | ** %weektxtfull **                      | Get week name in textual long form.                                                                                                                                                                                                                                                                                                                                                                                                                                          | 
- | ** %month **                            | Current month number (1-12).                                                                                                                                                                                                                                                                                                                                                                                                                                                 | 
- | ** %monthtxt **                         | Get current month in textual short form.                                                                                                                                                                                                                                                                                                                                                                                                                                     | 
- | ** %monthtxtfull  **                    | Get current month in textual long form.                                                                                                                                                                                                                                                                                                                                                                                                                                      | 
- | ** %year **                             | Current year.                                                                                                                                                                                                                                                                                                                                                                                                                                                                | 
- | ** %quarter **                          | Current quarter(1-4).                                                                                                                                                                                                                                                                                                                                                                                                                                                        | 
- | ** %path.config **                      | Return the directory containing the system config files. Unix: /etc Windows: C:\Documents and Settings\All Users\Application Data Mac: /Library/Preferences                                                                                                                                                                                                                                                                                                                  | 
- | ** %path.datadir **                     | Return the location of the applications global, i.e. not user-specific, data files. Unix: prefix/share/appname Windows: the directory where the executable file is located Mac: appname.app/Contents/SharedSupport bundle subdirectory                                                                                                                                                                                                                                       | 
- | ** %path.documentsdir **                | Return the directory containing the current user's (the account the daemon/server is run as) documents. Unix: ~ (the home directory) Windows: C:\Documents and Settings\username\Documents Mac: ~/Documents                                                                                                                                                                                                                                                                  | 
- | ** %path.executable **                  | Return the directory and the filename for the current executable. Unix: /usr/local/bin/exename Windows: C:\Programs\AppFolder\exename.exe Mac: /Programs/exename                                                                                                                                                                                                                                                                                                             | 
- | ** %path.localdatadir **                | Return the location for application data files which are host-specific and can't, or shouldn't, be shared with the other machines.                                                                                                                                                                                                                                                                                                                                           | 
- | ** %path.pluginsdir **                  | Return the directory where the loadable modules (plugins) live. Unix: prefix/lib/appname Windows: the directory of the executable file Mac: appname.app/Contents/PlugIns bundle subdirectory                                                                                                                                                                                                                                                                                 | 
- | ** %path.resourcedir **                 | Return the directory where the application resource files are located. The resources are the auxiliary data files needed for the application to run and include, for example, image and sound files it might use. Unix: prefix/share/appname Windows: the directory where the executable file is located Mac: appname.app/Contents/Resources bundle subdirectory                                                                                                             | 
- | ** %path.tempdir **                     | Return the directory for storing temporary files.                                                                                                                                                                                                                                                                                                                                                                                                                            | 
- | ** %path_userconfigdir **               | Return the directory for the user config files. Unix: ~ (the home directory) Windows: C:\Documents and Settings\username\Application Data Mac: ~/Library/Preferences                                                                                                                                                                                                                                                                                                         | 
- | ** %path.userdatadir **                 | Return the directory for the user-dependent application data files: Unix: ~/.appname Windows: C:\Documents and Settings\username\Application Data\appname Mac: ~/Library/Application Support/appname                                                                                                                                                                                                                                                                         | 
- | ** %path.localdatadir **                | Return the directory for user data files which shouldn't be shared with the other machines.                                                                                                                                                                                                                                                                                                                                                                                  | 
- | ** %toliveafter1 **                     | Inserts *'Carpe diem quam minimum credula postero.'*                                                                                                                                                                                                                                                                                                                                                                                                                       | 
- | ** %toliveafter2 **                     | Inserts *'Be Hungry - Stay Foolish.'*                                                                                                                                                                                                                                                                                                                                                                                                                                      | 
- | ** %toliveafter3 **                     | Inserts *'Stay Foolish - Be Hungry.'*                                                                                                                                                                                                                                                                                                                                                                                                                                      | 
- | ** %measurement.index **                | Index from measurement data coding (0-7).                                                                                                                                                                                                                                                                                                                                                                                                                                    | 
- | ** %measurement.unit **                 | Unit from measurement data coding (0-3).                                                                                                                                                                                                                                                                                                                                                                                                                                     | 
- | ** %measurement.coding **               | Index from measurement data coding (0-7).                                                                                                                                                                                                                                                                                                                                                                                                                                    | 
- | ** %measurement.float **                | Convert event data to a floating point value. The class must be one of the measurement classes VSCP_CLASS1_MEASUREMENT, VSCP_CLASS2_LEVEL1_MEASUREMENT, VSCP_CLASS1_MEASUREZONE, VSCP_CLASS1_SETVALUEZONE, VSCP_CLASS1_MEASUREMENT64 or VSCP_CLASS2_MEASUREMENT_STR                                                                                                                                                                                                          | 
- | ** %measurement.string **               | Convert event data to a string. The class must be one of the measurement classes VSCP_CLASS1_MEASUREMENT, VSCP_CLASS2_LEVEL1_MEASUREMENT, VSCP_CLASS1_MEASUREZONE, VSCP_CLASS1_SETVALUEZONE, VSCP_CLASS1_MEASUREMENT64 or VSCP_CLASS2_MEASUREMENT_STR                                                                                                                                                                                                                        | 
- | ** %measurement.convert.data **         | This converts a level I measurement from any of the measurement classes into string data in the form needed by the action send event. You can use it to always send a VSCP_CLASS2_MEASUREMENT event, that is easy to interpret, when a measurement event of any kind is received. Just add index,zone,subzone,%measurement.unit,%measurement.convert.data instead of the data for the event. The class should always be VSCP_CLASS2_MEASUREMENT_STR and the type %event.type | 
- | ** %eventdata.realtext **               | Tries to convert the event data into a string in a human readable format.                                                                                                                                                                                                                                                                                                                                                                                                    | 
+ | Escape sequence | Description | 
+ | :--------------- | ----------- | 
+ | **%%** | The character `%` | 
+ | **%;** | The character ';'. Semicolon is normally used to separates arguments of an action. | 
+ | **%cr** | A carriage return. | 
+ | **%lf** | A line feed. | 
+ | **%crlf** | A carriage return + a line feed. | 
+ | **%tab** | A tab. | 
+ | **%bell** | A bell. | 
+ | **%amp** | Insert an ampersand ('&') character | 
+ | **%amp-html** | Insert HTML representation of ampersand (&amp;). | 
+ | **%lt** | Insert a less than character. | 
+ | **%lt-html** | Insert HTML representation of less than (&lt;). | 
+ | **%gt** | Insert a greater than character. | 
+ | **%gt-html** | Insert HTML representation of greater than (&gt;). | 
+ | **%variable:[**//variable_name//**]**  | Value of a variable. BASE64 data **is not** decoded. | 
+ | **%vardecode:[**//variable_name//**]** | Value of a variable. BASE64 data **is** decoded. | 
+ | **%file:[**//path//**]** | Content of a named file. | 
+ | **%event** | A full event in the standard text form. | 
+ | **%event.class** | The class for the event as a number. | 
+ | **%event.class.str** | The class for the event as a a descriptive string. | 
+ | **%event.type** | The type for the event as a number. | 
+ | **%event.type.str** | The type for the event as a a descriptive string. | 
+ | **%event.head** | head of the event. | 
+ | **%event.priority** | The priority for the event (from head). | 
+ | **%event.sizedata** | The number of databytes the event have. | 
+ | **%event.data**   | All data-bytes as a comma separated list. If no data 'empty' is set. | 
+ | **%event.data[n]**    | Data byte n. If no data 'empty' is set. | 
+ | **%event.hexdata[n]** | Data byte n in hex. If no data 'empty' is set. | 
+ | **%event.data.bit[n]** | print the value of a bit. Bits are counted from left to right. That is bit=9 is bit 7 in byte 1 of the data. | 
+ | **%event.bool[n]** | Boolean value for byte n printed as "true" or "false". | 
+ | **%event.data.int8[n]** | Data byte n as a signed int8_t. | 
+ | **%event.data.uint8[n]** | Data byte n as an unsigned uint8_t | 
+ | **%event.hexdata.uint8[n]** | Data byte n is printed in hex. | 
+ | **%event.data.int16[n]** | Data byte n/n+1 printed as a signed int16_t | 
+ | **%event.data.uint16_t[n]** | Data byte n/n+1 printed out as an unsigned uint16_t. | 
+ | **%event.hexdata.uint16_t[n]** | Data byte n/n+1 printed out as a hex uint16_t. | 
+ | **%event.data.int32[n]**| Data byte n/n+1/n+2/n+3 printed out as a signed int32_t. | 
+ | **%event.data.uint32[n]** | Data byte n/n+1/n+2/n+3 printed out as an unsigned uint32_t. | 
+ | **%event.hexdata.uint32[n]** | Data byte n/n+1/n+2/n+3 printed out as an unsigned uint32_t. | 
+ | **%event.data.float[n]** | Data byte n/n+1/n+2/n+3 as a floating point value. | 
+ | **%event.data.double[n]** | Data byte n/n+1/n+2/n+3/n+4/n+5/n+6/n+7 as a double precision floating point value. | 
+ | **%event.obid** | obid of event. | 
+ | **%event.hardcoded** | Hardcoded bit f head as 0/1. | 
+ | **%event.guid** | GUID of the event. | 
+ | **%event.nickname** | nickname for the GUID of the event (LSB of GUID). | 
+ | **%event.timestamp** | Timestamp of the event. | 
+ | **%event.index** | This is the same as %event.data[0]. | 
+ | **%event.zone** | This is the same as %event.data[1]. | 
+ | **%event.subzone** | This is the same as %event.data[2]. | 
+ | **%isodate** | Date in ISO format YY-MM-DD | 
+ | **%isotime** | Time in ISO form HH:MM:SS. | 
+ | **%isoboth** | Date + Time in ISO form YY-MM-DDTHH:MM:SS. | 
+ | **%isobothms** | Date + Time + milliseconds in ISO form YY-MM-DDTHH:MM:SS.nnn. | 
+ | **%unixtime** | Unix time as a 32-bit unsigned number. | 
+ | **%mstime** | Current time in milliseconds. | 
+ | * %hour** | Current hour. | 
+ | **%minute** | Current minute. | 
+ | **%second** | Current second. | 
+ | **%week0**  | Current week number (1-52(53)). Week starts with Sunday. | 
+ | **%week1** | Current week number (1-52(53)). Week starts with Monday. | 
+ | **%weektxt** | Get week name in textual short form. | 
+ | **%weektxtfull** | Get week name in textual long form. | 
+ | **%month** | Current month number (1-12). | 
+ | **%monthtxt** | Get current month in textual short form. | 
+ | **%monthtxtfull ** | Get current month in textual long form. | 
+ | **%year** | Current year. | 
+ | **%quarter** | Current quarter(1-4). | 
+ | **%path.config** | Return the directory containing the system config files. **Unix:** */etc* **Windows:** *C:\Documents and Settings\All Users\Application Data* **Mac:** */Library/Preferences*  | 
+ | **%path.datadir** | Return the location of the applications global, i.e. not user-specific, data files. Unix: prefix/share/appname Windows: the directory where the executable file is located Mac: appname.app/Contents/SharedSupport bundle subdirectory | 
+ | **%path.documentsdir** | Return the directory containing the current user's (the account the daemon/server is run as) documents. Unix: ~ (the home directory) Windows: C:\Documents and Settings\username\Documents Mac: ~/Documents | 
+ | **%path.executable** | Return the directory and the filename for the current executable. Unix: /usr/local/bin/exename Windows: C:\Programs\AppFolder\exename.exe Mac: /Programs/exename | 
+ | **%path.localdatadir**| Return the location for application data files which are host-specific and can't, or shouldn't, be shared with the other machines. | 
+ | **%path.pluginsdir** | Return the directory where the loadable modules (plugins) live. Unix: prefix/lib/appname Windows: the directory of the executable file Mac: appname.app/Contents/PlugIns bundle subdirectory. | 
+ | **%path.resourcedir** | Return the directory where the application resource files are located. The resources are the auxiliary data files needed for the application to run and include, for example, image and sound files it might use. Unix: prefix/share/appname Windows: the directory where the executable file is located Mac: appname.app/Contents/Resources bundle subdirectory. | 
+ | **%path.tempdir** | Return the directory for storing temporary files. | 
+ | **%path_userconfigdir** | Return the directory for the user config files. Unix: ~ (the home directory) Windows: C:\Documents and Settings\username\Application Data Mac: ~/Library/Preferences | 
+ | **%path.userdatadir** | Return the directory for the user-dependent application data files: Unix: ~/.appname Windows: C:\Documents and Settings\username\Application Data\appname Mac: ~/Library/Application Support/appname | 
+ | **%path.localdatadir** | Return the directory for user data files which shouldn't be shared with the other machines. | 
+ | **%toliveafter1** | Inserts *'Carpe diem quam minimum credula postero.'*  | 
+ | **%toliveafter2** | Inserts *'Be Hungry - Stay Foolish.'* | 
+ | **%toliveafter3** | Inserts *'Stay Foolish - Be Hungry.'* | 
+ | **%measurement.index** | Index from measurement data coding (0-7). | 
+ | **%measurement.unit** | Unit from measurement data coding (0-3). | 
+ | **%measurement.coding** | Index from measurement data coding (0-7). | 
+ | **%measurement.float** | Convert event data to a floating point value. The class must be one of the measurement classes VSCP_CLASS1_MEASUREMENT, VSCP_CLASS2_LEVEL1_MEASUREMENT, VSCP_CLASS1_MEASUREZONE, VSCP_CLASS1_SETVALUEZONE, VSCP_CLASS1_MEASUREMENT64 or VSCP_CLASS2_MEASUREMENT_STR | 
+ | **%measurement.string** | Convert event data to a string. The class must be one of the measurement classes VSCP_CLASS1_MEASUREMENT, VSCP_CLASS2_LEVEL1_MEASUREMENT, VSCP_CLASS1_MEASUREZONE, VSCP_CLASS1_SETVALUEZONE, VSCP_CLASS1_MEASUREMENT64 or VSCP_CLASS2_MEASUREMENT_STR | 
+ | **%measurement.convert.data** | This converts a level I measurement from any of the measurement classes into string data in the form needed by the action send event. You can use it to always send a VSCP_CLASS2_MEASUREMENT event, that is easy to interpret, when a measurement event of any kind is received. Just add index,zone,subzone,%measurement.unit,%measurement.convert.data instead of the data for the event. The class should always be VSCP_CLASS2_MEASUREMENT_STR and the type %event.type | 
+ | **%eventdata.realtext** | Tries to convert the event data into a string in a human readable format. | 
 
 Can perfectly be used as arguments for triggered external program execution.  
 
@@ -409,7 +404,7 @@ Can perfectly be used as arguments for triggered external program execution.
 
 Actions can have long argument lists. If you are an end user don't be scared by this. The setup of DM rows is done with program support and you fill in the values in a nice GUI.
 
-The semicolon character `<nowiki>`;`</nowiki>` is used as a separator for arguments and if needed in an argument ”`<nowiki>`%;`</nowiki>`” should be used. Also `<nowiki>`%`</nowiki>` is a special character used for escapes and should be written as `<nowiki>`%%`</nowiki>`.
+The semicolon character (`;`) is used as a separator for arguments and if needed in an argument `%;` should be used. Also the procent character (`%`) is a special character used for escapes and should be written as `%%`.
 
 ----
 
@@ -436,95 +431,92 @@ It is also important that you give the full path to the program and where used, 
 
 *  Optional variable that is set to true if the execution was successful.
 
-Note that the semicolon symbol `<nowiki>`(';')`</nowiki>` is used internally and if it is part of a program argument `<nowiki>`%;`</nowiki>` should be written. 
+Note that the semicolon symbol (`;`) is used internally and if it is part of a program argument `%;` should be written. 
 
 **Example 1**
 Run a scripts when a CLASS1.MEASUREMENT, Type=6, Temperature event is received from a node with nodeid=1 and from sensor with index equal to 2 on that device.
 
-`<code=xml>`
-`<row enable="true" groupid="" >`
+```xml
+<row enable="true" groupid="" >
     <mask  priority="0"  class="65535"  type="65535"  
         GUID=" 00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:FF" > 
-    `</mask>`
+    </mask>
     <filter  priority="0"  class="10"  type="6"  
         GUID=" 00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:01" > 
-    `</filter>`
-    `<action>`0x10`</action>`
-    `<param>`/srv/vscp/thingspeak.sh XXXXXXXXXXXXXXXX 3 %measurement.string`</param>`
-    `<comment>`Send value for compressor sensor`</comment>`
-    `<allowed_from>`0000-01-01 00:00:00`</allowed_from>`
-    `<allowed_to>`9999-12-31 23:59:59`</allowed_to>`
-    `<allowed_weekdays>`mtwtfss`</allowed_weekdays>`
-    `<allowed_time>`-*-* *:*:`</allowed_time>`
-    `<index  bMeasurement="true"  >` 2`</index>`
-`</row>`
-
-`</code>`
+    </filter>
+    <action>0x10</action>
+    <param>/srv/vscp/thingspeak.sh XXXXXXXXXXXXXXXX %measurement.string</param>
+    <comment>Send value for compressor sensor</comment>
+    <allowed_from>0000-01-01 00:00:00</allowed_from>
+    <allowed_to>9999-12-31 23:59:59</allowed_to>
+    <allowed_weekdays>mtwtfss</allowed_weekdays>
+    <allowed_time>-*-* *:*:</allowed_time>
+    <index bMeasurement="true" >2</index>
+</row>
+```
 
 **Example 2**
 
 Turn on lights when the sun goes down (calculated).
 
-`<code=xml>`
-`<row enable="true" groupid="Tellstick" >`
+```xml
+<row enable="true" groupid="Tellstick" >
     <mask  priority="0"  class="65535"  type="65535"  
          GUID=" 00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00" > 
-    `</mask>`
+    </mask>
     <filter  priority="0"  class="20"  type="45"  
          GUID=" 00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00" > 
-    `</filter>`
-    `<action>`0x10`</action>`
-    `<param>`/usr/local/bin/tdtool --on 1`</param>`
-    `<comment>`Turn on window ligts when sun goes down`</comment>`
-    `<allowed_from>`0000-01-01 00:00:00`</allowed_from>`
-    `<allowed_to>`9999-12-31 23:59:59`</allowed_to>`
-    `<allowed_weekdays>`mtwtfss`</allowed_weekdays>`
-    `<allowed_time>`-*-* *:*:`</allowed_time>`
-`</row>`
-
-`</code>`
+    </filter>
+    <action>0x10</action>
+    <param>/usr/local/bin/tdtool --on 1</param>
+    <comment>Turn on window ligts when sun goes down</comment>
+    <allowed_from>0000-01-01 00:00:00</allowed_from>
+    <allowed_to>9999-12-31 23:59:59</allowed_to>
+    <allowed_weekdays>mtwtfss</allowed_weekdays>
+    <allowed_time>-*-* *:*:</allowed_time>
+</row>
+```
 
 **Example 3**
-Log data to a MySQL database
+Log data to a MySQL/MariaDB database
 
-`<code=xml>`
-`<row enable="true" groupid="" >`
+```xml
+<row enable="true" groupid="" >
     <mask  priority="0"  class="65535"  type="65535"  
         GUID=" 00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:FF" > 
-    `</mask>`
+    </mask>
     <filter  priority="0"  class="10"  type="6"  
         GUID=" 00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:01" > 
-    `</filter>`
-    `<action>`0x10`</action>`
-    `<param>`
+    </filter>
+    <action>0x10</action>
+    <param>
      mysql -u'user' -p'password' -h'host' -e"INSERT 
        INTO temperature(GUID,SensorIndex,Date,Value) 
        VALUES ('%event.guid',%measurement.index,'%isodate %isotime', 
        %measurement.float)";
-    `</param>`
-    `<comment>``</comment>`
-    `<allowed_from>`0000-01-01 00:00:00`</allowed_from>`
-    `<allowed_to>`9999-12-31 23:59:59`</allowed_to>`
-    `<allowed_weekdays>`mtwtfss`</allowed_weekdays>`
-    `<allowed_time>`-*-* *:*:`</allowed_time>`
-    `<index  bMeasurement="true"  >` 1`</index>`
-`</row>`
-
-`</code>`
+    </param>
+    <comment> </comment>
+    <allowed_from>0000-01-01 00:00:00</allowed_from>
+    <allowed_to>9999-12-31 23:59:59</allowed_to>
+    <allowed_weekdays>mtwtfss</allowed_weekdays>
+    <allowed_time>-*-* *:*:</allowed_time>
+    <index bMeasurement="true" >1</index>
+</row>
+```
 
 **Example 4**
 
 Start a new instance of gedit every minute at a specific date and time interval.
 
-`<code=xml>`
-`<row enabled="true">`
+```xml
+`<row enabled="true">
 
-    `<!-- Mask to trigger row - zero for a bit is don't care -->`
+    <!-- Mask to trigger row - zero for a bit is don't care -->
     <mask priority="0" 
         class="0xFFFF" 
         type="0xFF" 
         guid="00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00">
-    `</mask>` 	
+    </mask>
     
     <!-- Filter to trigger row - 
           if mask have a one in a bit it is compared with filter -->
@@ -532,37 +524,37 @@ Start a new instance of gedit every minute at a specific date and time interval.
             class="0xFFFF" 
             type="5" 
             guid="00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00">
-    `</filter>`          		
+    </filter>
 	
-    `<!-- Date and time from which action should trigger -->`
-    `<allowed_from>`2020-01-01 00:00:00`</allowed_from>`          		
-	
-    `<!-- Date and time up to which action should trigger -->`
-    `<allowed_to>`2020-01-01 05:59:59`</allowed_to>`          		
+    <!-- Date and time from which action should trigger -->
+    <allowed_from>2020-01-01 00:00:00</allowed_from>     		
 
-    `<!-- Date and time up to which action should trigger -->`
-    `<allowed_weekdays>`mtwtfss`</allowed_weekdays>`          		
+    <!-- Date and time up to which action should trigger -->
+    <allowed_to>2020-01-01 05:59:59</allowed_to> 		
+
+    <!-- Date and time up to which action should trigger -->
+    <allowed_weekdays>mtwtfss</allowed_weekdays>
 	
-    `<!-- A specific time (or pattern) when the action should trigger -->`
-    `<!-- Every ten seconds-->` 
-    `<allowed_time>`-*-* *:*:0`</allowed_time>` 			
+    <!-- A specific time (or pattern) when the action should trigger -->
+    <!-- Every ten seconds-->
+    <allowed_time>-*-* *:*:0</allowed_time>
 		       			
-    `<!-- Action code  -->`         
-    `<action>`0x10`</action>`          		
-	
-    `<!-- Action parameter -->`
-    `<param>`
+    <!-- Action code  -->
+    <action>0x10</action>          		
+
+    <!-- Action parameter -->
+    <param>
        /usr/bin/gedit
-    `</param>`       
-       
-    `<!-- Comment for decision matrix row -->`         
-    `<comment>`
+    </param>
+
+    <!-- Comment for decision matrix row -->
+    <comment>
        Start a new instance of gedit every minute at a
        specific date and time interval.
-    `</comment>`     
+    </comment>
 
-`</row>`
-`</code>`
+</row>
+```
 
 ----
 
@@ -574,7 +566,7 @@ This action access a given URL given by the action parameter. Can be used to wri
 
 ##### Action parameters
 
-`    method;url[;data;headers;proxy]`
+`method;url[;data;headers;proxy]`
 
 
 *  Method: 'GET' (default), 'POST' (or 'put', 'options', 'delete', 'patch')
@@ -585,7 +577,7 @@ This action access a given URL given by the action parameter. Can be used to wri
 
 *  Optional extra header row(s). Each row must be ended with "\n".
 
-*  Optional proxy on the form `<hostname>`:`<port number>` (just leave blank if no proxy should be used).
+*  Optional proxy on the form **\<hostname\>:\<port number\>** (just leave blank if no proxy should be used).
 
 *put/options/delete/patch is not available at the moment.*
 
@@ -603,7 +595,7 @@ but should remember that this method is deprecated in RFC-1396
 
 ##### Example 1
 
-Use a HTTP POST to update a [Thingspeak](https///thingspeak.com) channel every minute. We use [CLASS2.VSCPD Type=6, MINUTE](http://www.vscp.org/docs/vscpspec/doku.php?id=class2.vscpd#type_6_0x0006_minute) to update field1 which get the current minute value written using the escape **%minute**. The event is executed all time, every day, from beginning of time to the end of time.  
+Use a HTTP POST to update a [Thingspeak](https///thingspeak.com) channel every minute. We use [CLASS2.VSCPD Type=6, MINUTE](https://grodansparadis.gitbooks.io/the-vscp-specification/content/class2.vscpd.html#type--6-0x0006-minute) to update field1 which get the current minute value written using the escape **%minute**. The event is executed all time, every day, from beginning of time to the end of time.  
 
 Replacing the current event with a measurement event and using %measurement.string instead of %minute for field1 is an easy way to get a dynamic diagram from measurement data.
 
@@ -611,28 +603,30 @@ The XML DM entry for this functionality looks like this. As always it is easier 
 
 **"xxxxxxxxxxxxxxxx"** in the action parameter is the API key that one get from TingSpeak.
 
-`<code=xml>`
-`<row enable="true" groupid="" >`
+```xml
+<row enable="true" groupid="" >
     <mask priority="0" class="65535"  type="65535"  
-        GUID=" 00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00" > `</mask>`
+        GUID=" 00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00" > 
+    </mask>
     <filter priority="0"  class="65535" type="6"  
-        GUID=" 00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00" > `</filter>`
-    `<action>`0x75`</action>`
-    `<param>`POST;http://api.thingspeak.com/update;field1=%minute;X-THINGSPEAKAPIKEY: xxxxxxxxxxxxxxxx\n`</param>`
-    `<comment>``</comment>`
-    `<allowed_from>`0000-01-01 00:00:00`</allowed_from>`
-    `<allowed_to>`9999-12-31 23:59:59`</allowed_to>`
-    `<allowed_weekdays>`mtwtfss`</allowed_weekdays>`
-    `<allowed_time>`-*-* *:*:`</allowed_time>`
-    `<index measurementindex="false">` 0`</index>`
-    `<zone>`0`</zone>`
-    `<subzone>`0`</subzone>`
-    `</row>`
-`</code>`
+        GUID=" 00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00" > 
+    </filter>
+    <action>0x75</action>
+    <param>`POST;http://api.thingspeak.com/update;field1=%minute;X-THINGSPEAKAPIKEY: xxxxxxxxxxxxxxxx\n`</param>
+    <comment>``</comment>`
+    <allowed_from>0000-01-01 00:00:00</allowed_from>
+    <allowed_to>9999-12-31 23:59:59</allowed_to>
+    <allowed_weekdays>mtwtfss</allowed_weekdays>
+    <allowed_time>-*-* *:*:</allowed_time>
+    <index measurementindex="false">0</index>
+    <zone>0</zone>
+    <subzone>0</subzone>
+    </row>
+```
 
 The result will be this
 
-{{:dm:thingspeak-post-example.png?600|}}
+![](./images/dm/thingspeak-post-example.png)
 
 The format for updating several fields is
 
@@ -644,30 +638,29 @@ As the ampersand is an invalid character in an XML file this has to be written a
 
 You can do the same using HTTP GET but the format is a bit different
 
-`<code=xml>`
-`<row enable="true" groupid="" >`
-    <mask  priority="0"  class="65535"  type="65535"  
-        GUID=" 00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00" > 
-    `</mask>`
-    <filter  priority="0"  class="65535"  type="6"  
-        GUID=" 00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00" > 
-    `</filter>`
-    `<action>`0x75`</action>`
-    `<param>`GET;http://api.thingspeak.com/update?key=xxxxxxxxxxxxxxxx%ampfield1=%minute`</param>`
-    `<comment>``</comment>`
-    `<allowed_from>`0000-01-01 00:00:00`</allowed_from>`
-    `<allowed_to>`9999-12-31 23:59:59`</allowed_to>`
-    `<allowed_weekdays>`mtwtfss`</allowed_weekdays>`
-    `<allowed_time>`-*-* *:*:`</allowed_time>`
-    `<index  measurementindex="false"  >` 0`</index>`
-    `<zone>`0`</zone>`
-    `<subzone>`0`</subzone>`
-    `</row>`
+```xml
+<row enable="true" groupid="" >
+    <mask  priority="0" class="65535" type="65535"  
+        GUID="00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00" > 
+    </mask>
+    <filter priority="0" class="65535" type="6"  
+        GUID="00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00" > 
+    </filter>
+    <action>0x75</action>
+    <param>GET;http://api.thingspeak.com/update?key=xxxxxxxxxxxxxxxx%ampfield1=%minute</param>
+    <comment> </comment>
+    <allowed_from>0000-01-01 00:00:00</allowed_from>
+    <allowed_to>9999-12-31 23:59:59</allowed_to>
+    <allowed_weekdays>mtwtfss</allowed_weekdays>
+    <allowed_time>-*-* *:*:</allowed_time>
+    <index measurementindex="false" >0</index>
+    <zone>0</zone>
+    <subzone>0</subzone>
+</row>
+```
 
-`</code>`
 
-
-ThingSpeak API is described [here](http://community.thingspeak.com/documentation/api/)
+ThingSpeak API is described [here](https://community.thingspeak.com/documentation/api/)
 
 
 ----
@@ -683,16 +676,12 @@ This action can be used to send an event to a remote VSCP daemon.
 
 
 *  Server address
-
 *  Port
-
 *  Username
-
 *  Password
-
 *  Event to send
 
-Event has the same form as for the [send command](http://www.vscp.org/docs/vscpd/doku.php?id=vscp_daemon_tcp_ip_protocol_description#send_-_send_an_event) in the tcp/ip interface.
+Event has the same form as for the [send command](./tcp_ip_protocol_description.md#send_-_send_an_event) in the tcp/ip interface.
 
 **example**
 
@@ -700,12 +689,12 @@ This example checks for a temperature event from sensor 1 of a remote node and s
 
 Here the same event that triggers the action is used. One can of course send another event i one prefer, possibly one that is stored in a variable.
 
-`<code=xml>`
-`<row enable="true" groupid="send_remote_test" >`
+```xml
+<row enable="true" groupid="send_remote_test" >
 
-    `<comment>`
+    <comment>
         Test action send event
-    `</comment>`
+    </comment>
 
     <mask priority="0"
              class="0xFFFF"
@@ -717,22 +706,21 @@ Here the same event that triggers the action is used. One can of course send ano
              type="6"
              GUID=" 00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00" />
 
-    `<action>`0x43`</action>`
-    `<param>`
+    <action>0x43</action>
+    <param>
         192.168.1.6;9598;admin;secret;%event
-    `</param>`
+    </param>
 
-    `<index measurementindex="true">`1`</index>`
+    <index measurementindex="true">1</index>
 
-    `<!-- eq|neq|gt|gteq|lt|lteq -->`
+    <!-- eq|neq|gt|gteq|lt|lteq -->
     <!--
     <measurement compare="eq"
                    unit="1"
                    value="5.0"/>
    -->
-`</row>`
-
-`</code>`
+</row>
+```
 
 ----
 
@@ -763,7 +751,7 @@ The data supplied in the action parameter in a named variable and one form that 
 
 *  Variable description. Optional. Must be base64 encoded. You can add "BASE64:" before the string to accomplish this.
 
-__Variable write__ formats is [here](http://www.vscp.org/docs/vscpd/doku.php?id=decision_matrix_varaibles#variable_types).
+__Variable write__ formats is [here](./decision_matrix_variables.md#variable_types).
 
 If the variable does not exist it is created. 
 
@@ -779,13 +767,13 @@ Note that there is possible to create dynamically created variables by using the
 
 **Stores string in variable when the VSCP server starts**
 
-`<code=xml>`
-`<row enable="true" groupid="Variables" >`
+```xml
+<row enable="true" groupid="Variables" >
 
-    `<comment>`
+    <comment>
         Test store in variable - The string variable is created
         when the server is started ( CLASS2.VSCPD, Type=23 ).
-    `</comment>`
+    </comment>
 
     <mask priority="0"  
           class="0xFFFF"  
@@ -797,23 +785,23 @@ Note that there is possible to create dynamically created variables by using the
              type="23"  
              GUID=" 00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00" />
 
-    `<action>`0x50`</action>`
-    `<param>`
+    <action>0x50</action>
+    <param>
         test_variable_string;string;false;0;0x777;BASE64:Be Foolish, Be Hungry;BASE64:Test variable integer
-    `</param>`
+    </param>
 
-`</row>`      
-`</code>`
+</row>
+```
 
 This is a same for a float
 
-`<code=xml>`
-`<row enable="true" groupid="Variables" >`
+```xml
+<row enable="true" groupid="Variables" >
 
-    `<comment>`
+    <comment>
         Test store in variable - The test_variable_float variable is created
         when the server is started ( CLASS2.VSCPD, Type=23 ).
-    `</comment>`
+    </comment>
 
     <mask priority="0"  
           class="0xFFFF"  
@@ -825,23 +813,23 @@ This is a same for a float
             type="23"  
             GUID=" 00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00" />
 
-    `<action>`0x50`</action>`
-    `<param>`
+    <action>0x50</action>
+    <param>
         test_variable_float;float;false;0;0x777;4333.56789;BASE64:Test variable float
-    `</param>`
+    </param>
 
-`</row>`
-`</code>`
+</row>
+```xml
 
 And a variable with a dynamic name
 
-`<code=xml>`
-`<row enable="true" groupid="Variables" >`
+```xml
+<row enable="true" groupid="Variables" >
 
-    `<comment>`
+    <comment>
         Test store in variable - The string variable is created
         when the server is started ( CLASS2.VSCPD, Type=23 ).
-    `</comment>`
+    </comment>
 
     <mask priority="0"  
           class="0xFFFF"  
@@ -853,15 +841,15 @@ And a variable with a dynamic name
             type="23"  
             GUID=" 00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00" />
 
-    `<action>`0x50`</action>`
-    `<param>`
+    <action>0x50</action>
+    <param>
         energy_%monthtxtfull_%year;float;false;0;0x777;0
-    `</param>`
+    </param>
 
-`</row>` 
-`</code>`
+</row>
+```
 
-{{:dm:screenshot_from_2017-12-08_10-25-23.png?600|}}
+![](./images/dm/screenshot_from_2017-12-08_10-25-23.png)
 
 ----
 
@@ -875,9 +863,7 @@ Add data to a variable. The variable is named in the argument.
 
     variable-name;numerical-value-to-add
 
-
 *  variable
-
 *  Value to add to variable
 
 **Example parameter**
@@ -886,13 +872,13 @@ Add data to a variable. The variable is named in the argument.
 **Example**
 The following two DM rows create a long variable when the VSCP servers starts and then add 5 to this variable each second.
 
-`<code=xml>`
-`<row enable="true" groupid="Variables" >`
+```xml
+<row enable="true" groupid="Variables" >
 
-    `<comment>`
+    <comment>`
         Test store in variable - The test_variable_float variable is created
         when the server is started ( CLASS2.VSCPD, Type=23 ).
-    `</comment>`
+    </comment>
 
     <mask priority="0"  
           class="0xFFFF"  
@@ -904,20 +890,18 @@ The following two DM rows create a long variable when the VSCP servers starts an
             type="23"  
             GUID=" 00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00" />
 
-    `<action>`0x50`</action>`
-    `<param>`
-        test_variable_float;float;false;0;0x777;4333.56789;BASE64:Test variable float
-    `</param>`
-
-`</row>`
+    <action>0x50</action>
+    <param>
+       test_variable_float;float;false;0;0x777;4333.56789;BASE64:Test variable float
+    </param>
     
     
-`<row enable="true" groupid="Variables" >`
+<row enable="true" groupid="Variables" >
 
-    `<comment>`
+    <comment>
         Add five to test_variable_float variable every second
         ( CLASS2.VSCPD, Type=5 ).
-    `</comment>`
+    </comment>
 
     <mask priority="0"  
           class="0xFFFF"  
@@ -929,14 +913,14 @@ The following two DM rows create a long variable when the VSCP servers starts an
             type="5"  
             GUID=" 00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00" />
 
-    `<action>`0x52`</action>`
-    `<param>`
+    <action>0x52</action>
+    <param>
         test_variable_float;5
-    `</param>`
+    </param>
 
-`</row>`
+</row>
 
-`</code>`
+```
 
 ----
 
@@ -952,7 +936,6 @@ Subtract the data from a variable. The variable is named in the argument.
 
 
 *  Variable
-
 *  Value to subtract from variable
 
 **Example parameter**
@@ -962,13 +945,13 @@ Subtract the data from a variable. The variable is named in the argument.
 
 The following two DM rows create a long variable when the VSCP server starts and then one is subtracted from the created variable every second.
 
-`<code=xml>`
-`<row enable="true" groupid="Variables" >`
+```xml
+<row enable="true" groupid="Variables" >
 
-    `<comment>`
+    <comment>
         Test store in variable - The long variable is created
         when the server is started ( CLASS2.VSCPD, Type=23 ).
-    `</comment>`
+    </comment>
 
     <mask priority="0"  
           class="0xFFFF"  
@@ -980,38 +963,38 @@ The following two DM rows create a long variable when the VSCP server starts and
             type="23"  
             GUID=" 00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00" />
 
-    `<action>`0x50`</action>`
-    `<param>`
+    <actio>0x50</action>
+    <param>`
         test_variable_long;long;false;0;0x777;0xffff;BASE64:Test variable long
-    `</param>`
+    </param>
 
- `</row>`    
+ </row>
 
- `<row enable="true" groupid="Variables" >`
+ <row enable="true" groupid="Variables" >
 
-     `<comment>`
+    <comment>
          subtract from the test_variable_long variable every second
          ( CLASS2.VSCPD, Type=5 ).
-     `</comment>`
+    </comment>
 
-     <mask priority="0"  
+    <mask priority="0"  
            class="0xFFFF"  
            type="0xFFFF"  
            GUID=" 00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00" />
 
-     <filter priority="0"  
+    <filter priority="0"  
              class="65535"  
              type="5"  
              GUID=" 00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00" />
 
-     `<action>`0x53`</action>`
-     `<param>`
+    <action>0x53</action>
+    <param>
          test_variable_long;1
-     `</param>`
+    </param>
 
-`</row>`
+</row>
 
-`</code>`
+```
 
 ----
 
@@ -1027,7 +1010,6 @@ Multiply the data with a variable. The variable is named in the argument.
 
 
 *  Variable
-
 *  Value to multiply variable with
 
 **Example parameter**
@@ -1037,14 +1019,14 @@ Multiply the data with a variable. The variable is named in the argument.
 
 This example creates a long variable when the VSCP server starts up and then multiply this variable value with 2 every second.
 
-`<code=xml>`
+```xml
 
-`<row enable="true" groupid="Variables" >`
+<row enable="true" groupid="Variables" >
 
-    `<comment>`
+    <comment>
         Test store in variable - The long variable is created
         when the server is started ( CLASS2.VSCPD, Type=23 ).
-    `</comment>`
+    </comment>
 
     <mask priority="0"  
           class="0xFFFF"  
@@ -1056,20 +1038,20 @@ This example creates a long variable when the VSCP server starts up and then mul
             type="23"  
             GUID=" 00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00" />
 
-    `<action>`0x50`</action>`
-    `<param>`
+    <action>0x50</action>
+    <param>
         test_variable_multiply;long;false;0;0x777;1;BASE64:Test variable long for multiply test
-    `</param>`
+    </param>
 
-`</row>`     
+</row>
        
    
-`<row enable="true" groupid="Variables" >`
+<row enable="true" groupid="Variables" >
 
-    `<comment>`
+    <comment>
         Multiply test_variable_multiply variable with 2 every second
         ( CLASS2.VSCPD, Type=5 ).
-    `</comment>`
+    </comment>
 
     <mask priority="0"  
           class="0xFFFF"  
@@ -1081,14 +1063,14 @@ This example creates a long variable when the VSCP server starts up and then mul
             type="5"  
             GUID=" 00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00" />
 
-    `<action>`0x54`</action>`
-    `<param>`
+    <action>0x54</action>
+    <param>
         test_variable_multiply;2
-    `</param>`
+    </param>
 
-`</row>`  
+</row>
 
-`</code>`
+```
 
 ----
 
@@ -1106,7 +1088,6 @@ Divide the data with a variable. The variable is named in the argument.
 
 
 *  variable
-
 *  value to divide variable with
 
 **Example parameter**
@@ -1116,14 +1097,14 @@ Divide the data with a variable. The variable is named in the argument.
 
 This example creates a floating point variable when the VSCP servers starts up and then divide this value with 3 every second.
 
-`<code=xml>`
+```xml
 
-`<row enable="true" groupid="Variables" >`
+<row enable="true" groupid="Variables" >
 
-    `<comment>`
+    <comment>
         Test store in variable - The float variable is created
         when the server is started ( CLASS2.VSCPD, Type=23 ).
-    `</comment>`
+    </comment>
 
     <mask priority="0"  
         class="0xFFFF"  
@@ -1135,20 +1116,20 @@ This example creates a floating point variable when the VSCP servers starts up a
             type="23"  
             GUID=" 00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00" />
 
-    `<action>`0x50`</action>`
-    `<param>`
+    <action>`0x50`</action>
+    <param>
         test_variable_divide;float;false;0;0x777;9999999999;BASE64:Test variable float for divide test
-    `</param>`
+    </param>
 
-`</row>`     
+</row>
        
    
-`<row enable="true" groupid="Variables" >`
+<row enable="true" groupid="Variables" >
 
-    `<comment>`
+    <comment>
         Divide the test_variable_divide with 3 variable every second
         ( CLASS2.VSCPD, Type=5 ).
-    `</comment>`
+    </comment>
 
     <mask priority="0"  
           class="0xFFFF"  
@@ -1160,14 +1141,14 @@ This example creates a floating point variable when the VSCP servers starts up a
             type="5"  
             GUID=" 00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00" />
 
-    `<action>`0x55`</action>`
-    `<param>`
+    <action>0x55</action>
+    <param>
         test_variable_divide;3
-    `</param>`
+    </param>
 
-`</row>` 
+</row>
 
-`</code>`
+```
 
 ----
 
@@ -1182,11 +1163,8 @@ Check if variable is greater than, equal to etc. than a specified value and set 
 
 
 *  Value to check.
-
 *  Operation (see table below).
-
 *  Variable to check.
-
 *  Boolean variable which will have value set to logic outcome of the compare.
 
 **Compare operators**
@@ -1196,12 +1174,12 @@ Check if variable is greater than, equal to etc. than a specified value and set 
  | noop         |                      | No operation          | 
  | lt           | <                    | Less than             | 
  | gt           | >                    | Greater then          | 
- | lteq or eqlt | `<nowiki>``<=</nowiki>`  | Less than or equal    | 
- | gteq or eqgt | `<nowiki>`>=`</nowiki>`  | Greater than or equal | 
+ | lteq or eqlt | <=                   | Less than or equal    | 
+ | gteq or eqgt | >=                   | Greater than or equal | 
  | eq           | ==                   | Equal                 | 
  | neq          | !=                   | Not equal             | 
 
-**Important!** // Remember that the alternative notation must be escaped if used in XML //
+**Important!** Remember that the alternative notation must be escaped if used in XML 
 
 **Example parameter data**
 
@@ -1225,11 +1203,8 @@ Check if variable is greater etc. then a specified value and set some other vari
 
 
 *  Value to check.
-
 *  Operation (see table below).
-
 *  Variable to check.
-
 *  Boolean variable that will be set to true if the compare operation is true.
 
 **Compare operators**
@@ -1239,12 +1214,12 @@ Check if variable is greater etc. then a specified value and set some other vari
  | noop         |                      | No operation          | 
  | lt           | <                    | Less than             | 
  | gt           | >                    | Greater then          | 
- | lteq or eqlt | `<nowiki>``<=</nowiki>`  | Less than or equal    | 
- | gteq or eqgt | `<nowiki>`>=`</nowiki>`  | Greater than or equal | 
+ | lteq or eqlt | <=                   | Less than or equal    | 
+ | gteq or eqgt | >=                   | Greater than or equal | 
  | eq           | ==                   | Equal                 | 
  | neq          | !=                   | Not equal             | 
 
-**Important!** // Remember that the alternative notation must be escaped if used in XML //
+**Important!** Remember that the alternative notation must be escaped if used in XML 
 
 **Example parameter data**
 
@@ -1264,11 +1239,8 @@ Check if variable is greater etc. then a specified value and set some other vari
 
 
 *  Value to check.
-
 *  Operation.
-
 *  Variable to check.
-
 *  Boolean variable that will be set to false if the compare operation is true.
 
 **Compare operators**
@@ -1278,12 +1250,12 @@ Check if variable is greater etc. then a specified value and set some other vari
  | noop         |                      | No operation          | 
  | lt           | <                    | Less than             | 
  | gt           | >                    | Greater than          | 
- | lteq or eqlt | `<nowiki>``<=</nowiki>`  | Less than or equal    | 
- | gteq or eqgt | `<nowiki>`>=`</nowiki>`  | Greater than or equal | 
+ | lteq or eqlt | <=                   | Less than or equal    | 
+ | gteq or eqgt | >=                   | Greater than or equal | 
  | eq           | ==                   | Equal                 | 
  | neq          | !=                   | Not equal             | 
 
-**Important!** // Remember that the alternative notation must be escaped if used in XML //
+**Important!** Remember that the alternative notation must be escaped if used in XML 
 
 **Example parameter data**
 
@@ -1305,13 +1277,9 @@ The unit and the sensor index must match for the comparison to be performed.
 
 
 *  Unit.
-
 *  Sensor index.
-
 *  Literal value to check.
-
 *  Operation.
-
 *  Variable to set to logic outcome.
 
 
@@ -1322,12 +1290,12 @@ The unit and the sensor index must match for the comparison to be performed.
  | noop         |                      | No operation          | 
  | lt           | <                    | Less than             | 
  | gt           | >                    | Greater than          | 
- | lteq or eqlt | `<nowiki>``<=</nowiki>`  | Less than or equal    | 
- | gteq or eqgt | `<nowiki>`>=`</nowiki>`  | Greater than or equal | 
+ | lteq or eqlt | <=                    | Less than or equal    | 
+ | gteq or eqgt | >=                    | Greater than or equal | 
  | eq           | ==                   | Equal                 | 
  | neq          | !=                   | Not equal             | 
 
-**Important!** // Remember that the alternative notation must be escaped if used in XML //
+**Important!** Remember that the alternative notation must be escaped if used in XML 
 
 **Example parameter data**
 
@@ -1339,14 +1307,14 @@ Will check if 500 is greater than the measurement value (the event that triggers
 
 The variable **flag_lt** is set to true if a temperature measurement event is received that is 5.96 degrees Celsius and comes from a sensor with sensor index = 1  
 
-`<code=xml>`
+```xml
 
-`<row enable="true" groupid="Variable measurement compare" >`
+<row enable="true" groupid="Variable measurement compare" >
 
-    `<comment>`
+    <comment>
         Create flag variable that can get test result
         when the server is started ( CLASS2.VSCPD, Type=23 ).
-    `</comment>`
+    </comment>
 
     <mask priority="0"
           class="0xFFFF"
@@ -1358,19 +1326,19 @@ The variable **flag_lt** is set to true if a temperature measurement event is re
             type="23"
             GUID=" 00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00" />
 
-    `<action>`0x50`</action>`
-    `<param>`
+    <action>0x50</action>
+    <param>
         flag_lt;boolean;false;0;0x777;false;BASE64:test flag
-    `</param>`
+    </param>
 
-`</row>`
+</row>
 
-`<row enable="true" groupid="Variable measurement compare" >`
+<row enable="true" groupid="Variable measurement compare" >
 
-    `<comment>`
+    <comment>
         Set flag_lt to true of temperature measurement event is received
         with temp 5.96 C from sensor index 1.
-    `</comment>`
+    </comment>
 
     <mask priority="0"  
           class="0xFFFF"  
@@ -1382,13 +1350,13 @@ The variable **flag_lt** is set to true if a temperature measurement event is re
             type="6"  
             GUID=" 00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00" />
 
-    `<action>`0x59`</action>`
-    `<param>`
+    <action>0x59</action>
+    <param>
         1;1;5.00;lt;flag_lt
-    `</param>`
+    </param>
 
-`</row>`
-`</code>`
+</row>
+```
 
 ----
 
@@ -1406,24 +1374,20 @@ If the variable is numerical the new value is stored in it. If the variable is a
 #####  Parameters
 
 *  Variable name for variable that holds minimum value.
-
 *  Unit. (defaults to zero).
-
 *  Sensor index. (Only checked for events that have it defined, defaults to zero).
-
 *  Zone. (Only checked for events that have it defined, defaults to zero).
-
 *  Subzone.(Only checked for events that have it defined, defaults to zero).
 
 **Example**
-`<code=xml>`
+```xml
 
-`<row enable="true" groupid="Min/max" >`
+<row enable="true" groupid="Min/max" >
 
-    `<comment>`
+    <comment>
         Create variable that hold min
         when the server is started ( CLASS2.VSCPD, Type=23 ).
-    `</comment>`
+    </comment>
 
     <mask priority="0"
           class="0xFFFF"
@@ -1435,18 +1399,18 @@ If the variable is numerical the new value is stored in it. If the variable is a
             type="23"
             GUID=" 00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00" />
 
-    `<action>`0x50`</action>`
-    `<param>`
+    <action>0x50</action>
+    <param>
         minimum;float;false;0;0x777;9999999;BASE64:test min
-    `</param>`
+    </param>
 
-`</row>`
+</row>
     
-`<row enable="true" groupid="Min/max" >`
+<row enable="true" groupid="Min/max" >
 
-    `<comment>`
+    <comment>
         Test for minimum
-    `</comment>`
+    </comment>
 
     <mask priority="0"  
           class="0xFFFF"  
@@ -1458,14 +1422,14 @@ If the variable is numerical the new value is stored in it. If the variable is a
             type="6"  
             GUID=" 00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00" />
 
-    `<action>`0x71`</action>`
-    `<param>`
+    <action>0x71</action>
+    <param>
         minimum;1;1
-    `</param>`
+    </param>
 
-`</row>`
+</row>
     
-`</code>`
+```xml
 
 ----
 
@@ -1482,25 +1446,21 @@ If the variable is numerical the new value is stored in it. If the variable is a
 #####  Parameters
 
 *  Variable name for variable that holds maximum value.
-
 *  Unit. (defaults to zero).
-
 *  Sensor index. (Only checked for events that have it defined, defaults to zero).
-
 *  Zone. (Only checked for events that have it defined, defaults to zero).
-
 *  Subzone.(Only checked for events that have it defined, defaults to zero).
 
 **Example**
     
-`<code=xml>`
+```xml
     
-`<row enable="true" groupid="Min/max" >`
+<row enable="true" groupid="Min/max" >
 
-    `<comment>`
+    <comment>
         Create variable that hold min
         when the server is started ( CLASS2.VSCPD, Type=23 ).
-    `</comment>`
+    </comment>
 
     <mask priority="0"
           class="0xFFFF"
@@ -1512,38 +1472,38 @@ If the variable is numerical the new value is stored in it. If the variable is a
             type="23"
             GUID=" 00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00" />
 
-    `<action>`0x50`</action>`
-    `<param>`
+    <action>0x50</action>
+    <param>
         maximum;float;false;0;0x777;-999999;BASE64:test max
-    `</param>`
+    </param>
 
-`</row>`
+</row>
    
-    
-`<row enable="true" groupid="Min/max" >`
+   
+`<row enable="true" groupid="Min/max" >
 
-     `<comment>`
+    <comment>
          Test for maximum
-     `</comment>`
+    </comment>
 
-     <mask priority="0"  
+    <mask priority="0"  
            class="0xFFFF"  
            type="0xFFFF"  
            GUID=" 00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00" />
 
-     <filter priority="0"  
+    <filter priority="0"  
              class="10"  
              type="6"  
              GUID=" 00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00" />
 
-     `<action>`0x72`</action>`
-     `<param>`
+    <action>0x72</action>
+    <param>
          maximum;1;1
-     `</param>`
+    </param>
 
-`</row>`
+</row>
 
-`</code>`
+```
 
 ----
 
@@ -1562,15 +1522,15 @@ Send event when another event is received.
 
 **Example**
 
-This example send the [CLASS1.INFORMATION, Type=4 ON event](http://www.vscp.org/docs/vscpspec/doku.php?id=class1.information#type_3_0x03_on) every ten seconds. The optional variable beventsent variable is set to true when the event has been sent.
+This example send the [CLASS1.INFORMATION, Type=4 ON event](https://grodansparadis.gitbooks.io/the-vscp-specification/content/class1.information.html#type--3-0x03-on) every ten seconds. The optional variable beventsent variable is set to true when the event has been sent.
 
-`<code=xml>`
-`<row enable="true" groupid="Send event">`
+```xml
+<row enable=true" groupid="Send event">
 
-    `<comment>`
+    <comment>`
         Periodic event
         Send CLASS1:INFORMATION, Type=3 ON event every second
-    `</comment>`
+    </comment>
 
     <mask priority="0"
           class="0xFFFF"
@@ -1582,14 +1542,14 @@ This example send the [CLASS1.INFORMATION, Type=4 ON event](http://www.vscp.org/
             type="5"
             GUID=" 00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00" />
 
-    `<action>`0x40`</action>`
-    `<param>`
+    <action>0x40</action>
+    <param>
         0,20,3,0,,,0:1:2:3:4:5:6:7:8:9:10:11:12:13:14:15,0,1,35;beventsent
-    `</param>`
+    </param>
 
 `</row>`
 
-`</code>`
+```
 
 ----
 
@@ -1603,9 +1563,7 @@ Send an event if a specified variable is true.
 
 
 *  Conditional control variable name. Event is sent if variable is true.
-
 *  Event to send.
-
 *  Optional variable that will be set to true if the event is sent successfully. 
 
 
@@ -1635,58 +1593,58 @@ This action sends event(s) from a named file.
 
 The format for the XML file is
 
-`<code=xml>`
+```xml
 
-`<events>`
+<events>
 
-    `<event>`
-	<-- 
-	   CLASS1.CONTROL, Type=5 TurnOn
-           Turn on lamps in zone=1, subzon=0
+    <event>
+	    <-- 
+            CLASS1.CONTROL, Type=5 TurnOn
+            Turn on lamps in zone=1, subzon=0
         -->
-        `<head>`0`</head>`
-        `<class>`30`</class>`
-	<type>5</type>
-        `<guid>`00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00`</guid>`        
-        `<data>`0,1,2`</data>`
-    `</event>`   
+        <head>0</head>
+        <class>30</class>
+	    <type>5</type
+        <guid>00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00`<guid>`      
+        <data>0,1,2</data>
+    </event>
 
-    `<event>`
-	<-- 
-	   CLASS1.CONTROL, Type=5 TurnOn
-           Turn on lamps in zone=1, subzon=0
+    <event>
+	    <-- 
+            CLASS1.CONTROL, Type=5 TurnOn
+            Turn on lamps in zone=1, subzon=0
         -->
-        `<head>`0`</head>`
-        `<class>`30`</class>`
-	<type>5</type>
-        `<guid>`00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00`</guid>`        
-        `<data>`0,1,2`</data>`
-    `</event>`
+        <head>`0`</head>
+        <class>30</class>
+	    <type>5</type>
+        <guid>00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00</guid>        
+        <data>0,1,2</data>
+    </event>
 
-    `<event>`
-	<-- 
-	   CLASS1.CONTROL, Type=20 Dim lamp(s)
-           Dim lamps in zone=1, subzon=0 at 30%
+    <event>
+        <-- 
+            CLASS1.CONTROL, Type=20 Dim lamp(s)
+            Dim lamps in zone=1, subzon=0 at 30%
         -->
-        `<head>`0`</head>`
-        `<class>`30`</class>`
+        <head>0</head>
+        <class>30</class>
 	<type>20</type>
-        `<guid>`00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00`</guid>`        
-        `<data>`30,1,0`</data>`
-    `</event>` 
+        <guid>00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00</guid>      
+        <data>30,1,0</data>
+    </event>
         
 
-`<event>`
-    ....
-`</event>`
+    <event>
+        ....
+    </event>
 
-`<event>`
-    ....
-`</event>`
+    <event>
+        ....
+    </event>
 
-`<events>`
+<events>
 
-`</code>`
+```
 
 ----
 
@@ -1700,9 +1658,7 @@ This action writes (appends) the substituted action argument string to a file. I
 
 
 *  Path to file 
-
 *  1 for append. 0 for overwrite.
-
 *  Output to write to file
 
 ##### Example
@@ -1711,16 +1667,16 @@ This action writes (appends) the substituted action argument string to a file. I
 
 as in
 
-`<code=xml>`
-`<?xml version = "1.0" encoding = "UTF-8" ?>`
+```xml
+<?xml version = "1.0" encoding = "UTF-8" ?>
 
-`<dm>`
+<dm>
 
- `<row enable="true" groupid="" >`
+<row enable="true" groupid="" >
 
-`<comment>`
+<comment>
  Collect A/D values from node X
-`</comment>`
+</comment>
 
 <mask priority="0"
  class="0xFFFF"
@@ -1732,17 +1688,17 @@ as in
  type="5"
  GUID="00:01:02:03:04:05:06:07:08:09:0A:0B:0C:0D:0E:0F" />
 
-`<action>`0x70`</action>`
- `<param>`
+<action>0x70</action>
+<param>
  /tmp/testfile;1;%isodate %isotime:This decision row is triggered by [%event] %lf 
- `</param>`
+</param>
 
-`</row>`
+</row>
      
       
-`</dm>` 
+</dm>
 
-`</code>`
+```
 
 which will generate a file with endless lines like this
 
@@ -1771,13 +1727,9 @@ When a timer is started the remote variable (if specified) will be set to false 
 
 
 *  Timer ID. 
-
 *  Count down time in seconds.
-
 *  Optional: Variable that is set to *true* when the timer elapses. The variable will be created (non persistent, boolean) if it does not exists.
-
 *  Optional: Set to true if the timer automatically should be reloaded with the set countdown time in seconds when it elapses. Default is false.
-
 *  Optional: Number of automatical reloads. This value defaults to forever (-1).
 
 You don't have to give a variable nor a reload flag when you start a timer. If no variable is given (use ;;) it is just ignored. The reload value will be set to false as default  value, that is the timer will run only once.
@@ -1786,7 +1738,7 @@ You don't have to give a variable nor a reload flag when you start a timer. If n
 
     1;10
 
-The timer with id 1 will be  created and count down from 10 seconds. The [timer started event](http://www.vscp.org/docs/vscpspec/doku.php?id=class2.vscpd#type_25_0x0019_timer_started) is sent when it is started and the [timer elapse event](http://www.vscp.org/docs/vscpspec/doku.php?id=class2.vscpd#type_29_0x001d_timer_elapsed) is sent when the time elapsed.
+The timer with id 1 will be  created and count down from 10 seconds. The [timer started event](https://grodansparadis.gitbooks.io/the-vscp-specification/content/class2.vscpd.html#type--25-0x0019-timer-started) is sent when it is started and the [timer elapse event](https://grodansparadis.gitbooks.io/the-vscp-specification/content/class2.vscpd.html#type--29-0x001d-timer-elapsed) is sent when the time elapsed.
 
 ##### Parameter example
 
@@ -1856,19 +1808,15 @@ Two formats are currently supported selected by the first part of the action par
 
 **Row type 0**
 
-`<code="javascript">`
+```javascript
     0;tablename;datetime;value[;[BASE64:]sql-expression]
-`</code>`
+```
 
 
 *  **0** - Select the first type.
-
 *  **tablename** - Name of the table (system unique)
-
 *  **datetime** - Date/time on ISO format (YY-MM-DDTHH:MM:SS)
-
 *  **value** - A floating point value for the data point.
-
 *  *Optional* **[BASE64:]sql-expression** - Optional SQL expression. If left out the sqlinsert expression set in the table configuration is used. If set here a SQL expression updating the 'vscptable' is expected. The table always have this name but the database can have other user defined tables which can be updated here. If the SQL expression is preceded by **BASE64:** a conversion from base64 is done before the SQL expression is used. After the decoding from base64 is done the VSCP decision matrix escapes are resolved which so the SQL expression can have VSCP decision matrix escapes in it even if it is encoded in base64.
 
 Before the configured SQL insert expression for the table is used the VSCP decision matrix escapes are resolved. So
@@ -1881,32 +1829,27 @@ will be translated to
 
 and then if the table stored sqlinsert expression is
 
+```sql
    INSERT INTO 'vscptable' (date,value,event) VALUES ('%%s','%%f','%event')%;
+```   
 
 will have the escapes handled. That is
 
-
 *  %%s will be %s
-
 *  %%f will be %f
-
 *  %event will be translated to the string form of the event. 
-
 *  %; will be translated to ;  **Important** if you have multi line SQL expressions.
-
 
 
 **Row type 1**
 
-`<code="javascript">`
+```javascript
     1;tablename;[BASE64:]sql-expression]
-`</code>`
+```
 
 
 *  0
-
 *  **tablename** Name of table (system unique)
-
 *  sql expression. Se description of SQL expression above.
 
 
@@ -1924,16 +1867,15 @@ Clear data for a named table. An optional SQL expression can be given but normal
 
 ##### Parameters
 
-`<code="javascript">`
+```javascript
     tablename[;[BASE64:]sql-delete-expression]
-`</code>`
+```
 
 
 *  tablename - Name for an existing table.
-
 *  sql-delete-expression - This optional expression can be used to delete the table data. Normally the configured delete expression is used.
 
-You can read more about tables [here](vscp-tables).
+You can read more about tables [here](./vscp-tables.md).
 
 ----
     
@@ -1958,27 +1900,27 @@ Run a LUA script. The standard VSCP decision matrix escapes can be used to inser
 
 Run JavaScript  
 
-The standard [VSCP decision matrix escapes](http://www.vscp.org/docs/vscpd/doku.php?id=vscp_daemon_decision_matrix#variable_substitution_for_parameters_escapes) can be used to insert real time values into the code.
+The standard [VSCP decision matrix escapes](./decision_matrix.md#variable_substitution_for_parameters_escapes) can be used to insert real time values into the code.
 
-The script can use internal [VSCP functions](javascript_callbacks) to read and write variables and to send and receive events. 
+The script can use internal [VSCP functions](./javascript_callbacks.md) to read and write variables and to send and receive events. 
 
-The JavaScript engine used is [Duktape](http://duktape.org/) ([ECMAScript 5.1](https///www.ecma-international.org/5.1/)), with some semantics updated from ES2015+ . 
+The JavaScript engine used is [Duktape](http://duktape.org/) ([ECMAScript 5.1](https://www.ecma-international.org/ecma-262/6.0/)), with some semantics updated from ES2015+ . 
 
-The JavaScript is executed on it's own thread. This means that it is possible to construct a script that is started when the VSCP daemon is started and will run until it is killed. All that is need to do this is to trigger on the internal [CLASS2.VSCPD, Type=23 Starting up event](http://www.vscp.org/docs/vscpspec/doku.php?id=class2.vscpd#type_23_0x0017_starting_up).
+The JavaScript is executed on it's own thread. This means that it is possible to construct a script that is started when the VSCP daemon is started and will run until it is killed. All that is need to do this is to trigger on the internal [CLASS2.VSCPD, Type=23 Starting up event](https://grodansparadis.gitbooks.io/the-vscp-specification/content/class2.vscpd.html#type--23-0x0017-starting-up).
 
 ##### Parameters
 
-The JavaScript code to execute in real text or if preceded with **BASE64:** the JavaScript code encoded in BASE64. The parameter contents can contain standard [VSCP decision matrix escapes](http://www.vscp.org/docs/vscpd/doku.php?id=vscp_daemon_decision_matrix#variable_substitution_for_parameters_escapes) which will be filled in after the BASE64 code is decoded and and before the JavaScript code is executed. 
+The JavaScript code to execute in real text or if preceded with **BASE64:** the JavaScript code encoded in BASE64. The parameter contents can contain standard [VSCP decision matrix escapes](./decision_matrix.md#variable_substitution_for_parameters_escapes) which will be filled in after the BASE64 code is decoded and and before the JavaScript code is executed. 
 
-The BASE64 encoded form is the preferred form as XML does not allow some characters like ampersand (&) which must be coded as &amp; to not break the XML parsing. This is true for other characters like `< (less that), >` (greater than), etc. 
+The BASE64 encoded form is the preferred form as XML does not allow some characters like ampersand (&) which must be coded as &amp; to not break the XML parsing. This is true for other characters like `< (less than), >` (greater than), etc. 
 
 Even better JavaScript variables an be used. This is a VSCP variable of type JavaScript which can be edited in the administration interface in a coder friendly editor and thus make it easier to write the code. To insert the value of a variable two forms can be used.
 
-**%vardecode:[**//variable_name//**]** will be replaced by the value of the variable *variable_name* decoded from BASE64. This is the usual selection for a JavaScript variable as it's value always is encoded in BASE64.
+**%vardecode:[`variable_name`]** will be replaced by the value of the variable *variable_name* decoded from BASE64. This is the usual selection for a JavaScript variable as it's value always is encoded in BASE64.
 
    %varddecode:[varTestScript]
 
-**%variable:[**//variable_name//**]** will be replaced by the value of the variable *variable_name* as it is stored so if the value is stored in BASE64 the coding will be preserved.
+**%variable:[`variable_name`]** will be replaced by the value of the variable *variable_name* as it is stored so if the value is stored in BASE64 the coding will be preserved.
 
    %variable:[varTestScript]
 
@@ -1992,37 +1934,37 @@ which actually is the same as
 
 There is also a third possibility
 
-**%file:[**//path//**]** will be replaced with the content of the file at *path*. This means that a parameter
+**%file:[`path`]** will be replaced with the content of the file at *path*. This means that a parameter
 
    %file:[path_to_script]
 
 will execute the JavaScript stored in the file pointed to by path_to_script.   
 
-The code can use callbacks into the VSCP daemon for VSCP functionality. [The callbacks are defined here](javascript_Callbacks).
+The code can use callbacks into the VSCP daemon for VSCP functionality. [The callbacks are defined here](./javascript_callbacks.md).
 
 ##### example
 
 Read the value of the variable *test1* and then log this value to the logs. Note that the VSCP DM escape %isodate will be replaced with the current date before the script is executed.
 
-`<code="javascript">`
+```javascript
    var dd = vscp_readVariable(vscp_clientItem,"test1");
    vscp_log( "test1=" + dd.value + " Hello world! %isodate\n");
-`</code>`
+```
 
 The BASE64 version of this parameter looks like this
 
-`<code="javascript">`
+```javascript
 BASE64:dmFyIGRkID0gdnNjcF9yZWFkVmFyaWFibGUodnNjcF9jbGllbnRJdGVtLCJ0ZXN0MSIpOw0KICAgdnNjcF9sb2coICJ0ZXN0MT0iICsgZGQudmFsdWUgKyAiIEhlbGxvIHdvcmxkISAlaXNvZGF0ZVxuIik7   
-`</code>`
+```
 
 
 ##  Internal Decision Matrix Events 
 
    CLASS2.VSCPD (65535)
 
-[CLASS2.VSCPD](http://www.vscp.org/docs/vscpspec/doku.php?id=class2.vscpd) is reserved for internal events used by the decision matrix mechanism of the VSCP daemon. Events of this type is never be visible on a physical bus. 
+[CLASS2.VSCPD](https://grodansparadis.gitbooks.io/the-vscp-specification/content/class2.vscpd.html#type--29-0x001d-timer-elapsed) is reserved for internal events used by the decision matrix mechanism of the VSCP daemon. Events of this type is never be visible on a physical bus. 
 
-Events of this type can be used for timekeeping and many more things. As an example the [CLASS2.VSCP, Type=7, Hour](http://www.vscp.org/docs/vscpspec/doku.php?id=class2.vscpd#type_7_0x0007_hour) can be used to perform things on a specific hour of the day. 
+Events of this type can be used for timekeeping and many more things. As an example the [CLASS2.VSCP, Type=7, Hour](https://grodansparadis.gitbooks.io/the-vscp-specification/content/class2.vscpd.html#type--7-0x0007-hour) can be used to perform things on a specific hour of the day. 
 
 
 {% include "./bottom_copyright.md" %}
