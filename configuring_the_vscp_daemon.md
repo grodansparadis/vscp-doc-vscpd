@@ -32,25 +32,25 @@ In the general section you find settings that are common to all components of th
 
 ### security
 
-`<code=xml>`
-    <security admin="username" 
-      password="450ADCE88F2FDBB20F3318B65E53CA4A;06D3311CC2195E80BE4F8EB12931BFEB5C630F6B154B2D644ABE29CEBDBFB545" 
-      allowfrom="list of remotes" 
-      vscptoken="Carpe diem quam minimum credula postero"
-      vscpkey="A4A86F7D7E119BA3F0CD06881E371B989B33B6D606A863B633EF529D64544F8E"
-      digest=""
-    />
-`</code>`
+```xml
+<security admin="username" 
+    password="450ADCE88F2FDBB20F3318B65E53CA4A;06D3311CC2195E80BE4F8EB12931BFEB5C630F6B154B2D644ABE29CEBDBFB545" 
+    allowfrom="list of remotes" 
+    vscptoken="Carpe diem quam minimum credula postero"
+    vscpkey="A4A86F7D7E119BA3F0CD06881E371B989B33B6D606A863B633EF529D64544F8E"
+    digest=""
+/>
+```
 
 The admin user and other security settings can only be defined in the configuration file. It is __VERY important__ that this file only can be read by users that are allowed to do so.
 
 #####  admin
 
-Name of admin user. Default is "admin". __Use something else.__ __PLEASE!__
+Name of admin user. Default is "admin". **Use something else. PLEASE!**
 
 ##### password
 
-Password for admin user. Default is "secret". __Use something else.__ __PLEASE!__  The password consist of a 16-byte salt and a 32 byte has on the form salt;hash. pbkdf2 is used for password handling with SHA256,
+Password for admin user. Default is "secret". __Use something else. PLEASE!**  The password consist of a 16-byte salt and a 32 byte has on the form salt;hash. pbkdf2 is used for password handling with SHA256,
 
 Use the **vscpmkpasswd** tool supplied with VSCP & Friends to generate the password (called mkpasswd in earlier versions).
 
@@ -72,14 +72,14 @@ This is 256-bit, 32-byte, hexadecimal string that is used a the key for encrypti
     
 or 
 
-`<code="c">`  
+```cpp  
 uint8_t key[] = { 0xA4,0xA8,0x6F,0x7D,0x7E,0x11,0x9B,0xA3,
                    0xF0,0xCD,0x06,0x88,0x1E,0x37,0x1B,0x98,
                    0x9B,0x33,0xB6,0xD6,0x06,0xA8,0x63,0xB6,
                    0x33,0xEF,0x52,0x9D,0x64,0x54,0x4F,0x8E };
-`</code>`
+```
 
-Read the [security section](security_general) for more information about how the different values is used.
+Read the [security section](./security_general.md) for more information about how the different values is used.
 
 
 
@@ -88,9 +88,9 @@ Read the [security section](security_general) for more information about how the
 
 ** Can only be set in XML configuration file **
 
-`<code=xml>`
-    `<loglevel>`n`</loglevel>`
-`</code>`
+```xml
+<loglevel>n</loglevel>
+```
 
 Set loglevel n is in range 0-2 where 0 is no logging and the rest of the levels are different levels of logging which will log everything with a higher log value. 
 
@@ -108,9 +108,9 @@ Set loglevel n is in range 0-2 where 0 is no logging and the rest of the levels 
 
 ** Can only be set in XML configuration file **
 
-`<code=xml>`
-    `<logdays>`n`</logdays>`
-`</code>`
+```xml
+<logdays>n</logdays>
+```
 
 This is the number of days a log entry is allowed to sit in one of the log files. When it gets older that this value it will automatically be deleted. This is important on constraint system where the log files often are kept on a ram disk. Default is 7 days.
 
@@ -120,9 +120,9 @@ This is the number of days a log entry is allowed to sit in one of the log files
 
 ** Can only be set in XML configuration file **
 
-`<code=xml>`
-    `<debugflags1>`n`</debugflags1>`
-`</code>`
+```xml
+<debugflags1>n</debugflags1>
+```
 
 Set bits in debug flags 1 that when set will output additional logging information,
 
@@ -144,9 +144,9 @@ Set bits in debug flags 1 that when set will output additional logging informati
 
 ** Can only be set in XML configuration file **
 
-`<code=xml>`
-    `<debugflags2>`n`</debugflags2>`
-`</code>`
+```xml
+<debugflags2>n</debugflags2>
+```
 
 Set bits in debug flags 2 that when set will output additional logging information,
 
@@ -158,9 +158,9 @@ Set bits in debug flags 2 that when set will output additional logging informati
 
 ** Can only be set in XML configuration file **
 
-`<code=xml>`
-    `<runasuser>`n`</runasuser>`
-`</code>`
+```xml
+<runasuser>n</runasuser>
+```
 
 __Only on Unix/Linux__ user to run the VSCP daemon as.
 
@@ -168,11 +168,11 @@ __Only on Unix/Linux__ user to run the VSCP daemon as.
 
 ### guid
 
-`<code=xml>`
-`<guid>`
+```xml
+<guid>
     FF:FF:FF:FF:FF:FF:FF:FF:FF:FF:FF:F5:00:00:00:00
-`</guid>`
-`</code>`
+</guid>
+```
 
 Set the server GUID for the daemon. This GUID is the base for all interface GUID's in the system. Interface GUID's is formed like xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:aa:aa:bb:bb where xx is guid set here, aa is the interface id and bb is nickname id's for devices on that interface. 
 
@@ -181,7 +181,7 @@ If not set here (or all nills) a GUID will be formed from the (first) MAC addres
 Clients will be identified with a GUID that consist of this GUID plus an on the system unique number in the aa aa bytes. Devices will use this GUID as the source for events if no GUID is set for the driver or if it is set to all zeros.
 
 **Example**
-   FF:EE:DD:CC:BB:AA:99:88:77:66:55:44:00:00:00:00
+    FF:EE:DD:CC:BB:AA:99:88:77:66:55:44:00:00:00:00
 
 ----
 
@@ -197,9 +197,9 @@ If set this real text name will be used as an identifier for the server along wi
 
 **Can only be set in XML configuration file**
 
-`<code=xml>`
-`<logsyslog enable="true" />`
-`</code>`
+```xml
+<logsyslog enable="true" />
+```
 
 Set to true to (also) log to syslog.
 
@@ -207,9 +207,9 @@ Set to true to (also) log to syslog.
 
 ### logdatabase
 
-`<code=xml>`
-`<logdatabase path="/srv/vscp/vscp_log.sqlite3" />`
-`</code>`
+```xml
+<logdatabase path="/srv/vscp/vscp_log.sqlite3" />
+```
 
 Had attribute *enable* before version 1.12.18.0.
 
@@ -228,7 +228,7 @@ The log types in the database is like the following
 
 and the database is defined by
 
-`<code=sql>`
+```sql
 CREATE TABLE `log` (
 	`idx_log`	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
 	`type`    INTEGER,
@@ -236,7 +236,7 @@ CREATE TABLE `log` (
 	`level`	  INTEGER,
 	`message` TEXT
 )
-`</code>`
+```
 
 This setting was added in version 1.12.6
 
@@ -246,17 +246,17 @@ This setting was added in version 1.12.6
 Format from version 1.12.6
 Removed in version 1.12.18.0
 
-`<code=xml>`
-`<generallogfile enable="true" path="/srv/vscp/logs/vscp_log_security" />`
-`</code>`
+```xml
+<generallogfile enable="true" path="/srv/vscp/logs/vscp_log_security" />
+```
 
 previous format (still works but is deprecated)
 
-`<code=xml>`
-`<generallogfile enable="true">`
+```xml
+<generallogfile enable="true">
     c:/tmp/vscp_log_general.txt
-`</generallogfile>`
-`</code>`
+</generallogfile>
+```
 
 The generallogfile gets all general logging information if database logging is disabled.   
 
@@ -281,17 +281,17 @@ and on windows
 Format from version 1.12.6
 Removed in version 1.12.18.0
 
-`<code=xml>`
-`<securitylogfile enable="true" path="/srv/vscp/logs/vscp_log_security" />`
-`</code>`
+```xml
+<securitylogfile enable="true" path="/srv/vscp/logs/vscp_log_security" />
+```
 
 previous format (still works but is deprecated)
 
-`<code=xml>`
-`<securitylogfile enable="true">`
+```xml
+<securitylogfile enable="true">`
     /srv/vscp/logs/vscp_log_security
-`</securitylogfile>`
-`</code>`
+</securitylogfile>
+```
 
 The security logfile get all security information in the system. Valid and invalid logins etc if database logging is disabled.
 
@@ -316,17 +316,17 @@ and on windows
 Format from version 1.12.6
 Removed in version 1.12.18.0
 
-`<code=xml>`
-`<accesslogfile enable="true" path="/srv/vscp/logs/vscp_log_access" />`
-`</code>`
+```xml
+<accesslogfile enable="true" path="/srv/vscp/logs/vscp_log_access" />
+```
 
 previous format (still works but is deprecated)
 
-`<code=xml>`
-`<accesslogfile enable="true">`
+```xml
+<accesslogfile enable="true">`
    /srv/vscp/logs/vscp_log_access
-`</accesslogfile>`
-`</code>`
+</accesslogfile>
+```
 
 The access logfile get all access information from web page, rest and websocket traffic if database logging is disabled.  
 
@@ -350,7 +350,7 @@ and on windows
 
 ##  tcp/ip client interface
 
-`<code=xml>`
+```xml
 <tcpif interface=”ip-address:port” 
        encryption=""
        ssl_certificate="/srv/vscp/serts/tcpip_server.pem"
@@ -364,14 +364,14 @@ and on windows
        ssl_protocol_version="3"
        ssl_short_trust="false" 
 />
-`</code>`
+```
 
 Set the port and interface(s) the TCP/IP client should be listening on.
 
 **Examples**
-`<code=xml>`
-`<tcpip interface="9598"/>`
-`</code>`
+```xml
+<tcpip interface="9598"/>
+```
 
 ###   enable
 
@@ -399,13 +399,13 @@ Default is "9598".
 **Before version 13.1**
 
 Set one or more addresses separated with space the interface to bind to on a machine with multiple interfaces. If no address (just a port) is given the TCP/IP interface will be available on all interfaces (this is the default). If an address is given the daemon listens only on that interface or if several is listen on all listed interfaces . Default is “9598” meaning the TCP/IP client will be available on all interfaces on the machine. For SSL, server certificate must be specified as
-\\ 
+ 
    ssl://[ip:]port:server_cert.pem
-\\ 
+
 here server_cert.pem is the full path including the filename to the cert. To enable client certificate authentication (two-way SSL), a CA certificate should be specified: 
-\\ 
+
    ssl://[ip:]port:server_cert.pem:ca_cert.pem 
-\\ 
+
 where both server_cert.pem and ca_cert.pem are full paths including filename to the certificates. Server certificate must be in pem format. Pem file should contain both certificate and the private key concatenated together.
 
 ###  encryption
@@ -430,11 +430,9 @@ Default is no encryption.
 
 Valid from version 13.1
 
-Path to SSL certificate file. This option is only required when at least one of the listening\_ports is SSL The file must be in PEM format, and it must have both private key and certificate, see for example [ssl_cert.pem](https///github.com/civetweb/civetweb/blob/master/resources/ssl_cert.pem). If this option is set, then the webserver serves SSL connections on the port set up to listen on. 
+Path to SSL certificate file. This option is only required when at least one of the listening\_ports is SSL The file must be in PEM format, and it must have both private key and certificate, see for example [ssl_cert.pem](https://github.com/civetweb/civetweb/blob/master/resources/ssl_cert.pem). If this option is set, then the webserver serves SSL connections on the port set up to listen on. 
 
 **Default:** /srv/vscp/certs/server.pem
-
-
 
 
 ### ssl_certificate_chain
@@ -442,8 +440,6 @@ Path to SSL certificate file. This option is only required when at least one of 
 Valid from version 13.1
 
 T.B.D.
-
-
 
 
 ### ssl_verify_peer
@@ -461,8 +457,6 @@ Valid from version 13.1
 Name of a directory containing trusted CA certificates for peers. Each file in the directory must contain only a single CA certificate. The files must be named by the subject name’s hash and an extension of “.0”. If there is more than one certificate with the same subject name they should have extensions ".0", ".1", ".2" and so on respectively.
 
 
-
-
 ### ssl_ca_file
 
 Valid from version 13.1
@@ -476,8 +470,6 @@ Valid from version 13.1
 Sets maximum depth of certificate chain. If client's certificate chain is longer than the depth set here connection is refused.
 
 **Default:** 9
-
-
 
 
 ### ssl_default_verify_paths
@@ -503,7 +495,7 @@ List of ciphers to present to the client. Entries should be separated by colons,
  | ALL:!eNULL  | All ciphers excluding NULL ciphers  | 
  | AES128:!MD5 | AES 128 with digests other than MD5 | 
 
-See [this entry in OpenSSL documentation](https///www.openssl.org/docs/manmaster/apps/ciphers.html) for full list of options and additional examples.
+See [this entry in OpenSSL documentation](https://www.openssl.org/docs/manmaster/apps/ciphers.html) for full list of options and additional examples.
 
 
 
@@ -546,12 +538,12 @@ Valid from version 1.12.26
 
 The multicast announce interface is used to announce a VSCP system about indirectly discovered nodes and for Level II nodes a way to make there existence known. The VSCP assigned multicast group **224.0.23.158** is always used.
 
-`<code=xml>`
+```xml
 <multicast-announce enable="true"
         interface="udp://9598"
         ttl = "1"
 />
-`</code>`
+```
 
 ### enable
 
@@ -590,33 +582,27 @@ Valid from version **1.12.26**
 
 One can set up one or more multicast channel to share events among a group of Level II devices, Normally the VSCP assigned multicast group is used for this and where different groups use different ports.
 
-`<code=xml>`
-`<multicast enable="true">`
-        <channel enable="true"
-                    public="192.168.1.9"
-                    port="44444"
-                    group="224.0.23.158"
-                    ttl="1"
-                    guid="00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00"
-                    txfilter=""
-                    txmask=""
-                    rxfilter=""
-                    rxmask=""
-                    encryption=""
-                    bSendAck="false"
-        />
-    `</multicast>`
-`</code>`
-
-`<multicast>`
+```xml
+<multicast enable="true">
+    <channel enable="true"
+        public="192.168.1.9"
+        port="44444"
+        group="224.0.23.158"
+        ttl="1"
+        guid="00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00"
+        txfilter=""
+        txmask=""
+        rxfilter=""
+        rxmask=""
+        encryption=""
+        bSendAck="false"
+    />
+</multicast>
+```
 
 ###   enable
 
 Enable/disable VSCP server multicast interface. Can be "true" for enabled or "false" for disabled. Default is "false"
-
-\\ 
-
-`<channel>`
 
 ###   enable
 
@@ -693,12 +679,12 @@ Multicast frames can be received/sent in four different formats. Either as they 
     
 or
 
-`<code="c">`
+```cpp
     uint8_t key[] = { 0xA4,0xA8,0x6F,0x7D,0x7E,0x11,0x9B,0xA3,
                     0xF0,0xCD,0x06,0x88,0x1E,0x37,0x1B,0x98,
                     0x9B,0x33,0xB6,0xD6,0x06,0xA8,0x63,0xB6,
                     0x33,0xEF,0x52,0x9D,0x64,0x54,0x4F,0x8E };
-`</code>`
+```
    
 
 ### bSendAck
@@ -710,7 +696,7 @@ Set to "true" to send an ACK package when a multicast datagram is received.
  | ACK package  | CLASS1.ERROR, Type = 0 (0x00) Success | 
  | NACK package | CLASS1.ERROR, Type = 1 (0x01) Error   | 
 
-bAllowUnsecure
+###bAllowUnsecure
 
 With this setting one can tell if frames that are not encrypted should be received. If set to “true” they will. Setting it to false is more secure as only machines/users knowing the secret key can send multicast datagrams to the machine. Default is true.
 
@@ -721,27 +707,27 @@ With this setting one can tell if frames that are not encrypted should be receiv
 
 Valid from version **1.12.26**
 
-`<code=xml>`
+```xml
 <udp enable="true"
-            interface="udp://44444"
-            user=""
-            password=""
-            bAllowUnsecure="true"
-            bSendAck="true"
-            filter=""
-            mask=""
-            guid="00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00" >
+    interface="udp://44444"
+    user=""
+    password=""
+    bAllowUnsecure="true"
+    bSendAck="true"
+    filter=""
+    mask=""
+    guid="00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00" >
 
-        `<!-- Nodes that will receive VSCP Server events -->`
-        <rxnode enable="false"
-            interface="udp://127.0.0.1:9999"
-            filter=""
-            mask=""
-            encryption=""
-            bSetBroadcast="false"
-        />
-    `</udp>`
-`</code>`
+    <!-- Nodes that will receive VSCP Server events -->
+    <rxnode enable="false"
+        interface="udp://127.0.0.1:9999"
+        filter=""
+        mask=""
+        encryption=""
+        bSetBroadcast="false"
+    />
+</udp>
+```
 
 **udp**
 
@@ -822,12 +808,12 @@ UDP datagrams can be sent in four different formats. Either as they are (encrypt
     
 or
 
-`<code="c">`
+```cpp
     uint8_t key[] = { 0xA4,0xA8,0x6F,0x7D,0x7E,0x11,0x9B,0xA3,
                     0xF0,0xCD,0x06,0x88,0x1E,0x37,0x1B,0x98,
                     0x9B,0x33,0xB6,0xD6,0x06,0xA8,0x63,0xB6,
                     0x33,0xEF,0x52,0x9D,0x64,0x54,0x4F,0x8E };
-`</code>`
+```
 
 ### bSetBroadcast
 
@@ -839,9 +825,9 @@ Currently not used.
 
 ##   vscp
 
-`<code=xml>`
-`<vscp enable=”true|false” />`
-`</code>`
+```xml
+<vscp enable=”true|false” />
+```
 
 *deprecated in 1.12.6 now always enabled*  
 
@@ -851,13 +837,13 @@ Enable/disable daemon internal VSCP functionality. If disabled the server will n
 
 ##   dm
 
-`<code=xml>`
+```xml
 <dm enable=”true|false” 
           path[xml]=”path-to-dm-xml”
           allowxmlsave="true|false"
           pathdb="path-to-dm-database"
-          loglevel="debug"        
-`</code>`
+          loglevel="debug" />       
+```
 
 ###   enable
 
@@ -908,12 +894,12 @@ If set to "debug" and if main server debug level is set to debug extra DM inform
 
 ##   Remote variables
 
-`<code=xml>`
+```xml
 <variables enable=”true|false” 
     path[xml]=”/srv/vscp/variable.xml”
     pathdb=”/srv/vscp/vscp_variable.sqlite3”
 />
-`</code>`
+```
 
 ###   enable
 
@@ -957,9 +943,9 @@ The **autosave** value defaults to 5 minutes and tell how many minutes should el
 
 ### clientbuffersize
 
-`<code=xml>`
-`<clientbuffersize>`1024`</clientbuffersize>`
-`</code>`
+```xml
+<clientbuffersize>1024</clientbuffersize>
+```
 
 This is the default buffer size (number of events) for all clients in the system. Everything from a driver to a TCP/IP user is regarded as a client. Default is 1024. 
 
@@ -967,7 +953,7 @@ This is the default buffer size (number of events) for all clients in the system
 
 ##   webserver
 
-`<code=xml>`
+```xml
 <webserver enable="true" 
               document_root="/srv/vscp/www"
               listening_ports="[::]:8888r,[::]:8843s,8884"                  
@@ -1022,8 +1008,8 @@ This is the default buffer size (number of events) for all clients in the system
               lua_websocket_patterns="**.lua$"
               lua_background_script=""
               lua_background_script_params=""
-`</webserver>`              
-`</code>`
+</webserver>
+```
 
 
 
@@ -1091,7 +1077,7 @@ URL encoded request strings are decoded in the server, unless it is disabled by 
 
 ###   ssl_certificate
 
-Path to SSL certificate file. This option is only required when at least one of the listening\_ports is SSL The file must be in PEM format, and it must have both private key and certificate, see for example [ssl_cert.pem](https///github.com/civetweb/civetweb/blob/master/resources/ssl_cert.pem). If this option is set, then the webserver serves SSL connections on the port set up to listen on. 
+Path to SSL certificate file. This option is only required when at least one of the listening\_ports is SSL The file must be in PEM format, and it must have both private key and certificate, see for example [ssl_cert.pem](https://github.com/civetweb/civetweb/blob/master/resources/ssl_cert.pem). If this option is set, then the webserver serves SSL connections on the port set up to listen on. 
 
 **Default:** /srv/vscp/certs/server.pem
 
@@ -1150,7 +1136,7 @@ List of ciphers to present to the client. Entries should be separated by colons,
  | ALL:!eNULL  | All ciphers excluding NULL ciphers  | 
  | AES128:!MD5 | AES 128 with digests other than MD5 | 
 
-See [this entry in OpenSSL documentation](https///www.openssl.org/docs/manmaster/apps/ciphers.html) for full list of options and additional examples.
+See [this entry in OpenSSL documentation](https://www.openssl.org/docs/manmaster/apps/ciphers.html) for full list of options and additional examples.
 
 
 
@@ -1185,7 +1171,7 @@ Disk IO performance can be improved when keeping the certificates and keys store
 
 ###   cgi_interpreter
 
-Path to an executable to be used use as an interpreter for all CGI scripts regardless script extension. Default: not set, the webserver looks at [shebang line "#!"](http://en.wikipedia.org/wiki/Shebang_(Unix%5C)) in the first line of the script .
+Path to an executable to be used use as an interpreter for all CGI scripts regardless script extension. Default: not set, the webserver looks at [shebang line "#!"](https://en.wikipedia.org/wiki/Shebang_(Unix%5C)) in the first line of the script .
 
 For example, if both PHP and perl CGIs are used, then #!/path/to/php-cgi.exe and #!/path/to/perl.exe must be first lines of the respective CGI scripts. Note that paths should be either full file paths, or file paths relative to the directory where mongoose executable is located.
 
@@ -1195,31 +1181,31 @@ If all CGIs use the same interpreter, for example they are all PHP, then cgi_int
 
 ###   cgi_patterns
 
-All files that match cgi_pattern are treated as CGI files. Default pattern allows CGI files to be anywhere. To restrict CGIs to a certain directory, use /path/to/cgi-bin/`<nowiki>``</nowiki>`.cgi as a pattern. Note that full file path is matched against the pattern, not the URI.
+All files that match cgi_pattern are treated as CGI files. Default pattern allows CGI files to be anywhere. To restrict CGIs to a certain directory, use **/path/to/cgi-bin/\*\*.cgi** as a pattern. Note that full file path is matched against the pattern, not the URI.
 
 When the webserver start a CGI program, it creates new environment for it (in contrast, usually child program inherits the environment from parent). Several environment variables however are inherited from the webservers environment, they are: PATH, TMP, TEMP, TMPDIR, PERLLIB, MONGOOSE_CGI. 
 
 On UNIX it is also LD_LIBRARY_PATH. On Windows it is also COMSPEC, SYSTEMROOT, SystemDrive, ProgramFiles, ProgramFiles(x86), CommonProgramFiles(x86).
 
-**Default:** `<nowiki>`.cgi$|**.pl$|**.php|**.py|**.lua`</nowiki>`
+**Default:**  \*\*.cgi$|\*\*.pl$|\*\*.php|\*\*.py|\*\*.lua `
 
 There is no requirement for CGI scripts to be located in a special directory. CGI scripts can be anywhere. CGI (and SSI) files are recognized by the file name pattern. Shell-like glob patterns is used. Pattern match starts at the beginning of the string, so essentially patterns are prefix patterns. Syntax is as follows:
     
  | Pattern             | Description                                                  |                                                               
- | -------             | -----------                                                  |                                                               
- | `<nowiki>``</nowiki>` | Matches everything                                           |                                                               
- | `<nowiki>``</nowiki>`  | Matches everything but slash character, `<nowiki>`/`</nowiki>` |                                                               
- | `<nowiki>`?`</nowiki>`  | Matches any character                                        |                                                               
- | `<nowiki>`$`</nowiki>`  | Matches the end of the string                                |                                                               
- | `<nowiki>`            | `</nowiki>`                                                    | Matches if pattern on the left side or the right side matches. | 
+ | :-------:             | -----------                                                  |                                                               
+ | \*\* | Matches everything                                           |                                                               
+ | \*  | Matches everything but slash character, `<nowiki>`/`</nowiki>` |                                                               
+ | ?  | Matches any character                                        |                                                               
+ | $   | Matches the end of the string                                |                                                               
+ | \|                                                    | Matches if pattern on the left side or the right side matches. | 
 
 All other characters in the pattern match themselves. Examples:
 
- | Pattern                  | Description                                       |                                 
- | -------                  | -----------                                       |                                 
- | `<nowiki>`.cgi$`</nowiki>` | Any string that ends with `<nowiki>`.cgi`</nowiki>`   |                                 
- | `<nowiki>`/foo`</nowiki>`    | Any string that begins with `<nowiki>`/foo`</nowiki>` |                                 
- | `<nowiki>`a$             | **b$`</nowiki>`                                     | Any string that ends with a or b | 
+ | Pattern | Description |                                 
+ | :-------:    | ----------- |
+ | \*\*.cgi$ | Any string that ends with .cgi   |                                 
+ | /foo    | Any string that begins with /foo |                                 
+ | \*\*a$\|\*\*b$  | Any string that ends with a or b | 
 
 
 
@@ -1245,16 +1231,17 @@ This is a comma separated list of URI=PATH pairs, specifying that given URIs mus
 Limit download speed for clients. throttle is a comma-separated list of key=value pairs, where key could be:
 
  | key                | Description                      | 
- | ---                | -----------                      | 
- | `<nowiki>``</nowiki>` | limit speed for all connections  | 
+ | :---:                | -----------                      | 
+ | \* | limit speed for all connections  | 
  | x.x.x.x/mask       | limit speed for specified subnet | 
  | uri_prefix_pattern | limit speed for given URIs       | 
 
 The value is a floating-point number of bytes per second, optionally followed by a k or m character, meaning kilobytes and megabytes respectively. A limit of 0 means unlimited rate. The last matching rule wins. Examples:
 
- | `<nowiki>`=1k,10.0.0.0/8=0`</nowiki>` | limit all accesses to 1 kilobyte per second, but give connections the from 10.0.0.0/8 subnet unlimited speed | 
- | ---------------------------------- | ------------------------------------------------------------------------------------------------------------ | 
- | /downloads/=5k                     | limit accesses to all URIs in `/downloads/` to 5 kilobytes per second. All other accesses are unlimited      | 
+| Pattern | Description |
+| :-------: | ---------------- |
+| \*=1k,10.0.0.0/8=0 | limit all accesses to 1 kilobyte per second, but give connections the from 10.0.0.0/8 subnet unlimited speed | 
+| /downloads/=5k | limit accesses to all URIs in `/downloads/` to 5 kilobytes per second. All other accesses are unlimited      | 
 
 Not set by default.
 
@@ -1298,9 +1285,10 @@ An Access Control List (ACL) allows restrictions to be put on the list of IP add
 
 Subnet masks may vary from 0 to 32, inclusive. The default setting is to allow all accesses. On each request the full list is traversed, and the last match wins. Examples:
 
-    "-0.0.0.0/0,+192.168/16    deny all accesses, only allow 192.168/16 subnet"
+    "-0.0.0.0/0,+192.168/16     deny all accesses, 
+                                only allow 192.168/16 subnet"
 
-Subnet masks are [described here](http://en.wikipedia.org/wiki/Subnetwork).
+Subnet masks are [described here](https://en.wikipedia.org/wiki/Subnetwork).
 
 
 
@@ -1317,7 +1305,7 @@ Extension must include a leading dot.
    .cpp=plain/text,.java=plain/text. 
 
 
-See the [Wikipedia page on Internet media types](http://en.wikipedia.org/wiki/Internet_media_type).
+See the [Wikipedia page on Internet media types](https://en.wikipedia.org/wiki/Internet_media_type).
    
 
 **Default:** not set.
@@ -1361,11 +1349,11 @@ Comma-separated list of URL rewrites in the form of uri_pattern=file_or_director
 
 This makes it possible to serve many directories outside from document_root, redirect all requests to scripts, and do other tricky things. For example, to redirect all accesses to .doc files to a special script, set url_rewrite_patters to
 
-   "**.doc$=/path/to/cgi-bin/handle_doc.cgi"
+     "**.doc$=/path/to/cgi-bin/handle_doc.cgi"
 
 or, to imitate support for user home directories, set them to
 
-   /~joe/=/home/joe/,/~bill=/home/bill/
+    /~joe/=/home/joe/,/~bill=/home/bill/
 
 
 
@@ -1381,7 +1369,7 @@ The file has to include the realm set through authentication_domain and the pass
     user:realm:digest
     test:test.com:ce0220efc2dd2fad6185e1f1af5a4327
 
-[This online tolls](http://www.askapache.com/online-tools/htpasswd-generator) can be used to generate password files.
+[This online tolls](https://www.askapache.com/online-tools/htpasswd-generator) can be used to generate password files.
 
 
 
@@ -1452,7 +1440,7 @@ URL encoded request strings are decoded in the server, unless it is disabled by 
 
 ### access_control_allow_origin
 
-Access-Control-Allow-Origin header field, used for cross-origin resource sharing (CORS). See the [Wikipedia page on CORS](http://en.wikipedia.org/wiki/Cross-origin_resource_sharing) for aditional information.
+Access-Control-Allow-Origin header field, used for cross-origin resource sharing (CORS). See the [Wikipedia page on CORS](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing) for aditional information.
 
 **Default:** *
 
@@ -1461,7 +1449,7 @@ Access-Control-Allow-Origin header field, used for cross-origin resource sharing
 
 ### access_control_allow_methods
 
-Access-Control-Allow-Methods header field, used for cross-origin resource sharing (CORS) pre-flight requests. [See the Wikipedia page on CORS](http://en.wikipedia.org/wiki/Cross-origin_resource_sharing) for aditional information.
+Access-Control-Allow-Methods header field, used for cross-origin resource sharing (CORS) pre-flight requests. [See the Wikipedia page on CORS](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing) for aditional information.
 
 If set to an empty string, pre-flights will not be supported directly by the server, but scripts may still support pre-flights by handling the OPTIONS method properly. If set to "*", the pre-flight will allow whatever method has been requested. If set to a comma separated list of valid HTTP methods, the pre-flight will return exactly this list as allowed method. If set in any other way, the result is unspecified.
 
@@ -1472,7 +1460,7 @@ If set to an empty string, pre-flights will not be supported directly by the ser
 
 ### access_control_allow_headers
 
-Access-Control-Allow-Headers header field, used for cross-origin resource sharing (CORS) pre-flight requests. [See the Wikipedia page on CORS](http://en.wikipedia.org/wiki/Cross-origin_resource_sharing) for aditional information.
+Access-Control-Allow-Headers header field, used for cross-origin resource sharing (CORS) pre-flight requests. [See the Wikipedia page on CORS](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing) for aditional information.
 
 If set to an empty string, pre-flights will not allow additional headers. If set to "*", the pre-flight will allow whatever headers have been requested. If set to a comma separated list of valid HTTP headers, the pre-flight will return exactly this list as allowed headers. If set in any other way, the result is unspecified.
 
@@ -1483,7 +1471,7 @@ If set to an empty string, pre-flights will not allow additional headers. If set
 
 ### error_pages
 
-This option may be used to specify a directory for user defined error pages. The error pages may be specified for an individual http status code (e.g., 404 - page requested by the client not found), a group of http status codes (e.g., 4xx - all client errors) or all errors. The corresponding error pages must be called error404.ext, error4xx.ext or error.ext, whereas the file extension may be one of the extensions specified for the index_files option. [See this Wikipedia page on HTTP status codes](http://en.wikipedia.org/wiki/HTTP_status_code) for additional information.
+This option may be used to specify a directory for user defined error pages. The error pages may be specified for an individual http status code (e.g., 404 - page requested by the client not found), a group of http status codes (e.g., 4xx - all client errors) or all errors. The corresponding error pages must be called error404.ext, error4xx.ext or error.ext, whereas the file extension may be one of the extensions specified for the index_files option. [See this Wikipedia page on HTTP status codes](https://en.wikipedia.org/wiki/HTTP_status_code) for additional information.
 
 
 
@@ -1495,7 +1483,7 @@ Enable TCP_NODELAY socket option on client connections.
 If set the socket option will disable Nagle's algorithm on the connection which means that packets will be sent as soon as possible instead of waiting for a full buffer or timeout to occur.
 
  | Setting | Description                                 | 
- | ------- | -----------                                 | 
+ | :-------: | -----------                                 | 
  | 0       | Keep the default: Nagel's algorithm enabled | 
  | 1       | Disable Nagel's algorithm for all sockets   | 
 
@@ -1513,7 +1501,7 @@ This option will set the header field
    Cache-Control: max-age value 
 for static files. Dynamically generated content, i.e., content created by a script or callback, must send cache control headers by themselves.
 
-A value >0 corresponds to a maximum allowed caching time in seconds. This value should not exceed one year ([RFC 2616](https///www.ietf.org/rfc/rfc2616.txt), Section 14.21). A value of 0 will send "do not cache" headers for all static files. For values `<0 and values >`31622400, the behavior is undefined.
+A value >0 corresponds to a maximum allowed caching time in seconds. This value should not exceed one year ([RFC 2616](https://www.ietf.org/rfc/rfc2616.txt), Section 14.21). A value of 0 will send "do not cache" headers for all static files. For values `<0 and values >`31622400, the behavior is undefined.
 
 **Default:** 3600
 
@@ -1566,16 +1554,16 @@ It this feature is activated, that
     
  might be handled by:
 
- 1.      /some/path/file.ext (with PATH_INFO='/', if ext = cgi)
- 2.      /some/path/index.lua with mg.request_info.path_info='/file.ext'
- 3.      /some/path/index.cgi with PATH_INFO='/file.ext'
- 4.      /some/path/index.php with PATH_INFO='/file.ext'
- 5.      /some/index.lua with mg.request_info.path_info=='/path/file.ext'
- 6.      /some/index.cgi with PATH_INFO='/path/file.ext'
- 7.      /some/index.php with PATH_INFO='/path/file.ext'
- 8.      /index.lua with mg.request_info.path_info=='/some/path/file.ext'
- 9.      /index.cgi with PATH_INFO='/some/path/file.ext'
- 10.      /index.php with PATH_INFO='/some/path/file.ext'
+1. /some/path/file.ext (with PATH_INFO='/', if ext = cgi)
+2. /some/path/index.lua with mg.request_info.path_info='/file.ext'
+3. /some/path/index.cgi with PATH_INFO='/file.ext'
+4. /some/path/index.php with PATH_INFO='/file.ext'
+5. /some/index.lua with mg.request_info.path_info=='/path/file.ext'
+6. /some/index.cgi with PATH_INFO='/path/file.ext'
+7. /some/index.php with PATH_INFO='/path/file.ext'
+8. /index.lua with mg.request_info.path_info=='/some/path/file.ext'
+9. /index.cgi with PATH_INFO='/some/path/file.ext'
+10. /index.php with PATH_INFO='/some/path/file.ext'
 
 Note: This example is valid, if the default configuration values for index_files, cgi_pattern and lua_script_pattern are used, and the server is built with CGI and Lua support enabled.
 
@@ -1594,7 +1582,7 @@ This feature can be used to completely hide the script extension from the URL.
 
 A pattern for files that are interpreted as JavaScripts by the server. 
 
-**Default:** `<nowiki>`"**.ssjs$"`</nowiki>`
+**Default:** "\*\*.ssjs$"
 
 ### lua_preload_file
 
@@ -1607,7 +1595,7 @@ This configuration option can be used to specify a Lua script file, which is exe
 
 A pattern for files that are interpreted as Lua scripts by the server. In contrast to Lua server pages, Lua scripts use plain Lua syntax. 
 
-**Default:** `<nowiki>`"**.lua$"`</nowiki>`
+**Default:** "\*\*.lua$"
 
 
 
@@ -1616,14 +1604,14 @@ A pattern for files that are interpreted as Lua scripts by the server. In contra
 
 Files matching this pattern are treated as Lua server pages. In contrast to Lua scripts, the content of a Lua server pages is delivered directly to the client. Lua script parts are delimited from the standard content by including them between tags. 
 
-**Default:** `<nowiki>`"**.lp$|**.lsp$"`</nowiki>`
+**Default:** "\*\*.lp$|\*\*.lsp$"
 
 
 
 
 ### lua_websocket_patterns
 
-**Default:** `<nowiki>`"**.lua$"`</nowiki>`
+**Default:** "\*\*.lua$"
 
 
 
@@ -1634,7 +1622,7 @@ Files matching this pattern are treated as Lua server pages. In contrast to Lua 
 
 Run a Lua script in the background, independent from any connection. The script is started before network access to the server is available. It can be used to prepare the document root (e.g., update files, compress files, ...), check for external resources, remove old log files, etc.
 
-The Lua state remains open until the server is stopped. In the future, some callback functions will be available to notify the script on changes of the server state. See example lua script : [background.lua](https///github.com/civetweb/civetweb/blob/master/test/background.lua).
+The Lua state remains open until the server is stopped. In the future, some callback functions will be available to notify the script on changes of the server state. See example lua script : [background.lua](https://github.com/civetweb/civetweb/blob/master/test/background.lua).
 
 Additional functions available in background script : *sleep, root path, script name, isterminated*
 
@@ -1647,12 +1635,12 @@ Used to add dynamic parameters to background script. Parameters mapped to global
 
 ##   websockets 
 
-`<code=xml>`
+```xml
 <websockets enable="true" 
     document_root="/var/vscp/web"
     timeout_ms="30000"
-     />
-`</code>`
+/>
+```
 
 Set **enable** to true to enable the interface and false to disable. 
 
@@ -1686,39 +1674,39 @@ Timeout for websocket calls.
 
 Example
 
-`<code=xml>`
-`<remoteuser>` 
-        `<user>`
-            `<name>`admin`</name>`
-            `<password>`d50c3180375c27927c22e42a379c3f67`</password>`
-            `<privilege>`admin`</privilege>`
-            `<allowfrom>`127.0.0.1,192.168.1.`</allowfrom>`
-        `</user>`	
-        `<user>`
-            `<name>`user`</name>`
-            `<password>`ee11cbb19052e40b07aac0ca060c23ee`</password>`
-            `<privilege>`admin`</privilege>`
-            `<allowfrom>`127.0.0.1,192.168.1.`</allowfrom>`
-            `<allowevent>`10:6,10:7`</allowevent>`
-        `</user>`	
-    `</remoteuser>`
-`</code>`
+```xml
+<remoteuser>
+    <user>
+        <name>admin</name>
+        <password>d50c3180375c27927c22e42a379c3f67</password>
+        <privilege>admin</privilege>
+        <allowfrom>127.0.0.1,192.168.1.</allowfrom>
+    </user>
+    <user>
+        <name>user</name>
+        <password>ee11cbb19052e40b07aac0ca060c23ee</password>
+        <privilege>admin</privilege>
+        <allowfrom>127.0.0.1,192.168.1.</allowfrom>
+        <allowevent>10:6,10:7</allowevent>
+    </user>
+</remoteuser>
+```
 
-In the `<remoteuser» tab are settings that affect which users that can access the daemon through the TCP/IP interface, web interface, rest-interface and through the websocket inteface. Each user is defined between a <user>`…`</user>` pair. 
+In the *\<remoteuser\>** tab are settings that affect which users that can access the daemon through the TCP/IP interface, web interface, rest-interface and through the websocket inteface. Each user is defined between a *\<user\>…\</user\>* pair. 
 
 ##   user
 
-`<code=xml>`
-`<name>`user`</name>`  
-`</code>`
+```xml
+<name>user</name>
+```
 
 Username for this user.
 
 ###  password
 
-`<code=xml>`
-`<password>`password-hash`</password>`  
-`</code>`
+```xml
+<password>password-hash</password>
+```
 
 The password hash for the user. This hash should be the md5 over "username:vscptoken:password". The **mkpasswd**  utility that is distributed with the VSCP & Friends package can be user to generate the password. There are also plenty of services on the net that can be used. One example is [here](http://www.md5online.org/md5-encrypt.html).  
 
@@ -1726,17 +1714,17 @@ The vscptoken is set in the `<securitytab>` and it should never be sent on it's 
 
 ###  privilege
 
-`<code=xml>`
-`<privilege>`level`</privilege>`
-`</code>`
+```xml
+<privilege>level</privilege>
+```
 
 Privilege is the security level for this user. Users can have privileges from 0-15 that allow them to do command that are equal to or less then the set privilege level. Enter a privilege level as 0-15 here or in symbolic form as "//admin//" (==15) or "//user//" (==4) or "//driver//" (==6). Default is 4. 
 
 ###  allowfrom
 
-`<code=xml>`
-`<allowfrom>`comma-seperated-list`</allowfrom>`
-`</code>`
+```xml
+<allowfrom>comma-seperated-list</allowfrom>
+```
 
 This is a comma separated list with host addresses this user is allowed to log in to the server from. Wild cards can be used to indicate “all”. This mean that
 
@@ -1750,9 +1738,9 @@ means that he/she can log on from all remote machines with a IP addresses that s
 
 ###  allowevent
 
-`<code=xml>`
-`<allowevent>`comma-seperated-list`</allowevent>`
-`</code>`
+```xml
+<allowevent>comma-seperated-list</allowevent>
+```
 
 This is a comma separated list of events this user is allowed to send. The form is
 
@@ -1762,17 +1750,16 @@ wild-cards (*)can be used for both. This means that 20:*,30:* means that the use
 
 ### mask
 
-`<code=xml>`
-`<mask priority="xxx" class="xxx" type="xxx" GUID="xxx" />`
-`</code>`
+```xml
+<mask priority="xxx" class="xxx" type="xxx" GUID="xxx" />
+```
 
 Set the mask for incoming events to a client. The mask has a bit set for a binary digit that is of interest. Default is all is null == disabled. It is important that filter and mask is both set if they are used.
 
 ### filter
-
-`<code=xml>`
-`<filter priority="xxx" class="xxx" type="xxx" GUID="xxx" />`
-`</code>`
+```xml
+<filter priority="xxx" class="xxx" type="xxx" GUID="xxx" />
+```
 
 This is the event filter. Set the filter for incoming events to a client. The form is If a mask bit is set to one for a position then the filter bit must be equal to the bit of the incoming event for the client to get it. It is important that filter and mask is both set if they are used.
 
@@ -1780,21 +1767,21 @@ This is the event filter. Set the filter for incoming events to a client. The fo
 
 **Example**
 
-`<code=xml>`
-`<automation enable="true|false>`
-    `<zone>`1`</zone>`
-    `<sub-zone>`2`</sub-zone>`
-    `<longitude>`61.7441833`</longitude>`
-    `<latitude>`15.1604167`</latitude>`
-    `<sunrise enable="true" />`
-    `<sunrise-twilight enable="true" />`
-    `<sunset enable="true" />`
-    `<sunset-twilight enable="true" />`
-    `<segmentcontrol-event enable="true" interval="60" />`
-    `<heartbeat-event enable="true" interval="60" />`
-    `<capability-event enable="true" interval="60" />`
-`</automation>`
-`</code>`
+```xml
+`<automation enable="true|false">
+    <zone>1</zone>
+    <sub-zone>2</sub-zone>
+    <longitude>61.7441833</longitude>
+    <latitude>15.1604167</latitude>
+    <sunrise enable="true" />
+    <sunrise-twilight enable="true" />
+    <sunset enable="true" />
+    <sunset-twilight enable="true" />
+    <segmentcontrol-event enable="true" interval="60" />
+    <heartbeat-event enable="true" interval="60" />
+    <capability-event enable="true" interval="60" />
+</automation>
+```
 
 In the `<automation>` tab settings that affect the internal VSCP functionality of the server is located. 
 
@@ -1822,57 +1809,57 @@ Latitude for place where daemon is located in decimal form.
 
 Enable/disable the CLASS1.INFORMATION, Type=44 (Sunrise) to be sent. Longitude, latitude and timezone must be set for this to work correctly.
 
-`<code=xml>`
-`<sunrise enable="true|false" />`
-`</code>`
+```
+<sunrise enable="true|false" />
+```xml
 
 ### sunrise-twilight
 
 Enable/disable the CLASS1.INFORMATION, Type=52 (Civil sunrise twilight time) to be sent. Longitude, latitude and timezone must be set for this to work correctly.
 
-`<code=xml>`
+```xml
 `<sunrise-twilight enable="true|false" />`
-`</code>`
+```
 
 ### sunset
 
 Enable/disable the CLASS1.INFORMATION, Type=45 (Sunset) to be sent. Longitude, latitude and timezone must be set for this to work correctly.
 
-`<code=xml>`
-`<sunset enable="true|false" />`
-`</code>`
+```xml
+<sunset enable="true|false" />
+```
 
 ###  sunset-twilight
 
 Enable/disable the CLASS1.INFORMATION, Type=53 (Civil sunset twilight time) to be sent. Longitude, latitude and timezone must be set for this to work correctly.
 
-`<code=xml>`
-`<sunset-twilight enable="true|false" />`
-`</code>`
+```xml
+<sunset-twilight enable="true|false" />
+```
 
 ### segmentcontrol-event
 
 Enable/disable the periodic CLASS1.PROTOCOL, Type=1 (Segment Status Heartbeat) event to be sent from the daemon. The interval between events is set in seconds (default=60). The event will be sent on all interfaces if enabled.
 
-`<code=xml>`
-`<segmentcontrol-event enable="true|false" interval="seconds" />`
-`</code>`
+```xml
+<segmentcontrol-event enable="true|false" interval="seconds" />
+```
 
 ### heartbeat-event
 
 Enable/disable the CLASS1.INFORMATION, Type=9 (Node Heartbeat) to be sent. The interval between events is set in seconds  (default=60).
 
-`<code=xml>`
-`<heartbeat-event enable="true|false" interval="seconds" />`
-`</code>`
+```xml
+<heartbeat-event enable="true|false" interval="seconds" />
+```
 
 ### capabilities-event
 
 Enable/disable the CLASS2.PROTOCOL, Type=20 (High end server capabilities) to be sent. The interval between events is set in seconds  (default=60).
 
-`<code=xml>`
-`<capabilities-event enable="true|false" interval="seconds" />`
-`</code>`
+```xml
+<capabilities-event enable="true|false" interval="seconds" />
+```
 
 ----
 ##  Level I Drivers
@@ -1883,9 +1870,9 @@ Enable/disable daemon Level I driver interface. If disabled no Level I drivers w
 
 ### level1driver
 
-`<code=xml>`
-`<level1driver enable=”true|false” />`
-`</code>`
+```xml
+<level1driver enable=”true|false” />
+```
 
 The content consist of one or several driver entries each representing a level 1 driver that should be used. 
 
@@ -1895,9 +1882,9 @@ Set to true to enable level I driver functionality , set to false to disable. Th
 
 #### driver
 
-`<code=xml>`
-`<driver enable="false">`
-`</code>`
+```xml
+<driver enable="false">
+```
 
 A level I driver entry.
 
@@ -1907,41 +1894,41 @@ The driver should be loaded if set to true. If set to false the driver will not 
 
 ##### name
 
-`<code=xml>`
-`<name>`driver-name`</name>`
-`</code>`
+```xml
+<name>driver-name</name>
+```
 
 A name given by the user for the driver. This is the name by which the driver is identified by the system.
 
 ##### config
 
-`<code=xml>`
-`<config>`config1;config2`</config>`
-`</code>`
+```xml
+<config>config1;config2</config>
+```
 
 The semicolon separated configuration string for the driver. The meaning of this string is driver specific.
 
 ##### flags
 
-`<code=xml>`
-`<flags>`0`</flags>`
-`</code>`
+```xml
+<flags>0</flags>
+```
 
 A 32 bit driver specific number that have bits set that have special meaning for a driver. See the documentation for a specific driver for an explanation of the meaning of each flag bit for that driver.
 
 ##### path
 
-`<code=xml>`
-`<path>`path-to-driver`</path>`
-`</code>`
+```xml
+<path>path-to-driver</path>
+```
 
 Path to where the driver is located. A dll file on Windows or a .so dl file on Linux etc.
 
 ##### guid
 
-`<code=xml>`
-`<guid>`guid-for-driver`</guid>`
-`</code>`
+```xml
+<guid>guid-for-driver</guid>
+```
 
 The GUID that the driver will use for it's interface. This means that this is the GUID that will be the source of Level I events but only if the GUID is not set to all zeros in which case the generated interface GUID from the general section will be used as the base for the GUID. 
 
@@ -1951,57 +1938,57 @@ Note that the GUID set here will have the two least significant bytes replaced b
 
 `<translation>` is a list of semicolon separated fields with translations that should be carried out by the system on event passing through driver.
 
- | Mnemonic                            | Description                                                                                                          | 
- | --------                            | -----------                                                                                                          | 
+ | Mnemonic  | Description  | 
+ | :--------:  | -----------  | 
  | **OUT_MEASUREMENT_L1_TO_L2_FLOAT**  | On events from the driver (OUT) translate Level I measurement events to Level II measurement, floating point events. | 
  | **OUT_MEASUREMENT_L1_TO_L2_STRING** | On events from the driver (O - output) translate Level I measurement events to Level II measurement, string events.  | 
  | **OUT_ALL_TO_L1_OVER_L2**           | All outgoing events will be translated to class Level I events over Level II that is have 512 added to it's class.   | 
 
 ##### Known nodes
 
-`<known-nodes>` is used for the symbolic node reporting and access system. It is entirely optional. GUID entered should be the real GUID for the node, not the interface GUID. Names can be any length but will be truncated to 64-bytes max when reported. This tag must always be the last tag within a driver tag.
+*\<known-nodes\>* is used for the symbolic node reporting and access system. It is entirely optional. GUID entered should be the real GUID for the node, not the interface GUID. Names can be any length but will be truncated to 64-bytes max when reported. This tag must always be the last tag within a driver tag.
 
 ** Example **
 
-`<code=xml>`
-`<leve1driver enable="true" >` 
+```xml
+<leve1driver enable="true" >
 
-        `<!-- The level I logger driver  -->`
-        `<driver enable="false">`
-            `<name>`logger`</name>`
-            `<config>`/tmp/canallog.txt`</config>`
-            `<path>`/ust/local/lib/canallogger.so`</path>`
-            `<flags>`1`</flags>`
-            `<guid>`00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00`</guid>`
-            `<translate>`OM1M2F`</translate>`
-        `</driver>`
+    <!-- The level I logger driver  -->
+    <driver enable="false">
+        <name>logger</name>
+        <config>/tmp/canallog.txt</config>
+        <path>/ust/local/lib/canallogger.so</path>
+        <flags>1</flags>
+        <guid>00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00</guid>
+        <translate>OM1M2F</translate>
+    </driver>
 
-        `<!-- The can232 driver -->`
-        `<driver enable="false" >`
-            `<name>`can232`</name>`
-            `<config>`/dev/ttyS0;19200;0;0;125`</config>`
-            `<path>`/usr/local/lib/can232drv.so`</path>`
-            `<guid>`00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00`</guid>`
-            `<flags>`0`</flags>`
-        `</driver>`
+    <!-- The can232 driver -->
+    <driver enable="false" >
+        <name>can232</name>
+        <config>/dev/ttyS0;19200;0;0;125</config>
+        <path>/usr/local/lib/can232drv.so</path>
+        <guid>00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00</guid>
+        <flags>0</flags>
+    </driver>
 
-        `<!-- The xap driver is documented  -->`
-        `<driver enable="false" >`
-            `<name>`xap`</name>`
-            `<config>`9598;3639`</config>`
-            `<path>`/usr/local/lib/xapdrv.so`</path>`
-            `<flags>`0`</flags>`
-            `<guid>`00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00`</guid>`
-            `<known-nodes>`
-                `<node guid="00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:01" name="Known node1" />`
-                `<node guid="00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:02" name="Known node2" />`
-                `<node guid="00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:03" name="Known node3" />`
-                `<node guid="00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:04" name="Known node4" />`
-            `</known-nodes>`
-        `</driver>`
+    <!-- The xap driver is documented  -->
+    <driver enable="false" >
+        <name>xap</name>
+        <config>9598;3639</config>
+        <path>/usr/local/lib/xapdrv.so</path>
+        <flags>0</flags>
+        <guid>00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00</guid>
+        <known-nodes>
+            <node guid="00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:01" name="Known node1" />
+            <node guid="00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:02" name="Known node2" />
+            `<node guid="00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:03" name="Known node3" />
+            <node guid="00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:04" name="Known node4" />            
+        </known-nodes>
+    </driver>
 
-    `</leve1driver>`
-`</code>`
+</leve1driver>
+```
 
 ----
 
@@ -2013,17 +2000,18 @@ Level II drivers can handle the full VSCP abstraction and don't have the limitat
 
 ###  level2driver 
 
-`<code=xml>`
-`<leve2driver enable=”true|false” />`
-`</code>`
+```xml
+<leve2driver enable=”true|false” />
+```
 
 Enable/disable daemon Level II driver interface. If disabled no Level II drivers will be loaded. Default is enabled. 
 
 #### driver
 
-`<code=xml>`
+```xml
 `<driver enable="false">`
-`</code>`
+```
+
 The content consist of one or several driver entries each representing a driver that should be used. 
 
 ##### enable
@@ -2032,25 +2020,25 @@ The driver should be loaded if set to true. If false the driver will not be load
 
 ##### name
 
-`<code=xml>`
+```xml
 `<name>`driver-name`</name>`
-`</code>`
+```
 
 A name given by the user for the driver.
 
 ##### config
 
-`<code=xml>`
+```xml
 `<config>`config1;config2`</config>`
-`</code>`
+```
 
 The semi colon separated configuration string for the driver. The meaning of this string is driver specific.
 
 #####  guid
 
-`<code=xml>`
+```xml
 `<guid>`guid-for-driver`</guid>`
-`</code>`
+```
 
 The GUID that the driver will use for it's interface.
 
@@ -2064,37 +2052,37 @@ See explanation for Level I drivers above.
 
 **Example**
 
-`<code=xml>`
-`<level2driver enable="true|false">` 	
+```xml
+<level2driver enable="true|false">
 
-    `<driver enable="true|false" >`
-        `<name>`test`</name>` 				
-        `<path>`path_to_driver`</path>`
-        `<config>`param2;param2;param3;...`</config>` 		
-        `<guid>`00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00`</guid>`
-        `<known-nodes>`
-            `<node guid="00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:01" name="Known node1" />`
-            `<node guid="00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:02" name="Known node2" />`
-            `<node guid="00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:03" name="Known node3" />`
-            `<node guid="00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:04" name="Known node4" />`
-        `</known-nodes>`
-    `</driver>` 	
+    <driver enable="true|false" >
+        <name>test</name>		
+        <path>path_to_driver`</path>
+        <config>param2;param2;param3;...</config>
+        <guid>00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00</guid>
+        <known-nodes>
+            <node   guid="00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:01" name="Known node1" />
+            <node guid="00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:02" name="Known node2" />
+            <node guid="00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:03" name="Known node3" />
+            <node guid="00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:04" name="Known node4" />
+        </known-nodes>
+    </driver>
 
-`</level2driver>`
-`</code>`
+</level2driver>
+```
 
 ----
 
 ## tables
 
-`<code=xml>`
-`<tables>`
-    `<table ....... />`
-    `<table ....... />`
-    `<table ....... />`
+```xml
+<tables>
+    <table ....... />
+    <table ....... />
+    <table ....... />
     ...    
-`</tables>`
-`</code>`
+</tables>
+```
 
 Tables makes it possible to define tables that collect data (measurements). Tables can be of three types. **Type="dynamic"** which is a standard table that grows over time and **type="static"** which is a static table that have a fixed size and **type="max"** which is a table that grows up to a specified size and then is cleared and start to fill the table again.
 
@@ -2102,7 +2090,7 @@ You can access the written table data through the websocket, TCP/IP or the REST 
 
 #### table
 
-`<code=xml>`
+```xml
 <table enable="true|false"
     name="testtable1"
     bmemory="false|true"
@@ -2130,7 +2118,7 @@ You can access the written table data through the websocket, TCP/IP or the REST 
 
     description="Description of database"
 />
-`</code>`
+```
 
 This is the definition of a table. It defines the information for the table but does not enable any writing of data to the table. This must be done with a VSCP decision matrix entry and is [described here](http://www.vscp.org/docs/vscpd/doku.php?id=vscp_daemon_decision_matrix#write_table).
 
@@ -2208,9 +2196,12 @@ This is a note for a UI diagram or a UI table. Used for click and play diagrams 
 
 This is the SQL expression used to create the database for the table if it does not exist. For a in memory table this means every time the VSCP daemon is started. If this attribute is left blank it will be set to the following SQL expression
 
-`<code="sql">`
-CREATE TABLE 'vscptable' ( `idx` INTEGER NOT NULL PRIMARY KEY UNIQUE, `datetime` TEXT, `value` REAL DEFAULT 0 );
-`</code>`
+```sql
+CREATE TABLE 'vscptable' ( 
+    `idx` INTEGER NOT NULL PRIMARY KEY UNIQUE,   
+    `datetime` TEXT, 
+    `value` REAL DEFAULT 0 );
+```
 
 But you can use your own SQL expression to create tables with other fields. The following restrictions is the only ones
 
@@ -2219,19 +2210,19 @@ But you can use your own SQL expression to create tables with other fields. The 
 
 *  The vscptable must have the field **datetime** defined which is of type **TEXT** and the field **value** defined which is of type **REAL**.
 
-Before the expression is executed by the SLQ engine [VSCP decision matrix escapes](http://www.vscp.org/docs/vscpd/doku.php?id=vscp_daemon_decision_matrix#variable_substitution_for_parameters_escapes) are replaced with real values.
+Before the expression is executed by the SLQ engine [VSCP decision matrix escapes](./decision_matrix.md#variable_substitution_for_parameters_escapes) are replaced with real values.
 
 ##### sql-insert (optional)
 
 This is the SQL expression used to insert data into the table. If this attribute is left blank it will be set to the following SQL expression
 
-`<code="sql">`
+```sql
 INSERT INTO 'vscptable' (datetime,value) VALUES ('%%s','%%f');
-`</code>`
+```
 
-You can set your own SQL expression. But **datetime** must be followed by a %%s somewhere and in the same way the **value** need to be followed by %%f somewhere. The order does not matter. %%s will be replaced by %s (string insert) by the [VSCP decision matrix escapes](http://www.vscp.org/docs/vscpd/doku.php?id=vscp_daemon_decision_matrix#variable_substitution_for_parameters_escapes) handling and %%f will be replaced by %lf (floating point (double) value insert) by the [VSCP decision matrix escapes](http://www.vscp.org/docs/vscpd/doku.php?id=vscp_daemon_decision_matrix#variable_substitution_for_parameters_escapes) handling.
+You can set your own SQL expression. But **datetime** must be followed by a %%s somewhere and in the same way the **value** need to be followed by %%f somewhere. The order does not matter. %%s will be replaced by %s (string insert) by the [VSCP decision matrix escapes](./decision_matrix.md#variable_substitution_for_parameters_escapes) handling and %%f will be replaced by %lf (floating point (double) value insert) by the [VSCP decision matrix escapes](./decision_matrix.md#variable_substitution_for_parameters_escapes) handling.
 
-Before the expression is executed by the SQL engine [VSCP decision matrix escapes](http://www.vscp.org/docs/vscpd/doku.php?id=vscp_daemon_decision_matrix#variable_substitution_for_parameters_escapes) are replaced with real values. So any number of other values and content of variables can be inserted in the table when a new data point is inserted.
+Before the expression is executed by the SQL engine [VSCP decision matrix escapes](./decision_matrix.md#variable_substitution_for_parameters_escapes) are replaced with real values. So any number of other values and content of variables can be inserted in the table when a new data point is inserted.
 
 ##### sql-delete (optional)
 
@@ -2243,7 +2234,7 @@ This is a description of the table.
 
 ##  Example 1 
 
-`<code="xml">`
+```xml
 <table enable="true" 
     bmemory="false"
     type="static"
@@ -2253,7 +2244,7 @@ This is a description of the table.
     labelx="Time"
     labely="Temperature in degrees Celsius"
     title="Temperature outside"
-    note="Diagram showing temperature outside at s:t Claus house at the North pole fetched from a Kelvin NTC10K module."
+    note="Diagram showing temperature outside at Donald Ducks house at the North pole fetched from a Kelvin NTC10K module."
     size="0"
     sqlcreate="CREATE TABLE 'vscptable' ( `idx` INTEGER NOT NULL PRIMARY KEY UNIQUE, `datetime` TEXT, `value` REAL DEFAULT 0, `event` TEXT, 'timestamp  INTEGER DEFAULT 0' );"
     sqlinsert="INSERT INTO 'vscptable' (datetime,value,event,timestamp) VALUES ('%%s','%%f','%event','%event.timestamp');"
@@ -2266,6 +2257,6 @@ This is a description of the table.
     vscpsubzone="255"
     description="Temperature data collections from the North pole s:t Clause house, Kelvin NTC10K, Sensor 3"
 />
-`</code>`
+```
 
 {% include "./bottom_copyright.md" %}

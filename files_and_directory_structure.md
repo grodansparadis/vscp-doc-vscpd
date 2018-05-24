@@ -1,7 +1,7 @@
 # Files and directory structure
 
 
-{{::vscpd_directory_structure.png|}}
+![](./images/vscpd_directory_structure.png)
 
 This picture above show the default directory structure for files for a VSCP server. The default installation folder is **/srv/vscp**.
 
@@ -22,7 +22,9 @@ This picture above show the default directory structure for files for a VSCP ser
 
 ## Databases
 
-### vscpd-database /srv/vscp/vscpd.sqlite3
+### vscpd-database 
+
+    /srv/vscp/vscpd.sqlite3
 
 This is the main configuration file for the VSCP server. It holds discovery information as well as many other things.
 
@@ -41,9 +43,11 @@ the two numbers are process id's. The last is the program we are running and rep
 which removes the lock (sends **SIGKILL**). You can read [about signals here](https///en.wikipedia.org/wiki/Signal_(IPC)#List_of_signals).
 
 
-### log-database /srv/vscp/logs/vscpd_log.sqlite3
+### log-database 
 
-Log messages is logged into this database. It can be held at a fixed size with the [logdays switch](https///www.vscp.org/docs/vscpd/doku.php?id=configuring_the_vscp_daemon#logdays) in the configuration file or grow to infinity if left out. 
+    /srv/vscp/logs/vscpd_log.sqlite3
+
+Log messages is logged into this database. It can be held at a fixed size with the [logdays switch](./configuring_the_vscp_daemon.md#logdays) in the configuration file or grow to infinity if left out. 
 
 You can check entries in the log in the admin web interface or you can use the sqlite command line tool. To install this tool use
 
@@ -77,5 +81,5 @@ To list a specific log type between two datestimes use
 Well you got the drill.
 
     
-
+{% include "./bottom_copyright.md" %}
 
