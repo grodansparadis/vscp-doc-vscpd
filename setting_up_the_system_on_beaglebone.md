@@ -1,4 +1,4 @@
-{{:product_beaglebone.jpg?nolink&200|}}
+![](./images/product_beaglebone.jpg)
 
 
 # Setting up the system on Beaglebone
