@@ -36,7 +36,7 @@ when released.
 
 Creating a button is typically done with
 
-    var btn1 = new vscpwsstateButton( "ws://192.168.1.20:8080", "buttonKitchen"); 
+    var btn1 = new vscpwsstateButton( "ws://192.168.1.20:8884", "buttonKitchen"); 
 
 which will create a default state button of type=0 looking like this. 
 
@@ -54,7 +54,7 @@ where the cross over them indicate a broken connection to the server.
 
 ## Construction of a vscpws_stateButton
 
-`<code=javascript>`
+```javascript
 var bt1 = vscpws_stateButton( username,          // username                                                      
                                 passwordhash,    // passwordhash 
                                 url,             // url to VSCP websocket i/f 
@@ -65,7 +65,7 @@ var bt1 = vscpws_stateButton( username,          // username
                                 bDisable,        // Disable user interactions 
                                 customupsrc,     // Custom up image 
                                 customdownsrc )  // Custom down image
-`</code>`
+```
 
 ### username
 
@@ -79,11 +79,11 @@ Password hash to logon to the websocket server
 
 Url to the websocket server. This typically is on the form 
 
-    "ws://192.168.1.20:8080"
+    "ws://192.168.1.20:8884"
     
 or
 
-    "wss://192.168.1.20:8080" 
+    "wss://192.168.1.20:8884" 
     
 if SSL is used.  
 
@@ -93,7 +93,7 @@ With all widgets having there own user/password/url specified for the websocket 
 
 This is the name of the canvas element where the button should be placed. Typically this is defined on the form
 
-`<code=javascript>`
+```javascript
 <canvas id="buttonKitchen"
     style="z-index: 3;
         position:absolute;
@@ -101,7 +101,7 @@ This is the name of the canvas element where the button should be placed. Typica
         top:310px;" height="30px" width="22px">
         Your browser does not support HTML5 Canvas.
 `</canvas>`
-`</code>`
+```
 
 
 The id is the parameter that goes for the canvasName. This name is also used to create the instance name for the button and the name set is preceded with vscpws_. The canvas specifies the position and the size for the button. Also z-order is possible to define so that objects can be placed behind, or partially behind each other to get nice visual effects. 
@@ -619,7 +619,7 @@ setOnTransmitEvent( vscpclass,    // VSCP class
                        vscptype,   // VSCP type 
                        data,       // Array with databytes 
                        guid)       // GUID to use 
-`</code>`
+```
 
 
 ##### vscpclass
@@ -651,7 +651,7 @@ setOffTransmitEvent( vscpclass, // VSCP class
                        vscptype, // VSCP type
                        data,     // Array with data bytes
                        guid)     // GUID to use
-`</code>`
+```
 
 ##### vscpclass
 
@@ -681,7 +681,7 @@ setOnReceiveEvent( vscpclass,  // VSCP class
                      vscptype, // VSCP type 
                      data,     // Array with databytes 
                      guid )    // GUID to use 
-`</code>` 
+``` 
    
 ##### vscpclass
 
@@ -709,7 +709,7 @@ setOffReceiveEvent( vscpclass,    // VSCP class
                         vscptype, // VSCP type 
                         data,     // Array with databytes 
                         guid )    // GUID to use 
-`</code>`  
+```  
 
 ##### vscpclass
 
@@ -737,7 +737,7 @@ As it is common to use one of the types in CLASS1.CONTROL as on-event for a butt
 setOnTransmitZone( index,      // index
                      zone,      // zone 
                      subzone )  // subzone  
-`</code>`
+```
 
 ##### Index
 
@@ -761,7 +761,7 @@ As it is common to use one of the types in CLASS1.CONTROL as off-event for a but
 setOffTransmitZone( index,   // index
                      zone,    // zone 
                      subzone) // subzone 
-`</code>`
+```
 
 ##### Index
 
@@ -784,7 +784,7 @@ As it is common to use one of the types in CLASS1.INFORMATION as a trigger for t
 setOnReceiveZone( index,   // index
                   zone,    // zone 
                   subzone) // subzone 
-`</code>`
+```
 
 ##### Index
 
@@ -807,7 +807,7 @@ As it is common to use one of the types in CLASS1.INFORMATION as a trigger for t
 setOffReceiveZone( index,    // index
                    zone,     // zone 
                    subzone)  // subzone
-`</code>`
+```
 
 ##### Index
 
@@ -831,7 +831,7 @@ This method setts Transmit On/Off and Receive On/Off index,zone and subzone in o
 setTransmitBothZone ( index,      // index
                        zone,      // zone 
                        subzone )  // subzone  
-`</code>`
+```
 
 ##### Index
 
@@ -855,7 +855,7 @@ This method set receive On/Off index,zone and subzone in one call.
 setReceiveBothZone( index,       // index
                       zone,      // zone 
                       subzone )  // subzone  
-`</code>`
+```
 
 ##### Index
 
@@ -877,7 +877,7 @@ With this method one can set a VSCP daemon boolean variable that should be monit
 `<code=c>`
 setMonitorVariable( variablename, // variable name 
                        interval)  // monitoring interval in milliseconds 
-`</code>`
+```
 
 ##### variablename
 
@@ -900,7 +900,7 @@ Draw the widget. Normally no need to use.
 **Usage** 
 `<code=c>`
 draw() // Draw the widget
-`</code>`
+```
 
 
 ### setValue
@@ -912,7 +912,7 @@ Set the value for the widget. The state will also be
 setValue( value,       // Boolean value for state 
             bUpdate )  // True (default) if a draw should be done 
                        // after value is set. 
-`</code>`
+```
 
 ##### value
 

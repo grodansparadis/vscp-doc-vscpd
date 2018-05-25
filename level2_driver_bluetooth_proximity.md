@@ -8,7 +8,7 @@ A call of method **VSCPBlockingSend** will always return **CANAL_ERROR_NOT_SUPPO
 
 The driver is always using the GUID of the interface.
 
-A demo is available here on [youtube](https///youtu.be/CrtfJhWrDIU). 
+A demo is available here on [youtube](https://youtu.be/CrtfJhWrDIU). 
 
 **Driver Windows**: *vscpl2_btproximitydrv.dll*
 
@@ -46,12 +46,12 @@ If your driver name contains spaces, for example "name of driver" it will get a 
     `<config>``</config>`                 
     `<guid>`FF:FF:FF:FF:FF:FF:FF:F7:01:00:00:00:00:00:00:00`</guid>`            
 `</driver>` 
-`</code>`
+```
 
 
 ##### Example of variable declarations to configure driver
 
-`<code=xml>`
+```xml
 <!-- 
 This node is a Bluetooth proximity sensor driver that send out the identification id when a
 Bluetooth device is within range. The id is the Bluetooth id of the device.
@@ -115,7 +115,7 @@ Bluetooth device is within range. The id is the Bluetooth id of the device.
     `<note>`GUID for the driver.`</note>`
     `<value>`FF:FF:FF:FF:FF:FF:FF:F7:01:00:00:00:00:00:00:00`</value>`
     `</variable>`
-`</code>`
+```
 
 
 \\ 

@@ -1,19 +1,19 @@
 # Get Status
 
-`<code=css>`
+```css
     op=0 or op=STATUS
-`</code>`  
+```  
 
 Check status. Can be used to hold the session active but also to check how many event are waiting in the input queue. **Requires a valid session parameter**
 
 **General format:**
 
-`<code=css>`
+```css
 http://server:port/rest?
     vscpsession=key&
     format='plain|csv|xml|json|jsonp'&
     op='0|status'
-`</code>`
+```
 
 **Arguments:**
 
@@ -26,47 +26,47 @@ http://server:port/rest?
 
 ## HTTP Request with GET
 
-`<code=css>`
-http://demo.vscp.org:8080/vscp/rest?vscpsession=d1c13eb83f52f319f14d167962048521 &format=plain|csv|xml|json|jsonp&op=0|status    
-`</code>`
+```css
+http://demo.vscp.org:8884/vscp/rest?vscpsession=d1c13eb83f52f319f14d167962048521 &format=plain|csv|xml|json|jsonp&op=0|status    
+```
 
 to test this with **curl** use the following format
 
-`<code=css>`
+```css
 curl -X GET "http://host:port/vscp/rest? \
     vscpsession=d1c13eb83f52f319f14d167962048521 & \
     format=plain|csv|xml|json|jsonp& \
     op=0|status"
-`</code>`
+```
 
 ## Examples
 
 ##### example GET HTTP request
 
-`<code=css>`
-    http://localhost:8080/vscp/rest?  
+```css
+    http://localhost:8884/vscp/rest?  
               vscpsession=d1c13eb83f52f319f14d167962048521&
               format=plain&
               op=0
-`</code>`  
+```  
 
 
 ##  HTTP Request with POST
 
-`<code=css>`
-curl -X POST "http://localhost:8080/vscp/rest" \
+```css
+curl -X POST "http://localhost:8884/vscp/rest" \
     -H "vscpsession: d1c13eb83f52f319f14d167962048521" \ 
     -d "op=status&format=plain"     
-`</code>`
+```
 
 ## Demo
 
-There is a a [demo app.](https///github.com/grodansparadis/vscp-ux/tree/master/rest) in the source tree, that demonstrates this functionality using JavaScript.
+There is a [demo app.](https://github.com/grodansparadis/vscp-ux/tree/master/rest) in the source tree, that demonstrates this functionality using JavaScript.
 
 ### JavaScript Request with JSONP
 
-`<code=JavaScript>`
-*/*//////////////////////////////////////////////////////////////////
+```javascript
+//////////////////////////////////////////////////////////////////
 // do_status
 //
 		
@@ -105,7 +105,7 @@ else {
     alert("Interface is not open!");
 }
 };
-`</code>`
+```
 
 ## Responses
 
@@ -127,28 +127,24 @@ else {
 
 ### XML
 
-`<code=xml>`
-`<vscp-rest success="true" code="1" message="Success." description="Success.">`
-`<vscpsession>`b3c85bb85aa38ecaf25b15a5865178f2`</vscpsession>`
-`<nEvents>`46`</nEvents>`
-`</vscp-rest>`
-`</code>`
+```xml
+<vscp-rest success="true" code="1" message="Success." description="Success.">
+    <vscpsession>`b3c85bb85aa38ecaf25b15a5865178f2`</vscpsession>
+    <nEvents>`46`</nEvents>
+</vscp-rest>
+```
 
 ### JSON
 
-`<code=css>`
+```css
 {"success":true,"code":1,"message":"success","description":"Success","vscpsession":"b3c85bb85aa38ecaf25b15a5865178f2","nEvents":59}
-`</code>`
+```
 
 ### JSONP
 
-`<code=JavaScript>`
+```javascript
 typeof handler === 'function' && handler({"success":true,"code":1,"message":"success","description":"Success","vscpsession":"b3c85bb85aa38ecaf25b15a5865178f2","nEvents":69});
-`</code>`
+```
 
 
-\\ 
-----
-{{  ::copyright.png?600  |}}
-
-`<HTML>``<p style="color:red;text-align:center;">``<a href="http://www.grodansparadis.com">`Grodans Paradis AB`</a>``</p>``</HTML>`
+{% include "./bottom_copyright.md" %}

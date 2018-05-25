@@ -113,7 +113,7 @@ To reset a variable may seem a strange thing to do. But it is just setting it's 
 
 The main storage for persistent variables from version 1.12.10 is in a database. But variables can still be loaded/save from/to XML files. One typical use can be to load initialised non-persistent variables into memory on start up. Loaded persistent variables will be written to persistent storage and if already available in the database there value will be updated with the XML version. 
 
-`<code=xml>`
+```xml
 `<?xml version="1.0" encoding="utf-8"?>`
 
 `<variables>` `<!-- <persistent>` is an older form --> 
@@ -137,7 +137,7 @@ The main storage for persistent variables from version 1.12.10 is in a database.
     `</variable>`
 
 `</variables>`
-`</code>` 
+``` 
 
 ## Non-persistent variables
 
@@ -275,7 +275,7 @@ Here is a list of defined stock variables.
  | **vscp.automation.segctrl.heartbeat.period**       | Long     | Period in seconds for segment controller heartbeats.                                                | 
  | **vscp.automation.segctrl.heartbeat.last**         | DateTime | Date and time when last segment controller heartbeat was sent by the system.                        | 
  | **vscp.automation.daylength**                      | String   | Holds calculated length of day as "hours:minutes".                                                  | 
- | **vscp.automation.declination**                    | Double   | Holds calculated [declination](https///en.wikipedia.org/wiki/Declination) in floating point format. | 
+ | **vscp.automation.declination**                    | Double   | Holds calculated [declination](https://en.wikipedia.org/wiki/Declination) in floating point format. | 
  | **vscp.automation.sun.max.altitude**               | Double   | Holds max altitude for the sun this day in floating point format.                                   | 
  | **vscp.automation.twilightsunrise.event.enable **  | Boolean  | True if twilight unrise event is enabled.                                                           | 
  | **vscp.automation.twilightsunrise**                | Time     | Time for twilight sunrise in ISO time format.                                                       | 
@@ -535,13 +535,13 @@ A user record have the following format.
  | **vscp.table.**//name//**.range**               | String        | All records of table 'name' and a datetime range. Can only be read.                                                                                                         | 
  | **vscp.table.**//name.n[.field]//               | String        | Record n of table 'name'. If given only named 'field' of record. Can only be read.                                                                                          | 
  | **vscp.table.**//name//**.range**//.n[.field]// | String        | Record n of table 'name' and a datetime range. If given only named 'field' of record. Can only be read.                                                                     | 
- | **vscp.table.**//name//**.range.average**       | Double        | [Average](https///en.wikipedia.org/wiki/Average) for values over a period. Can only be read.                                                                                | 
- | **vscp.table.**//name//**.range.median**        | Double        | [Median](https///en.wikipedia.org/wiki/Median) ([second quartile](https///en.wikipedia.org/wiki/Quartile)) for values over a period. Can only be read.                      | 
- | **vscp.table.**//name//**.range.stdev**         | Double        | [Standard deviation](https///en.wikipedia.org/wiki/Standard_deviation) for values over a period. Can only be read.                                                          | 
- | **vscp.table.**//name//**.range.variance**      | Double        | [Variance](http://www.financereference.com/learn/variance) ([wikipedia](https///en.wikipedia.org/wiki/Variance)) for values over a period. Can only be read.                | 
- | **vscp.table.**//name//**.range.mode**          | Double        | [Statistical mode](https///en.wikipedia.org/wiki/Mode_%28statistics%29) for values over a period. Can only be read.                                                         | 
- | **vscp.table.**//name//**.range.lowerquartile** | Double        | [Lower quartile](https///en.wikipedia.org/wiki/Quartile) for values over a period. Can only be read.                                                                        | 
- | **vscp.table.**//name//**.range.upperquartile** | Double        | [Upper quartile](https///en.wikipedia.org/wiki/Quartile) for values over a period. Can only be read.                                                                        | 
+ | **vscp.table.**//name//**.range.average**       | Double        | [Average](https://en.wikipedia.org/wiki/Average) for values over a period. Can only be read.                                                                                | 
+ | **vscp.table.**//name//**.range.median**        | Double        | [Median](https://en.wikipedia.org/wiki/Median) ([second quartile](https://en.wikipedia.org/wiki/Quartile)) for values over a period. Can only be read.                      | 
+ | **vscp.table.**//name//**.range.stdev**         | Double        | [Standard deviation](https://en.wikipedia.org/wiki/Standard_deviation) for values over a period. Can only be read.                                                          | 
+ | **vscp.table.**//name//**.range.variance**      | Double        | [Variance](http://www.financereference.com/learn/variance) ([wikipedia](https://en.wikipedia.org/wiki/Variance)) for values over a period. Can only be read.                | 
+ | **vscp.table.**//name//**.range.mode**          | Double        | [Statistical mode](https://en.wikipedia.org/wiki/Mode_%28statistics%29) for values over a period. Can only be read.                                                         | 
+ | **vscp.table.**//name//**.range.lowerquartile** | Double        | [Lower quartile](https://en.wikipedia.org/wiki/Quartile) for values over a period. Can only be read.                                                                        | 
+ | **vscp.table.**//name//**.range.upperquartile** | Double        | [Upper quartile](https://en.wikipedia.org/wiki/Quartile) for values over a period. Can only be read.                                                                        | 
  | **vscp.table.**//name//**.range.min**           | Double        | Minimum for values over a period. Can only be read.                                                                                                                         | 
  | **vscp.table.**//name//**.range.max**           | Double        | Maximum for values over a period. Can only be read.                                                                                                                         | 
  | **vscp.table.**//name//**.range.sum**           | Double        | Sum for values over a period. Can only be read.                                                                                                                             | 

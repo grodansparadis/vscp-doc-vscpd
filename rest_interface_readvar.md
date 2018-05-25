@@ -1,20 +1,20 @@
 # Read variable
 
-`<code=css>`
+```css
     op=7 or op=READVAR
-`</code>`  
+```  
     
 Read the value of a server variable. **Requires a valid session parameter**
 
 **General format:**
 
-`<code=css>`
+```css
 http://host:port/vscp/rest?
     vscpsession=session-key&
     format=plain|csv|xml|json|jsonp&
     op=7|readvar&
     variable=variable-name   
-`</code>`
+```
 
 **Arguments:**
 
@@ -29,49 +29,49 @@ http://host:port/vscp/rest?
 
 ## HTTP Request with GET
 
-`<code=css>`
+```css
 http://host:port/vscp/rest?vscpsession=d1c13eb83f52f319f14d167962048521 &format=plain|csv|xml|json|jsonp&op=7|readvar &variable=`<variable_name>`   
-`</code>`
+```
 
 
 
 to test this with **curl** use the following format
 
-`<code=css>`
+```css
 curl -X GET "http://host:port/vscp/rest? \
     vscpsession=d1c13eb83f52f319f14d167962048521 & \
     format=plain|csv|xml|json|jsonp& \
     op=7|readvar \
     variable=`<variable_name>`"
-`</code>`
+```
 
 
 ## Examples
 
 ##### example GET HTTP request
 
-`<code=css>`
-    http://localhost:8080/vscp/rest?  
+```css
+    http://localhost:8884/vscp/rest?  
               vscpsession=d1c13eb83f52f319f14d167962048521&
               format=plain&
               op=7&
               variable=SIM1_ZONE0
-`</code>`  
+```  
 ## HTTP Request with POST
 
-`<code=css>`
-curl -X POST "http://localhost:8080/vscp/rest" \
+```css
+curl -X POST "http://localhost:8884/vscp/rest" \
     -H "vscpsession: d1c13eb83f52f319f14d167962048521" \ 
     -d "op=readvar&format=plain"     
-`</code>`
+```
 ## Demo
 
-There is a a [demo app.](https///github.com/grodansparadis/vscp-ux/tree/master/rest) in the source tree, that demonstrates this functionality using JavaScript.
+There is a a [demo app.](https://github.com/grodansparadis/vscp-ux/tree/master/rest) in the source tree, that demonstrates this functionality using JavaScript.
 
 ### JavaScript Request with JSONP
 
-`<code=JavaScript>`
-*/*//////////////////////////////////////////////////////////////////
+```javascript
+//////////////////////////////////////////////////////////////////
 // do_readVariable
 //
 		
@@ -133,11 +133,9 @@ var do_readVariable = function() {
 	alert("Interface is not open!");
     }
 };
-`</code>`
+```
 
 ## Responses
-
-:!:
 
 **note** Response format has changed from version 1.12.14.12 and now include *user*, *access-rights*, *last-change*. Also all note data is always BASE64 encoded and this is true also for 'string-type' values.
 
@@ -145,50 +143,50 @@ With the format parameter you set the format your want the response represented 
 
 ##### Response for format=plain
 
-`<code=css>`
+```css
 1 1 Success 
 name=TEST type=1 user=0 access-rights=777 persistent=true last-change=2016-09-29T11:36:11 value='VGhpcyBpcyBhIHRlc3Q=' note='U3RheSBodW5ncnksIHN0YXkgZm9vbGlzaA=='
-`</code>`
+```
 
-where \\
-`<code=JavaScript>`
+where 
+
+```javascript
 "VGhpcyBpcyBhIHRlc3Q=" = BASE64("This is a test")\\
 "U3RheSBodW5ncnksIHN0YXkgZm9vbGlzaA==" = BASE64("Stay hungry, stay foolish") 
-`</code>`
+```
 ##### Response for format=csv
 
-`<code=css>`
+```css
 success-code,error-code,message,description,Variable,Type,Persistent,Value,Note
 1,1,Success,Success.,test,1,0,777,true,2016-09-29T11:36:11'VGhpcyBpcyBhIHRlc3Q=','U3RheSBodW5ncnksIHN0YXkgZm9vbGlzaA=='
-`</code>`
+```
 
 ##### response for format=xml
 
-`<code=xml>`
-`<vscp-rest success="true" code="1" message="Success" description="Success.">`
-`<variable type="1(String)" persistent="true">`
-`<name>`TEST`</name>`
-`<value>`VGhpcyBpcyBhIHRlc3Q`</value>`
-`<note>`U3RheSBodW5ncnksIHN0YXkgZm9vbGlzaA==`</note>`
-`</variable>`
-`</vscp-rest>`
-`</code>`
+```xml
+<vscp-rest success="true" 
+            code="1" 
+            message="Success"    
+            description="Success.">
+    <variable type="1(String)" persistent="true">
+        <name>TEST</name>
+        <value>VGhpcyBpcyBhIHRlc3Q</value>
+        <note>U3RheSBodW5ncnksIHN0YXkgZm9vbGlzaA==</note>
+    </variable>
+</vscp-rest>
+```
 
 ##### response for format=json
 
-`<code=css>`
+```css
 {"success":true,"code":1,"message":"success","description":"Success","varname":"TEST","vartype":"String","vartypecode":1,"varpersistence":"true","varvalue":"VGhpcyBpcyBhIHRlc3Q","varnote":"U3RheSBodW5ncnksIHN0YXkgZm9vbGlzaA=="}
-`</code>`
+```
 
 ##### response for format=jsonp
 
-`<code=JavaScript>`
+```javascript
 typeof handler === 'function' && handler({"success":true,"code":1,"message":"success","description":"Success","varname":"TEST","vartype":"String","vartypecode":1,"varpersistence":"true","varvalue":"VGhpcyBpcyBhIHRlc3Q","varnote":"U3RheSBodW5ncnksIHN0YXkgZm9vbGlzaA=="});
-`</code>`
+```
 
 
-\\ 
-----
-{{  ::copyright.png?600  |}}
-
-`<HTML>``<p style="color:red;text-align:center;">``<a href="http://www.grodansparadis.com">`Grodans Paradis AB`</a>``</p>``</HTML>`
+{% include "./bottom_copyright.md" %}

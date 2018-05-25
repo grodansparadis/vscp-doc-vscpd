@@ -207,7 +207,7 @@ When the daemon is started up the internal decision matrix is loaded from the dm
 
 The dm.xml file can be edited but easier is to use the web interface of the VSCP daemon to updated and add entries. The location is 
 
-    http://localhost:8080/vscp/dm
+    http://localhost:8884/vscp/dm
     
 if VSCP daemon is on a local host.  
 
@@ -595,7 +595,7 @@ but should remember that this method is deprecated in RFC-1396
 
 ##### Example 1
 
-Use a HTTP POST to update a [Thingspeak](https///thingspeak.com) channel every minute. We use [CLASS2.VSCPD Type=6, MINUTE](https://grodansparadis.gitbooks.io/the-vscp-specification/content/class2.vscpd.html#type--6-0x0006-minute) to update field1 which get the current minute value written using the escape **%minute**. The event is executed all time, every day, from beginning of time to the end of time.  
+Use a HTTP POST to update a [Thingspeak](https://thingspeak.com) channel every minute. We use [CLASS2.VSCPD Type=6, MINUTE](https://grodansparadis.gitbooks.io/the-vscp-specification/content/class2.vscpd.html#type--6-0x0006-minute) to update field1 which get the current minute value written using the escape **%minute**. The event is executed all time, every day, from beginning of time to the end of time.  
 
 Replacing the current event with a measurement event and using %measurement.string instead of %minute for field1 is an easy way to get a dynamic diagram from measurement data.
 

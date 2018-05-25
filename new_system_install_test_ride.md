@@ -95,11 +95,11 @@ Now leave the telnet window open.
 
 You can administer many things over an integrated web-interface of the VSCP Daemon. You reach this interface at
 
-    http://host:8080/vscp
+    http://host:8884/vscp
 
 typically
 
-    http://localhost:8080
+    http://localhost:8884
 
 if you are on the same machine as the VSCP daemon is run on.  Again you have to login and the same credentials as for the TCP/IP interface applies here here to **User: admin and Pass: secret** and again you have to connect from an allowed host. The deafult is a standard http port but you can enable SSL if needed.
 
@@ -265,7 +265,7 @@ The code here is based around the [vscpwslib.js](https://github.com/grodansparad
 
 To reach the package open the url
 
-    http://localhost:8080/index.html
+    http://localhost:8884/index.html
 
 (change the URL if you use another host or port). You will see this page
 
@@ -307,7 +307,7 @@ Events belong to a **class** and have a **type** and use some data. The above ev
 
 So lets test the On-Event. Open the page
 
-    http://localhost:8080/testws/statebutton.html
+    http://localhost:8884/testws/statebutton.html
 
 the page should look like this
 
@@ -319,7 +319,7 @@ If no connected to the VSCP daemon websocket interface can be established or if 
 
 Let the state button test page be in one window/tab of a browser and open the
 
-    http://localhost:8080/testws/event.html
+    http://localhost:8884/testws/event.html
 
 
 ![](./images/getting_started/websocket_events.png)
@@ -379,7 +379,7 @@ and to turn them off
 
 For the the upper button there also is a variable test. It constantly check the value of the boolean variable **stateButton1** on the VSCP Daemon and and change state according to it. So lets create this variable. Go to the administration interface and create the variable
 
-    http://localhost:8080/vscp/varnew
+    http://localhost:8884/vscp/varnew
 
 and step 1 make it boolean
 
@@ -396,7 +396,7 @@ if you click on the button you will see that the variable **StatButton1** also w
 
 There is a widget available that makes it easy to show temperatures. You find a test under
 
-    http://localhost:8080/testws/thermometercelsius.html
+    http://localhost:8884/testws/thermometercelsius.html
 
 that looks like this
 
@@ -424,7 +424,7 @@ And there is also the [REST interface](./rest_interface.md).
 
 While we at temperature you can also set temperature on the speedometer test page
     
-    http://localhost:8080/testws/speedometer.html  
+    http://localhost:8884/testws/speedometer.html  
     
 looks like this
 
@@ -432,7 +432,7 @@ looks like this
 
 the Google Gauge looks much nicer of course. You find a testpage for it here  
     
-    http://localhost:8080/testws/google_gauge.html
+    http://localhost:8884/testws/google_gauge.html
 
 and it looks like this
 
@@ -440,7 +440,7 @@ and it looks like this
 
 if you rather want to display the temperature in free text check the
 
-    http://localhost:8080/testws/simpletext.html
+    http://localhost:8884/testws/simpletext.html
     
 and it looks like this
 
@@ -448,7 +448,7 @@ and it looks like this
 
 or maybe a table is better then check this
 
-    http://localhost:8080/testws/google_table.html
+    http://localhost:8884/testws/google_table.html
 
 which looks like this
 
@@ -456,7 +456,7 @@ which looks like this
 
 Or maybe you want the temperature displayed in a dynamic diagram. Then use
 
-    http://localhost:8080/testws/google_line_simple.html
+    http://localhost:8884/testws/google_line_simple.html
 
 which looks like
 

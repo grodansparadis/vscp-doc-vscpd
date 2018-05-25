@@ -15,7 +15,7 @@ The level II driver is, just as the Level I driver, a dynamic link library with 
 
 The drivers are configured in the vscpd.conf file (format is [here](http://www.vscp.org/docs/vscpd/doku.php?id=configuring_the_vscp_daemon)). If you use more then one driver with different configuration it is very important that the prefix is set to different values for each of them. The prefix is prepended to a variable name before it is fetched from the daemon or set for that matter.
 
-To make a Level II driver just create a dynamically linked library that export the Level II interface. There are plenty of examples to use as a starting point for creating your own driver in the [source tree for the VSCP & Friends package at GitHub](https///github.com/grodansparadis/vscp_software). Look in  [src/vscp/drivers/level2](https///github.com/grodansparadis/vscp_software/tree/master/src/vscp/drivers/level2) folder.
+To make a Level II driver just create a dynamically linked library that export the Level II interface. There are plenty of examples to use as a starting point for creating your own driver in the [source tree for the VSCP & Friends package at GitHub](https://github.com/grodansparadis/vscp_software). Look in  [src/vscp/drivers/level2](https://github.com/grodansparadis/vscp_software/tree/master/src/vscp/drivers/level2) folder.
 
    * [Bluetooth proximity driver](http://www.vscp.org/docs/vscpd/doku.php?id=level2_driver_bluetooth_proximity)
    * [LM-sensors driver](http://www.vscp.org/docs/vscpd/doku.php?id=level2_driver_lm_sensors)

@@ -1044,7 +1044,7 @@ Comma-separated list of ports to listen on. If the port is SSL, a letter s must 
 
 It is possible to specify an IP address to bind to. In this case, an IP address and a colon must be pre-pended to the port number. For example, to bind to a loopback interface on port 80 and to all interfaces on HTTPS port 443, use 127.0.0.1:80,443s.
 
-If the server is built with IPv6 support, [::]:8080 can be used to listen to IPv6 connections to port 8080. IPv6 addresses of network interfaces can be specified as well, e.g. [::1]:8080 for the IPv6 loopback interface.
+If the server is built with IPv6 support, [::]:8884 can be used to listen to IPv6 connections to port 8080. IPv6 addresses of network interfaces can be specified as well, e.g. [::1]:8884 for the IPv6 loopback interface.
 
 [::]:80 will bind to port 80 IPv6 only. In order to use port 80 for all interfaces, both IPv4 and IPv6, use either the configuration 80,[::]:80 (create one socket for IPv4 and one for IPv6 only), or +80 (create one socket for both, IPv4 and IPv6). The +-notation to use IPv4 and IPv6 will only work in no network interface is specified. Depending on your operating system version and IPv6 network environment, some configurations might not work as expected, so you have to test to find the configuration most suitable for your needs. In case +80 does not work for your environment, you need to use 80,[::]:80.
 
@@ -1408,7 +1408,7 @@ The include directive may be used to include the contents of a file or the resul
 
 If not set, "**.shtml$|**.shtm$" is used.   
 
-Wikipedia article about [SSI](https///sv.wikipedia.org/wiki/Server_Side_Includes) file pattern. 
+Wikipedia article about [SSI](https://sv.wikipedia.org/wiki/Server_Side_Includes) file pattern. 
 
 
 

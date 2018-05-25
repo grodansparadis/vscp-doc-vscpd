@@ -1,8 +1,8 @@
 # Create variable
 
-`<code=css>`
+```css
     op=9 or op=CREATEVAR
-`</code>`  
+```  
     
 Create a remote variable. If the remote variable already exists the supplied parameters is updated in the existing variable.
 
@@ -10,7 +10,7 @@ Create a remote variable. If the remote variable already exists the supplied par
 
 **General form:**
 
-`<code=css>`
+```css
 http://host:port/vscp/rest?
     vscpsession=session-key& 
     format=plain|csv|xml|json|jsonp&
@@ -21,7 +21,7 @@ http://host:port/vscp/rest?
     [persistent=true|false]&
     [accessright=0x777]&
     [note=Optional base64 encoded note about variable.]    
-`</code>`
+```
 
 **Arguments:**
 
@@ -48,58 +48,58 @@ The owner of the variable will be the current logged in user.
 
 ## HTTP Request with GET
 
-`<code=css>`
-http://demo.vscp.org:8080/vscp/rest?vscpsession=d1c13eb83f52f319f14d167962048521& 
+```css
+http://demo.vscp.org:8884/vscp/rest?vscpsession=d1c13eb83f52f319f14d167962048521& 
     format=plain|csv|xml|json|jsonp&
     op=9|createvar&
     variable=name&
     value=value&
     type=type&
     [persistent=true|false]    
-`</code>`
+```
 
 
-*  **type** is a variable type on [numerical form](http://www.vscp.org/docs/vscpd/doku.php?id=vscp_daemon_variable_string_write_format). Default is string.
+*  **type** is a variable type on [numerical form](./decision_matrix_variables#variable_types). Default is string.
 
 *  **persistent** tells if variable should be persistent. That is saved to disk and loaded when the VSCP daemon is restarted. Default = false, not persistent.
 
 to test this with **curl** use the following format
 
-`<code=css>`
+```css
 curl -X GET "http://host:port/vscp/rest? \
     vscpsession=d1c13eb83f52f319f14d167962048521 & \
     format=plain|csv|xml|json|jsonp& \
     op=9|createvar"
-`</code>`
+```
 
 
 ## Examples
 
 ##### example GET HTTP request
 
-`<code=css>`
-    http://localhost:8080/vscp/rest?  
+```css
+    http://localhost:8884/vscp/rest?  
               vscpsession=d1c13eb83f52f319f14d167962048521&
               format=plain&
               op=9
-`</code>`  
+```  
 
 ## HTTP Request with POST
 
-`<code=css>`
-curl -X POST "http://localhost:8080/vscp/rest" \
+```css
+curl -X POST "http://localhost:8884/vscp/rest" \
     -H "vscpsession: d1c13eb83f52f319f14d167962048521" \ 
     -d "op=createvar&format=plain"     
-`</code>`
+```
 
 ## Demo
 
-There is a a [demo app.](https///github.com/grodansparadis/vscp-ux/tree/master/rest) in the source tree, that demonstrates this functionality using JavaScript.
+There is a a [demo app.](https://github.com/grodansparadis/vscp-ux/tree/master/rest) in the source tree, that demonstrates this functionality using JavaScript.
 
 ### JavaScript Request with JSONP
 
-`<code=JavaScript>`
-*/*//////////////////////////////////////////////////////////////////
+```javascript
+//////////////////////////////////////////////////////////////////
 // do_createVariable
 //
 		
@@ -184,7 +184,7 @@ var do_createVariable = function() {
     }
 
 };
-`</code>`
+```
 
 ## Responses
 
@@ -202,26 +202,22 @@ var do_createVariable = function() {
 
 ### XML
 
-`<code=xml>`
+```xml
 
-`</code>`
+```
 
 ### JSON
 
-`<code=css>`
+```css
 
-`</code>`
+```
 
 ### JSONP
 
-`<code=JavaScript>`
+```javascript
 
-`</code>`
+```
 
 
 
-\\ 
-----
-{{  ::copyright.png?600  |}}
-
-`<HTML>``<p style="color:red;text-align:center;">``<a href="http://www.grodansparadis.com">`Grodans Paradis AB`</a>``</p>``</HTML>`
+{% include "./bottom_copyright.md" %}

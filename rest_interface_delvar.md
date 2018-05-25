@@ -1,8 +1,8 @@
 # Create variable
 
-`<code=css>`
+```css
     op=10 or op=DELVAR
-`</code>`  
+```  
     
 Delete variable. You must own the variable (or be an admin user) to be able to delete it.
 
@@ -10,13 +10,13 @@ Delete variable. You must own the variable (or be an admin user) to be able to d
 
 **General form:**
 
-`<code=css>`
+```css
 http://host:port/vscp/rest?
     vscpsession=session-key& 
     format=plain|csv|xml|json|jsonp&
     op=10|delvar&
     variable=name   
-`</code>`
+```
 
 **Arguments:**
 
@@ -31,51 +31,51 @@ http://host:port/vscp/rest?
     
 ## HTTP Request with GET
 
-`<code=css>`
-http://demo.vscp.org:8080/vscp/rest?vscpsession=d1c13eb83f52f319f14d167962048521& 
+```css
+http://demo.vscp.org:8884/vscp/rest?vscpsession=d1c13eb83f52f319f14d167962048521& 
     format=plain|csv|xml|json|jsonp&
     op=10|delvar&
     variable=name  
-`</code>`
+```
 
 to test this with **curl** use the following format
 
-`<code=css>`
+```css
 curl -X GET "http://host:port/vscp/rest? \
     vscpsession=d1c13eb83f52f319f14d167962048521 & \
     format=plain|csv|xml|json|jsonp& \
     op=10|delvar"
-`</code>`
+```
 
 
 ## Examples
 
 ##### example GET HTTP request
 
-`<code=css>`
-    http://localhost:8080/vscp/rest?  
+```css
+    http://localhost:8884/vscp/rest?  
               vscpsession=d1c13eb83f52f319f14d167962048521&
               format=plain&
               op=10&
               variable=test
-`</code>`  
+```  
 
 ## HTTP Request with POST
 
-`<code=css>`
-curl -X POST "http://localhost:8080/vscp/rest" \
+```css
+curl -X POST "http://localhost:8884/vscp/rest" \
     -H "vscpsession: d1c13eb83f52f319f14d167962048521" \ 
     -d "op=listvar&format=plain&variable=test"     
-`</code>`
+```
 
 ## Demo
 
-There is a a [demo app.](https///github.com/grodansparadis/vscp-ux/tree/master/rest) in the source tree, that demonstrates this functionality using JavaScript.
+There is a a [demo app.](https://github.com/grodansparadis/vscp-ux/tree/master/rest) in the source tree, that demonstrates this functionality using JavaScript.
 
 ### JavaScript Request with JSONP
 
-`<code=JavaScript>`
-*/*//////////////////////////////////////////////////////////////////
+```javascript
+//////////////////////////////////////////////////////////////////
 // do_deleteVariable
 //
 
@@ -120,13 +120,13 @@ var do_deleteVariable = function() {
    }
 
 };
-`</code>`
+```
 
 ## Responses
 
 ### Plain
 
-curl -X POST "http://localhost:8080/vscp/rest" -H "vscpsession: 7fd06788e31bbeb5cd62708d1ecd7897 " -d "op=deletevar&format=plain&variable=test"
+curl -X POST "http://localhost:8884/vscp/rest" -H "vscpsession: 7fd06788e31bbeb5cd62708d1ecd7897 " -d "op=deletevar&format=plain&variable=test"
 
 	
 	1 1 Success 
@@ -136,7 +136,7 @@ curl -X POST "http://localhost:8080/vscp/rest" -H "vscpsession: 7fd06788e31bbeb5
 
 ### CSV
 
-curl -X POST "http://localhost:8080/vscp/rest" -H "vscpsession: 7fd06788e31bbeb5cd62708d1ecd7897 " -d "op=deletevar&format=csv&variable=test"
+curl -X POST "http://localhost:8884/vscp/rest" -H "vscpsession: 7fd06788e31bbeb5cd62708d1ecd7897 " -d "op=deletevar&format=csv&variable=test"
 
 	
 	success-code,error-code,message,description
@@ -145,36 +145,32 @@ curl -X POST "http://localhost:8080/vscp/rest" -H "vscpsession: 7fd06788e31bbeb5
 
 ### XML
 
-curl -X POST "http://localhost:8080/vscp/rest" -H "vscpsession: 7fd06788e31bbeb5cd62708d1ecd7897 " at=xml&variable=test"
+curl -X POST "http://localhost:8884/vscp/rest" -H "vscpsession: 7fd06788e31bbeb5cd62708d1ecd7897 " at=xml&variable=test"
 
-`<code=xml>`
-`<?xml version = "1.0" encoding = "UTF-8" ?>`
+```xml
+<?xml version = "1.0" encoding = "UTF-8" ?>
 <vscp-rest success = "true" 
               code = "1" 
               message = "Success" 
               description = "Success." />
-`</code>`
+```
 
 ### JSON
 
-curl -X POST "http://localhost:8080/vscp/rest" -H "vscpsession: 7fd06788e31bbeb5cd62708d1ecd7897 " at=xml&variable=test"
+curl -X POST "http://localhost:8884/vscp/rest" -H "vscpsession: 7fd06788e31bbeb5cd62708d1ecd7897 " at=xml&variable=test"
 
-`<code=css>`
+```css
 {"success":true,"code":1,"message":"success","description":"Success"}
-`</code>`
+```
 
 ### JSONP
 
-curl -X POST "http://localhost:8080/vscp/rest" -H "vscpsession: 7fd06788e31bbeb5cd62708d1ecd7897 " -d "op=deletevar&format=jsonp&variable=test"
+curl -X POST "http://localhost:8884/vscp/rest" -H "vscpsession: 7fd06788e31bbeb5cd62708d1ecd7897 " -d "op=deletevar&format=jsonp&variable=test"
 
-`<code=JavaScript>`
+```javascript
 typeof handler === 'function' && handler( {"success":true,"code":1,"message":"success","description":"Success"} );
-`</code>`
+```
 
 
 
-\\ 
-----
-{{  ::copyright.png?600  |}}
-
-`<HTML>``<p style="color:red;text-align:center;">``<a href="http://www.grodansparadis.com">`Grodans Paradis AB`</a>``</p>``</HTML>`
+{% include "./bottom_copyright.md" %}

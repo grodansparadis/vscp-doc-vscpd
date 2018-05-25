@@ -1,18 +1,18 @@
 # Close
 
-`<code=css>`
+```css
     op=2 or op=CLOSE
-`</code>`
+```
 
 Close a session with the server. **Requires a valid session parameter**
 
 **General format:**
-`<code=css>`
+```css
 http://host:port/vscp/rest?
     vscpsession=session-key&
     format=plain|csv|xml|json|jsonp&
     op=2|close    
-`</code>`
+```
 
 **Arguments:**
 
@@ -25,46 +25,46 @@ http://host:port/vscp/rest?
 
 ## HTTP Request with GET
 
-`<code=css>`
-http://demo.vscp.org:8080/vscp/rest?vscpsession=d1c13eb83f52f319f14d167962048521 &format=plain|csv|xml|json|jsonp&op=2|close    
-`</code>`
+```css
+http://demo.vscp.org:8884/vscp/rest?vscpsession=d1c13eb83f52f319f14d167962048521 &format=plain|csv|xml|json|jsonp&op=2|close    
+```
 
 To test this with **curl** use the following format
 
-`<code=css>`
-curl -X GET "http://demo.vscp.org:8080/vscp/rest? \
+```css
+curl -X GET "http://demo.vscp.org:8884/vscp/rest? \
     vscpsession=d1c13eb83f52f319f14d167962048521 & \
     format=plain|csv|xml|json|jsonp& \
     op=2|close"
-`</code>`
+```
 
 ## Examples
 
 ##### example GET HTTP request
 
-`<code=css>`
-    http://localhost:8080/vscp/rest?  
+```css
+    http://localhost:8884/vscp/rest?  
               vscpsession=d1c13eb83f52f319f14d167962048521&
               format=plain&
               op=2
-`</code>`  
+```  
 
 ##  HTTP Request with POST
 
-`<code=css>`
-curl -X POST "http://localhost:8080/vscp/rest" \
+```css
+curl -X POST "http://localhost:8884/vscp/rest" \
     -H "vscpsession: d1c13eb83f52f319f14d167962048521" \ 
     -d "op=close&format=plain"     
-`</code>`
+```
 
 ## Demo
 
-There is a a [demo app](https///github.com/grodansparadis/vscp-ux/tree/master/rest) in the source tree, that demonstrates this functionality using JavaScript.
+There is a [demo app](https://github.com/grodansparadis/vscp-ux/tree/master/rest) in the source tree, that demonstrates this functionality using JavaScript.
 
 ### JavaScript Request with JSONP
 
-`<code=JavaScript>`
-*/*//////////////////////////////////////////////////////////////////
+```javascript
+///////////////////////////////////////////////////////////////////
 // do_close
 //
 		
@@ -105,7 +105,7 @@ var do_close = function() {
         alert("Interface is not open!");
     }
 };
-`</code>`
+```
 
 ## Responses
 
@@ -126,24 +126,20 @@ var do_close = function() {
 
 ### XML
 
-`<code=xml>`
-`<vscp-rest success="true" code="1" message="Success" description="Success."/>`
-`</code>`
+```xml
+<vscp-rest success="true" code="1" message="Success" description="Success."/>
+```
 
 ### JSON
 
-`<code=css>`
+```css
 {"success":true,"code":1,"message":"success","description":"Success"}
-`</code>`
+```
 
 ### JSONP
 
-`<code=javascript>`
+```javascript
 typeof handler === 'function' && handler({"success":true,"code":1,"message":"success","description":"Success"});
-`</code>`
+```
 
-\\ 
-----
-{{  ::copyright.png?600  |}}
-
-`<HTML>``<p style="color:red;text-align:center;">``<a href="http://www.grodansparadis.com">`Grodans Paradis AB`</a>``</p>``</HTML>`
+{% include "./bottom_copyright.md" %}

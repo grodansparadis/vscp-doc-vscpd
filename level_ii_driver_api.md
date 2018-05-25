@@ -26,7 +26,7 @@ The configuration for a typical VSCP driver in the vscpd.conf file looks like th
         `<guid>`00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00`</guid>` 
     `</driver>`
 `</vscpdriver>`
-`</code>`
+```
 
 The driver name is used when the driver is presented to the world such as in the tcp/ip interface. The name should be unique within the system. The prefix is added in front of variable names the driver fetch or write to. Typically variables have names like “_variable” and the actual variable fetches is thus “prefix_variable”. “prefix” is set to the driver name set in the VSCP daemon configuration file for this driver. If the same driver is used for several times this name should be different for each driver if different configuration data should be read in for the drivers. The prefix is used in front of configuration variables and it will be used on the form prefix_variablename when the driver reads in additional driver configuration data.
 
@@ -48,7 +48,7 @@ long VSCPOpen( const char *pUsername,
                   const char *pPrefix, 
                   const char *pConfiguration, 
                   unsigned long flags );
-`</code>`
+```
 
 Start the driver and give it some initial configuration data. Before the driver is started by the daemon one parameters is added in front of the configuration string by the daemon. pPrefix is a user defined string that is used as a prefix for variables read/write/construct. This can be an empty string but it is recommended to set a value so that the same driver can be used and configured for different things at the same time. Typically this string has the form “mydriver” or something like that. Variables used to configure this particular driver then need to use the same prefix. It is up to the driver to decide if the prefix should be used or not. 
 
@@ -72,7 +72,7 @@ For the limited type of driver pUsername, pPassword, pHost, port, pPrefix all is
 
 `<code="c">`
 int VSCPClose( long handle );
-`</code>`
+```
 
 
 If the driver can close/stop the driver it will return TRUE (non zero) on success or FALSE on failure. 
@@ -83,7 +83,7 @@ If the driver can close/stop the driver it will return TRUE (non zero) on succes
 int VSCPBlockingSend( long handle, 
                          const vscpEvent *pEvent, 
                          unsigned long timeout );
-`</code>`
+```
 
 
 Send an event while blocking for timeout (forever if timeout=0). 
@@ -94,7 +94,7 @@ Send an event while blocking for timeout (forever if timeout=0).
 int VSCPBlockingReceive( long handle, 
                            vscpEvent *pEvent, 
                            unsigned long timeout );
-`</code>`
+```
 
 
 Blocking receive of an event. Blocks for timeout and forever if timeout=0. 
@@ -105,7 +105,7 @@ CANAL_ERROR_SUCCESS is received if an event is received and CANAL_ERROR_TIMEOUT 
 
 `<code="c">`
 unsigned long VSCPGetLevel( long handle ) 
-`</code>`
+```
 
 
 Will return CANAL_LEVEL_USES_TCPIP for a full Level II driver and CANAL_LEVEL_NO_TCPIP for a limited Level II driver. The constants is defined in canal.h May return something else in the future if the driver is extended.
@@ -117,7 +117,7 @@ Only available for a full Level II driver, limited drivers just return from the 
 long VSCPGetWebPageTemplate( long handle, 
                                 const char *url, 
                                 char **ppage )
-`</code>`
+```
 
 
 With this method it is possible for a driver to add internal web server functionality. Pages with an address 
@@ -144,7 +144,7 @@ Only available for a full Level II driver, limited drivers just return from the 
 `<code="c">`
 int VSCPGetWebPageInfo( long handle, 
                           const struct vscpextwebpageinfo *info )
-`</code>`
+```
 
 
 This call can be used to get information about what pages the driver will recognize abd a description of what they do. This information is displayed in the web interface. The structure that should be returned is defined in vscp/src/common/vscpdlldef.h 
@@ -155,7 +155,7 @@ Only available for a full Level II driver, limited drivers just return from the 
 
 `<code="c">`
 int VSCPWebPageupdate( long handle, const char *url )
-`</code>`
+```
 
 
 When a page is posted to a driver url variable data will be written to server variables by the server. If variables are undefined they will be created. After this has been done a call to this method will be carried out.
@@ -164,7 +164,7 @@ When a page is posted to a driver url variable data will be written to server va
 
 `<code="c">`
 unsigned long VSCPGetDllVersion ( void )
-`</code>`
+```
 
 
 Gets the version for the driver dll/dl.
@@ -173,7 +173,7 @@ Gets the version for the driver dll/dl.
 
 `<code="c">`
 const char * VSCPGetVendorString ( void )
-`</code>`
+```
 
 
 Get a string that identifies the creator of the driver.
@@ -182,7 +182,7 @@ Get a string that identifies the creator of the driver.
 
 `<code="c">`
 const char * VSCPGetDriverInfo( void )
-`</code>`
+```
 
 
 Get information about the interface. Either NULL if there is no information or a pointer to a string with XML information.
@@ -328,14 +328,14 @@ Get information about the interface. Either NULL if there is no information or a
         `</variable>`
 
 `</vscpdriver>`
-`</code>`
+```
 
 
 # VSCPGetStatus
 
 `<code="c">`
 const char * VSCPGetStatus( unsigned long* pErrorCode )
-`</code>`
+```
 
 
 Get status information from a device in real text or as a code. Set the pErrorCode variable to NULL if no error code is needed. The errocode CANAL_ERROR_SUCCESS and “OK” is returned if everything is OK and there is no error code waiting to be received. If another code is returned other codes may be queued up and can be received in successive reads. For severe errors and states, such as bus off on a can-bus, the state code should be returned until the state is cleared and the devices is working properly again.

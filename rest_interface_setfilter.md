@@ -1,20 +1,20 @@
 # Set Filter
 
-`<code=css>`
+```css
     op=5 or op=SETFILTER
-`</code>`  
+```  
     
 Set read filter. Requires a valid **session parameter** and **vscfilter** and **vscpmask** where 
 
 **General format:**
-`<code=css>`
+```css
 http://server:port/rest?
     vscpsession=session-key&
     format=plain|csv|xml|json|jsonp&
     op=5|setfilter&
     vscpfilter=filter&
     vscpmask=mask
-`</code>`
+```
 
 **Arguments:**
 
@@ -45,55 +45,55 @@ To rest the filter (let all events through) set booth stings to
 
 ## HTTP Request with GET
 
-`<code=url>`
+```css
 http://host:port/vscp/rest?
     vscpsession=d1c13eb83f52f319f14d167962048521&
     format=plain|csv|xml|json|jsonp&
     op=5|setfilter&vscpfilter=filter&vscpmask=mask    
-`</code>`
+```
 
 to test this with **curl** use the following format
 
-`<code=css>`
+```css
 curl -X GET "http://host:port/vscp/rest? \
     vscpsession=d1c13eb83f52f319f14d167962048521 & \
     format=plain|csv|xml|json|jsonp& \
     op=5|setfilter" & \
     vscpfilter=filter & \
     vscpmask=mask
-`</code>`
+```
 
 
 ## Examples
 
 ##### example GET HTTP request
 
-`<code=css>`
-    http://localhost:8080/vscp/rest?  
+```css
+    http://localhost:8884/vscp/rest?  
               vscpsession=d1c13eb83f52f319f14d167962048521&
               format=plain&
               op=5&
               vscpfilter=filter&
               vscpmask=mask
-`</code>`  
+```  
 
 
 ## HTTP Request with POST
 
-`<code=css>`
-curl -X POST "http://localhost:8080/vscp/rest" \
+```css
+curl -X POST "http://localhost:8884/vscp/rest" \
     -H "vscpsession: d1c13eb83f52f319f14d167962048521" \ 
     -d "op=setfilter&format=plain&vscpfilter=filter&vscpmask=mask"     
-`</code>`
+```
 
 ## Demo
 
-There is a a [demo app.](https///github.com/grodansparadis/vscp-ux/tree/master/rest) in the source tree, that demonstrates this functionality using JavaScript.
+There is a a [demo app.](https://github.com/grodansparadis/vscp-ux/tree/master/rest) in the source tree, that demonstrates this functionality using JavaScript.
 
 ### JavaScript Request with JSONP
 
-`<code=JavaScript>`
-*/*//////////////////////////////////////////////////////////////////
+```javascript
+//////////////////////////////////////////////////////////////////
 // do_setFilter
 //
 		
@@ -138,12 +138,12 @@ var do_setFilter = function() {
     }
 
 };
-`</code>`
+```
 
 or clearing the filter
 
-`<code=JavaScript>`
-*/*//////////////////////////////////////////////////////////////////
+```javascript
+//////////////////////////////////////////////////////////////////
 // do_clrFilter
 //
 		
@@ -208,26 +208,22 @@ var do_clrFilter = function() {
 
 ### XML
 
-`<code=xml>`
-`<vscp-rest success="true" code="1" message="Success" description="Success."/>`
-`</code>`
+```xml
+<vscp-rest success="true" code="1" message="Success" description="Success."/>
+```
 
 ### JSON
 
-`<code=css>`
+```css
 {"success":true,"code":1,"message":"success","description":"Success"}
-`</code>`
+```
 
 ### JSONP
 
-`<code=JavaScript>`
+```javascript
 typeof handler === 'function' && handler({"success":true,"code":1,"message":"success","description":"Success"});
-`</code>`
+```
 
 
 
-\\ 
-----
-{{  ::copyright.png?600  |}}
-
-`<HTML>``<p style="color:red;text-align:center;">``<a href="http://www.grodansparadis.com">`Grodans Paradis AB`</a>``</p>``</HTML>`
+{% include "./bottom_copyright.md" %}

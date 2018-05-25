@@ -37,7 +37,7 @@ If your driver name contains spaces, for example “name of driver” it will ge
     `<config>`can0`</config>`                 
     `<guid>`00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00`</guid>`            
 `</driver>`
-`</code>`
+```
 
 
 ## Notes

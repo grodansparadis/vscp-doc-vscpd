@@ -1,8 +1,8 @@
 # List variables
 
-`<code=css>`
+```css
     op=12 or op=LISTVAR
-`</code>`  
+```  
     
 List variables selected with a regular expression. 
 
@@ -10,14 +10,14 @@ List variables selected with a regular expression.
 
 **General format:**
 
-`<code=css>`
+```css
 http://host:port/vscp/rest?
     vscpsession=session-key&
     format=plain|csv|xml|json|jsonp&
     op=12|listvar&
     [listlong=true|false]
     [regex=regular-expression]   
-`</code>`
+```
 
 **Arguments:**
 
@@ -34,45 +34,45 @@ http://host:port/vscp/rest?
 
 ## HTTP Request with GET
 
-`<code=css>`
+```css
    http://host:port/vscp/rest?vscpsession=sessionkey
       &format=plain|csv|xml|json|jsonp&op=7|listvar[&listlong=true][&regex=`<regular expression>`]   
-`</code>`
+```
 
 ## Examples
 
 ### Example HTTP GET request
 
-`<code=css>`
-    http://localhost:8080/vscp/rest?  
+```css
+    http://localhost:8884/vscp/rest?  
               vscpsession=d1c13eb83f52f319f14d167962048521&
               format=plain&
               op=12&
               regex=SIM1
-`</code>`  
+```  
 
 ### Example Curl HTTP Request with GET
 
-`<code=css>`
-curl -X GET "http://localhost:8080/vscp/rest?vscpsession=d1c13eb83f52f319f14d167962048521&op=12&format=plain&regex=SIM1"     
-`</code>`
+```css
+curl -X GET "http://localhost:8884/vscp/rest?vscpsession=d1c13eb83f52f319f14d167962048521&op=12&format=plain&regex=SIM1"     
+```
 
 ### Example Curl HTTP Request with POST
 
-`<code=css>`
-curl -X POST "http://localhost:8080/vscp/rest" \
+```css
+curl -X POST "http://localhost:8884/vscp/rest" \
     -H "vscpsession: d1c13eb83f52f319f14d167962048521" \ 
     -d "op=listvar&format=plain&regex=SIM"     
-`</code>`
+```
 
 ## Demo
 
-There is a a [demo app.](https///github.com/grodansparadis/vscp-ux/tree/master/rest) in the source tree, that demonstrates this functionality using JavaScript.
+There is a a [demo app.](https://github.com/grodansparadis/vscp-ux/tree/master/rest) in the source tree, that demonstrates this functionality using JavaScript.
 
 ### JavaScript Request with JSONP
 
-`<code=JavaScript>`
-*/*//////////////////////////////////////////////////////////////////
+```javascript
+//////////////////////////////////////////////////////////////////
 // printVariableData
 //
 
@@ -93,7 +93,7 @@ var printVariableData = function( variable, bLong ) {
     return vartxt;
 }
 
-*/*//////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////
 // do_listVariables
 //
 
@@ -152,7 +152,7 @@ var do_listVariables = function() {
     }
 
 };
-`</code>`
+```
 
 ## Responses
 
@@ -164,8 +164,8 @@ With the format parameter you set the format your want the response represented 
 
 ##### Response for format=plain
 
-`<code=css>`
-curl -X POST "http://localhost:8080/vscp/rest" -H "vscpsession:6c77f7bb681cf4c252984550f0dd3c22" -d "op=listvar&format=plain&regex=SIM"
+```css
+curl -X POST "http://localhost:8884/vscp/rest" -H "vscpsession:6c77f7bb681cf4c252984550f0dd3c22" -d "op=listvar&format=plain&regex=SIM"
 
 1 1 Success 
 name=SIM1_BLEVEL20 type=2 user=0 access-right=000 last-change='2016-10-06T18:15:38' persistent=false
@@ -181,12 +181,12 @@ name=SIM1_PATH0 type=1 user=0 access-right=700 last-change='2016-10-06T18:15:38'
 name=SIM1_SUBZONE0 type=3 user=0 access-right=700 last-change='2016-10-06T18:15:38' persistent=false
 name=SIM1_UNIT0 type=3 user=0 access-right=700 last-change='2016-10-06T18:15:38' persistent=false
 name=SIM1_ZONE0 type=3 user=0 access-right=700 last-change='2016-10-06T18:15:38' persistent=false 
-`</code>`
+```
 
 ##### Response for format=csv
 
-`<code=css>`
-curl -X POST "http://localhost:8080/vscp/rest" -H "vscpsession: 6c77f7bb681cf4c252984550f0dd3c22" -d "op=listvar&format=1&regex=SIM"
+```css
+curl -X POST "http://localhost:8884/vscp/rest" -H "vscpsession: 6c77f7bb681cf4c252984550f0dd3c22" -d "op=listvar&format=1&regex=SIM"
 
 success-code,error-code,message,description,Variable
 1,1,Success,Success.,NULL
@@ -205,17 +205,17 @@ success-code,error-code,message,description,Variable
 1,3,Data,Variable,SIM1_SUBZONE0;3;0;700;false;2016-10-06T18:15:38
 1,3,Data,Variable,SIM1_UNIT0;3;0;700;false;2016-10-06T18:15:38
 1,3,Data,Variable,SIM1_ZONE0;3;0;700;false;2016-10-06T18:15:38
-`</code>`
+```
 
 ##### response for format=xml
 
-`<code=css>`
-curl -X POST "http://localhost:8080/vscp/rest" -H "vscpsession: 6c77f7bb681cf4c252984550f0dd3c22" -d "op=listvar&format=2&regex=SIM"
-`</code>`
+```css
+curl -X POST "http://localhost:8884/vscp/rest" -H "vscpsession: 6c77f7bb681cf4c252984550f0dd3c22" -d "op=listvar&format=2&regex=SIM"
+```
 
-`<code=xml>`
-`<?xml version = "1.0" encoding = "UTF-8" ?>`
-`<vscp-rest success = "true" code = "1" message = "Success" description = "Success." >`
+```xml
+<?xml version = "1.0" encoding = "UTF-8" ?>
+<vscp-rest success = "true" code = "1" message = "Success" description = "Success." >
 <variable name="SIM1_BLEVEL20" 
     typecode="2" 
     type="Boolean" 
@@ -319,15 +319,15 @@ curl -X POST "http://localhost:8080/vscp/rest" -H "vscpsession: 6c77f7bb681cf4c2
     persistent="false" 
     last-change="2016-10-06T18:15:38" >
     
-`</variable>`
+</variable>
 
-`</vscp-rest>`
-`</code>`
+</vscp-rest>
+```
 
 ##### response for format=json
 
-`<code=css>`
-curl -X POST "http://localhost:8080/vscp/rest"3&regex=SIM"ion: 6c77f7bb681cf4c252984550f0dd3c22" -d "op=listvar&format=2
+```css
+curl -X POST "http://localhost:8884/vscp/rest"3&regex=SIM"ion: 6c77f7bb681cf4c252984550f0dd3c22" -d "op=listvar&format=2
 
 {"success":true,"code":1,"message":"success","description":"Success","info":"13 variables will be retrieved","variable":
 [{"varname":"SIM1_BLEVEL20","vartype":"Boolean","vartypecode":2,"varuser":0,"varaccessright":700,"varpersistence":"false","varlastchange":"2016-10-06T18:15:38",},
@@ -344,12 +344,12 @@ curl -X POST "http://localhost:8080/vscp/rest"3&regex=SIM"ion: 6c77f7bb681cf4c25
 {"varname":"SIM1_UNIT0","vartype":"Integer","vartypecode":3,"varuser":0,"varaccessright":700,"varpersistence":"false","varlastchange":"2016-10-06T18:15:38",},
 {"varname":"SIM1_ZONE0","vartype":"Integer","vartypecode":3,"varuser":0,"varaccessright":700,"varpersistence":"false","varlastchange":"2016-10-06T18:15:38",}],"count":13,"errors":0}
 
-`</code>`
+```
 
 ##### response for format=jsonp
 
-`<code=JavaScript>`
-curl -X POST "http://localhost:8080/vscp/rest" -H "vscpsession: 6c77f7bb681cf4c252984550f0dd34&regex=SIM"istvar&format=3
+```javascript
+curl -X POST "http://localhost:8884/vscp/rest" -H "vscpsession: 6c77f7bb681cf4c252984550f0dd34&regex=SIM"istvar&format=3
 
 typeof handler === 'function' && 
 handler({"success":true,"code":1,"message":"success","description":"Success","info":"13 variables will be retrieved","variable":
@@ -367,11 +367,7 @@ handler({"success":true,"code":1,"message":"success","description":"Success","in
 {"varname":"SIM1_UNIT0","vartype":"Integer","vartypecode":3,"varuser":0,"varaccessright":0,"varpersistence":"false","varlastchange":"2016-10-06T18:15:38",},
 {"varname":"SIM1_ZONE0","vartype":"Integer","vartypecode":3,"varuser":0,"varaccessright":0,"varpersistence":"false","varlastchange":"2016-10-06T18:15:38",}],"count":13,"errors":0});
 
-`</code>`
+```
 
 
-\\ 
-----
-{{  ::copyright.png?600  |}}
-
-`<HTML>``<p style="color:red;text-align:center;">``<a href="http://www.grodansparadis.com">`Grodans Paradis AB`</a>``</p>``</HTML>`
+{% include "./bottom_copyright.md" %}

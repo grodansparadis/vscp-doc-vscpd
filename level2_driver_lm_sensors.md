@@ -8,7 +8,7 @@ This driver is used to monitor sensors that are exported by the lm-sensors syste
 
 As lm-sensor data is exported in the proc file system this driver can be used also for other sensors that can export it's data using this method or use an ordinary file as long as the data is numerical and is located at a specific offset in the file.
 
-A good description on how to setup the lm-sensors system is [here](https///wiki.archlinux.org/index.php/Lm_sensors) and an example of how to use the lm-sensors driver is [here](http://www.vscp.org/wiki/doku.php/howto/driver_level2_lmsensors)
+A good description on how to setup the lm-sensors system is [here](https://wiki.archlinux.org/index.php/Lm_sensors) and an example of how to use the lm-sensors driver is [here](http://www.vscp.org/wiki/doku.php/howto/driver_level2_lmsensors)
 
 **Driver Linux**: vscpl2_lmsensorsdrv.so
 
@@ -57,7 +57,7 @@ If your driver name contains spaces, for example “name of driver” it will ge
     `<config>`2`</config>`                 
     `<guid>`00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00`</guid>`            
 `</driver>`
-`</code>`
+```
 
 Example for variable configuration. In this sample the core temperature for two CPU's is reported as [CLASS1.MEASUREMENT, Type=6 temperature](http://www.vscp.org/docs/vscpspec/doku.php?id=class1.measurement#type_6_0x06_temperature).
 
@@ -174,7 +174,7 @@ Example for variable configuration. In this sample the core temperature for two 
 	<name>lmsensors_divide1</name> 	
 	<value>1</value>      
 `</variable>`
-`</code>`
+```
 
 \\ \\ 
 ----
@@ -195,7 +195,7 @@ the run
 
     sensors-detect
     
-to detect and generate a list of kernel modules. You can read more about this [here](https///wiki.archlinux.org/index.php/Lm_sensors).
+to detect and generate a list of kernel modules. You can read more about this [here](https://wiki.archlinux.org/index.php/Lm_sensors).
 
 If you plan on using the daemon, be sure to answer YES when asked if you want to to generate */etc/conf.d/lm_sensors*. And then start the service with
 
@@ -394,7 +394,7 @@ The XML configuration code you have made here goes into the **/etc/vscp/varaible
 
 There is another way to enter code into this file. You can use the daemons web interface to do it. If your point your browser at (replace 192.168.1.2 with your server and if you have changed port replace 8080 with that port number).
 
-    http://192.168.1.2:8080/vscp/variables
+    http://192.168.1.2:8884/vscp/variables
     
 you will get a list with defined variables like this one
 
@@ -520,7 +520,7 @@ To show the different temperature values we add a table. For simplicity we just 
         `</tr>`
     `</table>`
 `</div>`  
-`</code>`
+```
  
 ##### Step 4
 
@@ -536,7 +536,7 @@ var txtcpu0 =
                     0, // # decimals
                     "{0} degrees {1}",
                     "FF:FF:FF:FF:FF:FF:00:00:00:00:00:00:00:00:00:01");
-`</code>`
+```
 
 And for the other cpu
 

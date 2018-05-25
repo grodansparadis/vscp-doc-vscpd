@@ -1,6 +1,6 @@
 # VSCP Daemon REST Interface
 
-The REST interface is popular among many developers today as it makes it easy to communicate using Javascript and other web oriented languages over the Internet, and using standard web techniques. The VSCP Daemon has a REST interface that has much of the same functionality as the TCP/IP interface.
+The REST interface is popular among many developers today as it makes it easy to communicate using JavaScript and other web oriented languages over the Internet, and using standard web techniques. The VSCP Daemon has a REST interface that has much of the same functionality of the TCP/IP interface.
 
 The commands that are available are described on this page.
 
@@ -22,7 +22,7 @@ You can use **GET** or **POST** HTTP requests. They differ a little in format as
 
 ### Example of GET HTTP REQUEST
 
-    http://localhost:8080/vscp/rest?vscpuser=admin&vscpsecret=secret&op=open&format=plain
+    http://localhost:8884/vscp/rest?vscpuser=admin&vscpsecret=secret&op=open&format=plain
 
 ### Example of POST HTTP REQUEST
 

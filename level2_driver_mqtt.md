@@ -222,11 +222,11 @@ to easily interpret the event.
 
 You can easily control that the driver is loaded by using the internal web interface of the daemon and open
 
-    http://localhost:8080/vscp/interfaces
+    http://localhost:8884/vscp/interfaces
 
 replacing 
 
-    http://localhost:8080
+    http://localhost:8884
     
 with your actual host and port. This will show something like this
 
@@ -324,9 +324,9 @@ and/or
 
 but is is probably easier to use the built in web interface of the daemon to do the same thing. Head your browser to 
 
-    http://localhost:8080/vscp/varnew
+    http://localhost:8884/vscp/varnew
     
-replacing [http://localhost:8080](http://localhost:8080) with your actual *host* and *port*.   
+replacing [http://localhost:8884](http://localhost:8884) with your actual *host* and *port*.   
  
 
 In this first screen you select the value to be a *string* and then move on with the *next*  button \\ 

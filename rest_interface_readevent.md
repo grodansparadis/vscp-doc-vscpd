@@ -1,8 +1,8 @@
 # Read Event
 
-`<code=css>`
+```css
     op=4 or op=READEVENT
-`</code>`  
+```  
 
 Read one or more VSCP Event(s). 
 
@@ -10,22 +10,22 @@ Read one or more VSCP Event(s).
 
 **General format:**
 
-`<code=css>`
+```css
 http://server:port/rest?
     vscpsession=session-key&
     format=plain|csv|xml|json|jsonp&
     op=4|readevent
     [&count=n]
-`</code>`
+```
 
 so to read a maximum of four events in plain format use
 
-`<code=css>`
+```css
 http://server:port/rest?vscpsession=session-key&
     format=plain&
     op=4&
     count=4
-`</code>`
+```
 
 **Arguments:**
 
@@ -40,24 +40,24 @@ http://server:port/rest?vscpsession=session-key&
 
 ## HTTP Request with GET
 
-`<code=css>`
+```css
 http://host:port/vscp/rest?vscpsession=d1c13eb83f52f319f14d167962048521 &format=plain|csv|xml|json|jsonp&op=4&readevent[&count=n]    
-`</code>`
+```
 
 to test this with **curl** use the following format
 
-`<code=css>`
+```css
 curl -X GET "http://host:port/vscp/rest? \
     vscpsession=d1c13eb83f52f319f14d167962048521 & \
     format=plain|csv|xml|json|jsonp& \
     op=4|readevent[&count=n]"
-`</code>`
+```
 
 or against the demo server in your browser
 
-`<code=url>`
-http://demo.vscp.org:8080/vscp/rest?vscpsession=98608c27b1ca33ceb6c7f003688c7095&format=plain&op=readevent&count=2
-`</code>`
+```css
+http://demo.vscp.org:8884/vscp/rest?vscpsession=98608c27b1ca33ceb6c7f003688c7095&format=plain&op=readevent&count=2
+```
 
 replacing the session key (98608c27b1ca33ceb6c7f003688c7095) with the key you received in the open call.
 
@@ -65,38 +65,38 @@ The result you get should be something like
 
     1 1 Success 
     2 events requested of 201 available (unfiltered) 2 will be retrieved
- 1.  96,10,6,1,2003-11-02T12:01:01,1917354301,FF:FF:FF:FF:FF:FF:FF:F7:03:00:00:00:00:00:00:00,0x8A,0x81,0x00,0xE9/r/n
- 2.  96,10,6,1,Important note datetime is introduced in version 1.12.20.0,2003-11-02T12:01:01,1917354551,FF:FF:FF:FF:FF:FF:FF:F7:03:00:00:00:00:00:00:00,0x8A,0x81,0x00,0xE7/r/n
+    - 96,10,6,1,2003-11-02T12:01:01,1917354301,FF:FF:FF:FF:FF:FF:FF:F7:03:00:00:00:00:00:00:00,0x8A,0x81,0x00,0xE9/r/n
+    - 96,10,6,1,Important note datetime is introduced in version 1.12.20.0,2003-11-02T12:01:01,1917354551,FF:FF:FF:FF:FF:FF:FF:F7:03:00:00:00:00:00:00:00,0x8A,0x81,0x00,0xE7/r/n
 
 
 ## Examples
 
 ##### example GET HTTP request
 
-`<code=css>`
-    http://localhost:8080/vscp/rest?  
+```css
+    http://localhost:8884/vscp/rest?  
               vscpsession=d1c13eb83f52f319f14d167962048521&
               format=plain&
               op=4
-`</code>`  
+```  
 
 
 ## HTTP Request with POST
 
-`<code=css>`
-curl -X POST "http://localhost:8080/vscp/rest" \
+```css
+curl -X POST "http://localhost:8884/vscp/rest" \
     -H "vscpsession: d1c13eb83f52f319f14d167962048521" \ 
     -d "op=readevent&format=plain&count=5"     
-`</code>`
+```
 
 ## Demo
 
-There is a a [demo app.](https///github.com/grodansparadis/vscp-ux/tree/master/rest) in the source tree, that demonstrates this functionality using JavaScript.
+There is a a [demo app.](https://github.com/grodansparadis/vscp-ux/tree/master/rest) in the source tree, that demonstrates this functionality using JavaScript.
 
 ### JavaScript Request with JSONP
 
-`<code=JavaScript>`
-*/*//////////////////////////////////////////////////////////////////
+```javascript
+//////////////////////////////////////////////////////////////////
 // do_readEventOne
 //
 		
@@ -138,7 +138,7 @@ var do_readEventOne = function() {
             alert("Interface is not open!");
         }
 };
-`</code>`
+```
 
 If you want to read all events in the queue just set count to a very (insanely) high value.
 
@@ -147,7 +147,7 @@ If you want to read all events in the queue just set count to a very (insanely) 
 **Important note:** The datetime field was introduced in version 1.12.20.0
 ### Plain
 
-`<code=css>`
+```css
 1 1 Success 
 10 events requested of 16 available (unfiltered) 10 will be retrieved
 - 96,10,6,3,2003-11-02T12:01:01,55055109,FF:FF:FF:FF:FF:FF:FF:F7:03:00:00:00:00:00:00:00,0x8A,0x81,0x01,0x32
@@ -160,11 +160,11 @@ If you want to read all events in the queue just set count to a very (insanely) 
 - 96,20,9,3,2003-11-02T12:01:01,55068312,FF:FF:FF:FF:FF:FF:FF:F7:03:00:00:00:00:00:00:00,0x00,0x01,0x02
 - 96,10,6,3,2003-11-02T12:01:01,55069343,FF:FF:FF:FF:FF:FF:FF:F7:03:00:00:00:00:00:00:00,0x8A,0x82,0x0B,0xB0
 - 96,10,6,3,2003-11-02T12:01:01,55071343,FF:FF:FF:FF:FF:FF:FF:F7:03:00:00:00:00:00:00:00,0x8A,0x82,0x0B,0xAF
-`</code>`
+```
 
 ### CSV
 
-`<code=csv>`
+```csv
 success-code,error-code,message,description,Event
 1,1,Success,Success.,NULL
 1,2,Info,10 events requested of 14 available (unfiltered) 10 will be retrieved,NULL
@@ -179,7 +179,7 @@ success-code,error-code,message,description,Event
 1,3,Data,Event,96,10,6,3,2003-11-02T12:01:01,55049000,FF:FF:FF:FF:FF:FF:FF:F7:03:00:00:00:00:00:00:00,0x8A,0x82,0x0B,0xD9
 1,3,Data,Event,96,10,6,3,2003-11-02T12:01:01,55051015,FF:FF:FF:FF:FF:FF:FF:F7:03:00:00:00:00:00:00:00,0x8A,0x82,0x0B,0xEE
 1,3,Data,Event,96,10,6,3,2003-11-02T12:01:01,55053062,FF:FF:FF:FF:FF:FF:FF:F7:03:00:00:00:00:00:00:00,0x8A,0x82,0x0B,0xFB
-`</code>`
+```
 
 
 *  Row starting with 1,1 is header
@@ -192,100 +192,100 @@ success-code,error-code,message,description,Event
 
 ### XML
 
-`<code=xml>`
-`<vscp-rest success="true" code="1" message="Success" description="Success.">`
-`<info>`
+```xml
+<vscp-rest success="true" code="1" message="Success" description="Success.">
+<info>
 10 events requested of 5 available (unfiltered) 5 will be retrieved
-`</info>`
-`<count>`5`</count>`
-`<event>`
-    `<head>`96`</head>`
-    `<vscpclass>`10`</vscpclass>`
-    `<vscptype>`6`</type>`
-    `<timestamp>`54997984`</timestamp>`
-    `<obid>`3`</obid>`
-    `<guid>`FF:FF:FF:FF:FF:FF:FF:F7:03:00:00:00:00:00:00:00`</guid>`
-    `<sizedata>`4`</sizedata>`
-    `<data>`0x8A,0x81,0x00,0xCE`</data>`
-    `<raw>`
+</info>
+<count>5</count>
+<event>
+    <head>96</head>
+    <vscpclass>10</vscpclass>
+    <vscptype>6</type>
+    <timestamp>54997984</timestamp>
+    <obid>3</obid>
+    <guid>FF:FF:FF:FF:FF:FF:FF:F7:03:00:00:00:00:00:00:00</guid>
+    <sizedata>4</sizedata>
+    <data>0x8A,0x81,0x00,0xCE</data>
+    <raw>
         96,10,6,3,2003-11-02T12:01:01,54997984,FF:FF:FF:FF:FF:FF:FF:F7:03:00:00:00:00:00:00:00,0x8A,0x81,0x00,0xCE
-    `</raw>`
-`</event>`
+    </raw>
+</event>
 
-`<event>`
-    `<head>`96`</head>`
-    `<vscpclass>`10`</vscpclass>`
-    `<vscptype>`6`</type>`
-    `<obid>`3`</obid>`
-    `<datetime>`2003-11-02T12:01:01`</datetime>`
-    `<timestamp>`55000015`</timestamp>`
-    `<obid>`3`</obid>`
-    `<guid>`FF:FF:FF:FF:FF:FF:FF:F7:03:00:00:00:00:00:00:00`</guid>`
-    `<sizedata>`4`</sizedata>`
-    `<data>`0x8A,0x81,0x00,0xD0`</data>`
-    `<raw>`
+<event>
+    <head>96</head>
+    <vscpclass>10</vscpclass>
+    <vscptype>6</type>
+    <obid>3</obid>
+    <datetime>2003-11-02T12:01:01</datetime>
+    <timestamp>55000015</timestamp>
+    <obid>3</obid>
+    <guid>FF:FF:FF:FF:FF:FF:FF:F7:03:00:00:00:00:00:00:00</guid>
+    <sizedata>4</sizedata>
+    <data>0x8A,0x81,0x00,0xD0</data>
+    <raw>
         96,10,6,3,2003-11-02T12:01:01,55000015,FF:FF:FF:FF:FF:FF:FF:F7:03:00:00:00:00:00:00:00,0x8A,0x81,0x00,0xD0
-    `</raw>`
-`</event>`
+    </raw>
+</event>
 
-`<event>`
-    `<head>`96`</head>`
-    `<vscpclass>`10`</vscpclass>`
-    `<vscptype>`6`</type>`
-    `<obid>`3`</obid>`
-    `<datetime>`2003-11-02T12:01:01`</datetime>`
-    `<timestamp>`55002078`</timestamp>`
-    `<obid>`3`</obid>`
-    `<guid>`FF:FF:FF:FF:FF:FF:FF:F7:03:00:00:00:00:00:00:00`</guid>`
-    `<sizedata>`3`</sizedata>`
-    `<data>`0x8A,0x80,0x15`</data>`
-    `<raw>`
+<event>
+    <head>96</head>
+    <vscpclass>10</vscpclass>
+    <vscptype>6</type>
+    <obid>3</obid>
+    <datetime>2003-11-02T12:01:01</datetime>
+    <timestamp>55002078</timestamp>
+    <obid>3</obid>`
+    <guid>FF:FF:FF:FF:FF:FF:FF:F7:03:00:00:00:00:00:00:00</guid>
+    <sizedata>3</sizedata>
+    <data0x8A,0x80,0x15</data>
+    <raw>
         96,10,6,3,2003-11-02T12:01:01,55002078,FF:FF:FF:FF:FF:FF:FF:F7:03:00:00:00:00:00:00:00,0x8A,0x80,0x15
-    `</raw>`
-`</event>`
+    </raw>
+</event>
 
-`<event>`
-    `<head>`96`</head>`
-    `<vscpclass>`10`</vscpclass>`
-    `<vscptype>`6`</type>`
-    `<obid>`3`</obid>`
-    `<datetime>`2003-11-02T12:01:01`</datetime>`
-    `<timestamp>`55004109`</timestamp>`
-    `<obid>`3`</obid>`
-    `<guid>`FF:FF:FF:FF:FF:FF:FF:F7:03:00:00:00:00:00:00:00`</guid>`
-    `<sizedata>`4`</sizedata>`
-    `<data>`0x8A,0x81,0x00,0xD5`</data>`
-    `<raw>`
+<event>
+    <head>96</head>
+    <vscpclass>10</vscpclass>
+    <vscptype>6</type>
+    <obid>3</obid>
+    <datetime>2003-11-02T12:01:01</datetime>
+    <timestamp>55004109</timestamp>
+    <obid>3</obid>
+    <guid>FF:FF:FF:FF:FF:FF:FF:F7:03:00:00:00:00:00:00:00</guid>
+    <sizedata>4</sizedata>
+    <data>0x8A,0x81,0x00,0xD5</data>
+    <raw>
         96,10,6,3,2003-11-02T12:01:01,55004109,FF:FF:FF:FF:FF:FF:FF:F7:03:00:00:00:00:00:00:00,0x8A,0x81,0x00,0xD5
-    `</raw>`
-`</event>`
+    </raw>
+</event>
 
-`<event>`
-    `<head>`96`</head>`
-    `<vscpclass>`10`</vcpclass>`
-    `<vscptype>`6`</type>`
-    `<obid>`3`</obid>`
-    `<datetime>`2003-11-02T12:01:01`</datetime>`
-    `<timestamp>`55006125`</timestamp>`
-    `<obid>`3`</obid>`
-    `<guid>`FF:FF:FF:FF:FF:FF:FF:F7:03:00:00:00:00:00:00:00`</guid>`
-    `<sizedata>`4`</sizedata>`
-    `<data>`0x8A,0x81,0x00,0xD8`</data>`
-    `<raw>`
+<event>
+    <head96</head>
+    <vscpclass>10</vcpclass>
+    <vscptype>6</type>
+    <obid>3</obid>
+    <datetime>2003-11-02T12:01:01</datetime>
+    <timestamp55006125</timestamp>
+    <obid>3</obid>
+    <guid>FF:FF:FF:FF:FF:FF:FF:F7:03:00:00:00:00:00:00:00</guid>
+    <sizedata>4</sizedata>
+    <data>0x8A,0x81,0x00,0xD8</data>
+    <raw>
         96,10,6,3,2003-11-02T12:01:01,55006125,FF:FF:FF:FF:FF:FF:FF:F7:03:00:00:00:00:00:00:00,0x8A,0x81,0x00,0xD8
-    `</raw>`
-`</event>`
+    </raw>
+</event>
 
 `<filtered>`0`</filtered>`
 `<errors>`0`</errors>`
 
 `</vscp-rest>`
 
-`</code>`
+```
 
 ###  JSON 
 
-`<code=JavaScript>`
+```javascript
 {
     "success":true,
     "code":1,
@@ -409,11 +409,11 @@ success-code,error-code,message,description,Event
    "filtered":0,
    "errors":0
 }
-`</code>`
+```
 
 ###  JSONP 
 
-`<code=JavaScript>`
+```javascript
 typeof handler === 'function' && handler(
 {
     "success":true,
@@ -538,10 +538,6 @@ typeof handler === 'function' && handler(
    "filtered":0,
    "errors":0
 } );
-`</code>`
+```
 
-\\ 
-----
-{{  ::copyright.png?600  |}}
-
-`<HTML>``<p style="color:red;text-align:center;">``<a href="http://www.grodansparadis.com">`Grodans Paradis AB`</a>``</p>``</HTML>`
+{% include "./bottom_copyright.md" %}

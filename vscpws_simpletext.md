@@ -17,7 +17,7 @@ vscpws_simpleText( username,          // username
                      guid,            // GUID we are interested in 
                      fncallback )     // If set function to call 
                                       // when data arrives 
-`</code>`
+```
 
 ### username
 
@@ -31,11 +31,11 @@ Password hash to logon to the websocket server
 
 Url to the websocket server. This typically is on the form 
 
-    "ws://192.168.1.20:8080"
+    "ws://192.168.1.20:8884"
     
 or
 
-    "wss://192.168.1.20:8080" 
+    "wss://192.168.1.20:8884" 
     
 if SSL is used.  
 
@@ -100,7 +100,7 @@ To use the vscpws_simpleTextEvent widget with events in class VSCP_CLASS1_MEASUR
 setExtraParameters( index,      // Index if applicable 
                       zone,     // Zone if applicable 
                       subzone ) // Subzone if applicable 
-`</code>`
+```
 
 ##### index
 
@@ -141,7 +141,7 @@ Nothing to fancy. The "id1" is the interesting part here. This where the tempera
 
 To display values with two decimals from sensor 2 we insert this code in our HTML page
 
-`<code=javascript>`
+```javascript
 `<script type="text/javascript" >`
     var txt1 = 
          new vscpws_simpleTextEvent( "ws://192.168.1.20:7681", 
@@ -150,7 +150,7 @@ To display values with two decimals from sensor 2 we insert this code in our HTM
                                         VSCP_TYPE_MEASUREMENT_TEMPERATURE, 											     
                                         3, 2 ); 
 `</script>`
-`</code>`
+```
 
 This is all that is needed. A live web page is now available that updates the temperature with the interval set when configuring the sensor.
 
@@ -159,7 +159,7 @@ This is all that is needed. A live web page is now available that updates the te
 You can add a format string if you want to change the appearance of the output. Add a line to the above so it looks like this instead
 
 
-`<code=javascript>`
+```javascript
 `<script type="text/javascript" >` 
 var txt1 = new vscpws_simpleTextEvent( "ws://192.168.1.20:7681", 											
                                            "id1",                                                                                       								                 
@@ -168,7 +168,7 @@ var txt1 = new vscpws_simpleTextEvent( "ws://192.168.1.20:7681",
                                            3, 2,											
                                            "{0} nice degrees Celsius" ); 
 `</script>`
-`</code>`
+```
 
 which will look like this
 
@@ -177,7 +177,7 @@ which will look like this
 
 In the format string you can put in any text you like. {0} is the temperature value but there are also other escapes you can use. For example {1} is the unit symbol (e.g. for temperature “Kelvin”, "Celsius", "Fahrenheit" etc.) for the measurement. This is possible because all VSCP events carry this information with them. Trying this
 
-`<code=javascript>`
+```javascript
 `<script type="text/javascript" >`          	
 var txt1 = new vscpws_simpleTextEvent( "ws://192.168.1.20:7681",
                                              "id1",
@@ -187,7 +187,7 @@ var txt1 = new vscpws_simpleTextEvent( "ws://192.168.1.20:7681",
                                              3,
                                              "{0} degrees {1}"); 
 `</script>`
-`</code>`
+```
 
 Gives this result
 
@@ -199,11 +199,11 @@ But by inserting
 `<div>`     
     Temperature placed inside &lt;H1&gt; tags. `<h1 id="id2">``</h1>` 
 `</div>`
-`</code>`
+```
 
 and creating the control
 
-`<code=javascript>`
+```javascript
 `<script>`
 var txt2 = new vscpws_simpleTextEvent( "ws://192.168.1.20:7681",
                                              "id2",
@@ -213,7 +213,7 @@ var txt2 = new vscpws_simpleTextEvent( "ws://192.168.1.20:7681",
                                              3,
                                              "Temperature is {0} degrees {1}"); 
 `</script>`
-`</code>`
+```
 
 also works and give this result
 
@@ -223,7 +223,7 @@ showing dynamic temperature values for sensor 0.
 
 If you instead want to have the measurement value in some other from you can use the callback to do some calculations on the value before it is written to the page. The callback is called before the formatting string is applied. For example if you want the example above to be displayed with the Fahrenheit unit incited of Celsius you can use the built in conversion code and
 
-`<code=javascript>`
+```javascript
 script>
 var txt2 = new vscpws_simpleTextEvent( "ws://192.168.1.20:7681",
                                          "id2",
@@ -235,11 +235,11 @@ var txt2 = new vscpws_simpleTextEvent( "ws://192.168.1.20:7681",
                  					 function(value,unit,event) { 
     return ("" + vscpws_toFixed(vscpws_convertCelsiusToFahrenheit(value),2));} );
 `</script>`
-`</code>`
+```
 
 or in a more readable form
 
-`<code=javascript>`
+```javascript
 `<script>`
 var fnconvert = function(value,unit,event)         {
     return ("" + vscpws_toFixed(vscpws_convertCelsiusToFahrenheit(value),2));
@@ -254,7 +254,7 @@ var txt2 = new vscpws_simpleTextEvent( "ws://192.168.1.20:7681",
                                            "Temperature is {0} degrees Fahrenheit",
                  		           fnconvert );
 `</script>`
-`</code>`
+```
 
 
 which outputs
@@ -269,11 +269,11 @@ The widget can be used for other events then measurement event also. To code som
    `<h1>`Unit discovery`</h1>`     
    `<div id="id3">``</div>` 
 `</div>`
-`</code>`
+```
 
 and
 
-`<code=javascript>`
+```javascript
 `<script>`
     var idArray = new Array();
 
@@ -310,7 +310,7 @@ new vscpws_simpleTextEvent( "ws://192.168.1.20:7681",
                               "",
                               newnode ); 
 `</script>`
-`</code>`
+```
 
 which list the nodes
 

@@ -1,9 +1,9 @@
 # Setting up the system on Unix
 
  
-To install VSCP & Friends on Unix you need to build the system from source. The build process is simple and it usually don't give any problems. All packages are available for download at [Sourceforge](https///sourceforge.net/projects/m2m/files/VSCP%20Software/). Download the .zip or the .tgz archives of the package.
+To install VSCP & Friends on Unix you need to build the system from source. The build process is simple and it usually don't give any problems. All packages are available for download at [Sourceforge](https://sourceforge.net/projects/m2m/files/VSCP%20Software/). Download the .zip or the .tgz archives of the package.
 
-The build process is described in the file **BUILD_UNIX** in the root of the source folder. You find the source in the same folder as the installation packages. The source for the system is also available on [GitHub](https///github.com/grodansparadis/vscp_software) if you want to use unstable code or just prefers GitHub for some other reason.
+The build process is described in the file **BUILD_UNIX** in the root of the source folder. You find the source in the same folder as the installation packages. The source for the system is also available on [GitHub](https://github.com/grodansparadis/vscp_software) if you want to use unstable code or just prefers GitHub for some other reason.
 
 A sample configuration file for Unix is [here](https://github.com/grodansparadis/vscp/blob/master/config_examples/vscpd.conf_unix_distro).
 
@@ -98,7 +98,7 @@ If you want SQLite3 database support (recommended).
 
 ### Step 9
 
-Normally you should consider working with one of the stable releases. All packages are available for download at [Sourceforge](https///sourceforge.net/projects/m2m/files/VSCP%20Software/). Download the .zip or the .tgz archives of the package.
+Normally you should consider working with one of the stable releases. All packages are available for download at [Sourceforge](https://sourceforge.net/projects/m2m/files/VSCP%20Software/). Download the .zip or the .tgz archives of the package.
 
 You unpack the tgz with
 

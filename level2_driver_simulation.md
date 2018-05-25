@@ -53,14 +53,14 @@ If your driver name contains spaces, for example “name of driver” it will ge
 
 ##### Example of vscpd.conf entry for the simulation driver.
 
-`<code=xml>`
+```xml
 `<!-- Level II simulation  -->`
 `<driver enable="true">` 		   	 			
     `<name>`sim1`</name>` 		   	 		
     `<config>`1`</config>`
     `<path>`/usr/local/lib/vscpl2_simdrv.so`</path>`
 `</driver>`
-`</code>`
+```
 
 The name **"sim1"** will be preceded in front of all variable names as **sim1_variablen** where n is the ordinal starting from zero (sim1__index0, sim1_coding0, etc). 
 
@@ -68,7 +68,7 @@ The config string is set to 1 in this case meaning we should only simulate one n
 
 ##### Example of decision matrix (dm.xml) entry for the simulation driver.
 
-`<code=xml>`
+```xml
 <!-- 
     One simulated node that report temperature values 
     The NumberOfNodes can be specified in the driver configuration 
@@ -165,7 +165,7 @@ The config string is set to 1 in this case meaning we should only simulate one n
     `</value>`
     `</variable>`
 
-`</code>`
+```
 
 The coding of the decision matrix is as a normal Level I decision matrix
 
@@ -199,7 +199,7 @@ The coding of the decision matrix is as a normal Level I decision matrix
 20.50
 ...
 25.13
-`</code>`
+```
 
 
 

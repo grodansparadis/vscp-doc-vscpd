@@ -1,8 +1,8 @@
 # Open
 
-`<code=css>`
+```css
     op=1 or op=OPEN
-`</code>`
+```
     
 This HTTP request open a new session with the server. This should be the first operation you do when you want to work with the VSCP REST interface. If all goes well you will be handed a session key and you should use this session key in further calls.
 
@@ -18,13 +18,13 @@ If you do not use this session key within five minutes it will be invalid and yo
 
 **General format:**
 
-`<code=css>`
+```css
 http://host:port/vscp/rest?
     vscpuser=username&
     vscpsecret=password&
     format=plain|csv|xml|json|jsonp&
     op=1|open     
-`</code>`
+```
 
 **Arguments:**
 
@@ -37,29 +37,28 @@ http://host:port/vscp/rest?
 
 *  **vscpuser** - A valid password.
 
-:!:
 
-**note** the __vscpsecret__ has been changed form a md5 password to a clear text password from version 1.12.14.12.
+**note** the *vscpsecret* has been changed from a md5 password to a clear text password from version 1.12.14.12.
 
 ## HTTP Request with GET
 
-`<code=css>`
+```css
 http://host:port/vscp/rest?vscpuser=username&vscpsecret=password&format=plain|csv|xml|json|jsonp&op=1|open     
-`</code>`
+```
     
 You can interact with the vscp demo server right now by plugging this into your browser.
 
-`<code=css>`
-http://demo.vscp.org:8080/vscp/rest?vscpuser=admin&vscpsecret=secret&format=plain&op=1
-`</code>`
+```css
+http://demo.vscp.org:/vscp/rest?vscpuser=admin&vscpsecret=secret&format=plain&op=1
+```
 
 See "Read Event" section of REST Interface documentation for more details.  
 
 ##  CURL HTTP Request with GET
 
-`<code=bash>`
-    curl -X GET "http://localhost:8080/vscp/rest?vscpuser=admin&vscpsecret=secret&format=plain&op=open"
-`</code>`
+```bash
+    curl -X GET "http://localhost:8884/vscp/rest?vscpuser=admin&vscpsecret=secret&format=plain&op=open"
+```
 
 you should get a response with something like
 
@@ -73,22 +72,22 @@ where *8fa1052598a988ad5166bc9c65f0a167* is the session id to use for further ca
 
 ##  CURL HTTP Request with POST
 
-`<code=bash>`
-curl -X POST "http://localhost:8080/vscp/rest" \
+```bash
+curl -X POST "http://localhost:8884/vscp/rest" \
     -H "vscpuser: admin" \
     -H "vscpsecret: d50c3180375c27927c22e42a379c3f67" \ 
     -d "op=open&format=plain"     
-`</code>`     
+```
 
 ## Demo
 
-There is a a [demo app.](https///github.com/grodansparadis/vscp-ux/tree/master/rest) in the source tree, that demonstrates this functionality using JavaScript.
+There is a a [demo app](https://github.com/grodansparadis/vscp-ux/tree/master/rest) in the source tree, that demonstrates this functionality using JavaScript.
 
 ### Bash sample
 
 The following bash script fetches a session ID and automatically uses it to read VSCP events in plain format.
 
-`<code=bash>`
+```bash
 #!/bin/bash
 
 # Angus Galloway
@@ -97,20 +96,20 @@ The following bash script fetches a session ID and automatically uses it to read
 # option -s for silent
 # option -X for specifying request cmd
 
-curl -s -X GET "http://demo.vscp.org:8080/vscp/rest?vscpuser=admin&vscpsecret=secret&format=plain&op=1" > temp_file
+curl -s -X GET "http://demo.vscp.org:8884/vscp/rest?vscpuser=admin&vscpsecret=secret&format=plain&op=1" > temp_file
 
-awk '{ split($4,arr,"="); print "curl -X GET \"http://demo.vscp.org:8080/vscp/rest?session="arr[2]"&format=plain&op=4\""; }' temp_file
+awk '{ split($4,arr,"="); print "curl -X GET \"http://demo.vscp.org:8884/vscp/rest?session="arr[2]"&format=plain&op=4\""; }' temp_file
 
 # execute result
 
-awk '{ split($4,arr,"="); print "curl -X GET \"http://demo.vscp.org:8080/vscp/rest?session="arr[2]"&format=plain&op=4\"" | "bash"; }' temp_file
-`</code>`
+awk '{ split($4,arr,"="); print "curl -X GET \"http://demo.vscp.org:8884/vscp/rest?session="arr[2]"&format=plain&op=4\"" | "bash"; }' temp_file
+```
 
 ### JavaScript Request with JSONP
 
-`<code=JavaScript>`
+```javascript
 $.ajax({
-    url: 'http://demo.vscp.org:8080/vscp/rest?vscpuser=admin&vscpsecret=secret&format=jsonp&op=1',
+    url: 'http://demo.vscp.org:8884/vscp/rest?vscpuser=admin&vscpsecret=secret&format=jsonp&op=1',
     type : "GET",
     jsonpCallback: 'handler',
     cache: true,
@@ -134,7 +133,7 @@ $.ajax({
         console.log( error + " Status:" + status );
     }
 });
-`</code>`
+```
 
 Use the returned vscpsession key for all other calls.
 
@@ -144,44 +143,41 @@ With the format parameter you set the format your want the response represented 
 
 ##### Response for format=plain
 
-`<code=css>`
+```css
 1 1 Success vscpsession=d1c13eb83f52f319f14d167962048521 nEvents=0
-`</code>`
+```
 
 ##### Response for format=csv
 
-`<code=css>`
+```css
 success_code,error-code,message,description,vscpsession,nEvents
 1,1,Success,Success. 1,1,Success,Success,d1c13eb83f52f319f14d167962048521 
-`</code>`
+```
 
 ##### response for format=xml
 
-`<code=xml>`
+```xml
 <vscp-rest success="true" 
-       code="1" message="Success." 
+       code="1" 
+       message="Success." 
        description="Success.">
-       `<vscpsession>`d1c13eb83f52f319f14d167962048521 `</vscpsession>`
-       `<nEvents>`0`</nEvents>`
-`</vscp-rest>`
-`</code>`
+    <vscpsession>d1c13eb83f52f319f14d167962048521 </vscpsession>
+    <nEvents>0</nEvents>
+</vscp-rest>
+```
 
 ##### response for format=json
 
-`<code=css>`
+```css
 {"success":true,"code":1,"message":"success","description":"Success","vscpsession":"d1c13eb83f52f319f14d167962048521 ","nEvents":0}
-`</code>`
+```
 
 ##### response for format=jsonp
 
-`<code=css>`
+```css
 typeof handler === 'function' && handler({"success":true,"code":1,"message":"success","description":"Success","vscpsession":"d1c13eb83f52f319f14d167962048521 ","nEvents":0});
-`</code>`
+```
 
 
 
-\\ 
-----
-{{  ::copyright.png?600  |}}
-
-`<HTML>``<p style="color:red;text-align:center;">``<a href="http://www.grodansparadis.com">`Grodans Paradis AB`</a>``</p>``</HTML>`
+{% include "./bottom_copyright.md" %}

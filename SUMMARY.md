@@ -295,12 +295,12 @@
 
 ## Other documentation
 
-*  [VSCP Specification](https///www.vscp.org/docs/vscpspec/doku.php?id=start)
-*  [VSCP Helper lib](https///www.vscp.org/docs/vscphelper/doku.php?id=start)
-*  [VSCP Works](https///www.vscp.org/docs/vscpworks/doku.php?id=start)
-*  [VSCP Firmware](https///www.vscp.org/docs/vscpfirmware/doku.php)
-*  [VSCP L1 Framework](https///github.com/BlueAndi/vscp-framework/blob/master/README.md)
-*  [VSCP Arduino](https///github.com/BlueAndi/vscp-arduino)
-*  [VSCP Javascript lib.](https///www.vscp.org/docs/html5/doku.php)
-*  [VSCP HTML demo](https///www.vscp.org/docs/html5/doku.php)
-*  [General VSCP wiki](https///www.vscp.org/wiki/doku.php)
+*  [VSCP Specification](https://www.vscp.org/docs/vscpspec/doku.php?id=start)
+*  [VSCP Helper lib](https://www.vscp.org/docs/vscphelper/doku.php?id=start)
+*  [VSCP Works](https://www.vscp.org/docs/vscpworks/doku.php?id=start)
+*  [VSCP Firmware](https://www.vscp.org/docs/vscpfirmware/doku.php)
+*  [VSCP L1 Framework](https://github.com/BlueAndi/vscp-framework/blob/master/README.md)
+*  [VSCP Arduino](https://github.com/BlueAndi/vscp-arduino)
+*  [VSCP Javascript lib.](https://grodansparadis.gitbooks.io/the-vscp-javascript-library/)
+*  [VSCP HTML demo](https://www.vscp.org/docs/html5/doku.php)
+*  [General VSCP wiki](https://www.vscp.org/wiki/doku.php)

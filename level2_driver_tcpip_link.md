@@ -42,7 +42,7 @@ If your driver name contains spaces, for example “name of driver” it will ge
     `<config>`192.168.1.20;9598;admin;secret`</config>`                 
     `<guid>`00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00`</guid>`             
 `</driver>`
-`</code>`
+```
 
 
 \\ 

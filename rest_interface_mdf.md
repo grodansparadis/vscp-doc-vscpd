@@ -1,21 +1,21 @@
 # Get MDF
 
-`<code=css>`
+```css
     op=11 or op=mdf
-`</code>`  
+```  
     
 Get and display MDF for a device. **Requires a valid session parameter**
 
-Intended for devices that can't download the MDF by themselves. Building a web-app. around this functionality is usually a bad idea. It is much better to use the functionality in the [HTML5 & JavaScript library](http://www.vscp.org/docs/html5/doku.php). This is because the VSCP daemon can not always be expected to be available in every setup (typically wireless and Ethernet setups). If that is the case for you (it is available all the time) use this functionality by all means.
+Intended for devices that can't download the MDF by themselves. Building a web-app. around this functionality is usually a bad idea. It is much better to use the functionality in the [VSCP JavaScript library](https://grodansparadis.gitbooks.io/the-vscp-javascript-library/). This is because the VSCP daemon can not always be expected to be available in every setup (typically wireless and Ethernet setups). If that is the case for you (it is available all the time) use this functionality by all means.
 
 **General Format:**
 
-`<code=http>`
+```javascript
 http://host:port/vscp/rest?vscpsession=session-key&
     format=xml|json|jsonp&
     op=11|mdf&
     url=http://www.eurosource.se/beijing_2.xml
-`</code>`
+```
 
 **Arguments:**
 
@@ -30,38 +30,38 @@ http://host:port/vscp/rest?vscpsession=session-key&
 
 ## HTTP Request with GET
 
-`<code=http>`
-http://demo.vscp.org:8080/vscp/rest?vscpsession=d1c13eb83f52f319f14d167962048521&
+```javascript
+http://demo.vscp.org:8884/vscp/rest?vscpsession=d1c13eb83f52f319f14d167962048521&
     format=xml|json|jsonp&
     op=11|mdf&
     url=http://www.eurosource.se/beijing_2.xml
-`</code>`
+```
 
 to test this with **curl** use the following format
 
-`<code=css>`
+```css
 curl -X GET "http://host:port/vscp/rest? 
     vscpsession=d1c13eb83f52f319f14d167962048521 & 
     format=xml|json|jsonp&
     op=11|mdf"&
     url=http://www.eurosource.se/beijing_2.xml
-`</code>`
+```
 
 ## HTTP Request with POST
 
-`<code=css>`
-curl -X POST "http://host:8080/vscp/rest" \
+```css
+curl -X POST "http://host:8884/vscp/rest" \
     -H "vscpsession: d1c13eb83f52f319f14d167962048521" \ 
     -d "op=11|mdf&format=xml|json|jsonp&url=http://www.eurosource.se/beijing_2.xml"     
-`</code>`
+```
 
 ## Demo
 
-There is a a [demo app.](https///github.com/grodansparadis/vscp-ux/tree/master/rest) in the source tree, that demonstrates this functionality using JavaScript.
+There is a a [demo app.](https://github.com/grodansparadis/vscp-ux/tree/master/rest) in the source tree, that demonstrates this functionality using JavaScript.
 
-`<code=uri>`
-http://demo.vscp.org:8080/vscp/rest?vscpuser=admin&vscpsecret=d50c3180375c27927c22e42a379c3f67&format=plain&op=1
-`</code>`
+```javascript
+http://demo.vscp.org:8884/vscp/rest?vscpuser=admin&vscpsecret=d50c3180375c27927c22e42a379c3f67&format=plain&op=1
+```
 
 and you will get a reply
 
@@ -77,9 +77,9 @@ and now you use the returned VSCP sesson-key
 
 in new calls. In this case
 
-`<code=uri>`
-http://localhost:8080/vscp/rest?vscpsession=b6d6e355124504cef7da7a6e97c09872&format=xml&op=mdf&url=http://www.eurosource.se/beijing_2.xml
-`</code>`
+```javascript
+http://localhost:8884/vscp/rest?vscpsession=b6d6e355124504cef7da7a6e97c09872&format=xml&op=mdf&url=http://www.eurosource.se/beijing_2.xml
+```
 
 to get the MDF file for the [Beijing node](http://www.grodansparadis.com/beijing/beijing.html).
 
@@ -106,24 +106,24 @@ Not supported.
 
 ### Format=xml
 
-`<code=xml>`
-`<!--  Ake Hedman, Grodans Paradis AB  -->`
-`<vscp>`
-    `<module>`
-        `<name>`Beijing IO controller`</name>`
-        `<model>`B`</model>`
-        `<version>`1.0.4`</version>`
-        `<changed>`2015-07-07`</changed>`
+```xml
+<!--  Ake Hedman, Grodans Paradis AB  -->
+<vscp>
+    <module>
+        <name>Beijing IO controller</name>
+        <model>B</model>
+        <version>1.0.4</version>
+        <changed>2015-07-07</changed>
         
         .... bla bla bla bla
         
-    `</module>`
-`</vscp>`
-`</code>`
+    </module>
+</vscp>
+```
 
 ### Format=json
 
-`<code=css>`
+```json
 {"vscp":
     {"module":{"name":"Beijing IO controller","model":"B","version":"1.0.4","changed":"2015-07-07",
     
@@ -132,11 +132,11 @@ Not supported.
         frequency0","@value":"$frequency"}}}}
     }
 }
-`</code>`
+```
 
 ### Format=jsonp
 
-`<code=css>`
+```json
 typeof handler === 'function' && handler({"vscp":
     {"module":{"name":"Beijing IO controller","model":"B","version":"1.0.4","changed":"2015-07-07",
     
@@ -145,10 +145,6 @@ typeof handler === 'function' && handler({"vscp":
         frequency0","@value":"$frequency"}}}}
     }
 });
-`</code>`
+```
 
-\\ 
-----
-{{  ::copyright.png?600  |}}
-
-`<HTML>``<p style="color:red;text-align:center;">``<a href="http://www.grodansparadis.com">`Grodans Paradis AB`</a>``</p>``</HTML>`
+{% include "./bottom_copyright.md" %}

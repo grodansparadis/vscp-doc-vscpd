@@ -4,7 +4,7 @@ The vscpws_speedometerCelsius is a widget that can be used to display temperatur
 
 ## Construction of a vscpws_speedometerCelsius
 
-`<code=javascript>`
+```javascript
 vscpws_speedometerCelsius( username,          // username                                                      
                              passwordhash,    // passwordhash, 
                              url, 	     // url to VSCP websocket i/f
@@ -15,7 +15,7 @@ vscpws_speedometerCelsius( username,          // username
                              sensorIndex,// Datacoding sensor index
                              bNumeric,   // Add numeric printout
                              guid )      // GUID we are interested in
-`</code>`
+```
 
 ### username
 
@@ -29,11 +29,11 @@ Password hash to logon to the websocket server
 
 Url to the websocket server. This typically is on the form 
 
-    "ws://192.168.1.20:8080"
+    "ws://192.168.1.20:8884"
     
 or
 
-    "wss://192.168.1.20:8080" 
+    "wss://192.168.1.20:8884" 
     
 if SSL is used.  
 
@@ -43,7 +43,7 @@ With all widgets having there own user/password/url specified for the websocket 
 
 This is the name of the canvas element where the button should be placed. Typically this is defined on the form
 
-`<code=javascript>`
+```javascript
 <canvas id="mythermometer1"    
 	style="z-index: 1;       
 	position:absolute;       
@@ -51,7 +51,7 @@ This is the name of the canvas element where the button should be placed. Typica
 	top:200px;" >    
 	Your browser does not support HTML5 Canvas. 
 `</canvas>`
-`</code>`
+```
 
 The id is the parameter that goes for the canvasName. This name is also used to create the instance name for the button and the name set is preceded with vscpws_. The canvas specifies the position for the widget, size is set by to the widgets size. Also z-order is possible to define so that objects can be placed behind, or partially behind each other to get nice visual effects. 
 
@@ -97,11 +97,11 @@ This can be used to match a specific GUID the event should come from. Default is
 To use the vscpws_simpleTextEvent widget with events in class VSCP_CLASS1_MEASUREZONE and VSCP_CLASS1_SETVALUEZONE you may want to filter on more than sensorindex and guid. This method allows the extra info available in these classes to be checked as well. 
 
 **Usage**
-`<code=javascript>`
+```javascript
 setExtraParameters( index,      // Index if applicable 
                       zone,     // Zone if applicable 
                       subzone)  // Subzone if applicable 
-`</code>`
+```
 
 #####  index
 
@@ -120,10 +120,10 @@ This can be used to match a specific subzone. Default is -1 meaning don't care. 
 With this method one can set a VSCP daemon variable that should be monitored with a specific interval. The current value of the variable will be written.
 
 **Usage**
-`<code=javascript>`
+```javascript
 setMonitorVariable( variablename, // variable name 
                      interval )   // monitoring interval in milliseconds
-`</code>`
+```
 
 ##### variablename
 
@@ -151,7 +151,7 @@ repository [VSCP HTML5 code](http://github.com/grodansparadis/vscp_html5). For t
 
 It's very easy to use this widget. Set up a data source that send temperature events on even intervals and then tell the temperature widget to look for them. As always you also need to position your widget somewhere and you do that in the canvas definition. A working example looks like this
 
-`<code=javascript>`
+```javascript
 <canvas id="mythermometer2"
    style="z-index: 1;
       position:absolute;
@@ -167,7 +167,7 @@ var temp2 = new vscpws_speedometerCelsius( "ws://192.168.1.20:7681",
                                               VSCP_TYPE_MEASUREMENT_TEMPERATURE, 
                                               2 ); 
 temp2.setDecimals(0);
-`</code>`
+```
 
 which displays measurement temperature data with a widget of type=0 from sensor 2 and the numerics are printed out by default. Also no decimals is printed out
 

@@ -38,7 +38,7 @@ In the configuration file it is possible to set what VSCP (Level I or Level II) 
 
 The format for this file is XML and is defined as follows:
 
-[See source](https///github.com/grodansparadis/vscp_software/tree/master/src/vscp/drivers/level1/lirc)
+[See source](https://github.com/grodansparadis/vscp_software/tree/master/src/vscp/drivers/level1/lirc)
 
 \\ 
 ----

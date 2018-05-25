@@ -6,7 +6,7 @@ The good thing with the Level I interface is that you can add the .dll or .so as
 
 The drivers are configured in the vscpd.conf file (format is [here](http://www.vscp.org/docs/vscpd/doku.php?id=configuring_the_vscp_daemon)). If you use more then one driver with different configuration it is very important that the prefix is set to different values for each of them. The prefix is prepended to a variable name before it is fetched from the daemon or set for that matter.
 
-To make a Level I driver just create a dynamically linked library that export the CANAL interface. There are plenty of examples to use as a starting point for creating your own driver in the [source tree for the VSCP & Friends package at GitHub](https///github.com/grodansparadis/vscp_software). Look in  [src/vscp/drivers/level1](https///github.com/grodansparadis/vscp_software/tree/master/src/vscp/drivers/level1) folder.
+To make a Level I driver just create a dynamically linked library that export the CANAL interface. There are plenty of examples to use as a starting point for creating your own driver in the [source tree for the VSCP & Friends package at GitHub](https://github.com/grodansparadis/vscp_software). Look in  [src/vscp/drivers/level1](https://github.com/grodansparadis/vscp_software/tree/master/src/vscp/drivers/level1) folder.
 
 For Python developers [python-can](http://python-can.readthedocs.io/en/latest/index.html) is a good tool. __Unfortunately__ the CANAL interface is names USB2CAN but it is there.
 

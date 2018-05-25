@@ -1,14 +1,14 @@
 # Send a measurement
 
-`<code=css>`
+```css
     op=10 or op=MEASUREMENT
-`</code>`  
+```  
     
 Sends a VSCP measurement event on a high level. **Requires a valid session parameter**
 
 **General form:**
 
-`<code=http>`
+```javascript
 http://host:port/vscp/rest?
     vscpsession=d1c13eb83f52f319f14d167962048521&
     format=plain|csv|xml|json|jsonp&
@@ -22,14 +22,14 @@ http://host:port/vscp/rest?
     [unit=(0-3)|255]&
     [zone=(0-255)]&
     [subzone=0-255]
-`</code>`
+```
 
 **Arguments:**
 
 
 *  **guid** is the GUID for the event. If not given it defaults to all zeros.
 
-*  **type** is the [VSCP type value](http://www.vscp.org/docs/vscpspec/doku.php?id=class1.measurement) specifying which type of measurement this is. Mandatory.
+*  **type** is the [VSCP type value](https://grodansparadis.gitbooks.io/the-vscp-specification/content/class1.measurement.html) specifying which type of measurement this is. Mandatory.
 
 *  **eventformat** is optional and can be *string* or *float* to generate a string based or a float based event. If not give the default value, float, will be used.
 
@@ -47,8 +47,8 @@ http://host:port/vscp/rest?
 
 ## HTTP Request with GET
 
-`<code=http>`
-http://demo.vscp.org:8080/vscp/rest?vscpsession=d1c13eb83f52f319f14d167962048521&
+```javascript
+http://demo.vscp.org:8884/vscp/rest?vscpsession=d1c13eb83f52f319f14d167962048521&
     format=plain|csv|xml|json|jsonp&
     op=10|measurement&
     guid=00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:01
@@ -59,37 +59,37 @@ http://demo.vscp.org:8080/vscp/rest?vscpsession=d1c13eb83f52f319f14d167962048521
     [unit=0-3|255]&
     [zone=0-255]&
     [subzone=0-255]&
-`</code>`
+```
 
 to test this with **curl** use the following format
 
-`<code=css>`
+```css
 curl -X GET "http://host:port/vscp/rest? \
     vscpsession=d1c13eb83f52f319f14d167962048521 & \
     format=plain|csv|xml|json|jsonp& \
     op=10|measurement"
-`</code>`
+```
 
 ##### example GET HTTP request
 
-`<code=css>`
-    http://localhost:8080/vscp/rest?  
+```css
+    http://localhost:8884/vscp/rest?  
               vscpsession=d1c13eb83f52f319f14d167962048521&
               format=plain&
               op=10
-`</code>`  
+```  
 
 ## HTTP Request with POST
 
-`<code=css>`
-curl -X POST "http://localhost:8080/vscp/rest" \
+```css
+curl -X POST "http://localhost:8884/vscp/rest" \
     -H "vscpsession: d1c13eb83f52f319f14d167962048521" \ 
     -d "op=measurement&format=plain"     
-`</code>`
+```
 
 ## Demo
 
-There is a a [demo app](https///github.com/grodansparadis/vscp-ux/tree/master/rest) in the source tree, that demonstrates this functionality using JavaScript.
+There is a a [demo app](https://github.com/grodansparadis/vscp-ux/tree/master/rest) in the source tree, that demonstrates this functionality using JavaScript.
 
 ### Javascript Request with JSONP
 
@@ -109,24 +109,20 @@ There is a a [demo app](https///github.com/grodansparadis/vscp-ux/tree/master/re
 
 ### XML
 
-`<code=xml>`
+```xml
 
-`</code>`
+```
 
 ### JSON
 
-`<code=css>`
+```css
 
-`</code>`
+```
 
 ### JSONP
 
-`<code=javascript>`
+```javascript
 
-`</code>`
+```
 
-\\ 
-----
-{{  ::copyright.png?600  |}}
-
-`<HTML>``<p style="color:red;text-align:center;">``<a href="http://www.grodansparadis.com">`Grodans Paradis AB`</a>``</p>``</HTML>`
+{% include "./bottom_copyright.md" %}

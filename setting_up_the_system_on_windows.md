@@ -2,8 +2,8 @@
 
  1.  Start VSCP daemon
  2.  Start VSCP Works, open a session to the localhost. Se events from simulated driver.
- 3.  Open Browser. [http://localhost:8080](http://localhost:8080) and test websocket samples. Data is from the simulation driver.
- 4.  Open browser. [http://localhost:8080/vscp](http://localhost:8080/vscp) check the built in administrative interface.
+ 3.  Open Browser. [http://localhost:8884](http://localhost:8884) and test websocket samples. Data is from the simulation driver.
+ 4.  Open browser. [http://localhost:8884/vscp](http://localhost:8884/vscp) check the built in administrative interface.
 
 Read on or uninstall.
 

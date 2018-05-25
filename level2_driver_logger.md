@@ -40,6 +40,6 @@ If your driver name contains spaces, for example "name of driver" it will get a 
     `<config>`/tmp/vscp_level2.log`</config>`                 
     `<guid>`00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00`</guid>`            
 `</driver>` 
-`</code>`
+```
 
 {% include "./bottom_copyright.md" %}

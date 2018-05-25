@@ -40,7 +40,7 @@ the two numbers are process id's. The last is the program we are running and rep
 
     kill -9 960
 
-which removes the lock (sends **SIGKILL**). You can read [about signals here](https///en.wikipedia.org/wiki/Signal_(IPC)#List_of_signals).
+which removes the lock (sends **SIGKILL**). You can read [about signals here](https://en.wikipedia.org/wiki/Signal_(IPC)#List_of_signals).
 
 
 ### log-database 

@@ -13,7 +13,7 @@ var ev1 = vscpws_Event( username,              // Username for websocket server
                                                // i/f (can be null)
                            fncallbackevent )   // If set function to call when
                                                // events arrive (can be null)
-`</code>`
+```
 
 ### username
 
@@ -27,11 +27,11 @@ Password hash to logon to the websocket server
 
 Url to the websocket server. This typically is on the form 
 
-    "ws://192.168.1.20:8080"
+    "ws://192.168.1.20:8884"
     
 or
 
-    "wss://192.168.1.20:8080" 
+    "wss://192.168.1.20:8884" 
     
 if SSL is used.  
 
@@ -45,7 +45,7 @@ The callback function should have the following definition
 `<code=c>`
 var eventReceived = function( bResult,      // True or false for command outcome
                                  msgitems ) // Full websocket reply in array
-`</code>`
+```
 
 Can be set null if not needed.
 ### fncallbackevent
@@ -61,7 +61,7 @@ var eventReceived = function( vscphead,        // VSCP head code
                                 vscptimestamp, // timestamp
                                 vscpguid,      // GUID
                                 vscpdata )     // Array with data 
-`</code>`
+```
 
 Can be set null if not needed.
 
@@ -79,7 +79,7 @@ vscpws_Event.prototype.setFilter = function( filter_class,   // Filter class
                                                 mask_class,  // Mask class
                                                 mask_type,   // Mask type
                                                 mask_guid  ) // Mask GUID string
-`</code>`
+```
 
 
 ##### filter_class
@@ -120,7 +120,7 @@ sendEvent( vscphead,           // VSCP head
                vscptimestamp,  // timestamp
                vscpguid,       // GUID as string
                vscpdata )      // VSCP data as array or string
-`</code>`
+```
 
 ##### vscphead
 
@@ -158,7 +158,7 @@ Clear the input queue
 
 `<code=c>`
    clrQueue()
-`</code>`
+```
 
 ## Using the vscpws_Event widget
 

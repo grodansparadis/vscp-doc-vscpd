@@ -45,7 +45,7 @@ If your driver name contains spaces, for example “name of driver” it will ge
     `<config>`2`</config>`                 
     `<guid>`00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00`</guid>`            
 `</driver>`
-`</code>`
+```
 
 Example for variable configuration. In this sample the temperature from two DS18B20 temperature sensors is reported every ten seconds.
 
@@ -100,7 +100,7 @@ Example for variable configuration. In this sample the temperature from two DS18
 	<value>/sys/bus/w1/devices/28-000003e71198/w1_slave</value>      
 `</variable>`
 
-`</code>`
+```
 
 \\ \\ 
 ----

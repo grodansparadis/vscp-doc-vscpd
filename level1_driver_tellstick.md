@@ -69,7 +69,7 @@ Configuration for the module is done with a XML file
         />		 	
     `</event>` 
 `</tellstick>`
-`</code>`
+```
 
 The driver understands four events
 

@@ -42,14 +42,14 @@ If your driver name contains spaces, for example “name of driver” it will ge
 
 A typical configuration example settings for a Windows 7 machines *vscpd.conf* configuration file is 
 
-`<code=xml>`
+```xml
 `<!-- Level II raw ethernet  -->`
 `<driver enable="true">` 		   	 			
     `<name>`rawethernet1`</name>` 		   	 		
     `<config>`\Device\NPF_{DE579129-5F36-4507-A416-C2B693AC3018};00:26:55:CA:1F:DA`</config>`
     `<path>`C:\Program Files (x86)\VSCP\drivers\level2\vscpl2_rawethernetdrv.dll`</path>`
 `</driver>`
-`</code>`
+```
         
 and on a Linux machine        
 
@@ -61,7 +61,7 @@ and on a Linux machine
         `<path>`/usr/local/lib/vscp2drv_raweth.so`</path>`
     `</driver>` 
 `</vscpdriver>`
-`</code>`
+```
 \\ 
 
 #####  Frame format

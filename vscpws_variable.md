@@ -18,7 +18,7 @@ var ev1 = vscpws_Variable( username,           // Username for websocket server
                             bAll )             // Call function for every read, 
                                                // not just changes, if set to 
                                                // true. 
-`</code>`
+```
 
 ### username
 
@@ -32,11 +32,11 @@ Password hash to logon to the websocket server
 
 Url to the websocket server. This typically is on the form 
 
-    "ws://192.168.1.20:8080"
+    "ws://192.168.1.20:8884"
     
 or
 
-    "wss://192.168.1.20:8080" 
+    "wss://192.168.1.20:8884" 
     
 if SSL is used.  
 
@@ -57,7 +57,7 @@ Define this callback function to get notifications of a changed variable value o
 var fncallback= function( bResult,      // True or false for command outcome
                              command,   // The command that resulted in this
                              msgarray ) // VSCP websocket message array.
-`</code>`
+```
 
 For a monitored variable that have a changed value the command will be equal to "READVAR" for the command responses see below.
 
@@ -83,7 +83,7 @@ The format for the **value** is different for different types of variables and i
 **Usage**
 `<code="c">`
 vscpws_Variable.writeVariable( name, value )
-`</code>`
+```
 
 ###  createVariable
 
@@ -100,7 +100,7 @@ The **persistent** argument defaults to *false* and does not have to be given. I
 **Usage**
 `<code="c">`
 vscpws_Variable.createVariable( name, type, value, persistence )
-`</code>`
+```
 
 ###  resetVariable
 
@@ -109,7 +109,7 @@ Reset a variable to its default value. The function callback will have command s
 **Usage**
 `<code="c">`
 vscpws_Variable.resetVariable( name  )
-`</code>`
+```
 
 ### removeVariable
 
@@ -118,7 +118,7 @@ With this command a variable can be removed (be deleted). The function callback 
 **Usage**
 `<code="c">`
 vscpws_Variable.removeVariable( name  )
-`</code>`
+```
 
 ###  lengthVariable
 
@@ -127,7 +127,7 @@ Intended for the string type variable type this gives the length of the variable
 **Usage**
 `<code="c">`
 vscpws_Variable.lengthVariable( name  )
-`</code>`
+```
 
 ###  lastchangeVariable
 
@@ -136,7 +136,7 @@ This command returns the last date+time the variable was changed. The first time
 **Usage**
 `<code="c">`
 vscpws_Variable.lastchangeVariable( name  )
-`</code>`
+```
 
 ###  listVariable
 
@@ -154,7 +154,7 @@ The function callback will be called once for each variable defined. The message
 **Usage**
 `<code="c">`
 vscpws_Variable.listVariable()
-`</code>`
+```
 
 ###  saveVariable
 
@@ -163,7 +163,7 @@ This command save persistent varibles to disk (varibles.xml). The function callb
 **Usage**
 `<code="c">`
 vscpws_Variable.saveVariable()
-`</code>`
+```
 
 ## Using the vscpws_variable widget
 

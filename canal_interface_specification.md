@@ -398,7 +398,7 @@ The `<flags>` tag describe the bits in the flags value. It should have a `<bit>`
 
 A real world example (the [can4vscp driver](http://www.vscp.org/docs/vscpd/doku.php?id=level1_driver_can4vscp) looks like this.
 
-`<code=xml>`
+```xml
 `<?xml version = "1.0" encoding = "UTF-8" ?>`
 `<config>`
     `<description>`CAN4VSCP standard serial driver`</description>`
@@ -443,7 +443,7 @@ A real world example (the [can4vscp driver](http://www.vscp.org/docs/vscpd/doku.
         `<bit pos="5" width="1" type="bool" description="If this flag is set enable hardware handshake. Recommended for lower baudrates to prevent buffer overflows." infourl="http://www.vscp.org/docs/vscpd/doku.php?id=level1_driver_can4vscp#flags" />`
     `</flags>`
 `</config>`
-`</code>`
+```
 ### Returns
 
 Pointer to a configuration string or NULL if no configuration string is available.
