@@ -1,6 +1,6 @@
 # Multicast - General description
 
-Multicast is described [here in the VSCP specification](http://www.vscp.org/docs/vscpspec/doku.php?id=vscp_multicast).
+Multicast is described [here in the VSCP specification](https://grodansparadis.gitbooks.io/the-vscp-specification/content/vscp_multicast.html).
 
 The multicast interface of the VSCP server uses the VSCP assigned multicast group and consist of two parts. **Multicast announce** and **multicast channels**.
 
@@ -13,8 +13,4 @@ There is no quarantined delivery of a VSCP event when using multicast functional
 
 Multicast frames can be encrypted using AES128, AES192, AES256 for state of art security.
 
-\\ 
-----
-{{  ::copyright.png?600  |}}
-
-`<HTML>``<p style="color:red;text-align:center;">``<a href="http://www.grodansparadis.com">`Grodans Paradis AB`</a>``</p>``</HTML>`
+{% include "./bottom_copyright.md" %}

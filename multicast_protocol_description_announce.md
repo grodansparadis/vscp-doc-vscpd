@@ -2,7 +2,7 @@
 
 Multicast announce is a way for a level II node to announce that it is available and tell what it can do to other nodes in a a system. If a level II node can implement this interface it should implement it. A node that listen for at least one minute in the multicast announce channel will after that know the existence of all VSCP nodes on that system that want to be known. 
 
-The group used for VSCP multicast announcements is the VSCP assigned **group 224.0.23.158** and the VSCP standard **port 9598** is reserved for this usage.
+The group used for VSCP multicast announcements is the VSCP assigned *group 224.0.23.158* and the VSCP standard *port 9598* is reserved for this usage.
 
 ## Events
 
