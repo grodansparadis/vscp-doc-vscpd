@@ -5,7 +5,7 @@ The TCP/IP interface is a very powerful tool to control the VSCP daemon remotely
 
 ## GUID assigned to the interface
 
-Just as with all clients that connect to the daemon each TCP client interface gets a GUID assigned to it. This GUID is assigned by setting it to the GUID the interface was assigned at start up (in the [configuration file](Configuring the VSCP Daemon) ). This means that a client GUID has the following general form
+Just as with all clients that connect to the daemon each TCP client interface gets a GUID assigned to it. This GUID is assigned by setting it to the GUID the interface was assigned at start up (in the [configuration file](./configuring_the_vscp_daemon.md) ). This means that a client GUID has the following general form
 
     yy yy yy yy yy yy yy yy yy yy yy yy client_id_MSB client_id_LSB 0 0
 
@@ -33,15 +33,17 @@ A node that needs a TCP connection to a server broadcasts High end server probe 
 
 A daemon like the VSCP daemon can span multiple segments and a reply can therefore be received from a remote segment as well. This can be an advantage in some cases and unwanted in other cases. The server configuration should have control on how it is handled.
 
-{{:highenddiscovery.jpg}}
+![](./images/highenddiscovery.jpg)
 
 As an example: In this picture VSCP Works has been used to broadcast a High end server probe from the machine with IP address 192.168.1.8 - Data is 0,192,168,1,8 - The initial zero indicates that this is a TCP/IP based device. The server that in this case is on the same machine have answered with a High end server response with data set to
+
     80 00 08 01 A8 C0 25 7E
+
 The first two bytes is the bit-filed that tells the Code for server capabilities. After that follows the server IP address (192.168.1.8) followed by the VSCP default port 9598.
 In clear text, this server has a VSCP TCP/IP interface available at the standard port.
 Other scenarios could be possible of course such as several servers responding and each of the servers supporting different capabilities.
 
-The High end server probe and High end server response is described here Class=0 (0x00) VSCP Protocol Functionality - CLASS1.PROTOCOL
+The High end server probe and High end server response is described here [Class=0 (0x00) VSCP Protocol Functionality - CLASS1.PROTOCOL](https://grodansparadis.gitbooks.io/the-vscp-specification/content/class1.protocol.html#type27-0x1b-high-end-serverservice-probe)
 
 A node can react in its own manner on the response. It can connect to the server itself or wait for the server to connect to the node.
 

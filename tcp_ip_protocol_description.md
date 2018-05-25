@@ -2,12 +2,11 @@
 
 ## Port
 
-Default Port is 9598 but the interface can be available on several port and several interfaces on a specific hardware.
+Default Port for the tcp/ip interface is 9598 but the interface can be available on several port and several interfaces on a specific hardware.
 
 ## Command and response format
 
 The VSCP TCP protocol is very much like the POP3 protocol.
-
 
 *  A command is sent (ending with CRLF)
 
@@ -15,9 +14,9 @@ The VSCP TCP protocol is very much like the POP3 protocol.
 
 For some commands there can be data in between the two lines. For instance the “**VERS**” command looks like this
 
-    send: 'VERS`<CR>``<LF>` 
-    received line 1: '1,0,0`<CR>``<LF>` 
-    received line 2: '+OK - `<CR>``<LF>`
+    send: 'VERS<CR><LF> 
+    received line 1: '1,0,0<CR><LF> 
+    received line 2: '+OK - <CR><LF>
 
 ## VSCP Link Interfaces (VSCP-LI)
 
@@ -25,41 +24,41 @@ The daemon interface can be visible also on lower end (typically TC/IP) nodes. A
 
 ## List of available commands
 
- | Command                                                                                                                                                                                                         | Privilege | Link | From version | Description                                                                                        | 
- | -------                                                                                                                                                                                                         | --------- | ---- | ------------ | -----------                                                                                        | 
- | +                                                                                                                                                                                                               | 0         | yes  | 0.0.2        | Repeat the last command                                                                            | 
- | [NOOP](http://www.vscp.org/docs/vscpd/doku.php?id=vscp_daemon_tcp_ip_protocol_description#noop_-_no_operation)                                                                                                  | 0         | yes  | 0.0.1        | No operation.                                                                                      | 
- | [HELP](http://www.vscp.org/docs/vscpd/doku.php?id=vscp_daemon_tcp_ip_protocol_description#help_-_give_help)                                                                                                     | 0         | no   | 0.0.2        | Give command help.                                                                                 | 
- | [QUIT](http://www.vscp.org/docs/vscpd/doku.php?id=vscp_daemon_tcp_ip_protocol_description#quit_-_close_the_connection)                                                                                          | 0         | yes  | 0.0.1        | Close the connection.                                                                              | 
- | [USER](http://www.vscp.org/docs/vscpd/doku.php?id=vscp_daemon_tcp_ip_protocol_description#user_-_username_for_login)                                                                                            | 0         | yes  | 0.0.1        | Username for login.                                                                                | 
- | [PASS](http://www.vscp.org/docs/vscpd/doku.php?id=vscp_daemon_tcp_ip_protocol_description#pass_-_password_for_login)                                                                                            | 0         | yes  | 0.0.1        | Password for login.                                                                                | 
- | [CHALLENGE](http://www.vscp.org/docs/vscpd/doku.php?id=vscp_daemon_tcp_ip_protocol_description#challenge_-_get_challenge_session_id)                                                                            | 0         | yes  | 1.12.14.4    | Get session id.                                                                                    | 
- | [SEND](http://www.vscp.org/docs/vscpd/doku.php?id=vscp_daemon_tcp_ip_protocol_description#send_-_send_an_event)                                                                                                 | 4         | yes  | 0.0.1        | Send an event.                                                                                     | 
- | [RETR](http://www.vscp.org/docs/vscpd/doku.php?id=vscp_daemon_tcp_ip_protocol_description#retr_-_retrieve_one_or_several_event_s)                                                                               | 2         | yes  | 0.0.1        | Retrieve one or several event(s).                                                                  | 
- | [RCVLOOP](http://www.vscp.org/docs/vscpd/doku.php?id=vscp_daemon_tcp_ip_protocol_description#rcvloop_-_send_events_to_client_as_soon_as_they_arrive)                                                            | 2         | yes  | 0.0.2        | Will retrieve events in an endless loop until the connection is closed by the client.              | 
- | [QUITLOOP](http://www.vscp.org/docs/vscpd/doku.php?id=vscp_daemon_tcp_ip_protocol_description#quitloop_-_quit_receiving_loop)                                                                                   | 2         | yes  | 0.4.29       | Terminate RCVLOOP                                                                                  | 
- | [CDTA/CHKDATA](http://www.vscp.org/docs/vscpd/doku.php?id=vscp_daemon_tcp_ip_protocol_description#cdta_chkdata_-_check_if_there_are_events_to_retrieve) ((Both versions of the command should be supported))    | 1         | yes  | 0.0.1        | Check if there are events to retrieve.                                                             | 
- | [CLRA/CLRALL](http://www.vscp.org/docs/vscpd/doku.php?id=vscp_daemon_tcp_ip_protocol_description#clra_clrall_-_clear_all_events_in_in-queue) ((Both versions of the command should be supported))               | 1         | yes  | 0.0.1        | Clear all events in in-queue.                                                                      | 
- | [STAT](http://www.vscp.org/docs/vscpd/doku.php?id=vscp_daemon_tcp_ip_protocol_description#stat_-_get_statistics_information)                                                                                    | 1         | yes  | 0.0.1        | Get statistics information.                                                                        | 
- | [INFO](http://www.vscp.org/docs/vscpd/doku.php?id=vscp_daemon_tcp_ip_protocol_description#info_-_get_status_information)                                                                                        | 1         | yes  | 0.0.1        | Get status information.                                                                            | 
- | [CHID/GETCHID](http://www.vscp.org/docs/vscpd/doku.php?id=vscp_daemon_tcp_ip_protocol_description#chid_-_get_channel_id) ((Both versions of the command should be supported))                                   | 1         | yes  | 0.0.1        | Get channel ID.                                                                                    | 
- | [SGID/SETGUID](http://www.vscp.org/docs/vscpd/doku.php?id=vscp_daemon_tcp_ip_protocol_description#sgid_setguid_-_set_guid_for_channel) ((Both versions of the command should be supported))                     | 6         | yes  | 0.0.1        | Set GUID for channel.                                                                              | 
- | [GGID/GETGUID](http://www.vscp.org/docs/vscpd/doku.php?id=vscp_daemon_tcp_ip_protocol_description#ggid_getguid_-_get_guid_for_channel) ((Both versions of the command should be supported))                     | 1         | yes  | 0.0.1        | Get GUID for channel.                                                                              | 
- | [VERS/VERSION](http://www.vscp.org/docs/vscpd/doku.php?id=vscp_daemon_tcp_ip_protocol_description#vers_version_-_get_vscp_daemon_version) ((Both versions of the command should be supported))                  | 0         | yes  | 0.0.1        | Get CANAL/VSCP daemon version.                                                                     | 
- | [SFLT/SETFILTER](http://www.vscp.org/docs/vscpd/doku.php?id=vscp_daemon_tcp_ip_protocol_description#sflt_setfilter_-_set_incoming_event_filter) ((Both versions of the command should be supported))            | 6         | yes  | 0.0.1        | Set incoming event filter.                                                                         | 
- | [SMSK/SETMASK](http://www.vscp.org/docs/vscpd/doku.php?id=vscp_daemon_tcp_ip_protocol_description#smsk_setmask_-_set_incoming_event_mask)                                                                       | 6         | yes  | 0.0.1        | Set incoming event mask.                                                                           | 
- | TEST                                                                                                                                                                                                            | 15        | no   | 0.0.2        | Do test sequence. Only used for debugging.                                                         | 
- | [SHUTDOWN](http://www.vscp.org/docs/vscpd/doku.php?id=vscp_daemon_tcp_ip_protocol_description#shutdown)                                                                                                         | 15        | no   | 0.0.2        | Shutdown the daemon.                                                                               | 
- | [RESTART](http://www.vscp.org/docs/vscpd/doku.php?id=vscp_daemon_tcp_ip_protocol_description#restart)                                                                                                           | 15        | no   | 0.0.2        | Restart the daemon.                                                                                | 
- | [DRIVER](http://www.vscp.org/docs/vscpd/doku.php?id=vscp_daemon_tcp_ip_protocol_description#driver)                                                                                                             | 15        | no   | 0.0.2        | Driver manipulation.  Have secondary commands.                                                     | 
- | [FILE](http://www.vscp.org/docs/vscpd/doku.php?id=vscp_daemon_tcp_ip_protocol_description#file)                                                                                                                 | 15        | no   | 0.0.2        | File handling. Have secondary commands.                                                            | 
- | [UDP](http://www.vscp.org/docs/vscpd/doku.php?id=vscp_daemon_tcp_ip_protocol_description#udp)                                                                                                                   | 15        | no   | 0.0.2        | UDP handling.                                                                                      | 
- | [REMOTE](http://www.vscp.org/docs/vscpd/doku.php?id=vscp_daemon_tcp_ip_protocol_description#remote)                                                                                                             | 15        | no   | 0.0.2        | User manipulation.                                                                                 | 
- | [INTERFACE](http://www.vscp.org/docs/vscpd/doku.php?id=vscp_daemon_tcp_ip_protocol_description#interface)                                                                                                       | 15        | no   | 0.0.2        | Interface manipulation. Have secondary commands.                                                   | 
- | [DM](http://www.vscp.org/docs/vscpd/doku.php?id=vscp_daemon_tcp_ip_protocol_description#dm)                                                                                                                     | 15        | yes  | 0.0.2        | Decision Matrix manipulation. Have secondary commands.                                             | 
- | [VAR](http://www.vscp.org/docs/vscpd/doku.php?id=vscp_daemon_tcp_ip_protocol_description#var)                                                                                                                   | 4         | yes  | 0.2.9        | Variable handling.(Changed from "VARIABLE" to "VAR" in version 1.12.14.6) Have secondary commands. | 
- | [TABLE](http://www.vscp.org/docs/vscpd/doku.php?id=vscp_daemon_tcp_ip_protocol_description#table)                                                                                                               | 4         | no   | 0.4.29       | Table handling.  Have secondary commands.                                                          | 
- | [WCYD/WHATCANYOUDO](http://www.vscp.org/docs/vscpd/doku.php?id=vscp_daemon_tcp_ip_protocol_description#whatcanyoudo_-_ask_the_capabilities_of_this_server) ((Both versions of the command should be supported)) | 0         | yes  | 0.4.29       | Request what this sever can do                                                                     | 
+ | Command  | Privilege | Link | From version | Description  | 
+ | -------  | :---------: | :----: | :------------: | -----------  | 
+ | +        | 0         | yes  | 0.0.2        | Repeat the last command  | 
+ | [NOOP](./tcp_ip_protocol_description.md#noop_-_no_operation)                                                                                                  | 0         | yes  | 0.0.1        | No operation.                                                                                      | 
+ | [HELP](./tcp_ip_protocol_description.md#help_-_give_help)                                                                                                     | 0         | no   | 0.0.2        | Give command help.                                                                                 | 
+ | [QUIT](./tcp_ip_protocol_description.md#quit_-_close_the_connection)                                                                                          | 0         | yes  | 0.0.1        | Close the connection.                                                                              | 
+ | [USER](./tcp_ip_protocol_description.md#user_-_username_for_login)                                                                                            | 0         | yes  | 0.0.1        | Username for login.                                                                                | 
+ | [PASS](./tcp_ip_protocol_description.md#pass_-_password_for_login)                                                                                            | 0         | yes  | 0.0.1        | Password for login.                                                                                | 
+ | [CHALLENGE](./tcp_ip_protocol_description.md#challenge_-_get_challenge_session_id)                                                                            | 0         | yes  | 1.12.14.4    | Get session id.                                                                                    | 
+ | [SEND](./tcp_ip_protocol_description.md#send_-_send_an_event)                                                                                                 | 4         | yes  | 0.0.1        | Send an event.                                                                                     | 
+ | [RETR](./tcp_ip_protocol_description.md#retr_-_retrieve_one_or_several_event_s)                                                                               | 2         | yes  | 0.0.1        | Retrieve one or several event(s).                                                                  | 
+ | [RCVLOOP](./tcp_ip_protocol_description.md#rcvloop_-_send_events_to_client_as_soon_as_they_arrive) | 2         | yes  | 0.0.2        | Will retrieve events in an endless loop until the connection is closed by the client.  | 
+ | [QUITLOOP](./tcp_ip_protocol_description.md#quitloop_-_quit_receiving_loop)                                                                                   | 2         | yes  | 0.4.29       | Terminate RCVLOOP                                                                                  | 
+ | [CDTA/CHKDATA](./tcp_ip_protocol_description.md#cdta_chkdata_-_check_if_there_are_events_to_retrieve) ((Both versions of the command should be supported))    | 1         | yes  | 0.0.1        | Check if there are events to retrieve.                                                             | 
+ | [CLRA/CLRALL](./tcp_ip_protocol_description.md#clra_clrall_-_clear_all_events_in_in-queue) ((Both versions of the command should be supported))               | 1         | yes  | 0.0.1        | Clear all events in in-queue.                                                                      | 
+ | [STAT](./tcp_ip_protocol_description.md#stat_-_get_statistics_information)                                                                                    | 1         | yes  | 0.0.1        | Get statistics information.                                                                        | 
+ | [INFO](./tcp_ip_protocol_description.md#info_-_get_status_information)                                                                                        | 1         | yes  | 0.0.1        | Get status information.                                                                            | 
+ | [CHID/GETCHID](./tcp_ip_protocol_description.md#chid_-_get_channel_id) ((Both versions of the command should be supported))                                   | 1         | yes  | 0.0.1        | Get channel ID.                                                                                    | 
+ | [SGID/SETGUID](./tcp_ip_protocol_description.md#sgid_setguid_-_set_guid_for_channel) ((Both versions of the command should be supported))                     | 6         | yes  | 0.0.1        | Set GUID for channel.                                                                              | 
+ | [GGID/GETGUID](./tcp_ip_protocol_description.md#ggid_getguid_-_get_guid_for_channel) ((Both versions of the command should be supported))                     | 1         | yes  | 0.0.1        | Get GUID for channel.                                                                              | 
+ | [VERS/VERSION](./tcp_ip_protocol_description.md#vers_version_-_get_vscp_daemon_version) ((Both versions of the command should be supported))                  | 0         | yes  | 0.0.1        | Get CANAL/VSCP daemon version.                                                                     | 
+ | [SFLT/SETFILTER](./tcp_ip_protocol_description.md#sflt_setfilter_-_set_incoming_event_filter) ((Both versions of the command should be supported))            | 6         | yes  | 0.0.1        | Set incoming event filter.                                                                         | 
+ | [SMSK/SETMASK](./tcp_ip_protocol_description.md#smsk_setmask_-_set_incoming_event_mask)                                                                       | 6         | yes  | 0.0.1        | Set incoming event mask.  | 
+ | TEST | 15        | no   | 0.0.2        | Do test sequence. Only used for debugging.                                                         | 
+ | [SHUTDOWN](./tcp_ip_protocol_description.md#shutdown)                                                                                                         | 15        | no   | 0.0.2        | Shutdown the daemon.                                                                               | 
+ | [RESTART](./tcp_ip_protocol_description.md#restart)                                                                                                           | 15        | no   | 0.0.2        | Restart the daemon.                                                                                | 
+ | [DRIVER](./tcp_ip_protocol_description.md#driver)                                                                                                             | 15        | no   | 0.0.2        | Driver manipulation.  Have secondary commands.                                                     | 
+ | [FILE](./tcp_ip_protocol_description.md#file)                                                                                                                 | 15        | no   | 0.0.2        | File handling. Have secondary commands.                                                            | 
+ | [UDP](./tcp_ip_protocol_description.md#udp)                                                                                                                   | 15        | no   | 0.0.2        | UDP handling.                                                                                      | 
+ | [REMOTE](./tcp_ip_protocol_description.md#remote)                                                                                                             | 15        | no   | 0.0.2        | User manipulation.                                                                                 | 
+ | [INTERFACE](./tcp_ip_protocol_description.md#interface)                                                                                                       | 15        | no   | 0.0.2        | Interface manipulation. Have secondary commands.                                                   | 
+ | [DM](./tcp_ip_protocol_description.md#dm)                                                                                                                     | 15        | yes  | 0.0.2        | Decision Matrix manipulation. Have secondary commands.                                             | 
+ | [VAR](./tcp_ip_protocol_description.md#var)                                                                                                                   | 4         | yes  | 0.2.9        | Variable handling.(Changed from "VARIABLE" to "VAR" in version 1.12.14.6) Have secondary commands. | 
+ | [TABLE](./tcp_ip_protocol_description.md#table)                                                                                                               | 4         | no   | 0.4.29       | Table handling.  Have secondary commands.                                                          | 
+ | [WCYD/WHATCANYOUDO](./tcp_ip_protocol_description.md#whatcanyoudo_-_ask_the_capabilities_of_this_server) ((Both versions of the command should be supported)) | 0         | yes  | 0.4.29       | Request what this sever can do                                                                     | 
 
 ## NOOP - No operation
 
@@ -80,7 +79,7 @@ Used to enter username for a password protected server.
 
 Used on the following form:
 
-USER username`<CR>``<LF>`
+    USER username<CR><LF>
 
 ## PASS - Password for login
 
@@ -88,7 +87,7 @@ Used to enter username for a password protected server.
 
 Used on the following form:
 
-PASS password`<cr>``<lf>`
+    PASS password<CR><LF>
 
 ## CHALLENGE - Get challenge session id
 
@@ -96,7 +95,7 @@ Used to get a session unique id
 
 Used on the following form:
 
-    CHALLENGE password`<cr>``<lf>`
+    CHALLENGE password<CR><LF>
 
 and give a response such as
 
@@ -148,24 +147,24 @@ The variable send form makes it possible to send the content in a variable that 
 **Example:**
 Send a full GUID event
 
-    send 0,20,3,,,,0:1:2:3:4:5:6:7:8:9:10:11:12:13:14:15,0,1,35`<CR>``<LF>`
+    send 0,20,3,,,,0:1:2:3:4:5:6:7:8:9:10:11:12:13:14:15,0,1,35<CR><LF>
 
 Send Event. The example is the same as above but the GUID of the interface will be used.
 
-    send 0,20,3,,,,-,0,1,35`<CR>``<LF>` 
+    send 0,20,3,,,,-,0,1,35<CR><LF> 
     
 Send event with UTC time set
 
-    send 0,20,3,,2001-11-02T18:00:01,,-,0,1,35`<CR>``<LF>`  
+    send 0,20,3,,2001-11-02T18:00:01,,-,0,1,35<CR><LF>  
 
-Both send the [CLASS1.INFORMATION TYPE=3 ON event](http://www.vscp.org/docs/vscpspec/doku.php?id=class1.information#type_3_0x03_on), for zone=1, sub-zone=35
+Both send the [CLASS1.INFORMATION TYPE=3 ON event](https://grodansparadis.gitbooks.io/the-vscp-specification/content/class1.information.html), for zone=1, sub-zone=35
 
 **Send event to specific interface**
 It is possible to send Level I events to a specific interface. To do this use the Level II mirror Level I events ( Class=512-1023 VSCP Level II Level I events - CLASS2.LEVELI). This is events with class equal to 512 - 1023 which mirrors the Level I events but have the destination GUID in data bytes 0-15. Thees data-bytes is set to the interface (14 upper bits) and the node-ID for the node one wants to communicate with is in GUID[0]. This event will be sent to the correct interface.
 
 So the above example would be
 
-    send 0,20,3,,,0,-,15,14,13,12,11,10,9,8,7,6,5,4,3,2,0,0,1,35`<CR>``<LF>`
+    send 0,20,3,,,0,-,15,14,13,12,11,10,9,8,7,6,5,4,3,2,0,0,1,35<CR><LF>
 
 where class becomes *532* (512 + 20) and where *15,14,13,12,11,10,9,8,7,6,5,4,3,2,0,0* is the interface the events should be routed to. Note the two zeros at the two least significant bytes which is always zero for an interface and is used for node id's.
 
@@ -188,7 +187,7 @@ GUID with MSB first.
 
 Used on the following form:
 
-    RETR 2`<CR>``<LF>` 
+    RETR 2<CR><LF>
 
 which gives
 
@@ -235,7 +234,7 @@ is sent with a two second interval. The format for the event data is the same as
 
 Some applications may not implement this feature and should output
 
-    [-OK - Command not implemented`<CR>``<LF>`]
+    -OK - Command not implemented<CR><LF>
 
 to indicate this. 
 
@@ -249,12 +248,12 @@ This command are used to check how many events are in the input queue waiting fo
 
 Used on the following form:
 
-    CDTA`<CR>``<LF>` 
+    CDTA<CR><LF> 
 
 and reply is
 
-    8 `<CR>``<LF>`
-    +OK -`<CR>``<LF>`
+    8 <CR><LF>
+    +OK<CR><LF>
 
 ## CLRA/CLRALL - Clear all events in in-queue.
 
@@ -262,11 +261,11 @@ This command are used to clear all events in the input queue.
 
 Used on the following form:
 
-   CLRA`<CR>``<LF>` 
+   CLRA<CR><LF> 
 
 and reply is
 
-    +OK - All events cleared.`<CR>``<LF>`
+    +OK - All events cleared.<CR><LF>
 
 ## STAT - Get statistics information.
 
@@ -278,11 +277,11 @@ Where x,y,z currently is undefined values.
 
 **Example:**
 
-    STAT`<CR>``<LF>` 
+    STAT<CR><LF> 
 
 reply is 
-    0,0,0,12356,56,9182,20`<CR>``<LF>` 
-    +OK - `<CR>``<LF>`
+    0,0,0,12356,56,9182,20<CR><LF> 
+    +OK - <CR><LF>
 
 ## INFO - Get status information.
 
@@ -292,12 +291,12 @@ This command fetch the status information for the interface. Returned format is
 
 **Example:**
 
-    INFO`<CR>``<LF>` 
+    INFO<CR><LF> 
 
 and the reply is  
     
-    7812,12,0,"Overrun"`<CR>``<LF>` 
-    +OK - `<CR>``<LF>`
+    7812,12,0,"Overrun"<CR><LF> 
+    +OK - <CR><LF>
 
 ## CHID - Get channel ID.
 
@@ -305,12 +304,12 @@ Get the channel ID for the communication channel. This is the same parameter as 
 
 **Example:**
 
-    CHID`<CR>``<LF>` 
+    CHID<CR><LF> 
 
 and the reply is
     
-    1234`<CR>``<LF>` 
-    +OK - `<CR>``<LF>`
+    1234<CR><LF> 
+    +OK<CR><LF>
 
 ## SGID/SETGUID - Set GUID for channel.
 
@@ -318,21 +317,21 @@ Set the GUID for this channel. The GUID is given on the form
 
 The format is:
 
-    SETGUID 0:1:2:3:4:5:6:7:8:9:10:11:12:13:14:15`<CR>``<LF>` 
+    SETGUID 0:1:2:3:4:5:6:7:8:9:10:11:12:13:14:15<CR><LF> 
 
 or
-    SGID 0:1:2:3:4:5:6:7:8:9:10:11:12:13:14:15`<CR>``<LF>`
+    SGID 0:1:2:3:4:5:6:7:8:9:10:11:12:13:14:15<CR><LF>
 
 and reply is 
 
-    +OK - `<CR>``<LF>`
+    +OK<CR><LF>
 
 ## GGID/GETGUID - Get GUID for channel.
 
 Get the GUID for this channel. The GUID is received on the form
 
-    0:1:2:3:4:5:6:7:8:9:10:11:12:13:14:15`<CR>``<LF>`
-    +OK - `<CR>``<LF>`
+    0:1:2:3:4:5:6:7:8:9:10:11:12:13:14:15<CR><LF>
+    +OK<CR><LF>
 
 ## VERS/VERSION - Get VSCP daemon version.
 
@@ -383,10 +382,6 @@ The VSCP server 16-bit capability code is described in the specification documen
 
 ## MEASUREMENT - Send a measurement.
 
-:!:
-
-**This command is a future command.**
-
 Send a measurement. The measurement will be sent as either as a Level I event or a Level II event.
  
 
@@ -399,7 +394,7 @@ Positive/negative response is returned.
 **Arguments:**
 
 
-*  **type** is the [VSCP type value](http://www.vscp.org/docs/vscpspec/doku.php?id=class1.measurement) specifying which type of measurement this is. Mandatory.
+*  **type** is the [VSCP type value](https://grodansparadis.gitbooks.io/the-vscp-specification/content/class1.measurement.html) specifying which type of measurement this is. Mandatory.
 
 *  **unit** is the measurement unit for this type of measurement. An be in the range 0-3 for a Level I event and 0-255 for a Level II event. Mandatory.
 
@@ -432,6 +427,7 @@ Install a new driver. Full format is DRIVER install “path to driver package”
 Uninstall a driver that is currently installed. 
 
 Full format is 
+
     DRIVER uninstall “drivername”/id. 
 
 ### driver upgrade
@@ -439,6 +435,7 @@ Full format is
 Upgrade a driver that is currently installed. 
 
 Full format is 
+
     DRIVER upgrade “drivername”/id.
 
 ### driver start
@@ -446,6 +443,7 @@ Full format is
 Start an installed driver. 
 
 Full format is 
+
     DRIVER start “drivername”/id. 
 
 ### driver stop
@@ -453,6 +451,7 @@ Full format is
 Stop an installed driver. 
 
 Full format is 
+
     DRIVER stop “drivername”/id. 
 
 ### driver reload
@@ -460,6 +459,7 @@ Full format is
 Reload an installed driver. 
 
 Full format is 
+
    DRIVER reload “drivername”/id. 
 
 ## FILE
@@ -495,6 +495,7 @@ List content of file.
 Enable the UDP interface. 
 
 Full format is 
+
     UDP enable 
 
 ### disable
@@ -502,6 +503,7 @@ Full format is
 Disable the UDP interface. 
 
 Full format is 
+
     UDP disable
 
 ## REMOTE
@@ -513,20 +515,22 @@ Remote user manipulation.
 ### list
 
 List user(s). Full format is 
+
     REMOTE list wild-card 
 
 The list user command has the following format
 
-    'count' rows`<CR>``<LF>`
-    user1`<CR>``<LF>` 
-    user2`<CR>``<LF>`
+    'count' rows<CR><LF>
+    user1<CR><LF> 
+    user2<CR><LF>
     ... 
-    usern`<CR>``<LF>` 
-    +OK`<CR>``<LF>`
+    usern<CR><LF> 
+    +OK<CR><LF>
 
 ### add
 
 Add a user. Full format is 
+
     REMOTE add “username”,”MD5 password”,”from-host(s)”,”access-right-list”,”event-list”,”filter”,”mask” 
 
 The add user parts of the arguments can be left out after password. All arguments below the one that is left out must be present. No argument in the middle can be taken away.
@@ -534,36 +538,44 @@ The add user parts of the arguments can be left out after password. All argument
 ### remove
 
 Remove a user. Full format is 
+
     REMOTE remove “username” 
 
 ### privilege
 
 Set new privilege for a user. Full format is 
+
     REMOTE privilege “username”,”access-right-list” 
 
 ### password
 
 Set new privilege for a user. Full format is 
+
     REMOTE password “username”,”MD5 for password” 
 
 ### host-list
 
 Set locations user can connect from. Full format is 
+
     REMOTE password “username”,”host-list” 
 
 ### event-list
 
-Set list of events user can send. Full format is 
+Set list of events user can send. Full format is
+
     REMOTE password “username”,”event-list” 
 
 ### filter
 
 Set user filter. Full format is 
+
     REMOTE password “username”,”filter” 
 
 ### mask
 
-Set user mask. Full format is REMOTE password “username”,”mask”
+Set user mask. Full format is 
+
+    REMOTE password “username”,”mask”
 
 ## INTERFACE
 
@@ -575,17 +587,17 @@ List interfaces.
 
 For the list interfaces command the daemon respond with
 
-    'count' rows`<CR>``<LF>`
-    interface_id1, type, interface_GUID1, interface_realname1`<CR>``<LF>` 
-    interface_id2, type, interface_GUID2, interface_realname2`<CR>``<LF>` 
+    'count' rows<CR><LF>
+    interface_id1, type, interface_GUID1, interface_realname1<CR><LF> 
+    interface_id2, type, interface_GUID2, interface_realname2<CR><LF> 
     ... 
-    interface_idn, type, interface_GUIDn, interface_realnamen`<CR>``<LF>` 
-    +OK - Success.`<CR>``<LF>`
+    interface_idn, type, interface_GUIDn, interface_realnamen<CR><LF> 
+    +OK - Success.<CR><LF>
 
 type is 
 
  | Type | Description                    | 
- | ---- | -----------                    | 
+ | :----: | -----------                    | 
  | 0    | Unknown (should not see this). | 
  | 1    | Internal daemon client         | 
  | 2    | Level I driver                 | 
@@ -601,6 +613,7 @@ type is
 Close interfaces. 
 
 Full format is 
+
     interface close interface_GUID
 
 Unique access to an interface can only be queried once for one interface. So two unique operations after each other deselects the first chosen interface before acquire the second. 
@@ -621,9 +634,9 @@ Show a decision matrix row number. Argument is DM row number(s) or “ALL” for
 
 The list command gives a list of the following format
 
- enabled,groupid,from,to,weekday,time,mask,filter,index,zone,sub-zone,control-code,action-code,action-param,comment,trig-counter,error-counter`<CR>``<LF>` 
- .... 
- +OK`<CR>``<LF>`
+     enabled,groupid,from,to,weekday,time,mask,filter,index,zone,sub-zone,control-code,action-code,action-param,comment,trig-counter,error-counter<CR><LF> 
+     .... 
+     +OK<CR><LF>
 
 
 *  Enabled: First parameter is enabled if the row is active else disabled (“enabled”/”true”/1 or “disabled”/”false”/0). 
@@ -705,7 +718,7 @@ Note: Changed to "VAR" from "VARIABLE" in version 1.12.15 but both works.
 
 ### list
 
-List all defined variables selected by an optional [regular expression](https///www.cheatography.com/davechild/cheat-sheets/regular-expressions/). Default is that all variables is listed (no argument). 
+List all defined variables selected by an optional [regular expression](https://www.cheatography.com/davechild/cheat-sheets/regular-expressions/). Default is that all variables is listed (no argument). 
 
 Use for example
 
@@ -727,18 +740,18 @@ where "n" is the number of rows that follow (# variables)
 
 and then followed by zero or more
 
-    ordinal;variablename;numeric-variabletype;userid;access-rights;last-change;persistance`<CR>``<LF>`
+    ordinal;variablename;numeric-variabletype;userid;access-rights;last-change;persistance<CR><LF>
 
 where ordinal goes from zero and upwards and then a
 
-    +OK`<CR>``<LF>`
+    +OK<CR><LF>
 
 at the end as a positive response.
 
 If there is no variables that meet the regular expression
 
-    0 rows.`<CR>`LF>
-    +OK`<CR>``<LF>`
+    0 rows.<CR><LF>
+    +OK<CR><LF>
     
 is returned.      
 
@@ -759,7 +772,7 @@ Write a variable. If the variable is not already defined it is created.  Argumen
 
 *  **access-rights** is the numerical access rights (default is 0x744).
 
-*  **value** is the value for the variable. Note that certain forms of variables always expect the value to be coded in BASE64, for example the string type expects this. [See table](http://www.vscp.org/docs/vscpd/doku.php?id=decision_matrix_varaibles#variable_types) for info about which variables expect BASE64 encoded value input.
+*  **value** is the value for the variable. Note that certain forms of variables always expect the value to be coded in BASE64, for example the string type expects this. [See table](./decision_matrix_variables.md#variable_types) for info about which variables expect BASE64 encoded value input.
 
 *  **note** is a note for the variable. Always coded in BASE64.
 
@@ -808,7 +821,7 @@ If an error occurs
 if the variable is non existent.
 
 
-**Note: ** Prior to build 13.0.1 the variable info string was perpended with "+OK - ". This has been removed for consistency with other parts of the link interface.
+**Note:** Prior to build 13.0.1 the variable info string was perpended with "+OK - ". This has been removed for consistency with other parts of the link interface.
 
 
 ### readvalue
@@ -816,14 +829,14 @@ if the variable is non existent.
 Read a variables value. The value is BASE64 encoded if internally stored as such (type=string etc). Arguments is “name of variable” The response is
 
 	
-	  value`<CR>``<LF>`
+	  value<CR><LF>
 	  +OK - Success.  
 
 
 or if the variable is not defined
 
 	
-	  -OK - Variable is not defined.`<CR>``<LF>`
+	  -OK - Variable is not defined.<CR><LF>
 
  
 
@@ -838,24 +851,24 @@ Write a variables value. Arguments is “name of variable” and "value". The re
 or if the variable is not defined
 
 	
-	  -OK - Variable is not defined.`<CR>``<LF>`
+	  -OK - Variable is not defined.<CR><LF>
 
 
-The format for different variable types is [here](http://www.vscp.org/docs/vscpd/doku.php?id=decision_matrix_varaibles#variable_types). 
+The format for different variable types is [here](./decision_matrix_variables.md#variable_types). 
 
 ### readnote
 
 Read a variables note. The note is always returned BASE64 encoded. Arguments is “name of variable” The response is
 
 	
-	  note`<CR>``<LF>`
+	  note<CR><LF>
 	  +OK - Success. 
 
 
 or if the variable is not defined
 
 	
-	  -OK - Variable is not defined.`<CR>``<LF>`
+	  -OK - Variable is not defined.<CR><LF>
 
  
 
@@ -870,12 +883,12 @@ Write a variables note. Arguments is “name of variable” and "note". The resp
 or if the variable is not defined
 
 	
-	  -OK - Variable is not defined.`<CR>``<LF>`
+	  -OK - Variable is not defined.<CR><LF>
 
 
 ### reset
 
-Variable  value is set to its default value. The default values for different variables types can be found [here](http://www.vscp.org/docs/vscpd/doku.php?id=decision_matrix_varaibles#reset_variable_values). Command does not work with stock variables ad they can not be reseted.
+Variable  value is set to its default value. The default values for different variables types can be found [here](./decision_matrix_variables.md#reset_variable_values). Command does not work with stock variables ad they can not be reseted.
 
 Response for a successful reset of a variable is
 
@@ -924,13 +937,10 @@ else error
 This is a combination of **read** + **remove** doing them together in an atomic way. Command does not work with stock variables ad they can not be removed.
 
 Response for a successful read/remove of a variable is
-
 	
 	  +OK - Success.
 
-
 else error
-
 	
 	  -OK - 'some message describing error'.
 
@@ -942,7 +952,7 @@ Get the length for a string variable. No effect for other variable types (return
 Response for a successful length request is
 
 	
-	  length`<CR>``<LF>`
+	  length<CR><LF>
 	  +OK - Success.
 
 
@@ -963,7 +973,7 @@ Argument is
 
 Output format from daemon for variable list/read commands is
 
-[Here is an example](VSCP Daemon variable persistent storage format) of how variables are stored on disk.
+[Here is an example](./decision_matrix_variables#persistent_storage_format.md) of how variables are stored on disk.
 
 Response for a successful save is
 
@@ -984,7 +994,7 @@ Load variables from XML file on disk.
 
 This is how the variables look like using the variable list all command in the TCP/IP interface.
 
-{{ :variables_in_tcpip_interface.png?nolink |}}
+![](./images/variables_in_tcpip_interface.png)
 
 Response for a successful load is
 
@@ -999,7 +1009,7 @@ else error
 
 ## TABLE
 
-The VSCP daemon can handle [three types of tables](http://www.vscp.org/docs/vscpd/doku.php?id=vscp-tables). 
+The VSCP daemon can handle [three types of tables](./vscp-tables.md). 
 
 
 *  Dynamic tables which is ever growing tables that will grow until all disk space is used or deleted or cleared by a users. Just as any database.
@@ -1008,7 +1018,7 @@ The VSCP daemon can handle [three types of tables](http://www.vscp.org/docs/vscp
 
 *  Max tables which is tables that just like static tables have a set size but which collect data up to the set size and then delete all content and start to collect data again.
 
-Both are intended as a way for time stamp ,measurement pairs to be logged in an easy way and then being displayed in diagram form in a user UI. The most convenient way to handle this information from a web base application is through the [REST api](http://www.vscp.org/docs/vscpd/doku.php?id=vscp_daemon_vscp_daemon_rest_interface) or the [websocket interface](http://www.vscp.org/docs/vscpd/doku.php?id=vscp_daemon_vscp_websocket_interface) but sometime the tcp/ip interface is more convenient to use and it is thus possible to get table data also here.
+Both are intended as a way for time stamp ,measurement pairs to be logged in an easy way and then being displayed in diagram form in a user UI. The most convenient way to handle this information from a web base application is through the [REST api](./rest_interface.md) or the [websocket interface](./websocket_interface) but sometime the tcp/ip interface is more convenient to use and it is thus possible to get table data also here.
 
 ### create 'table-name' 'create-parameters...'
 
@@ -1016,8 +1026,8 @@ Create a new table with name 'table-name' using the supplied parameters describe
 
 The parameters is given as a comma separated list. Some parameters which could have comma or other *invalid characters* in them can be encoded in BASE64 and if so should be preceded with "BASE64:".
 
- | Parameter   | Description                                                                                                                     | 
- | ---------   | -----------                                                                                                                     | 
+ | Parameter   | Description  | 
+ | ---------   | -----------  | 
  | tblname     | Name to be used for the table. Must not already be used for a table.                                                            | 
  | bEnable     | "true" or "false" to enable or disable the loading of the table.                                                                | 
  | bInMemory   | "true" or "false" to create the table in memory or on disk.                                                                     | 
@@ -1049,12 +1059,13 @@ Delete an existing table and optional remove it's associating database file if t
 ### list
 
 List all available tables.
-    'count' rows`<CR>``<LF>`
-    table-name1;type;description`<CR>``<LF>`
-    table-name2;type;description`<CR>``<LF>`
+
+    'count' rows<CR><LF>
+    table-name1;type;description<CR><LF>
+    table-name2;type;description<CR><LF>
     ...
-    table-namen;type;description`<CR>``<LF>`
-    +OK - Success.`<CR>``<LF>`
+    table-namen;type;description<CR><LF>
+    +OK - Success.<CR><LF>
 
 Where type is either 'dynamic', 'static' or "max".
 
@@ -1064,34 +1075,34 @@ Description will be BASE64 encoded.
 
 List full information for a specific table with name 'table-name'. The standard output is
 
-`<code=css>`
-    name=table-name`<CR>``<LF>`
-    enable=true|false`<CR>``<LF>`
-    type="dynamic"|"static"|"max"//`<CR>``<LF>`
-    bmemory=true|false`<CR>``<LF>`
-    size=Size of table or zero`<CR>``<LF>`
-    owner=name of owner`<CR>``<LF>`
-    permission=user permissions`<CR>``<LF>`
-    description=Free text description of the table`<CR>``<LF>`
-    xname=diagram x-axis text`<CR>``<LF>`
-    yname=diagram y-axis text`<CR>``<LF>`
-    title=diagram title`<CR>``<LF>`
-    note=diagram note`<CR>``<LF>`
-    vscp-class=n`<CR>``<LF>`
-    vscp-type=n`<CR>``<LF>`
-    vscp-sensor-index=n`<CR>``<LF>`
-    vscp-unit=n`<CR>``<LF>`
-    vscp-zone=n`<CR>``<LF>`
-    vscp-subzone=n`<CR>``<LF>`
-    sql-create=Table create SQL expression`<CR>``<LF>`
-    sql-insert="Table insert SQL expression`<CR>``<LF>`
-    sql-delete="Table delete SQL expression`<CR>``<LF>`
-    +OK - Success.`<CR>``<LF>`
-`</code>`  
+```json
+    name=table-name<CR><LF>
+    enable=true|false<CR><LF>
+    type="dynamic"|"static"|"max"//<CR><LF>
+    bmemory=true|false<CR><LF>
+    size=Size of table or zero<CR><LF>
+    owner=name of owner<CR><LF>
+    permission=user permissions<CR><LF>
+    description=Free text description of the table<CR><LF>
+    xname=diagram x-axis text<CR><LF>
+    yname=diagram y-axis text<CR><LF>
+    title=diagram title<CR><LF>
+    note=diagram note<CR><LF>
+    vscp-class=n<CR><LF>
+    vscp-type=n<CR><LF>
+    vscp-sensor-index=n<CR><LF>
+    vscp-unit=n<CR><LF>
+    vscp-zone=n<CR><LF>
+    vscp-subzone=n<CR><LF>
+    sql-create=Table create SQL expression<CR><LF>
+    sql-insert="Table insert SQL expression<CR><LF>
+    sql-delete="Table delete SQL expression<CR><LF>
+    +OK - Success.<CR><LF>
+```  
     
 If the optional argument **'xml'** is given the output will be a BASE64 encoded XML content with the following format
 
-`<code=xml>`
+```xml
 <table 
     name = "test_table1"
     benable = "true"
@@ -1115,12 +1126,13 @@ If the optional argument **'xml'** is given the output will be a BASE64 encoded 
     zone = "0"
     subzone = "0"
 />
-`</code>`
+```
+
 which will be outputed as 
 
 	
-	  PHRhYmxlcz4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIA0KPHRhYmxlIA0KICAgIG5hbWUgPSAidGVzdF90YWJsZTEiDQogICAgYmVuYWJsZSA9ICJ0cnVlIg0KICAgIGJpbm1lbW9yeSA9ICJmYWxzZSINCiAgICB0eXBlID0gImR5bmFtaWMiDQogICAgc2l6ZSA9ICIwIg0KICAgIG93bmVyID0gImFkbWluIg0KICAgIHJpZ2h0cyA9ICIweDc3NyINCiAgICB0aXRsZSA9ICJUaGlzIGlzIGEgdGl0bGUiDQogICAgeG5hbWUgPSAiVGhpcyB0aGUgeC1sYWJsZSINCiAgICB5bmFtZSA9ICJUaGlzIGlzIHRoZSB5LWxhYmVsIg0KICAgIG5vdGUgPSAiVGhpcyBpcyBhIG5vdGUiDQogICAgc3FsY3JlYXRlID0gIkNSRUFURSBUQUJMRSAndnNjcHRhYmxlJyAoIGBpZHhgIElOVEVHRVIgTk9UIE5VTEwgUFJJTUFSWSBLRVkgVU5JUVVFLCBgZGF0ZXRpbWVgIFRFWFQsIGB2YWx1ZWAgUkVBTCBERUZBVUxUIDAgKTsiDQogICAgc3FsaW5zZXJ0ID0gIklOU0VSVCBJTlRPICd2c2NwdGFibGUnIChkYXRldGltZSx2YWx1ZSkgVkFMVUVTICgnJSVzJywnJSVmJyk7Ig0KICAgIHNxbGRlbGV0ZSA9ICIiDQogICAgZGVzY3JpcHRpb24gPSAiVGhpcyBpcyB0aGUgZGVzY3JpcHRpb24iDQogICAgdnNjcGNsYXNzID0gIjEwIg0KICAgIHZzY3B0eXBlID0gIjYiDQogICAgc2Vuc29yaW5kZXggPSAiMCINCiAgICB1bml0ID0gIjEiDQogICAgem9uZSA9ICIwIg0KICAgIHN1YnpvbmUgPSAiMCINCi8+CQ0KPC90YWJsZXM+DQo=`<CR>``<LF>`
-	  +OK - Success.`<CR>``<LF>`
+	  PHRhYmxlcz4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIA0KPHRhYmxlIA0KICAgIG5hbWUgPSAidGVzdF90YWJsZTEiDQogICAgYmVuYWJsZSA9ICJ0cnVlIg0KICAgIGJpbm1lbW9yeSA9ICJmYWxzZSINCiAgICB0eXBlID0gImR5bmFtaWMiDQogICAgc2l6ZSA9ICIwIg0KICAgIG93bmVyID0gImFkbWluIg0KICAgIHJpZ2h0cyA9ICIweDc3NyINCiAgICB0aXRsZSA9ICJUaGlzIGlzIGEgdGl0bGUiDQogICAgeG5hbWUgPSAiVGhpcyB0aGUgeC1sYWJsZSINCiAgICB5bmFtZSA9ICJUaGlzIGlzIHRoZSB5LWxhYmVsIg0KICAgIG5vdGUgPSAiVGhpcyBpcyBhIG5vdGUiDQogICAgc3FsY3JlYXRlID0gIkNSRUFURSBUQUJMRSAndnNjcHRhYmxlJyAoIGBpZHhgIElOVEVHRVIgTk9UIE5VTEwgUFJJTUFSWSBLRVkgVU5JUVVFLCBgZGF0ZXRpbWVgIFRFWFQsIGB2YWx1ZWAgUkVBTCBERUZBVUxUIDAgKTsiDQogICAgc3FsaW5zZXJ0ID0gIklOU0VSVCBJTlRPICd2c2NwdGFibGUnIChkYXRldGltZSx2YWx1ZSkgVkFMVUVTICgnJSVzJywnJSVmJyk7Ig0KICAgIHNxbGRlbGV0ZSA9ICIiDQogICAgZGVzY3JpcHRpb24gPSAiVGhpcyBpcyB0aGUgZGVzY3JpcHRpb24iDQogICAgdnNjcGNsYXNzID0gIjEwIg0KICAgIHZzY3B0eXBlID0gIjYiDQogICAgc2Vuc29yaW5kZXggPSAiMCINCiAgICB1bml0ID0gIjEiDQogICAgem9uZSA9ICIwIg0KICAgIHN1YnpvbmUgPSAiMCINCi8+CQ0KPC90YWJsZXM+DQo=<CR><LF>
+	  +OK - Success.<CR><LF>
 
     
 ### get 'table-name' 'from' 'to' ["full"]
@@ -1131,13 +1143,13 @@ If "full" is specified all fields of the table is listed. **datetime** is always
 
 The output will look like this
 
-    'count' rows`<CR>``<LF>`
-    YY-MM-DDTHH:MM:SSsss, value1[,other fields]`<CR>``<LF>`
-    YY-MM-DDTHH:MM:SSsss, value2[,other fields]`<CR>``<LF>`
-    YY-MM-DDTHH:MM:SSsss, value3[,other fields]`<CR>``<LF>`
+    'count' rows<CR><LF>
+    YY-MM-DDTHH:MM:SSsss, value1[,other fields]<CR><LF>
+    YY-MM-DDTHH:MM:SSsss, value2[,other fields]<CR><LF>
+    YY-MM-DDTHH:MM:SSsss, value3[,other fields]<CR><LF>
     ...
-    YY-MM-DDTHH:MM:SS, valuen[,other fields]`<CR>``<LF>`
-    +OK - Success.`<CR>``<LF>`
+    YY-MM-DDTHH:MM:SS, valuen[,other fields]<CR><LF>
+    +OK - Success.<CR><LF>
 
 
 ### getraw 'table-name' 'from' 'to' 
