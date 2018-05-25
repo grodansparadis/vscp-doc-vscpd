@@ -4,11 +4,11 @@
 
 UDP communication is simple and easy to set up but also unsecure in the way that you do not know if a datagram is received or not. This is normally not a problem for VSCP as there is almost always a way to determine that an event has been received. A typical example is a lamp that should be turned on. The controller typically send
 
-[CLASS1.CONTROL, Type=5 ,TurnOn](http://www.vscp.org/docs/vscpspec/doku.php?id=class1.control#type_5_0x05_turnon)
+[CLASS1.CONTROL, Type=5 ,TurnOn](https://grodansparadis.gitbooks.io/the-vscp-specification/content/class1.control.html#type--5-0x05-turnon)
 
 we then expect the receiving node to reply with 
 
-[CLASS1.INFORMATION, Type=3, On](http://www.vscp.org/docs/vscpspec/doku.php?id=class1.information#type_3_0x03_on)
+[CLASS1.INFORMATION, Type=3, On](https://grodansparadis.gitbooks.io/the-vscp-specification/content/class1.information.html#type--3-0x03-on)
 
 to verify that the lamp was turned on. It is therefore easy to make sure a command has been received by a remote node and has been carried out and if not resend.
 
@@ -20,7 +20,7 @@ One can send unencrypted frames to the VSCP server. This means that anyone can s
 
 ## Configuration
 
-The full configuration is described [here](http://www.vscp.org/docs/vscpd/doku.php?id=configuring_the_vscp_daemon#udp_interface).
+The full configuration is described [here](./configuring_the_vscp_daemon#udp_interface).
 
 The configuration consist of two parts. 
 
@@ -32,13 +32,13 @@ The configuration consist of two parts.
 
 *  Enable enables the UDP interface if set to **//"true"//**. This applies for receiving nodes also. Set to **//"false"//** to disable VSCP UDP functionality.
 
-*  The second thing to configure is the **interface** to use. This is typically **//"`<nowiki>`udp://44444`</nowiki>`"//** which says "listen on all interfaces and use port 44444 (default)". One can use an IP address like **//"`<nowiki>`udp//:192.168.1.45:44444`</nowiki>`"//** to listen only at a specific interface.
+*  The second thing to configure is the **interface** to use. This is typically *udp://44444* which says "listen on all interfaces and use port 44444 (default)". One can use an IP address like *udp//:192.168.1.45:44444* to listen only at a specific interface.
 
 *  Next you should consider using a user account that UDP connections use. You do this by setting the username in **user** and the password in **password**. Password should be set as salt;password in the standard way. By doing this you can specify which events that can be received and from which IP addresses. Leave both user and password bland to not connect to a user account.
 
-*  The next thing is to decide if you should allow unencrypted frames. You do this by setting **bAllowUnsecure** to **//"true"//**. If set to **//"false"//** only encrypted frames will be received.
+*  The next thing is to decide if you should allow unencrypted frames. You do this by setting **bAllowUnsecure** to *"true"*. If set to *"false"* only encrypted frames will be received.
 
-*  With **bSendAck** you can decide if the node sending an UDP frame should get an acknowledge event back. If set to **//"true"//** a  [CLASS1.ERROR, Type=0, Success](http://www.vscp.org/docs/vscpspec/doku.php?id=class1.error#type_0_0x00_success) event will be replied on success and a [CLASS1.ERROR, Type=1, Error](http://www.vscp.org/docs/vscpspec/doku.php?id=class1.error#type_1_0x01_error) is sent if something is wrong with the UDP frame. If set no **//"false"//** no acknowledgement frames will be sent.
+*  With **bSendAck** you can decide if the node sending an UDP frame should get an acknowledge event back. If set to **//"true"//** a  [CLASS1.ERROR, Type=0, Success](https://grodansparadis.gitbooks.io/the-vscp-specification/content/class1.error.html#type0-0x00-successs) event will be replied on success and a [CLASS1.ERROR, Type=1, Error](https://grodansparadis.gitbooks.io/the-vscp-specification/content/class1.error.html#type1-0x01-error) is sent if something is wrong with the UDP frame. If set no **//"false"//** no acknowledgement frames will be sent.
 
 *  By setting the **filter/mask** you can filter out unwanted events. Both filter and mask is set as text strings on the form "priority;class;type;guid"
 
@@ -49,21 +49,17 @@ The configuration consist of two parts.
 Receiving UDP nodes are nodes that will get events from the VSCP server. You can specify as many nodes as you need.
 
 
-*  **Enable** enables the UDP receiving node if set to **//"true"//**. Set to **//"false"//** to disable VSCP UDP functionality.
+*  **Enable** enables the UDP receiving node if set to *"true"*. Set to *"false"* to disable VSCP UDP functionality.
 
-*  **interface** is the address and port of the receiving node. It should be entered on the form **//"`<nowiki>`udp//:192.168.1.45:29001`</nowiki>`"//** 
+*  **interface** is the address and port of the receiving node. It should be entered on the form *udp//:192.168.1.45:29001* 
 
 *  By setting the **filter/mask** you can filter out events that should not be sent to this node. Both filter and mask is set as text strings on the form "priority;class;type;guid"
 
-*  **Encryption** tells how the sent UDP frames should be encrypted. Valid values are **"none"/"aes128"/"aes192"/"aes256"** and empty
+*  **Encryption** tells how the sent UDP frames should be encrypted. Valid values are *"none"/"aes128"/"aes192"/"aes256"* and empty
 
 ## Samples
 
-You can find some sample/test code [here](https///github.com/grodansparadis/vscp/tree/master/tests/udp).
+You can find some sample/test code [here](https://github.com/grodansparadis/vscp/tree/master/tests/udp).
 
 
-\\ 
-----
-{{  ::copyright.png?600  |}}
-
-`<HTML>``<p style="color:red;text-align:center;">``<a href="http://www.grodansparadis.com">`Grodans Paradis AB`</a>``</p>``</HTML>`
+{% include "./bottom_copyright.md" %}
