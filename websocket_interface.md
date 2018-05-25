@@ -6,7 +6,7 @@ The websocket server can be reached on port 8080(default) just as the internal w
 
 One important design goal when this interface was designed was to create an interface that also could be implemented on low end devices which needs a user interface. With just a few commands and some simple rules we have managed to do that. This means that we can expect user interfaces interacting with both small devices and larger software units as the VSCP daemon.
 
-If you want to test this there is a simple [walkthrough](https://www.vscp.org/wiki/doku.php/howto/howto_start_websockets).  The Javascript library and samples can be found on [GitHub](https://github.com/grodansparadis/vscp_html5) 
+If you want to test this there is a simple [walkthrough](./new_system_install_test_ride.md#the_websocket_interface).  The Javascript library and samples can be found on [GitHub](https://github.com/grodansparadis/vscp_html5) 
 
 {% include "./bottom_copyright.md" %}
 

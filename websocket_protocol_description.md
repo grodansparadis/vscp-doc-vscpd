@@ -1,8 +1,10 @@
 # VSCP Daemon Websocket Protocol Description
 
-The protocol is a text based protocol that is simple and effective. Only **AUTH** and **NOOP** commands are valid in a system where the client has not been authenticated. It is possible to configure the websocket interfaces  not to require this authentication with the [configuration setting](http://www.vscp.org/docs/vscpd/doku.php?id=configuring_the_vscp_daemon)
+The protocol is a text based protocol that is simple and effective. Only **AUTH** and **NOOP** commands are valid in a system where the client has not been authenticated. It is possible to configure the websocket interfaces  not to require this authentication with the [configuration setting](./configuring_the_vscp_daemon.md)
+
     `<websockets enable=“true” auth=“false” />` 
-This is recommended for testing situations only.
+
+setting. This is recommended for testing situations only.
 
 ## Packet format
 
@@ -48,10 +50,11 @@ Negative reply
  | --- | 
 
 ** Example:**
+
     E;0,30,5,0,2000-01-01T12:33:14,0,FF:FF:FF:FF:FF:FF:FF:FE:00:26:55:CA:00:06:00:00,0x01,0x01
 
  | Code | Description                                                                                            | 
- | ---- | -----------                                                                                            | 
+ | :----: | -----------                                                                                            | 
  | C    | Command. Parameter is command and optional parameter(s).                                               | 
  | +    | Positive Reply. If send in response to a command the command is also  returned on the form '+;command' | 
  | -    | Negative reply. Payload is error code followed by error message in English. '-;2;Syntax Error'         | 
@@ -75,8 +78,9 @@ Send this command to initiate the authentication. This is process is normally st
 
 The AUTH process has changed 2017-10-04 (ux-framwork version 0.2, VSCP& Friends version 12.29.1.13). [Old description is here](http://www.vscp.org/docs/vscpd/doku.php?id=vscp_daemon_websocket_protocol_description&rev=1507044582). 
 
-This command is used for authentication. When connecting to a socket and the [auth configuration parameter](http://www.vscp.org/docs/vscpd/doku.php?id=configuring_the_vscp_daemon) is true (default) the server will send something like 
+This command is used for authentication. When connecting to a socket and the [auth configuration parameter](./configuring_the_vscp_daemon.md) is true (default) the server will send something like 
 12.29.1.13
+
     "+;AUTH0:5a475c082c80dcdf7f2dfbd976253b24" 
 
 as a security challenge to the client (Also sent after a **CHALLENGE** command has been sent to a host by a client.). The "5a475c082c80dcdf7f2dfbd976253b24" is a session id or sid that is different for every connection.
@@ -93,7 +97,7 @@ where the sid is used as a 16.byte random iv for AES-128 encryption over
 
     "username:password"
 
-using the [vscpkey](http://www.vscp.org/docs/vscpd/doku.php?id=configuring_the_vscp_daemon#security) as a common secret key.  If the credentials are valid the server will respond with
+using the [vscpkey](./configuring_the_vscp_daemon.md#security) as a common secret key.  If the credentials are valid the server will respond with
 
     "+;AUTH1;userid;name;password;fullname;filtermask;rights;remotes;events;note"
 
@@ -101,9 +105,9 @@ and if invalid the server will respond with
 
     "-;8,Not authorized"
 
-Note that in addition to the credentials the server IP address must also be valid as of the [configuration](http://www.vscp.org/docs/vscpd/doku.php?id=configuring_the_vscp_daemon) for this user.
+Note that in addition to the credentials the server IP address must also be valid as of the [configuration](./configuring_the_vscp_daemon.md) for this user.
 
-**Note: its is note allowed to have a username with a semicolon in the name.**
+**Note:** its is note allowed to have a username with a semicolon in the name.
 
 The standard vscp password hash is calculated over "username:authdomain:password". 
 
@@ -184,7 +188,7 @@ response is
 
     “+;RVAR;type;variable-value” 
 
-where type is variable type and value is different depending on which type of variable it is ([format described here](http://www.vscp.org/docs/vscpd/doku.php?id=vscp_daemon_variable_persistent_storage_format)). For a string the response is 
+where type is variable type and value is different depending on which type of variable it is ([format described here](http://www.vscp.org/docs/vscpd/doku.php?id=decision_matrix_varaibles#persistent_storage_format)). For a string the response is 
 
     “+;RVAR;1;hellow world” 
 
@@ -196,9 +200,9 @@ or
 
     “+;RVAR;2;false” 
 
-etc. See [this page](http://www.vscp.org/docs/vscpd/doku.php?id=vscp_daemon_variable_types) for more information on variable types.
+etc. See [this page](./decision_matrix_variables.md#variable_types) for more information on variable types.
 
-**Note: its is note allowed to have a variable name with a semicolon in the name.**
+**Note:** its is note allowed to have a variable name with a semicolon in the name.
 
 ### WVAR
 
@@ -210,7 +214,7 @@ Set value for existing variable. The variable must exist.
 
     "C;WVAR;variablename;value" 
 
-The value is different depending on what variable type it is ([described here](http://www.vscp.org/docs/vscpd/doku.php?id=vscp_daemon_variable_persistent_storage_format)). Positive/negative response is returned.
+The value is different depending on what variable type it is ([described here](./decision_matrix_variables.md#persistent_storage_format)). Positive/negative response is returned.
 
 The response is
     
@@ -284,7 +288,7 @@ response is
 
 List currently defined variables selectable by a regular expression. 
 
-More info about regular expressions can be found [here](https///en.wikipedia.org/wiki/Regular_expression) and [ here](https///www.google.se/url?sa=t&rct=j&q=&esrc=s&source=web&cd=3&cad=rja&uact=8&ved=0ahUKEwjsj4izh5nPAhXrB5oKHV8sBJkQFggzMAI&url=https%3A%2F%2Fmsdn.microsoft.com%2Fen-us%2Flibrary%2Faz24scfc(v%3Dvs.110).aspx&usg=AFQjCNHGzAjfymZ56d-QY5maPEl67dKyxw&sig2=nNRdPVuu9routoaqIg1Yrw ).
+More info about regular expressions can be found [here](https://en.wikipedia.org/wiki/Regular_expression) and [ here](https://www.google.se/url?sa=t&rct=j&q=&esrc=s&source=web&cd=3&cad=rja&uact=8&ved=0ahUKEwjsj4izh5nPAhXrB5oKHV8sBJkQFggzMAI&url=https%3A%2F%2Fmsdn.microsoft.com%2Fen-us%2Flibrary%2Faz24scfc(v%3Dvs.110).aspx&usg=AFQjCNHGzAjfymZ56d-QY5maPEl67dKyxw&sig2=nNRdPVuu9routoaqIg1Yrw ).
 
 If no regular expression is given all defined variables is returned.
 
@@ -318,7 +322,7 @@ response is
 
 ### RSTVAR
 
-Reset variable to its default value. Default values can be found [here](http://www.vscp.org/docs/vscpd/doku.php?id=vscp_daemon_variable_string_write_format).
+Reset variable to its default value. Default values can be found [here](./decision_matrix_variables#variable_types).
 
 "RESETVAR" also works.
 
@@ -345,7 +349,7 @@ Positive response is returned on success
     "+;LENVAR;variablename;length
     
 
-**Note: its is note allowed to have a variable name with a semicolon in the name.**  
+**Note:** its is note allowed to have a variable name with a semicolon in the name.
     
 ### LCVAR
 
@@ -362,7 +366,7 @@ Positive response is returned on success
     "+;LCVAR;variablename;YY-MM-DD HH:MM:SS"
     
 
-**Note: its is note allowed to have a variable name with a semicolon in the name.**  
+**Note:** its is note allowed to have a variable name with a semicolon in the name.
 
 ### GT
 
@@ -394,8 +398,6 @@ followed by none or several
 
 ### MEASUREMENT
 
-:!:
-
 **This command is a future command.**
 
 Send a measurement. The measurement will be sent as either as a Level I event or a Level II event.
@@ -410,7 +412,7 @@ Positive/negative response is returned.
 **Arguments:**
 
 
-*  **type** is the [VSCP type value](http://www.vscp.org/docs/vscpspec/doku.php?id=class1.measurement) specifying which type of measurement this is. Mandatory.
+*  **type** is the [VSCP type value](https://grodansparadis.gitbooks.io/the-vscp-specification/content/class1.measurement.html) specifying which type of measurement this is. Mandatory.
 
 *  **unit** is the measurement unit for this type of measurement. An be in the range 0-3 for a Level I event and 0-255 for a Level II event. Mandatory.
 
@@ -427,8 +429,11 @@ Positive/negative response is returned.
 *  **zone** zone value for Level II events. Defaults to zero. Optional.
 
 **Response:**
+
     “+;MEASUREMENT”
+
 for a positive reply or
+
     “-;MEASUREMENT”
 
 *  **subzone** zone value for Level II events. Defaults to zero. Optional.
@@ -459,7 +464,7 @@ is returned if there was a problem sending the event.
 This table list the errors that currently is defined
 
  | Error code | Error message                | 
- | ---------- | -------------                | 
+ | :----------: | -------------                | 
  | 0          | No error                     | 
  | 1          | Syntax error.                | 
  | 2          | Unknown command.             | 
@@ -469,8 +474,4 @@ This table list the errors that currently is defined
  | 6          | Authentication error         | 
 
 
-\\ 
-----
-{{  ::copyright.png?600  |}}
-
-`<HTML>``<p style="color:red;text-align:center;">``<a href="http://www.grodansparadis.com">`Grodans Paradis AB`</a>``</p>``</HTML>`
+{% include "./bottom_copyright.md" %}

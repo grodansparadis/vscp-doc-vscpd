@@ -179,8 +179,8 @@
 ## Websocket interface
 * [Websocket Interface](websocket_interface.md)
 * [Security](websocket_interface_security.md)
-* [Errors](websocket_protocol_description.md)
-* [Protocol Description](websocket_protocol_description.md)
+* [Errors](websocket_protocol_description.md#errors)
+* [Protocol Description](./websocket_protocol_description.md)
 
     ## Websocket Commands
     * [Send Events](websocket_protocol_description.md#send_events)
