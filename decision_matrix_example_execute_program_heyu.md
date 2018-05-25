@@ -18,67 +18,61 @@ The external program [heyu](http://heyu.tanj.com/) is used to control X10 device
 allow the action to occur from October first to April first. 
 
 
-`<code=xml>`
-`<dm>`
-    `<row enabled="true" groupid="example">`     
+```xml
+<dm>
+    <row enabled="true" groupid="example">
  
-    `<!-- Mask to trigger row -->`            
+    <!-- Mask to trigger row -->     
     <mask 
         priority="0" 
         class="0xFFFF" 
         type="0xFF" 
         guid="00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00">
-    `</mask>`         
+    </mask>
  
-    `<!-- Filter to trigger row -->`         
+    <!-- Filter to trigger row -->
     <filter
         priority="0" 
         class="65532" 
         type="6" 
         guid="00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00">
-    `</filter>`         
+    </filter>
  
-    `<!-- Date and time from which action should trigger -->`         
-    `<allowed_from>`2010-10-01`</allowed_from>`         
+    <!-- Date and time from which action should trigger -->    
+    <allowed_from>2010-10-01</allowed_from>
  
-    `<!-- Date and time up to which action should trigger -->`         
-    `<allowed_to>`2011-10-01`</allowed_to>`         
+    <!-- Date and time up to which action should trigger -->     
+    <allowed_to>2011-10-01</allowed_to>
  
-    `<!-- List of weekdays which action should trigger -->`        
-    `<allowed_weekdays>`mtwtf-s`</allowed_weekdays>`         
+    <!-- List of weekdays which action should trigger --> 
+    <allowed_weekdays>mtwtf-s</allowed_weekdays>    
  
-    `<!-- A specific time (or pattern) when the action should trigger -->`
-    `<allowed_time>``</allowed_time>` 
+    <!-- A specific time (or pattern) when the action should trigger -->
+    <allowed_time></allowed_time>
     
-    `<!-- Zone to check -->`         
-    `<zone>`33`</zone>`
+    <!-- Zone to check -->
+    <zone>33</zone>
  
-    `<!-- Subzone to check -->`         
-    `<subzone>`1`</subzone>`
+    <!-- Subzone to check -->
+    <subzone>1</subzone>
  
-    `<!-- Action code -->`         
-    `<action>`0x10`</action>`         
+    <!-- Action code -->
+    <action>0x10</action>
  
-    `<!-- Action parameter -->`         
-    `<param>`/usr/local/bin/heyu on A13 `</param>`         
+    <!-- Action parameter -->
+    <param>/usr/local/bin/heyu on A13</param>
  
-    `<!-- Comment for decision matrix row -->`         
-    `<comment>`
+    <!-- Comment for decision matrix row -->
+    <comment>
     Turn on a A13 group of lamps at 18:00 each night except during the summer. But 
     never do this on Saturdays.
-    `</comment>`   
+    </comment>
  
-`</row>` 
+</row>
 
-`</dm>`
-`</code>`
+</dm>
 
-
-
+```
 
 
-
-
-\\ 
-----
-Copyright (c) 2000-2014 [Åke Hedman](mailto/akhe@grodansparadis.com), [Paradise of the Frog / Grodans Paradis AB](http://www.grodansparadis.com)
+{% include "./bottom_copyright.md" %}
