@@ -6,7 +6,6 @@ JavaScript callbacks is functions that you can call from JavaScript code in a de
 
 The VSCP daemon creates some predefined variables when a JavaScript is executed. 
 
-
 *  **vscp_feedEvent** - This is the event that triggered the execution of the JavaScript as a JSON object. See the vent handling functions below for the format. __The variable is read only.__
 
 *  **vscp_clientItem** - This is an object that represent the client the JavaScript is running as. It is created by the VSCP daemon when the script is started. Some function require that you supply this variable as a parameter. __The variable is read only.__
@@ -17,20 +16,19 @@ Can be used for debugging when the server is started in non-debug mode. Output w
 
 ### Parameters
 
-`<code="javascript">`
+```javascript
 vscp_print("Hello World!");
-`</code>`
+```
 
 ## vscp_log
 
-Log data to the VSCP daemon logs. Very well suited for reporting errors and log information. As an alternative one can send VSCP events instead. [CLASS1.LOG](http://www.vscp.org/docs/vscpspec/doku.php?id=class1.log) and [CLASS1.ERROR](http://www.vscp.org/docs/vscpspec/doku.php?id=class1.error) is intended for this use.
+Log data to the VSCP daemon logs. Very well suited for reporting errors and log information. As an alternative one can send VSCP events instead. [CLASS1.LOG](https://grodansparadis.gitbooks.io/the-vscp-specification/content/class1.log.html) and [CLASS1.ERROR](https://grodansparadis.gitbooks.io/the-vscp-specification/content/class1.error.html) is intended for this use.
 
 ### Parameters
 
-`<code="javascript">`
+```javascript
 vscp_log("message"[,nDebugLevel, nType] );
-`</code>`
-
+```
 
 *  **message** is required and is the message that is sent to the logs. Please end this message with a new line.
 
@@ -44,11 +42,11 @@ This function will always return a boolean true.
 
 ### Example
 
-This script write out the current date on ISO format (YYMMDD) and "Hello World!" to the general log file. The **%isodate** is a [decision matrix escape](http://www.vscp.org/docs/vscpd/doku.php?id=vscp_daemon_decision_matrix#variable_substitution_for_parameters_escapes) and it is replaces with information before the script is executed.
+This script write out the current date on ISO format (YYMMDD) and "Hello World!" to the general log file. The **%isodate** is a [decision matrix escape](./decision_matrix.md#variable_substitution_for_parameters_escapes) and it is replaces with information before the script is executed.
 
-`<code="JavaScript">`
+```JavaScript
 vscp_log("%isodate  Hello World! \n" );
-`</code>`
+```
 
 ## vscp_sleep
 
@@ -56,9 +54,9 @@ Sleep a number of milliseconds.
 
 ### Parameters
 
-`<code="javascript">`
+```javascript
 vscp_sleep(sleeptime );
-`</code>`
+```
 
 
 *  **sleeptime** Time to sleep in milliseconds.
@@ -73,10 +71,9 @@ Fetch a VSCP remote variable by name. Variable information is returned in JSON f
 
 ### Parameters
 
-`<code="javascript">`
+```javascript
 vscp_readvariable( "name");
-`</code>`
-
+```
 
 *  **name** of variable.
 
@@ -84,7 +81,7 @@ vscp_readvariable( "name");
 
 Variable information is returned in JSON format or a NULL object is returned if no variable with that name exists.
 
-`<code="javascript">`
+```json
 {  
     "name": "variable-name",
     "type": 1,
@@ -97,9 +94,9 @@ Variable information is returned in JSON format or a NULL object is returned if 
     "value": "This is a test variable of type string",
     "note": "This is a note about this variable"
 }
-`</code>`
+```
 
-The variable types are [listed here](http://www.vscp.org/docs/vscpd/doku.php?id=decision_matrix_varaibles#variable_types).
+The variable types are [listed here](./decision_matrix_variables.md#variable_types).
 
 
 *  **bnumeric** is true for a numerical variable. 
@@ -110,13 +107,13 @@ The variable types are [listed here](http://www.vscp.org/docs/vscpd/doku.php?id=
 
 This example reads the variable **test1** which is a numerical VSCP remote variable in the default configuration, it increase the value of it with one and then write it back and finally write the value to the general log file.
 
-`<code="JavaScript">`
+```javascript
 var obj = vscp_readVariable("test1");              // Read the remote variable 'test1'
 obj.value++;                                       // Increase its value 
 vscp_writeVariable(obj);                           // Write the new value
 obj = vscp_readVariable("test1");                  // Read back the remote variable
 vscp_log("Variable value = " + obj.value + "\n" ); // Log 
-`</code>`
+```
 
 ##  vscp_writeVariable
 
@@ -124,14 +121,14 @@ Create or change a VSCP remote variable. The variable is created if it does not 
 
 ### Parameters
 
-`<code="javascript">`
+```javascript
 vscp_writeVariable( Variable-JSON-object );
-`</code>`
+```
 
 
 *  **Variable-JSON-object** The variable data as a JSON object. See the return data for the [vscp_readVariable](javascript_callbacks#return) function for format. If the variable is existing only **value** and **note** will be read and changed. **name** must be available for obvious reasons.
 
-`<code="javascript">`
+```json
 {  
     "name": "variable-name",
     "type": typeid | string-typeid,
@@ -141,7 +138,7 @@ vscp_writeVariable( Variable-JSON-object );
     "value": "This is a test variable of type string (BASE64 encoded if string)",
     "note": "This is a note about this variable (must be BASE64 encoded)"
 }
-`</code>`
+```
 
 
 *  **name** is a __required parameter__.
@@ -164,20 +161,20 @@ Return boolean *true* on success and *false* on failure.
 
 Increase a numerical variable value by one and save the variable again
 
-`<code="JavaScript">`
+```javascript
 var obj = vscp_readVariable("test1");
 obj.value++;
 vscp_writeVariable( obj );
 obj = vscp_readVariable("test1");
 vscp_log("Variable value = " + obj.value );
-`</code>`
+```
 
 
 **Example**
 
 Define a new string variable. Read it back and print the content.
 
-`<code="JavaScript">`
+```javascript
 var obj1 = JSON.parse('{ \
     "name": "newtestvariable", \
     "type": 1, \
@@ -199,11 +196,11 @@ vscp_log("* * * JSON Variable persistence = " + obj2.persistence );
 vscp_log("* * * JSON Variable lastchange = " + obj2.lastchange );
 vscp_log("* * * JSON Variable bnumeric = " + obj2.bnumeric );
 vscp_log("* * * JSON Variable bbase64 = " + obj2.bbase64 );
-`</code>`
+```
 
 The first part of this code can be changed to
 
-`<code="javascript">`
+```javascript
 var obj1 = JSON.parse('{ \
     "name": "newtestvariable", \
     "type": 1, \
@@ -212,7 +209,7 @@ var obj1 = JSON.parse('{ \
     "persistence": false }');
 obj1.note = Duktape.enc('base64',"This is a note that now will be BASE64 encoded");
 obj1.value = Duktape.enc('base64',"This is a BASE64 encoded string value.");
-`</code>`
+```
 
 to decode clear text value before assigning it to the JSON object.
 
@@ -220,7 +217,7 @@ to decode clear text value before assigning it to the JSON object.
 
 Create a floating point variable
 
-`<code="javascript">`
+```javascript
 var obj1 = JSON.parse('{ \
           "name": "newtestvariable", \
           "type": 5, \
@@ -245,7 +242,7 @@ var obj1 = JSON.parse('{ \
       var decnote = Object( Duktape.dec('base64', obj2.note ) );  // decode to utf8 array
       var strnote = new TextDecoder().decode(decnote);            // Make string of the array
       vscp_log("* * * JSON Variable note = " + obj2.note + " =  " + strnote );
-`</code>`
+```
 
 ##  vscp_deleteVariable
 
@@ -253,9 +250,9 @@ Delete a VSCP remote variable. You must be the owner of a variable or have write
 
 ### Parameters
 
-`<code="javascript">`
+```javascript
 vscp_deleteVariable( vscp_clientItem, "name of variable" );
-`</code>`
+```
 
 
 *  **vscp_clientItem** A vscpd supplied object that specify a unique VSCP client this JavaScript is acting as. This variable is created by vscpd when the script is executed.
@@ -267,15 +264,14 @@ vscp_deleteVariable( vscp_clientItem, "name of variable" );
 Return boolean *true* on success and *false* on failure. 
 
 ### Example
-
-`<code=javascript">`
+```javascript
 if ( vscp_deleteVariable( "testVariable" ) ) {
     vscp_log("Variable deleted.\n" );
 }
 else {
     vscp_log("Failed to delete variable!\n" );
 }
-`</code>`
+```
 
 ##  vscp_sendEvent
 
@@ -283,15 +279,15 @@ Send a VSCP event.
 
 ### Parameters
 
-`<code="javascript">`
+```javascript
 vscp_sendEvent( vscpEvent );
-`</code>`
+```
 
-    * **vscpEvent** A JSON object that contain the VSCP event data as of below.
+* **vscpEvent** A JSON object that contain the VSCP event data as of below.
 
 The VSCP Event object has the following format
 
-`<code="javascript">`
+```json
 {
     "time": "20161102T190032",
     "head": 96,
@@ -303,7 +299,7 @@ The VSCP Event object has the following format
     "data": [1,2,3,4,5,6,7,8...]
     "note": "A note about the event"
 }
-`</code>`
+```
 
 **note** has no use in this case and can be left out. **head** if left out defaults to 96 which is *normal priority*. **timestamp** and **obid** both defaults to zero meaning they will be filled in by the system. **guid** can be set to "-" or all nulls (same as being omitted) and the GUID of the interface is then used. **data** can be omitted and is in that case the same as no data. If "time" is left out the current UTC time is used. 
 
@@ -315,7 +311,7 @@ Return boolean *true* on success and *false* on failure.
 
 Send [Turn-On-event](http://www.vscp.org/docs/vscpspec/doku.php?id=class1.control#type_5_0x05_turnon).
 
-`<code="javascript">`
+```javascript
 // Send CLASS1.CONTROL, Type=5, TurnOn, Zone=11, Subzone=3
 var event = { time:"2016-11-02T19:00:32", 
                 head:0, 
@@ -332,7 +328,7 @@ if ( vscp_sendEvent(event) ) {
 else {
     vscp_log("Failed to send TurnOn event!");
 }
-`</code>`
+```
 
 ##  vscp_receiveEvent
 
@@ -340,10 +336,9 @@ Receive a VSCP event from the local queue.
 
 ### Parameters
 
-`<code="javascript">`
+```javascript
 var event = vscp_receiveEvent()
-`</code>`
-
+```
 
 
 ### Return
@@ -352,9 +347,9 @@ Return VSCP Event object on success and NULL on failure. See vscp_sendEvent for 
 
 ### Example
 
-Print out received events on the log until the event [CLASS1.INFORMATION, Type=Stop, 8](http://www.vscp.org/docs/vscpspec/doku.php?id=class1.control#type_8_0x08_stop) is received.  Note that the loop construct here without a delay is not to recommend as it eats a lot of CPU time.
+Print out received events on the log until the event [CLASS1.INFORMATION, Type=Stop, 8](https://grodansparadis.gitbooks.io/the-vscp-specification/content/class1.control.html#type--8-0x08-stop) is received.  Note that the loop construct here without a delay is not to recommend as it eats a lot of CPU time.
 
-`<code=JavaScript">`
+```javaScript
 var vscpEventObj;       // JSON object containing VSCP event
 var bQuit = false;
 
@@ -382,44 +377,45 @@ while ( !bQuit ) {
 
 vscp_log("Done!\n");
 
-`</code>`
+```
 
 You can log in to the tcp/ip interface and issue
 
-   send 96,30,8,0,0,-,0,0,0
+    send 96,30,8,0,0,-,0,0,0
 
 to terminate the loop. That is send CLASS1.INFORMATION, Type=Stop, 8
 
 Also note the 
 
-`<code="javascript">`
+```javascript
 if ( 30 == vscpEventObj.class ) {
     if ( 8 == vscpEventObj.type ) {
     bQuit = true;
     }
 }
-`</code>`
+```
 
 which would have been written as
 
-`<code="javascript">`
+```javascript
 if ( (30 == vscpEventObj.class) && ( 8 == vscpEventObj.type ) ) {
     bQuit = true;
 }
-`</code>`
+```
 
 by a sane programmer. But the reason we don't use that here is because of the double ampersands ,"&&", in the and statement which is not allowed in XML. They could be replaced by two **&amp;&amp;** to make the code valid XML.
 
-`<code="javascript">`
+```javascript
 if ( (30 == vscpEventObj.class) &amp;&amp; ( 8 == vscpEventObj.type ) ) {
     bQuit = true;
 }
-`</code>`
+```
 
 Another option is to code the code in BASE64 and tell the system so by preceding it with "BASE64:" so it is converted to a string before VSCP decision matrix escapes is written and before it is executed. In this case the parameter line would look like
 
-`<code="base64">`   BASE64:dmFyIHZzY3BFdmVudE9iajsgICAgICAgLy8gSlNPTiBvYmplY3QgY290YWluaW5nIFZTQ1AgZXZlbnQNCnZhciBiUXVpdCA9IGZhbHNlOw0KDQovLyBLZWVwIG9uIHVudGlsIGRvbmUNCndoaWxlICggIWJRdWl0ICkgew0KDQogICAgLy8gRmV0Y2ggZXZlbnQgZnJvbSBjbGluZXQgcXVldWUNCiAgICB2c2NwRXZlbnRPYmo9IHZzY3BfcmVjZWl2ZUV2ZW50KCB2c2NwX2NsaWVudEl0ZW0gKTsNCg0KICAgIGlmICggbnVsbCAhPSB2c2NwRXZlbnRPYmogKSB7DQoNCiAgICAgICAgdnNjcF9sb2coIlZTQ1AgZXZlbnQgcmVjZWl2ZWQ6IGNsYXNzID0gIiArIHZzY3BFdmVudE9iai5jbGFzcy50b1N0cmluZygpICsgIiB0eXBlID0gIiArIHZzY3BFdmVudE9iai50eXBlLnRvU3RyaW5nKCkgKyAiXG4iKTsNCg0KICAgICAgICAvLyBFdmVudCBDTEFTUzEuSU5GT1JNQVRJT04sIFR5cGU9U3RvcCwgOCB0ZXJtaW5hdGVzIHRoZSBsb29wDQogICAgICAgIGlmICggMzAgPT0gdnNjcEV2ZW50T2JqLmNsYXNzICkgew0KICAgICAgICAgICAgaWYgKCA4ID09IHZzY3BFdmVudE9iai50eXBlICkgew0KICAgICAgICAgICAgICAgIGJRdWl0ID0gdHJ1ZTsNCiAgICAgICAgICAgIH0NCiAgICAgICAgfQ0KICAgIH0NCn0NCg0KdnNjcF9sb2coIkRvbmUhXG4iKTs=
-`</code>`
+```base64
+BASE64:dmFyIHZzY3BFdmVudE9iajsgICAgICAgLy8gSlNPTiBvYmplY3QgY290YWluaW5nIFZTQ1AgZXZlbnQNCnZhciBiUXVpdCA9IGZhbHNlOw0KDQovLyBLZWVwIG9uIHVudGlsIGRvbmUNCndoaWxlICggIWJRdWl0ICkgew0KDQogICAgLy8gRmV0Y2ggZXZlbnQgZnJvbSBjbGluZXQgcXVldWUNCiAgICB2c2NwRXZlbnRPYmo9IHZzY3BfcmVjZWl2ZUV2ZW50KCB2c2NwX2NsaWVudEl0ZW0gKTsNCg0KICAgIGlmICggbnVsbCAhPSB2c2NwRXZlbnRPYmogKSB7DQoNCiAgICAgICAgdnNjcF9sb2coIlZTQ1AgZXZlbnQgcmVjZWl2ZWQ6IGNsYXNzID0gIiArIHZzY3BFdmVudE9iai5jbGFzcy50b1N0cmluZygpICsgIiB0eXBlID0gIiArIHZzY3BFdmVudE9iai50eXBlLnRvU3RyaW5nKCkgKyAiXG4iKTsNCg0KICAgICAgICAvLyBFdmVudCBDTEFTUzEuSU5GT1JNQVRJT04sIFR5cGU9U3RvcCwgOCB0ZXJtaW5hdGVzIHRoZSBsb29wDQogICAgICAgIGlmICggMzAgPT0gdnNjcEV2ZW50T2JqLmNsYXNzICkgew0KICAgICAgICAgICAgaWYgKCA4ID09IHZzY3BFdmVudE9iai50eXBlICkgew0KICAgICAgICAgICAgICAgIGJRdWl0ID0gdHJ1ZTsNCiAgICAgICAgICAgIH0NCiAgICAgICAgfQ0KICAgIH0NCn0NCg0KdnNjcF9sb2coIkRvbmUhXG4iKTs=
+```
 
 The later gives much nicer XML code.
 
@@ -429,11 +425,11 @@ Return number of VSCP events in the local queue.
 
 ### Parameters
 
-`<code="javascript">`
+```javascript
 vscp_countEvent( vscp_ClientItem )
-`</code>`
+```
 
-    * **vscp_ClientItem** A vscpd supplied object that specify a unique VSCP client this JavaScript is acting as. This variable is created by vscpd when the script is executed.
+* **vscp_ClientItem** A vscpd supplied object that specify a unique VSCP client this JavaScript is acting as. This variable is created by vscpd when the script is executed.
 
 ### Return
 
@@ -441,15 +437,15 @@ Return the number of events waiting in the client queue for this JavaScript. A c
 
 ### Example
 
-Check the client queue five times with a ten second delay between the checks.  Note that the "less than" (<) symbol is not allowed in XML and should be replaced by **&lt;** if this is used in the dm.xml file.
+Check the client queue five times with a ten second delay between the checks.  Note that the "less than" (<) symbol is not allowed in XML and should be replaced by **\&lt;** if this is used in the dm.xml file.
 
-`<code="javascript">`
+```javascript
 for ( i=0; i &lt; 5; i++ ) {
     var count = vscp_countEvent();
     vscp_log("Number of VSCP events in client queue is " + count.toString() + " i = " + i.toString() + "\n"  );
     vscp_sleep( 10000 );
 }
-`</code>`
+```
 
 Note the **&lt;** instead of **<** to get well formed XML.  Could use the **BASE64:"Javascript...."** form instead which does not need this replacement.
 ##  vscp_setFilter
@@ -458,14 +454,15 @@ Set a VSCP filter for this clients local queue. This filter limits the events re
 
 ### Parameters
 
-`<code="javascript">`
+```javascript
 vscp_setFilter( vscp_ClientItem, vscpFilterObject )
-`</code>`
+```
 
-    * **vscp_ClientItem** A vscpd supplied object that specify a unique VSCP client this JavaScript is acting as. This variable is created by the VSCP daemon when the script is executed.
-    * **vscpFilterObject** A JSON filter object specifying a complete VSCP filter.
+* **vscp_ClientItem** A vscpd supplied object that specify a unique VSCP client this JavaScript is acting as. This variable is created by the VSCP daemon when the script is executed.
 
-`<code="javascript">`
+* **vscpFilterObject** A JSON filter object specifying a complete VSCP filter.
+
+```json
 {
     "mask_priority": number,
     "mask_class": number,
@@ -476,7 +473,7 @@ vscp_setFilter( vscp_ClientItem, vscpFilterObject )
     "filter_type": number,
     "filter_guid" "string"
 }
-`</code>`
+```
 
 ### Return
 
@@ -484,9 +481,9 @@ Return boolean *true* on success and *false* on failure.
 
 ### Example
 
-Set filer so that only [CLASS1.MEASUREMENT](http://www.vscp.org/docs/vscpspec/doku.php?id=class1.measurement) events is received. 
+Set filer so that only [CLASS1.MEASUREMENT](https://grodansparadis.gitbooks.io/the-vscp-specification/content/class1.measurement.html) events is received. 
 
-`<code="JavaScript">`
+```javascript
 // Allow only CLASS1.MEASUREMENT events, from all, 
 // with all priorities
 var filterTxt = '{\
@@ -510,23 +507,23 @@ if ( vscp_setFilter( filterObj ) ) {
 else {
     vscp_log("Faild to set filter!\n");
 }
-`</code>`
+```
 ##  vscp_sendMeasurement
 
 Send a measurement event. A level I or Level II measurement event can be sent with this function with the measurement supplied as a floating point value.
 
 ### Parameters
 
-`<code="javascript">`
+```javascript
 vscp_sendMeasurement( vscp_ClientItem, vscpMeasurementObject );
-`</code>`
+```
 
 
 *  **vscp_ClientItem** A vscpd supplied object that specify a unique VSCP client this JavaScript is acting as. This variable is created by vscpd when the script is executed.
 
 *  **vscpMeasurementObject** A JSON measurement object that specify the properties of the measurement.
 
-`<code="JavaScript">`
+```json
 {
     "level": 1|2, 
     "bstring": true|false,
@@ -538,12 +535,12 @@ vscp_sendMeasurement( vscp_ClientItem, vscpMeasurementObject );
     "zone": 0, 
     "subzone": 0 
 }
-`</code>`
+```
 
 
 *  **level** is either 1 or 2 for Level I or level II events or if not given it defaults to 2.
 
-*  **bstring** Only valid for Level II events. If true a [CLASS2.MEASUREMENT_STR](http://www.vscp.org/docs/vscpspec/doku.php?id=class2.measurement_str). If false a [CLASS2.MEASUREMENT_FLOAT](http://www.vscp.org/docs/vscpspec/doku.php?id=class2.measurement_float). If not given defaults to false-
+*  **bstring** Only valid for Level II events. If true a [CLASS2.MEASUREMENT_STR](https://grodansparadis.gitbooks.io/the-vscp-specification/content/class2.measurement_str.html). If false a [CLASS2.MEASUREMENT_FLOAT](https://grodansparadis.gitbooks.io/the-vscp-specification/content/class2.measurement_float.html). If not given defaults to false-
 
 *  **value** A double representing the measurement value. A required value.
 
@@ -565,7 +562,7 @@ Return boolean *true* on success and *false* on failure.
 
 ### Example
 
-`<code="JavaScript">`
+```javascript
 // Send temperature measurement
 var measurementTxt = "{\
     "level": 1,\
@@ -589,19 +586,19 @@ if ( vscp_sendMeasurement( vscp_clientItem, measurementObj ) ) {
 else {
     vscp_log("Failed to send measurement event!\n");
 }
-`</code>`
+```
 
 This is how the resulting event looks like in VSCP Works.
 
-{{:javascript:temperature_event_level1_float.png?700|}}
+![](./images/javascript/temperature_event_level1_float.png)
 
-And this is the decision matrix row. Not that [CLASS2.VSCPD,Type=Second,5 event](CLASS2.VSCPD) is used to send the measurement event every second. There are many possibilities here such as once on start up, every hour etc.
+And this is the decision matrix row. Not that [CLASS2.VSCPD,Type=Second,5 event](https://grodansparadis.gitbooks.io/the-vscp-specification/content/class2.vscpd.html#type--5-0x0005-second) is used to send the measurement event every second. There are many possibilities here such as once on start up, every hour etc.
 
-{{:javascript:dm_test_one_second_sendmeasurement.png?700|}}
+![](./images/javascript/dm_test_one_second_sendmeasurement.png)
 
 To send the same Level I measurement in string form use
 
-`<code="JavaScript">`
+```javascript
 var measurementTxt = "{\
     "level": 1,\
     "bstring": true,\
@@ -613,11 +610,11 @@ var measurementTxt = "{\
     "zone": 0,\
     "subzone": 0\
 }";
-`</code>`
+```
 
 To send the same measurement in Level II string form use
 
-`<code="JavaScript">`
+```javascript
 var measurementTxt = "{\
     "level": 2,\
     "bstring": true,\
@@ -629,11 +626,11 @@ var measurementTxt = "{\
     "zone": 0,\
     "subzone": 0\
 }";
-`</code>`
+```
 
 To send the same measurement in Level II floating point form use
 
-`<code="JavaScript">`
+```javascript
 var measurementTxt = "{\
     "level": 2,\
     "bstring": false,\
@@ -645,19 +642,19 @@ var measurementTxt = "{\
     "zone": 0,\
     "subzone": 0\
 }";
-`</code>`
+```
 ##  vscp_isMeasurement
 
 Check if this VSCP event is a measurement event.
 
 ### Parameters
 
-`<code="javascript">`
+```javascript
 vscp_isMeasurement( event )
-`</code>`
+```
 
 
-*  **event** A JSON object that contain the VSCP event data. See [vscp_sendEvent](http://www.vscp.org/docs/vscpd/doku.php?id=javascript_callbacks#vscp_sendevent) for the format.
+*  **event** A JSON object that contain the VSCP event data. See [vscp_sendEvent](./javascript_callbacks.md#vscp_sendevent) for the format.
 
 ### Return
 
@@ -671,12 +668,12 @@ Get a measurement value from a VSCP measurement event.
 
 ### Parameters
 
-`<code="javascript">`
+```javascript
 vscp_getMeasurementValue( event )
-`</code>`
+```
 
 
-*  **event** A JSON object that contain the VSCP event data. See [vscp_sendEvent](http://www.vscp.org/docs/vscpd/doku.php?id=javascript_callbacks#vscp_sendevent) for the format.
+*  **event** A JSON object that contain the VSCP event data. See [vscp_sendEvent](./javascript_callbacks.md#vscp_sendevent) for the format.
 
 ### Return
 
@@ -684,7 +681,7 @@ Return the value for the measurement as a double or null if error or if event is
 
 ### Example
 
-`<code="JavaScript">`
+```javascript
 // The JSON text CLASS1.MEASUREMENTL, Type= Temperature,6 sensorindex=0, unit=1 (Celsius) 
 // 45.464 degrees Celsius 
 var eventTxt = "{ 'class': 10, 'type': 6, 'data': [0x48,0x34,0x35,0x2E,0x34,0x36,0x34] }";
@@ -698,19 +695,19 @@ if ( null != ( value = vscp_getMeasurementValue( event ) ) ) {
 else {
     vscp_log("This is not a measurement event!\n");
 }
-`</code>`
+```
 ##  vscp_getMeasurementUnit
 
 Get a measurement unit from a VSCP measurement event.
 
 ### Parameters
 
-`<code="javascript">`
+```javascript
 vscp_getMeasurementUnit( event )
-`</code>`
+```
 
 
-*  **event** A JSON object that contain the VSCP event data. See [vscp_sendEvent](http://www.vscp.org/docs/vscpd/doku.php?id=javascript_callbacks#vscp_sendevent) for the format.
+*  **event** A JSON object that contain the VSCP event data. See [vscp_sendEvent](./javascript_callbacks.md#vscp_sendevent) for the format.
 
 ### Return
 
@@ -720,7 +717,7 @@ Return the unit for the measurement as an integer or null if error or if event i
 
 Will output Unit = 1.
 
-`<code="javascript">`
+```javascript
 // The JSON text CLASS1.MEASUREMENTL, Type= Temperature,6 sensorindex=1, unit=1 (Celsius) 
 // 45.464 degrees Celsius 
 var eventTxt = "{ 'class': 10, 'type': 6, 'data': [0x49,0x34,0x35,0x2E,0x34,0x36,0x34] }";
@@ -729,7 +726,7 @@ var eventTxt = "{ 'class': 10, 'type': 6, 'data': [0x49,0x34,0x35,0x2E,0x34,0x36
 var event = JSON.parse( eventTxt );
 
 vscp_log("Unit = " + vscp_getMeasurementUnit( event ).toString() + "\n");
-`</code>`
+```
 
 ##  vscp_getMeasurementSensorIndex
 
@@ -737,12 +734,12 @@ Get a measurement sensor index from a VSCP measurement event.
 
 ### Parameters
 
-`<code="javascript">`
+```javascript
 vscp_getMeasurementSensorIndex( event )
-`</code>`
+```
 
 
-*  **event** A JSON object that contain the VSCP event data. See [vscp_sendEvent](http://www.vscp.org/docs/vscpd/doku.php?id=javascript_callbacks#vscp_sendevent) for the format.
+*  **event** A JSON object that contain the VSCP event data. See [vscp_sendEvent](./javascript_callbacks.md#vscp_sendevent) for the format.
 
 ### Return
 
@@ -752,7 +749,7 @@ Return the sensorindex for the measurement as an integer or null if error or if 
 
 Will output sensorindex = 1.
 
-`<code="JavaScript">`
+```javascript
 // The JSON text CLASS1.MEASUREMENTL, Type= Temperature,6 sensorindex=1, unit=1 (Celsius) 
 // 45.464 degrees Celsius 
 var eventTxt = "{ \"class\": 10, \"type\": 6, \"data\": [0x49,0x34,0x35,0x2E,0x34,0x36,0x34] }";
@@ -761,7 +758,7 @@ var eventTxt = "{ \"class\": 10, \"type\": 6, \"data\": [0x49,0x34,0x35,0x2E,0x3
 var event = JSON.parse( eventTxt );
 
 vscp_log("Sensor index = " + vscp_getMeasurementSensorIndex( event ).toString() + "\n");
-`</code>`
+```
 
 ##   vscp_getMeasurementZone
 
@@ -769,18 +766,18 @@ Get a measurement zone from a VSCP measurement event.
 
 ### Parameters
 
-`<code="javascript">`
+```javascript
 vscp_getMeasurementZone( event )
-`</code>`
+```
 
 
-*  **vscpEventObject** A JSON object that contain the VSCP event data. See [vscp_sendEvent](http://www.vscp.org/docs/vscpd/doku.php?id=javascript_callbacks#vscp_sendevent) for the format.
+*  **vscpEventObject** A JSON object that contain the VSCP event data. See [vscp_sendEvent](./javascript_callbacks.md#vscp_sendevent) for the format.
 
 ### Example
 
 Will output Zone = 0.
 
-`<code="javascript">`
+```javascript
 // The JSON text CLASS1.MEASUREMENTL, Type= Temperature,6 sensorindex=1, unit=1 (Celsius) 
 // 45.464 degrees Celsius 
 var eventTxt = "{ \"class\": 10, \"type\": 6, \"data\": [0x49,0x34,0x35,0x2E,0x34,0x36,0x34] }";
@@ -789,7 +786,7 @@ var eventTxt = "{ \"class\": 10, \"type\": 6, \"data\": [0x49,0x34,0x35,0x2E,0x3
 var event = JSON.parse( eventTxt );
 
 vscp_log("Zone = " + vscp_getMeasurementZone( event ).toString() + "\n");
-`</code>`
+```
 ### Return
 
 Return the zone for the measurement as an integer or null if error or if event is not a measurement. Level I events that does not have a zone defined will get a zero returned.
@@ -800,12 +797,12 @@ Get a measurement Sib Zone from a VSCP measurement event.
 
 ### Parameters
 
-`<code="javascript">`
+```javascript
 vscp_getMeasurementSubZone( event )
-`</code>`
+```
 
 
-*  **vscpEventObject** A JSON object that contain the VSCP event data. See [vscp_sendEvent](http://www.vscp.org/docs/vscpd/doku.php?id=javascript_callbacks#vscp_sendevent) for the format.
+*  **vscpEventObject** A JSON object that contain the VSCP event data. See [vscp_sendEvent](./javascript_callbacks.md#vscp_sendevent) for the format.
 
 ### Return
 
@@ -815,7 +812,7 @@ Return the subzone for the measurement as an integer or null if error or if even
 
 Will output Subzone = 0.
 
-`<code="javascript">`
+```javascript
 // The JSON text CLASS1.MEASUREMENTL, Type= Temperature,6 sensorindex=1, unit=1 (Celsius) 
 // 45.464 degrees Celsius 
 var eventTxt = "{ \"class\": 10, \"type\": 6, \"data\": [0x49,0x34,0x35,0x2E,0x34,0x36,0x34] }";
@@ -824,7 +821,7 @@ var eventTxt = "{ \"class\": 10, \"type\": 6, \"data\": [0x49,0x34,0x35,0x2E,0x3
 var event = JSON.parse( eventTxt );
 
 vscp_log("Subzone = " + vscp_getMeasurementSubZone( event ).toString() + "\n");
-`</code>`
+```
 
 {% include "./bottom_copyright.md" %}
 
