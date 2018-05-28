@@ -5,7 +5,7 @@
 **Driver for windows** vscpl1_tellstickdrv.dll (vscpl1_tellstickdrv.lib)
 **Driver for Linux** vscpl1_tellstickdrv.so
 
-This is a driver for the USB module available from [Telldus](http://www.telldus.se). This module can be used to control wireless switches etc from [many vendors](http://www.telldus.se/receivers.html). 
+This is a driver for the USB module available from [Telldus](https://www.telldus.se). This module can be used to control wireless switches etc from [many vendors](https://www.telldus.se/receivers.html). 
 
 ## Parameter string
 
@@ -49,26 +49,26 @@ The CanalGetStatus call returns the status structure with the channel_status mem
 
 Configuration for the module is done with a XML file
 
-`<code="xml">`
-`<tellstick>`
-    `<!-- Many devies can be set as receivers for one event -->`
-    `<event type="on|off|dim|all" zone="n" subzone="n">`
+```xml
+<tellstick>
+    <!-- Many devies can be set as receivers for one event -->`
+    <event type="on|off|dim|all" zone="n" subzone="n">
         <device protocol="NEXA |SARTANO | WAVEMAN | IKEA" 
-               systemcode="1-16" `<!-- Needed for IKEA -->` 			
-               devicecode="1-10" `<!-- Needed for IKEA -->` 			
-               dimlevel="0-10"	`<!-- If missing and dim event level/10 is used -->`
+               systemcode="1-16" `<!-- Needed for IKEA -->			
+               devicecode="1-10" <!-- Needed for IKEA -->			
+               dimlevel="0-10"	 <!-- If missing and dim event level/10 is used -->
                dimstyle="0|1" 			
-               housecode="A-P" `<!-- Needed for NEXA, WAVEMAN -->` 			
+               housecode="A-P" <!-- Needed for NEXA, WAVEMAN -->		
 			
                channel="1-16 [SARTANO 0-255] " 
-               `<!-- Needed for NEXA, WAVEMAN and SARTANO -->`
+               <!-- Needed for NEXA, WAVEMAN and SARTANO -->
 			
                state="0|1" 
-               `<!-- 0=off, 1=on if absent event state is used. -->`
-               `<!-- Needed for NEXA, WAVEMAN, SARTANO -->` 		
+               <!-- 0=off, 1=on if absent event state is used. -->
+               <!-- Needed for NEXA, WAVEMAN, SARTANO -->	
         />		 	
-    `</event>` 
-`</tellstick>`
+    </event>
+</tellstick>
 ```
 
 The driver understands four events
@@ -100,8 +100,4 @@ The driver understands four events
 Replies from the module are not really replies from the controlled nodes themselves as they don't issue a confirm. VSCP devices should ALWAYS reply back there state after a request to change it so here the driver take this responsibility. 
 
 
-\\ 
-----
-{{  ::copyright.png?600  |}}
-
-`<HTML>``<p style="color:red;text-align:center;">``<a href="http://www.grodansparadis.com">`Grodans Paradis AB`</a>``</p>``</HTML>`
+{% include "./bottom_copyright.md" %}

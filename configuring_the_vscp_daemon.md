@@ -1644,7 +1644,7 @@ Used to add dynamic parameters to background script. Parameters mapped to global
 
 Set **enable** to true to enable the interface and false to disable. 
 
-:!: Both **enable** and **auth** is deprecated from version 12.29.1.13
+ Both **enable** and **auth** is deprecated from version 12.29.1.13
 
 
 

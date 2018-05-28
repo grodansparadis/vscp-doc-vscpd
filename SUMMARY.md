@@ -1,4 +1,4 @@
-# Summary
+   # Summary
 
 * [Start](start.md)
 * [Introduction](introduction.md)
@@ -226,29 +226,16 @@
 * [ Get Table](rest_interface_table.md)
 * [ Get MDF](rest_interface_mdf.md)
 
-## JavaScript interface
-
-* [Widgets and Javascript library](widgets_and_javascript_library.md)
-  
-    ### Widgets
-
-    * [vscpws_Event](vscpws_event.md)
-    * [vscpws_Variable](vscpws_variable.md)
-    * [vscpws_stateButton](vscpws_statebutton.md)
-    * [vscpws_simpleText](vscpws_simpletext.md)
-    * [vscpws_thermometerCelsius](vscpws_thermometercelsius.md)
-    * [vscpws_speedometerCelsius](vscpws_speedometercelsius.md)
-
 ## Tables
 
 * [How to use tables](vscp-tables.md)
 
 ## Remote Variables
 
-* [Variables Introduced](decision_matrix_variables.md)
-* [Variable Types](decision_matrix_varaibles.md#variable_types)
-* [Variable write format](decision_matrix_varaibles.md#variable_types)
-* [Variable persistent storage format](decision_matrix_varaibles.md#persistent)
+* [Variables Introduced](./remote_variables.md)
+* [Variable Types](./remote_variables.md#variable_types)
+* [Variable write format](./remote_variables.md#variable_types)
+* [Variable persistent storage format](./remote_variables.md#persistent)
 
 ## Drivers
 

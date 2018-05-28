@@ -2,7 +2,7 @@
 
 **Available for:** Windows
 
-The Bluetooth proximity driver can be used to detect Bluetooth devices. It can send out the ID of the device using [CLASS1.INFORMATION=20, Type=37](http://www.vscp.org/docs/vscpspec/doku.php?id=class1.information#type_37_0x25_token_activity) when it enters/leave the detection zone and also a a detect event [CLASS1.INFOMATION=20, Type=49](http://www.vscp.org/docs/vscpspec/doku.php?id=class1.information#type_49_0x31_detect) if configured to do so.
+The Bluetooth proximity driver can be used to detect Bluetooth devices. It can send out the ID of the device using [CLASS1.INFORMATION=20, Type=37](https://grodansparadis.gitbooks.io/the-vscp-specification/content/class1.information.html#type--37-0x25-token-activity) when it enters/leave the detection zone and also a a detect event [CLASS1.INFOMATION=20, Type=49](https://grodansparadis.gitbooks.io/the-vscp-specification/content/class1.information.html#type--49-0x31-detect) if configured to do so.
 
 A call of method **VSCPBlockingSend** will always return **CANAL_ERROR_NOT_SUPPORTED** as this driver just receive events.
 
@@ -16,8 +16,8 @@ The **configuration string** is not used.
 
 Variables fetched from the VSCP demon configuration file. Defaults will be used if the variable is not available.
 
- | Variable name         | Type    | Default    | Description                                                                          | 
- | -------------         | ----    | -------    | -----------                                                                          | 
+ | Variable name | Type    | Default    | Description | 
+ | ------------- | ----    | :-------:    | -----------  | 
  | _pausetime            | integer | One second | Pause in seconds between detection attempts.                                         | 
  | _zone                 | integer | 0          | Zone to use for token events.                                                        | 
  | _subzone              | integer | 0          | Sub-zone to use for token events.                                                    | 
@@ -39,13 +39,13 @@ If your driver name contains spaces, for example "name of driver" it will get a 
 
 ##### Example of vscpd.conf entry for the driver.
 
-`<code="xml">`
-`<driver enable="true" >`                 
-    `<name>`btprox1`</name>`                 
-    `<path>`c:\vscpl2_btproximitydrv.dll`</path>`                 
-    `<config>``</config>`                 
-    `<guid>`FF:FF:FF:FF:FF:FF:FF:F7:01:00:00:00:00:00:00:00`</guid>`            
-`</driver>` 
+```xml
+<driver enable="true" >
+    <name>btprox1</name>
+    <path>c:\vscpl2_btproximitydrv.dll</path>     
+    <config></config>
+    <guid>`FF:FF:FF:FF:FF:FF:FF:F7:01:00:00:00:00:00:00:00</guid>
+</driver> 
 ```
 
 
@@ -56,70 +56,66 @@ If your driver name contains spaces, for example "name of driver" it will get a 
 This node is a Bluetooth proximity sensor driver that send out the identification id when a
 Bluetooth device is within range. The id is the Bluetooth id of the device.
 -->
-    `<variable type="integer">`
-    `<name>`btprox1_pausetime`</name>`
-    `<note>`Pause in seconds between detection attempts.`</note>`
-    `<value>`1`</value>`
-    `</variable>`
+<variable type="integer">
+    <name>btprox1_pausetime</name>
+    <note>Pause in seconds between detection attempts.</note>
+    <value>1</value>
+</variable>
 
-    `<variable type="integer">`
-    `<name>`btprox1_zone`</name>`
-    `<note>`Zone to use for token events.`</note>`
-    `<value>`2`</value>`
-    `</variable>`
+<variable type="integer">
+    <name>btprox1_zone</name>
+    <note>Zone to use for token events.</note>
+    <value>2</value>
+</variable>
 
-    `<variable type="integer">`
-    `<name>`btprox1_subzone`</name>`
-    `<note>`Sub-zone to use for token events.`</note>`
-    `<value>`1`</value>`
-    `</variable>`
+<variable type="integer">
+    <name>btprox1_subzone</name>
+    <note>Sub-zone to use for token events.</note>
+    <value>1</value>
+</variable>
     
-    `<variable type="integer">`
-    `<name>`btprox1_detectindex`</name>`
-    `<note>`Index to use for detect events.`</note>`
-    `<value>`0`</value>`
-    `</variable>`
+<variable type="integer">
+    <name>btprox1_detectindex</name>
+    <note>Index to use for detect events.</note>
+    <value>0</value>
+</variable>
     
-    `<variable type="integer">`
-    `<name>`btprox1_detectzone`</name>`
-    `<note>`Zone to use for detect events.`</note>`
-    `<value>`3`</value>`
-    `</variable>`
+<variable type="integer">
+    <name>btprox1_detectzone</name>
+    <note>Zone to use for detect events.</note>
+    <value>3</value>
+</variable>
 
-    `<variable type="integer">`
-    `<name>`btprox1_detectsubzone`</name>`
-    `<note>`Sub-zone to use for detect events.`</note>`
-    `<value>`1`</value>`
-    `</variable>`
+<variable type="integer">
+    <name>btprox1_detectsubzone</name>
+    <note>Sub-zone to use for detect events.</note>
+    <value>1</value>
+</variable>
     
-    `<variable type="boolean">`
-    `<name>`btprox1_send_token_activity`</name>`
-    `<note>`Set to true to enable token events.`</note>`
-    `<value>`true`</value>`
-    `</variable>`
+<variable type="boolean">
+    <name>btprox1_send_token_activity</name>
+    <note>Set to true to enable token events.</note>
+    <value>true</value>
+</variable>
     
-    `<variable type="boolean">`
-    `<name>`btprox1_send_detect `</name>`
-    `<note>`Set to true to enable detect events.`</note>`
-    `<value>`true`</value>`
-    `</variable>`
+<variable type="boolean">
+    <name>btprox1_send_detect</name>
+    <note>Set to true to enable detect events.</note>
+    <value>true</value>
+</variable>
     
-    `<variable type="boolean">`
-    `<name>`btprox1_disable_radio_detect`</name>`
-    `<note>`Normally also the radio unit is detected. Set this variable to true to disable this.`</note>`
-    `<value>`false`</value>`
-    `</variable>`
+<variable type="boolean">
+    <name>btprox1_disable_radio_detect</name>
+    <note>Normally also the radio unit is detected. Set this variable to true to disable this.</note>
+    <value>false</value>
+</variable>
 
-    `<variable type="guid">`
-    `<name>`btprox1_guid`</name>`
-    `<note>`GUID for the driver.`</note>`
-    `<value>`FF:FF:FF:FF:FF:FF:FF:F7:01:00:00:00:00:00:00:00`</value>`
-    `</variable>`
+<variable type="guid">
+    <name>btprox1_guid</name>
+    <note>GUID for the driver.</note>
+    <value>FF:FF:FF:FF:FF:FF:FF:F7:01:00:00:00:00:00:00:00</value>
+</variable>
 ```
 
 
-\\ 
-----
-{{  ::copyright.png?600  |}}
-
-`<HTML>``<p style="color:red;text-align:center;">``<a href="http://www.grodansparadis.com">`Grodans Paradis AB`</a>``</p>``</HTML>`
+{% include "./bottom_copyright.md" %}

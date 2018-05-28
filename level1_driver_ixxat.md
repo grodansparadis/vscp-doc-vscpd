@@ -6,7 +6,7 @@
 
 This is a device driver for the IXXAT VCI Driver interface
 
-The driver uses proprietary include files and libraries from IXXAT which are not included in the distribution. [IXXAT - Overview PC/CAN Interfaces](http://www.ixxat.com/download_vci_v3_en.html).
+The driver uses proprietary include files and libraries from IXXAT which are not included in the distribution. [IXXAT - Overview PC/CAN Interfaces](https://www.ixxat.com/download_vci_v3_en.html).
 
 
 ## Parameter String
@@ -110,8 +110,4 @@ uses the USB2CAN compact USB adapter with a bus-speed off 500kbps and the first 
 
     15;0;0;0;125
 
-\\ 
-----
-{{  ::copyright.png?600  |}}
-
-`<HTML>``<p style="color:red;text-align:center;">``<a href="http://www.grodansparadis.com">`Grodans Paradis AB`</a>``</p>``</HTML>`
+{% include "./bottom_copyright.md" %}

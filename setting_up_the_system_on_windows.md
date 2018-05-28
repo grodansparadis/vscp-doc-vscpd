@@ -54,7 +54,7 @@ after an installation. Here is a short description of what you can expect to fin
  | **tables**        | This is the default location for **tables**. VSCP tables is a type of databases where time is one axis and a measurement such as a temperature is another. Can be used to display diagrams or datatables or be used for further data processing. When VSCP & Friends is installed the folder contains three sample tables. | 
  | **web**           | This is the default web root folder. The folder contains the sample pages from the VSCP [HTML5 project](https://github.com/grodansparadis/vscp_html5) after a fresh installation and demos some of the HTML5 websocket components. This part of the VSCP project is evolving fast so you way want to replace the files here with the ones on github to get the latest greatest. | 
  | **dm.xml**        | This is a sample decision matrix file. You can read more about the decision matrix [here](./decision_matrix.md). The default content in it updates a remote mysql database with measurements and then there is three entries that log data to the sample tables. | 
- | **variables.xml** | This is a sample persistent variable file. You can read more about VSCP variables [here](./decision_matrix_variables.md). Default content is just some test variables. | 
+ | **variables.xml** | This is a sample persistent variable file. You can read more about VSCP variables [here](./remote_variables.md). Default content is just some test variables. | 
  | **vscp.conf**     | This is the configuration file for the VSCP Daemon. It is described [here](./configuring_the_vscp_daemon.md). | 
 
 ## Taking your newly installed system for a test ride

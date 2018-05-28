@@ -28,10 +28,6 @@ Not used, set to 0.
  
 ## Notes
 
-*  Some notes about socketcan is [here](http://www.akehedman.se/wiki/doku.php/socketcan). 
+*  Some notes about socketcan is [here](https://www.akehedman.se/wiki/doku.php/socketcan). 
 
-\\ 
-----
-{{  ::copyright.png?600  |}}
-
-`<HTML>``<p style="color:red;text-align:center;">``<a href="http://www.grodansparadis.com">`Grodans Paradis AB`</a>``</p>``</HTML>`
+{% include "./bottom_copyright.md" %}

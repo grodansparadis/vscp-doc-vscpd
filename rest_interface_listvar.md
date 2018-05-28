@@ -156,7 +156,7 @@ var do_listVariables = function() {
 
 ## Responses
 
-:!:
+
 
 **note** Response format has changed from version 1.12.14.12 and now include *user*, *access-rights*, *last-change*. Also all note data is always BASE64 encoded and this is true also for 'string-type' values.
 

@@ -772,7 +772,7 @@ Write a variable. If the variable is not already defined it is created.  Argumen
 
 *  **access-rights** is the numerical access rights (default is 0x744).
 
-*  **value** is the value for the variable. Note that certain forms of variables always expect the value to be coded in BASE64, for example the string type expects this. [See table](./decision_matrix_variables.md#variable_types) for info about which variables expect BASE64 encoded value input.
+*  **value** is the value for the variable. Note that certain forms of variables always expect the value to be coded in BASE64, for example the string type expects this. [See table](./remote_variables.md#variable_types) for info about which variables expect BASE64 encoded value input.
 
 *  **note** is a note for the variable. Always coded in BASE64.
 
@@ -854,7 +854,7 @@ or if the variable is not defined
 	  -OK - Variable is not defined.<CR><LF>
 
 
-The format for different variable types is [here](./decision_matrix_variables.md#variable_types). 
+The format for different variable types is [here](./remote_variables.md#variable_types). 
 
 ### readnote
 
@@ -888,7 +888,7 @@ or if the variable is not defined
 
 ### reset
 
-Variable  value is set to its default value. The default values for different variables types can be found [here](./decision_matrix_variables.md#reset_variable_values). Command does not work with stock variables ad they can not be reseted.
+Variable  value is set to its default value. The default values for different variables types can be found [here](./remote_variables.md#reset_variable_values). Command does not work with stock variables ad they can not be reseted.
 
 Response for a successful reset of a variable is
 
@@ -973,7 +973,7 @@ Argument is
 
 Output format from daemon for variable list/read commands is
 
-[Here is an example](./decision_matrix_variables#persistent_storage_format.md) of how variables are stored on disk.
+[Here is an example](./remote_variables#persistent_storage_format.md) of how variables are stored on disk.
 
 Response for a successful save is
 

@@ -14,6 +14,7 @@ If you use VSCP components professionally please consider contributing resources
 
 ---
 
-This document is copyright © 2000-2018 Åke Hedman, [Grodans Paradis AB](http://www.grodansparadis.com), <[akhe@grodansparadis.com](akhe@grodansparadis.com)>. You are free to use, copy, change this document as long as you point to the origin.
+This document is licensed under [Creative Commons BY 4.0](https://creativecommons.org/licenses/by/4.0/) and can be freely copied, redistributed, remixed, transformed, built upon as long as you give credits to the author.
+
 
  

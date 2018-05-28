@@ -4,7 +4,7 @@
 
 **Driver for Windows** vscpl1_zanthicdrv.dll (vscpl1_zanthicdrv.lib)
 
-This is a device driver for the [Zanthic Technologies](http://www.zanthic.com/products.htm) USB adapter. 
+This is a device driver for the [Zanthic Technologies](https://www.zanthic.com/products.htm) USB adapter. 
 
 ##### Parameter String
 
@@ -34,8 +34,4 @@ The CanalGetStatus call returns the status structure with the channel_status mem
 
    * Bit 0-31 Reserved.
 
-\\ 
-----
-{{  ::copyright.png?600  |}}
-
-`<HTML>``<p style="color:red;text-align:center;">``<a href="http://www.grodansparadis.com">`Grodans Paradis AB`</a>``</p>``</HTML>`
+{% include "./bottom_copyright.md" %}

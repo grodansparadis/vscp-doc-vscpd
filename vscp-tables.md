@@ -1,6 +1,5 @@
 # VSCP Tables
 
-**Preliminary information that still may change**
 
 VSCP tables is a built in feature of the VSCP daemon that let you collect data (measurements) from events in a SQL database over time automatically. The only thing you need to do is to add a VSCP decision matrix entry for the collection and a definition of your collection to the configuration.
 
@@ -43,10 +42,10 @@ You can define and configure tables in the main configuration file vscpd.xml or 
 
 Changes done in the VSCP administrative interface goes to the configuration database file.
 
-The table definitions in [the configuration file is described here](http://www.vscp.org/docs/vscpd/doku.php?id=configuring_the_vscp_daemon#tables).
+The table definitions in [the configuration file is described here](./configuring_the_vscp_daemon.md#tables).
 
 ## Collect data
 
-[described here](http://www.vscp.org/docs/vscpd/doku.php?id=vscp_daemon_decision_matrix#write_table).
+[described here](./decision_matrix.md#write_table).
 
 {% include "./bottom_copyright.md" %}

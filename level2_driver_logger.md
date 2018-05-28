@@ -15,8 +15,8 @@ See the table below for a description. Variables fetched from the daemon is used
 
 ##### Variables fetched from the VSCP demon configuration file.
 
- | Variable name | Type   | Description                                                                                                                                                                                                        | 
- | ------------- | ----   | -----------                                                                                                                                                                                                        | 
+ | Variable name | Type   | Description  | 
+ | ------------- | ----   | -----------  | 
  | _path         | string | Path to the logfile.                                                                                                                                                                                               | 
  | _rewrite      | bool   | Set to “true” to rewrite the file each time the driver is started. Set to “false” to append to file.                                                                                                       | 
  | _vscpworksfmt | bool   | If “true” VSCP works XML format will be used for the log file. This means that the file will be possible to read and further analyzed by VSCP Works. If “false” a standard text based format will be used. | 
@@ -33,13 +33,13 @@ If your driver name contains spaces, for example "name of driver" it will get a 
 
 ##### Example of vscpd.conf entry for the logger driver.
 
-`<code="xml">`
-`<driver enable="true" >`                 
-    `<name>`log1`</name>`                 
-    `<path>`/usr/local/lib/vscpl2_loggerdrv.so`</path>`                 
-    `<config>`/tmp/vscp_level2.log`</config>`                 
-    `<guid>`00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00`</guid>`            
-`</driver>` 
+```xml
+<driver enable="true" >
+    <name>log1</name>
+    <path>/usr/local/lib/vscpl2_loggerdrv.so</path>  
+    <config>/tmp/vscp_level2.log</config>           
+    <guid>00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00</guid>
+</driver>
 ```
 
 {% include "./bottom_copyright.md" %}

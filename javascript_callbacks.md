@@ -96,7 +96,7 @@ Variable information is returned in JSON format or a NULL object is returned if 
 }
 ```
 
-The variable types are [listed here](./decision_matrix_variables.md#variable_types).
+The variable types are [listed here](./remote_variables.md#variable_types).
 
 
 *  **bnumeric** is true for a numerical variable. 

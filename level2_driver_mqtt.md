@@ -26,8 +26,8 @@ The first configuration parameter is a unique id like "mysession22" for your con
 
 ## Variables
 
- | Variable name  | Type    | Description                                                                                                                                                                                                                                          | 
- | -------------  | ----    | -----------                                                                                                                                                                                                                                          | 
+ | Variable name  | Type    | Description   | 
+ | -------------  | ----    | -----------  | 
  | **_sessionid** | string  | A unique session id ("myconnection2") you set for every connection to a broker. The session id's must be different if load several MQTT drivers and also so if the connect to the same broker. Available from version 1.1.0.22 Sodium.               | 
  | **_type**      | string  | “subscribe” to subscribe to a MQTT topic. ”publish” to publish events to a MQTT topic. Defaults to “subscribe”.                                                                                                                          | 
  | **_topic**     | string  | This is a text string identifying the topic. It is recommended that this string starts with “vscp/”. Defaults to “vscp”                                                                                                                      | 
@@ -394,3 +394,4 @@ The lowest three bits are all zero here but could have been an index (0-7) to a 
 
 
 
+{% include "./bottom_copyright.md" %}

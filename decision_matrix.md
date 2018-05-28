@@ -751,7 +751,7 @@ The data supplied in the action parameter in a named variable and one form that 
 
 *  Variable description. Optional. Must be base64 encoded. You can add "BASE64:" before the string to accomplish this.
 
-__Variable write__ formats is [here](./decision_matrix_variables.md#variable_types).
+__Variable write__ formats is [here](./remote_variables.md#variable_types).
 
 If the variable does not exist it is created. 
 

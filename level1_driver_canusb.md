@@ -2,11 +2,11 @@
 
 **Available for:** Windows. Use socketcan on Linux.
 
-This is a device driver for the [Lawicel CANUSB adapter](http://www.canusb.com). It is the property of Lawicel AB and source is therefore not available. The driver can be downloaded from the above site or requested from [Lawicel AB](http://www.lawicel.se). 
+This is a device driver for the [Lawicel CANUSB adapter](https://www.canusb.com). It is the property of Lawicel AB and source is therefore not available. The driver can be downloaded from the above site or requested from [Lawicel AB](https://www.lawicel.se). 
 
 **Important!**
 
-Note that before you use this driver the ftdi dxx libraries must be installed. Information about how to install them is available on the CANUSB site or on the [ftdi site](http://www.ftdichip.com). We recommend using the combined VCI + DXX driver which also is available on the CANUSB site in the download section. 
+Note that before you use this driver the ftdi dxx libraries must be installed. Information about how to install them is available on the CANUSB site or on the [ftdi site](https://www.ftdichip.com). We recommend using the combined VCI + DXX driver which also is available on the CANUSB site in the download section. 
 
 ## Parameter String
 
@@ -26,23 +26,14 @@ This is the speed for the CAN bus. It can be given as
 
 
 *  5 for 5 Kbps 
-
 *  10 for 10 Kbps 
-
 *  20 for 20 Kbps 
-
 *  50 for 50 Kbps 
-
 *  100 for 100 Kbps
-
 *  125 for 125 Kbps 
-
 *  250 for 250 Kbps 
-
 *  500 for 500 Kbps 
-
 *  800 for 800 Kbps 
-
 *  1000 for 1000 Mbs
 
 ##### filter
@@ -103,8 +94,4 @@ The CanalGetStatus call returns the status structure with the channel_status mem
 *  Bit 16-31 CANAL specified.
 
 
-\\ 
-----
-{{  ::copyright.png?600  |}}
-
-`<HTML>``<p style="color:red;text-align:center;">``<a href="http://www.grodansparadis.com">`Grodans Paradis AB`</a>``</p>``</HTML>`
+{% include "./bottom_copyright.md" %}

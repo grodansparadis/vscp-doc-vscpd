@@ -2,13 +2,13 @@
 
  Available for: **Linux**, **Windows**
  
-This driver gives support for nodes that communicate using the [VSCP raw Ethernet format](http://www.vscp.org/docs/vscpspec/doku.php?id=physical_level_lower_level_protocols#vscp_over_ethernet_raw_ethernet) and it makes it possible to build nodes that use the vscp protocol and behave like high level nodes without the extra burden of a TCP/IP stack. 
+This driver gives support for nodes that communicate using the [VSCP raw Ethernet format](https://grodansparadis.gitbooks.io/the-vscp-specification/content/vscp_over_ethernet_raw_ethernet.html) and it makes it possible to build nodes that use the vscp protocol and behave like high level nodes without the extra burden of a TCP/IP stack. 
 
-To use this driver on Windows the [winpcap](http://www.winpcap.org) package must be installed.  To use it on Linux the daemon must be run as root and you need the **libpaps-dev** package installed.
+To use this driver on Windows the [winpcap](https://www.winpcap.org) package must be installed.  To use it on Linux the daemon must be run as root and you need the **libpaps-dev** package installed.
 
 To use this driver on Linux the daemon must be run with root privileges.
 
-**Driver Linux:** vscpl2_rawethernetdrv.so \\ 
+**Driver Linux:** vscpl2_rawethernetdrv.so  
 **Driver Windows:** vscpl2_rawethernetdrv.dll 
 
 The **configuration string** have the following format
@@ -25,8 +25,8 @@ This is the mac address used as the outgoing mac address when sending raw Ethern
 
 ##### Variables fetched from the VSCP demon configuration file
 
- | Variable name  | Type   | Description                                                                                                                                                                                                                                                          | 
- | -------------  | ----   | -----------                                                                                                                                                                                                                                                          | 
+ | Variable name  | Type   | Description  | 
+ | -------------  | ----   | -----------  | 
  | **_interface** | string | A string that identifies the Ethernet device that should be used when sending/receiving Ethernet frames. Typically it's in the form *eth0*, *eth1*, *eth2* etc on Linux devices and *\Device\NPF_{986752B0-3C0E-46A2-AFD3-B593E180EC54* on a Windows system. | 
  | **_localmac**  | string | The mac address used as the outgoing mac address when sending raw Ethernet frames. Normally this should be the same as for the adapter. The form i typically *00:26:55:CA:1F:DA*.                                                                                  | 
  | _filter        | string | Standard VSCP filter in string from. *1,0x0000,0x0006,ff:ff:ff:ff:ff:ff:ff:01:00:00:00:00:00:00:00:00* as // priority,class,type,GUID// Used to filter what is sent from VSCP out on Ethernet.                                                                     | 
@@ -43,36 +43,33 @@ If your driver name contains spaces, for example “name of driver” it will ge
 A typical configuration example settings for a Windows 7 machines *vscpd.conf* configuration file is 
 
 ```xml
-`<!-- Level II raw ethernet  -->`
-`<driver enable="true">` 		   	 			
-    `<name>`rawethernet1`</name>` 		   	 		
-    `<config>`\Device\NPF_{DE579129-5F36-4507-A416-C2B693AC3018};00:26:55:CA:1F:DA`</config>`
-    `<path>`C:\Program Files (x86)\VSCP\drivers\level2\vscpl2_rawethernetdrv.dll`</path>`
-`</driver>`
+<!-- Level II raw ethernet  -->
+<driver enable="true">   	 			
+    <name>rawethernet1</name>
+    <config>\Device\NPF_{DE579129-5F36-4507-A416-C2B693AC3018};00:26:55:CA:1F:DA</config>
+    <path>C:\Program Files (x86)\VSCP\drivers\level2\vscpl2_rawethernetdrv.dll</path>
+</driver>
 ```
         
 and on a Linux machine        
 
-`<code="xml">`
-`<vscpdriver enable="true">`
-    `<driver enable="true">` 		   	 			
-        `<name>`raweth1`</name>` 		   	 		
-        `<config>`eth0;00:26:55:CA:1F:DA`</config>`
-        `<path>`/usr/local/lib/vscp2drv_raweth.so`</path>`
-    `</driver>` 
-`</vscpdriver>`
+```xml
+<vscpdriver enable="true">
+    <driver enable="true">		   	 			
+        <name>raweth1</name> 		   	 		
+        <config>eth0;00:26:55:CA:1F:DA</config>
+        <path>/usr/local/lib/vscp2drv_raweth.so</path>
+    </driver>`
+</vscpdriver>
 ```
-\\ 
+
 
 #####  Frame format
 
-The full description of the VSCP raw ethernet format is [here](http://www.vscp.org/docs/vscpspec/doku.php?id=physical_level_lower_level_protocols#vscp_over_ethernet_raw_ethernet).
+The full description of the VSCP raw ethernet format is [here](https://grodansparadis.gitbooks.io/the-vscp-specification/content/vscp_over_ethernet_raw_ethernet.html).
 
 ##### Client support
 
-For Arduino devices you can find a library [here](http://www.airspayce.com/mikem/arduino/EtherRaw/index.html). There is some sample code [here](http://forum.arduino.cc/index.php?topic=74547.0).
-\\ 
-----
-{{  ::copyright.png?600  |}}
+For Arduino devices you can find a library [here](http://www.airspayce.com/mikem/arduino/EtherRaw/index.html). There is some sample code [here](https://forum.arduino.cc/index.php?topic=74547.0).
 
-`<HTML>``<p style="color:red;text-align:center;">``<a href="http://www.grodansparadis.com">`Grodans Paradis AB`</a>``</p>``</HTML>`
+{% include "./bottom_copyright.md" %}

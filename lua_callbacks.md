@@ -159,7 +159,7 @@ Variable information is returned in string (default), XML, JSON format or as onl
 name;type;persistence;user;access-rights;last-change;value;note
 ```
 
-The variable types are [listed here](./decision_matrix_variables.md#variable_types).
+The variable types are [listed here](./remote_variables.md#variable_types).
 
 The variable value will be BASE64 encoded for certain variable types. The note will always be BASE64 encoded.
 
@@ -177,7 +177,7 @@ The variable value will be BASE64 encoded for certain variable types. The note w
     note="Variable note" />
 ```
 
-The variable types are [listed here](./decision_matrix_variables.md#variable_types).
+The variable types are [listed here](./remote_variables.md#variable_types).
 
 The variable value will be BASE64 encoded for certain variable types. The note will always be BASE64 encoded.
 
@@ -198,7 +198,7 @@ The variable value will be BASE64 encoded for certain variable types. The note w
 }
 ```
 
-The variable types are [listed here](./decision_matrix_variables.md#variable_types).
+The variable types are [listed here](./remote_variables.md#variable_types).
 
 
 *  **bnumeric** is true for a numerical variable. 
@@ -284,7 +284,7 @@ vscp.writeVariable(variable[,format]);
 
 *  **format:** If format is set to **0** the variable is in string format (default), if format is set to **1** the variable is in XML format and if format is set to **2** the variable is in JSON format.
 
-The variable types are [listed here](./decision_matrix_variables.md#variable_types).
+The variable types are [listed here](./remote_variables.md#variable_types).
 
 #### String defined variable
 

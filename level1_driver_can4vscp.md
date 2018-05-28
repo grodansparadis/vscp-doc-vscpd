@@ -2,10 +2,11 @@
 
 **Available for:** Windows, Linux
 
-**Driver for Windows** vscpl1_can4vscpdrv.dll (install-dir/drivers) \\ 
-**Driver for Linux** vscpl1_can4vscpdrv.so (/usr/local/lib/vscpl1_can4vscpdrv.so) When using the drive on Linux remember to set rw permissions for the user that the VSCP daemon and VSCP works run under (//chmod a+rw /dev/ttyUSB0// for example).
+**Driver for Windows** vscpl1_can4vscpdrv.dll (install-dir/drivers) 
 
-This is a driver for the low cost **Frankfurt RS-232 module** that us the [VSCP serial protocol](http://www.vscp.org/docs/vscpspec/doku.php?id=physical_level_lower_level_protocols#vscp_over_a_serial_channel_rs-232). The Frankfurt RS-232 module is described [here](http://www.grodansparadis.com/can4vscp_rs232/can4vscp_rs232.html) where there also is a description of how to use it with VSCP Works and the VSCP daemon.  The Frankfurt RS-232 can be bought from the [Frogshop](http://www.frogshop.se).
+**Driver for Linux** vscpl1_can4vscpdrv.so (*/usr/local/lib/vscpl1_can4vscpdrv.so*) When using the drive on Linux remember to set rw permissions for the user that the VSCP daemon and VSCP works run under (*chmod a+rw /dev/ttyUSB0* for example).
+
+This is a driver for the low cost **Frankfurt RS-232 module** that us the [VSCP serial protocol](https://grodansparadis.gitbooks.io/the-vscp-specification/content/vscp_over_a_serial_channel_rs-232.html). The Frankfurt RS-232 module is described [here](https://www.grodansparadis.com/can4vscp_rs232/can4vscp_rs232.html) where there also is a description of how to use it with VSCP Works and the VSCP daemon.  
 
 As the VSCP serial protocol is very generic this may also be the driver to use for your own hardware that have a serial port available.
 
@@ -34,7 +35,7 @@ The first parameter is the device to use (// /dev/ttyS0, /dev/ttyS1 or /dev/ttyU
 This is an optional baudrate code. If not given the dafault 115200 will be used. The following settings are available
 
  | Baudrate | Code | Error  | Windows | Linux | 
- | -------- | ---- | -----  | ------- | ----- | 
+ | :--------: | :----: | :-----:  | :-------: | :-----: | 
  | 115200   | 0    | -1.36% | yes     | yes   | 
  | 128000   | 1    | -2.34% | yes     | no    | 
  | 230400   | 2    | -1.36% | no      | yes   | 
@@ -53,26 +54,28 @@ Tests on Windows and Linux has been done on a Windows 10 machine and on a Ubuntu
 
 Typical settings for VSCP daemon config
 
-    `<driver enable="true" >`
-        `<name>`can4vscp`</name>`
-        `<config>`/dev/ttyUSB0`</config>`
-        `<path>`/usr/local/lib/vscpl1_can4vscpdrv.so`</path>`
-        `<flags>`0`</flags>`
-        `<guid>`00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00`</guid>`
-    `</driver>`
-
+```xml
+    <driver enable="true" >
+        <name>can4vscp</name>
+        <config>/dev/ttyUSB0</config>
+        <path>/usr/local/lib/vscpl1_can4vscpdrv.so</path>
+        <flags>0</flags>
+        <guid>00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00</guid>
+    </driver>
+```
 
 
 ## Flags
 
- | Bits     | Usage                                                                                                                                                   | 
- | ----     | -----                                                                                                                                                   | 
- | Bit 0,1  | **Open Mode**\\ \\ **0** - normal\\ **1** - Listen mode\\ **2** - Loopback mode\\ **3** - Reserved\\ \\                                                 | 
- | Bit 2    | If set the driver will not switch to VSCP mode. That is it must be in VSCP mode. Open will be faster.                                                   | 
+ | Bits | Usage | 
+ | ----  | ----- | 
+ | Bit 0,1  | **Open Mode** <br> **0** - normal <br> **1** - Listen mode <br> **2** - Loopback mode <br> **3** - Reserved | 
+ | Bit 2    | If set the driver will not switch to VSCP mode. That is it must be in VSCP mode. Open will be faster. | 
  | Bit 3    | If set the driver will wait for an ACK from the physical device for every sent frame. This will slow down sending but make transmission it very secure. | 
- | Bit 4    | Enable timestamp. The timestamp will be written by the hardware instead of the driver.                                                                  | 
- | Bit 5    | Enable hardware handshake.                                                                                                                              | 
- | Bit 6-31 | Reserved                                                                                                                                                | 
+ | Bit 4    | Enable timestamp. The timestamp will be written by the hardware instead of the driver. | 
+ | Bit 5    | Enable hardware handshake.  | 
+ | Bit 6-31 | Reserved.  | 
+
 ## Status return
 
 The CanalGetStatus call returns the status structure with the channel_status member having the following meaning:
@@ -102,8 +105,4 @@ The CanalGetStatus call returns the status structure with the channel_status mem
 
 You can find the description of the VSCP serial protocol in the [VSCP specification](http://www.vscp.org/docs/vscpspec/doku.php?id=physical_level_lower_level_protocols#vscp_over_a_serial_channel_rs-232).
 
-\\ 
-----
-{{  ::copyright.png?600  |}}
-
-`<HTML>``<p style="color:red;text-align:center;">``<a href="http://www.grodansparadis.com">`Grodans Paradis AB`</a>``</p>``</HTML>`
+{% include "./bottom_copyright.md" %}

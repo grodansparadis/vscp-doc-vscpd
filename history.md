@@ -96,6 +96,4 @@
 *  **2015-04-28 AKHE** - Stated Document history.
 
 
-\\ 
-----
-Copyright (c) 2000-2017 [mailto:info@grodansparadis.com](mailto/info@grodansparadis.com), [Paradise of the Frog / Grodans Paradis AB](http://www.grodansparadis.com)
+{% include "./bottom_copyright.md" %}

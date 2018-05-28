@@ -2,7 +2,7 @@
 
 [The VSCP Level II MQTT Driver](http://www.vscp.org/docs/vscpd/doku.php?id=level2_driver_mqtt) can not, as most other packages, work with the old mosquitto library that you can find on most Debian systems including Raspberry Pi. 
 
-:!:
+
 
 **Currently the simplest step is to compile the package yourself so skip to that step. Otherwise follow the steps below.**
 ## Step 1

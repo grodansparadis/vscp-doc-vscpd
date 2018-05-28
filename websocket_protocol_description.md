@@ -188,7 +188,7 @@ response is
 
     “+;RVAR;type;variable-value” 
 
-where type is variable type and value is different depending on which type of variable it is ([format described here](http://www.vscp.org/docs/vscpd/doku.php?id=decision_matrix_varaibles#persistent_storage_format)). For a string the response is 
+where type is variable type and value is different depending on which type of variable it is ([format described here](http://www.vscp.org/docs/vscpd/doku.php?id=remote_variables#persistent_storage_format)). For a string the response is 
 
     “+;RVAR;1;hellow world” 
 
@@ -200,7 +200,7 @@ or
 
     “+;RVAR;2;false” 
 
-etc. See [this page](./decision_matrix_variables.md#variable_types) for more information on variable types.
+etc. See [this page](./remote_variables.md#variable_types) for more information on variable types.
 
 **Note:** its is note allowed to have a variable name with a semicolon in the name.
 
@@ -214,7 +214,7 @@ Set value for existing variable. The variable must exist.
 
     "C;WVAR;variablename;value" 
 
-The value is different depending on what variable type it is ([described here](./decision_matrix_variables.md#persistent_storage_format)). Positive/negative response is returned.
+The value is different depending on what variable type it is ([described here](./remote_variables.md#persistent_storage_format)). Positive/negative response is returned.
 
 The response is
     
@@ -322,7 +322,7 @@ response is
 
 ### RSTVAR
 
-Reset variable to its default value. Default values can be found [here](./decision_matrix_variables#variable_types).
+Reset variable to its default value. Default values can be found [here](./remote_variables#variable_types).
 
 "RESETVAR" also works.
 

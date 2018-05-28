@@ -20,11 +20,8 @@ This is the speed for the CAN bus. It can be given as
 
 
 *  125 for 125Kbps 
-
 *  250 for 250Kbps 
-
 *  500 for 500Kbps 
-
 *  1000 for 1Mbps
 
 ## Flags
@@ -37,31 +34,17 @@ The CanalGetStatus call returns the status structure with the channel_status mem
 
 
 *  Bit 0-7   TX error counter. 
-
 *  Bit 8-15  RX error counter. 
-
 *  Bit 16    Overflow. 
-
 *  Bit 17    RX Warning. 
-
 *  Bit 18    TX Warning. 
-
 *  Bit 19    TX bus passive. 
-
 *  Bit 20    RX bus passive. 
-
 *  Bit 21-28 Reserved. 
-
 *  Bit 29    Bus Passive. 
-
 *  Bit 30    Bus Warning status. 
-
 *  Bit 31    Bus off status 
 
 
 
-\\ 
-----
-{{  ::copyright.png?600  |}}
-
-`<HTML>``<p style="color:red;text-align:center;">``<a href="http://www.grodansparadis.com">`Grodans Paradis AB`</a>``</p>``</HTML>`
+{% include "./bottom_copyright.md" %}

@@ -34,7 +34,7 @@ http://host:port/vscp/rest?
 
 *  **variable** - Name of variable.
 
-*  **value** - Value for variable ([string-types encoded in BASE64](http://www.vscp.org/docs/vscpd/doku.php?id=decision_matrix_varaibles#variable_types)).
+*  **value** - Value for variable ([string-types encoded in BASE64](http://www.vscp.org/docs/vscpd/doku.php?id=remote_variables#variable_types)).
 
 *  **note** - Textual note about variable (always encoded in BASE64).
 
@@ -59,7 +59,7 @@ http://demo.vscp.org:8884/vscp/rest?vscpsession=d1c13eb83f52f319f14d167962048521
 ```
 
 
-*  **type** is a variable type on [numerical form](./decision_matrix_variables#variable_types). Default is string.
+*  **type** is a variable type on [numerical form](./remote_variables#variable_types). Default is string.
 
 *  **persistent** tells if variable should be persistent. That is saved to disk and loaded when the VSCP daemon is restarted. Default = false, not persistent.
 

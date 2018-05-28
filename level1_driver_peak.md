@@ -4,7 +4,7 @@
 
 **Driver for Windows** vscpl1_peakdrv.dll (vscpl1_peakdrv.lib)
 
-This is a device driver for the [PEAK family of cards](http://www.peak-system.com/fileadmin/media/files/pcan-light.zip). 
+This is a device driver for the [PEAK family of cards](https://www.peak-system.com/fileadmin/media/files/pcan-light.zip). 
 
 The driver uses proprietary include files and libraries from PEAK which are not included in the distribution. 
 
@@ -14,7 +14,7 @@ The driver is included in the installation of the VSCP and friends. Source for t
 
 Note that before you use this driver the PEAK original driver dll(s) for your particular adapter(s) must be in the dll search path. These DLL's are delivered from PEAK with your adapter. A good place to install them is in the windows system32 folder. The following table show the dll needed by the CANAL driver for each adapter 
 
-[This is a device driver for the PEAK family of cards](http://www.peak-system.com/fileadmin/media/files/pcan-light.zip) that must have appropriate dll's on your system for the driver to work.
+[This is a device driver for the PEAK family of cards](https://www.peak-system.com/fileadmin/media/files/pcan-light.zip) that must have appropriate dll's on your system for the driver to work.
 
 
  | Adapter      | PEAK DLL that is needed | 
@@ -26,7 +26,7 @@ Note that before you use this driver the PEAK original driver dll(s) for your pa
  | CANPCI2      | pcan_2pci.dll           | 
  | CANUSB       | pcan_usb.dll            | 
 
-:!:It is important that the PCANBasic.dll file also is in the path or in the same folder as the CANAL driver for everything to work. It can be found [here](http://www.peak-system.com/Support.55.0.html?&L=1).
+It is important that the PCANBasic.dll file also is in the path or in the same folder as the CANAL driver for everything to work. It can be found [here](https://www.peak-system.com/Support.55.0.html?&L=1).
 
 ## Parameter String 
 
@@ -145,8 +145,4 @@ If you have two adapters use
 for the second adapter.
 
 
-\\ 
-----
-{{  ::copyright.png?600  |}}
-
-`<HTML>``<p style="color:red;text-align:center;">``<a href="http://www.grodansparadis.com">`Grodans Paradis AB`</a>``</p>``</HTML>`
+{% include "./bottom_copyright.md" %}

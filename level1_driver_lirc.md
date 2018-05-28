@@ -2,9 +2,9 @@
 
 **Available for:** Windows
 
-**Driver for Windows** vscpl1_lircdrv.dll (vscpl1_lircdrv.lib)
+**Driver for Windows** vscpl1_lircdrv.dll  (vscpl1_lircdrv.lib)
 
-Device driver for that connects to [LIRC](http://www.lirc.org) (Unix) or [WINLIRC ](http://winlirc.sourceforge.net) (Windows) and receive data from IR remotes and sends IR data out.
+Device driver for that connects to [LIRC](https://www.lirc.org) (Unix) or [WINLIRC ](https://winlirc.sourceforge.net) (Windows) and receive data from IR remotes and sends IR data out.
 
 LIRC/WINLIRC must be functioning on the computer that use this driver. Follow the information on respective site on how to set them up. 
 
@@ -40,8 +40,4 @@ The format for this file is XML and is defined as follows:
 
 [See source](https://github.com/grodansparadis/vscp_software/tree/master/src/vscp/drivers/level1/lirc)
 
-\\ 
-----
-{{  ::copyright.png?600  |}}
-
-`<HTML>``<p style="color:red;text-align:center;">``<a href="http://www.grodansparadis.com">`Grodans Paradis AB`</a>``</p>``</HTML>`
+{% include "./bottom_copyright.md" %}

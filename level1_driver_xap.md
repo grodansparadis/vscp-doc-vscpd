@@ -1,10 +1,10 @@
 # xAP Level I Driver
 
 ----
-:!:
+
 
 **This driver is not not available anymore from version 1.1.0**
-:!:
+
 ---- 
 
 **Available for:** Windows, Linux

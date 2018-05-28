@@ -133,7 +133,7 @@ Variables are typed storage on the VSCP daemon that can be persistent or not. A 
 
 Some dummy variables is installed in the distributed system. You can delete them by editing the **variables.xml** file that is found in the configuration folder or deleting the in the administrative interface.
     
-You can read everything about variables [here](./decision_matrix_variables.md).  
+You can read everything about variables [here](./remote_variables.md).  
 
 
 ### The Decision Matrix

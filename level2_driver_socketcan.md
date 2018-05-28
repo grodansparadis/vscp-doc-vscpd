@@ -14,9 +14,9 @@ The configuration string have the following format
 
 The parameter interface is the socketcan interface to use. Typically this is can0, can0, can1... Defaults is vcan0 the first virtual interface. If the variable prefix_interface is available it will be used instead of the configuration value. 
 
- | Variable name | Type   | Description                                                                                                                                                                                                                                     | 
- | ------------- | ----   | -----------                                                                                                                                                                                                                                     | 
- | _interface    | string | The socketcan interface to use. Typically this is “can0, can0, can1...” Defaults is vcan0 the first virtual interface.                                                                                                                      | 
+ | Variable name | Type   | Description | 
+ | ------------- | ----   | -----------   | 
+ | _interface    | string | The socketcan interface to use. Typically this is “can0, can0, can1...” Defaults is vcan0 the first virtual interface. | 
  | _filter       | string | Standard VSCP filter in string form. 1,0x0000,0x0006,ff:ff:ff:ff:ff:ff:ff:01:00:00:00:00:00:00:00:00 as priority,class,type,GUID Used to filter what events that is received from the socketcan interface. If not give all events are received. | 
  | _mask         | string | Standard VSCP mask in string form. 1,0x0000,0x0006,ff:ff:ff:ff:ff:ff:ff:01:00:00:00:00:00:00:00:00 as priority,class,type,GUID Used to filter what events that is received from the socketcan interface. If not give all events are received.   | 
 
@@ -30,13 +30,13 @@ If your driver name contains spaces, for example “name of driver” it will ge
 
 ##### vscpd.conf example
 
-`<code="xml">`
-`<driver enable="true" >`                 
-    `<name>`socketcan1`</name>`                 
-    `<path>`/usr/local/lib/vscpl2_socketcandrv.so`</path>`                 
-    `<config>`can0`</config>`                 
-    `<guid>`00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00`</guid>`            
-`</driver>`
+```xml
+<driver enable="true" >
+    <name>socketcan1</name>
+    <path>/usr/local/lib/vscpl2_socketcandrv.so</path>
+    <config>can0</config>
+    <guid>00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00</guid>
+</driver>
 ```
 
 
@@ -46,8 +46,4 @@ If your driver name contains spaces, for example “name of driver” it will ge
 
 
 
-\\ 
-----
-{{  ::copyright.png?600  |}}
-
-`<HTML>``<p style="color:red;text-align:center;">``<a href="http://www.grodansparadis.com">`Grodans Paradis AB`</a>``</p>``</HTML>`
+{% include "./bottom_copyright.md" %}

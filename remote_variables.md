@@ -6,7 +6,6 @@ A variable may also for example hold the energy consumption over a month of a ye
 
 In the decision matrix you can
 
-
 *  Store a value to a variable
 *  Add a value to a variable
 *  Subtract a value from a variable
@@ -18,7 +17,7 @@ In the decision matrix you can
 The first time variable is used it is constructed. So if you for example add a value to a variable that does not exist it will first be created. For add/subtract/multiply/divide variables that does not exist will be created as a floating point value. The store variable on the other hand let you select the type.
 
 
-Note that there is possible to create dynamically created variables by using the [available escapes](decision_matrix_variables.md#variable_substitution_for_parameters). As an example a variable **energy_usage_%monthtxtfull_%year** can be created that will have names like "//energy_usage_october_2014//", *energy_usage_november_2014*". So if you create a decision matrix entry that trigger on the **CLASS1.MEASUREMENT, Type=13, Energy** and where the action adds the measurement to the variable  **energy_usage_%monthtxtfull_%year** you will get the energy usage for each month of a year in it's own clearly named variable. Variables that can be fetched and presented to a user in a diagram for example.
+Note that there is possible to create dynamically created variables by using the [available escapes](-/remote_variables.md#variable_substitution_for_parameters). As an example a variable **energy_usage_%monthtxtfull_%year** can be created that will have names like "//energy_usage_october_2014//", *energy_usage_november_2014*". So if you create a decision matrix entry that trigger on the **CLASS1.MEASUREMENT, Type=13, Energy** and where the action adds the measurement to the variable  **energy_usage_%monthtxtfull_%year** you will get the energy usage for each month of a year in it's own clearly named variable. Variables that can be fetched and presented to a user in a diagram for example.
 
 ## Variable types
 
@@ -28,45 +27,52 @@ Action that store variables and variables that are written in the the [TCP/IP in
 
 The second boolean parameter of the string form is persistent (true) or non persistent (false). A persistent variable is saved on disk, a non persistent variable is only kept in memory and will be lost on a restart of the software. 
 
- | Variable Type           | Numerical code | Base64 | Type token               | String Format                                                                                                        |                          
- | -------------           | -------------- | ------ | ----------               | -------------                                                                                                        |                          
- | **string**              | 1              | Yes    | STRING                   | STRING`<nowiki>`                                                                                                       | `</nowiki>`1;true`<nowiki>`   | `</nowiki>`false;0;0x777;"some kind of BASE64 encoded string"                         |               
- | **bool**                | 2              | No     | BOOL                     | BOOL`<nowiki>`                                                                                                         | `</nowiki>`2;true`<nowiki>`   | `</nowiki>`false;0;0x777;true`<nowiki>`                                                 | `</nowiki>`false | 
- | **integer**             | 3              | No     | INT/INTEGER              | INT`<nowiki>`                                                                                                          | `</nowiki>`2;true`<nowiki>`   | `</nowiki>`false;0;0x777;integer-number                                               |               
- | **long**                | 4              | No     | LONG                     | LONG`<nowiki>`                                                                                                         | `</nowiki>`4;true`<nowiki>`   | `</nowiki>`false;0;0x777;long-integer-number                                          |               
- | **float**               | 5              | No     | FLOAT/DOUBLE             | DOUBLE`<nowiki>`                                                                                                       | `</nowiki>`5;true`<nowiki>`   | `</nowiki>`false;0;0x777;decimal-number                                               |               
- | **measurement**         | 6              | No     | MEASUREMENT              | MEASUREMENT`<nowiki>`                                                                                                  | `</nowiki>`6;true`<nowiki>`   | `</nowiki>`false;0;0x777;value,unit,sensor-index,zone,subzone                         |               
- | **event**               | 7              | No     | EVENT                    | EVENT`<nowiki>`                                                                                                        | `</nowiki>`7;true`<nowiki>`   | `</nowiki>`false;0;0x777;head,class;type,obid,datetime,timestamp,GUID,data1,data2,... |               
- | **VSCP GUID**           | 8              | No     | GUID/EVENTGUID           | GUID`<nowiki>`                                                                                                         | `</nowiki>`8;true`<nowiki>`   | `</nowiki>`false;0;0x777;00:00:EA:B8:76:77:30:37:81:00:7C:C7:87:02:B0:17              |               
- | **VSCP Data**           | 9              | No     | DATA/EVENTDATA           | DATA`<nowiki>`                                                                                                         | `</nowiki>`9;true`<nowiki>`   | `</nowiki>`false;0;0x777;data1,data2,data3,...                                        |               
- | **VSCP Class**          | 10             | No     | VSCPCLASS/EVENTCLASS     | VSCPCLASS`<nowiki>`                                                                                                    | `</nowiki>`10;true`<nowiki>`  | `</nowiki>`false;0;0x777;integer-number                                               |               
- | **VSCP Type**           | 11             | No     | VSCPTYPE/EVENTTYPE       | VSCPTYPE`<nowiki>`                                                                                                     | `</nowiki>`11;true`<nowiki>`  | `</nowiki>`false;0;0x777;integer-number                                               |               
- | **VSCP timestamp**      | 12             | No     | TIMESTAMP/EVENTTIMESTAMP | TIMESTAMP`<nowiki>`                                                                                                    | `</nowiki>`12;true`<nowiki>`  | `</nowiki>`false;0;0x777;integer-number                                               |               
- | **Date and time**       | 13             | No     | DATETIME                 | DATETIME`<nowiki>`                                                                                                     | `</nowiki>`13;true`<nowiki>`  | `</nowiki>`false;;0;0x7772014-09-26T13:05:01                                          |               
- | **Date**                | 14             | No     | DATE                     | DATE`<nowiki>`                                                                                                         | `</nowiki>`15;true`<nowiki>`  | `</nowiki>`false;0;0x777;2014-09-26                                                   |               
- | **Time**                | 15             | No     | TIME                     | TIME`<nowiki>`                                                                                                         | `</nowiki>`16;true`<nowiki>`  | `</nowiki>`false;0;0x777;13:05:01                                                     |               
- | **Base64 encoded blob** | 16             | Yes    | BLOB                     | BASE64`<nowiki>`                                                                                                       | `</nowiki>`13;true`<nowiki>`  | `</nowiki>`false;0;0x777;Base64 data                                                  |               
- | **MIME encoded**        | 100            | Yes    | MIME                     | MIME`<nowiki>`                                                                                                         | `</nowiki>`100;true`<nowiki>` | `</nowiki>`false;0;0x777;mime-identifier;base64 encoded content                       |               
- | **HTML encoded**        | 101            | Yes    | HTML                     | HTML`<nowiki>`                                                                                                         | `</nowiki>`101;true`<nowiki>` | `</nowiki>`false;0;0x777;true if escaped;base64 encoded content                       |               
- | **Javascript encoded**  | 102            | Yes    | JAVASCRIPT               | JAVASCRIPT`<nowiki>`                                                                                                   | `</nowiki>`101;true`<nowiki>` | `</nowiki>`false;0;0x777;true if escaped;base64 encoded content                       |               
- | **LUA script**          | 200            | Yes    | LUA                      | LUA`<nowiki>`                                                                                                          | `</nowiki>`200;true`<nowiki>` | `</nowiki>`false;0;0x777;true if escaped;script-content                               |               
- | **LUA script result**   | 201            | Yes    | LUARES                   | LUARES`<nowiki>`                                                                                                       | `</nowiki>`200;true`<nowiki>` | `</nowiki>`false;0;0x777;true if escaped;script-content                               |               
- | **UX type 1**           | 300            | Yes    | UXTYPE1                  | UXTYPE1`<nowiki>`                                                                                                      | `</nowiki>`300;true`<nowiki>` | `</nowiki>`false;0;0x777;UX-description base 64 encoded                               |               
- | **DM row**              | 500            | Yes    | DMROW                    | ;0;0x777;enabled,from,to,weekday,time,mask,filter,index,zone,sub-zone,control-code,action-code,action-param,comment. |                          
- | **Driver**              | 501            | Yes    | DRIVER                   | ;0;0x777;A comma separated driver row.                                                                               |                          
- | **User**                | 502            | Yes    | USER                     | ;0;0x777;name;password;fullname;filter-mask;rights;remotes;events;note                                               |                          
- | **Filter**              | 503            | Yes    | FILTER                   | ;0;0x777;'filter-priority, filter-class, filter-type, filter-GUID'.                                                  |                          
+ | Variable Type | Numerical code | Base64 | Type token               | String Format  |                          
+ | ------------- | :--------------: | :------: | ---------- | ------------- |                          
+ | **string** | 1              | Yes    | STRING                   | STRING \| 1;true   \| false;0;0x777;"some kind of BASE64 encoded string"  |               
+ | **bool** | 2 | No | BOOL | BOOL \| 2;true \| false;0;0x777;true \| false | 
+ | **integer** | 3 | No | INT/INTEGER | INT \| 2;true   \| false;0;0x777;integer-number  |               
+ | **long** | 4  | No | LONG  | LONG \| 4;true \| \false;0;0x777;long-integer-number |               
+ | **float**  | 5 | No  | FLOAT/DOUBLE | DOUBLE \| 5;true \| false;0;0x777;decimal-number  |               
+ | **measurement** | 6 | No | MEASUREMENT | MEASUREMENT \| 6;true \| false;0;0x777;value,unit,sensor-index,zone,subzone |     
+ | **event**  | 7  | No | EVENT | EVENT \| 7;true \| false;0;0x777;head,class;type,obid,datetime,timestamp,GUID,data1,data2,... |               
+ | **VSCP GUID** | 8 | No | GUID/EVENTGUID | GUID \| 8;true \| false;0;0x777;00:00:EA:B8:76:77:30:37:81:00:7C:C7:87:02:B0:17 |               
+ | **VSCP Data** | 9  | No | DATA/EVENTDATA | DATA \| 9;true \| false;0;0x777;data1,data2,data3,... |               
+ | **VSCP Class** | 10 | No | VSCPCLASS/EVENTCLASS | VSCPCLASS /| /| false;0;0x777;integer-number |               
+ | **VSCP Type** | 11 | No | VSCPTYPE/EVENTTYPE | VSCPTYPE /| 11;true /| false;0;0x777;integer-number |               
+ | **VSCP timestamp** | 12 | No | TIMESTAMP/EVENTTIMESTAMP | TIMESTAMP \| 12;true  \ false;0;0x777;integer-number |     
+ | **Date and time** | 13 | No | DATETIME | DATETIME \| 13;true \| false;;0;0x7772014-09-26T13:05:01 |               
+ | **Date** | 14 | No | DATE | DATE \| 15;true \| false;0;0x777;2014-09-26 |      
+ | **Time** | 15 | No | TIME | TIME \| 16;true \| false;0;0x777;13:05:01 |  
+ | **Base64 encoded blob** | 16 | Yes | BLOB | BASE64 /| 13;true /|false;0;0x777;Base64 data |               
+ | **MIME encoded** | 100 | Yes | MIME | MIME /| 100;true /| false;0;0x777;mime-identifier;base64 encoded content |               
+ | **HTML encoded** | 101 | Yes | HTML | HTML /| 101;true /| false;0;0x777;true if escaped;base64 encoded content |               
+ | **Javascript encoded**  | 102 | Yes | JAVASCRIPT | JAVASCRIPT /| 101;true /| false;0;0x777;true if escaped;base64 encoded content |
+ | **LUA script** | 200 | Yes | LUA | LUA /| 200;true /| false;0;0x777;true if escaped;script-content |               
+ | **LUA script result** | 201 | Yes | LUARES | LUARES /| 200;true /| false;0;0x777;true if escaped;script-content |               
+ | **UX type 1** | 300 | Yes | UXTYPE1 | UXTYPE1 /| 300;true /| false;0;0x777;UX-description base 64 encoded |               
+ | **DM row** | 500 | Yes | DMROW | ;0;0x777;enabled,from,to,weekday,time,mask,filter,index,zone,sub-zone,control-code,action-code,action-param,comment. |                  
+ | **Driver** | 501  | Yes | DRIVER | ;0;0x777;A comma separated driver row. |         
+ | **User** | 502 | Yes | USER | ;0;0x777;name;password;fullname;filter-mask;rights;remotes;events;note |                          
+ | **Filter** | 503 | Yes | FILTER | ;0;0x777;'filter-priority, filter-class, filter-type, filter-GUID'. |                          
 
 The *0;0x777* above is user=0 and user rights = 0x777 = all read/write/delete.
 
 
 You can use either the numerical type (**"1"** for the string type for example) or the type token (**"STRING"** for the string type for example). So a string can be defined either as 
+
     STRING;true;0;0x777;c29tZSBraW5kIG9mIHN0cmluZw==
-or as 
+    
+or as
+
     1;true;0;0x777;c29tZSBraW5kIG9mIHN0cmluZw==
-where 
+    
+where
+
     c29tZSBraW5kIG9mIHN0cmluZw==
+    
 is the string content
+
     “some kind of string”
     
 
@@ -76,49 +82,50 @@ is the string content
 
 *  Data of an event will always be a comma separated list of data with variable length where the length depends on how many data bytes the event actually have.
 
-*  Complete list of MIME codes is [here](http://www.sitepoint.com/web-foundations/mime-types-complete-list/).
+*  Complete list of MIME codes is [here](https://www.sitepoint.com/web-foundations/mime-types-complete-list/).
 
 ## Reset variable values
 
 To reset a variable may seem a strange thing to do. But it is just setting it's value to a known default value. The reset variable command available in the [TCP/IP interface]() and the [websocket interface](http://www.vscp.org/docs/vscpd/doku.php?id=vscp_daemon_vscp_websocket_interface) set variables to the following values. 
 
- | Variable            | type | Reset value                                                           | 
- | --------            | ---- | -----------                                                           | 
- | string              | 1    | Empty string                                                          | 
- | bool                | 2    | "false"                                                               | 
- | int                 | 3    | zero                                                                  | 
- | long                | 4    | zero                                                                  | 
- | float               | 5    | zero                                                                  | 
- | measurement         | 6    | value=0, unit=0,sensorindex=0, zone=0, subzone=0                      | 
- | event               | 7    | all values set to zero                                                | 
- | VSCP GUID           | 8    | set to zero                                                           | 
- | VSCP Data           | 9    | Set to zero                                                           | 
- | VSCP Class          | 10   | Set to zero                                                           | 
- | VSCP Type           | 11   | Set to zero                                                           | 
- | VSCP timestamp      | 12   | Set to zero                                                           | 
- | Date and time       | 13   | Set to current date + time in ISO format. **YYYY-MM-DDTHH:MM:SS.sss** | 
- | Date                | 14   | Set to current date in ISO format. **YYYY-MM-DD**                     | 
- | Time                | 15   | Set to current time in ISO format. **HH:MM:SS.sss**                   | 
- | Base64 encoded blob | 16   | Empty                                                                 | 
- | MIME encoded        | 100  | Empty                                                                 | 
- | HTML encoded        | 101  | Empty                                                                 | 
- | Javascript encoded  | 102  | Empty                                                                 | 
- | LUA script          | 200  | Empty                                                                 | 
- | UX Type1            | 300  | Empty                                                                 | 
- | DM row              | 500  | Empty                                                                 | 
- | Driver              | 501  | Empty                                                                 | 
- | User                | 502  | Empty                                                                 | 
- | Filter              | 503  | Empty                                                                 | 
+ | Variable | type | Reset value | 
+ | -------- | :----: | ----------- | 
+ | string   | 1    | Empty string  | 
+ | bool     | 2    | "false"       | 
+ | int      | 3    | zero          | 
+ | long     | 4    | zero          | 
+ | float    | 5    | zero          | 
+ | measurement | 6    | value=0, unit=0,sensorindex=0, zone=0, subzone=0 | 
+ | event    | 7    | all values set to zero | 
+ | VSCP GUID | 8   | set to zero | 
+ | VSCP Data | 9   | Set to zero | 
+ | VSCP Class | 10 | Set to zero | 
+ | VSCP Type  | 11 | Set to zero | 
+ | VSCP timestamp | 12   | Set to zero | 
+ | Date and time | 13   | Set to current date + time in ISO format. **YYYY-MM-DDTHH:MM:SS.sss** | 
+ | Date | 14   | Set to current date in ISO format. **YYYY-MM-DD** | 
+ | Time  | 15   | Set to current time in ISO format. **HH:MM:SS.sss** | 
+ | Base64 encoded blob | 16   | Empty | 
+ | MIME encoded | 100  | Empty  | 
+ | HTML encoded | 101  | Empty  | 
+ | Javascript encoded  | 102  | Empty  | 
+ | LUA script | 200  | Empty | 
+ | UX Type1 | 300  | Empty  | 
+ | DM row | 500  | Empty | 
+ | Driver | 501  | Empty | 
+ | User | 502  | Empty  | 
+ | Filter | 503  | Empty | 
+
 ## XML storage format
 
 The main storage for persistent variables from version 1.12.10 is in a database. But variables can still be loaded/save from/to XML files. One typical use can be to load initialised non-persistent variables into memory on start up. Loaded persistent variables will be written to persistent storage and if already available in the database there value will be updated with the XML version. 
 
 ```xml
-`<?xml version="1.0" encoding="utf-8"?>`
+<?xml version="1.0" encoding="utf-8"?>
 
-`<variables>` `<!-- <persistent>` is an older form --> 
+<variables> <!-- <persistent>` is an older form --> 
 
-    `<!-- Modern format -->`
+    <!-- Modern format -->
     <variable name="variable name"
               type="numerical type|textual type" 
               persistent="true|false"  
@@ -127,16 +134,16 @@ The main storage for persistent variables from version 1.12.10 is in a database.
               value="variable value, some value types should be base64 encoded."
               note="note about variable"  
               note-base64="base64 encoded note (saved in this form)" >
-    `</variable>`
+    </variable>
 
-    `<!-- Legacy format  -->` 
-    `<variable type="string" user="12" access-rights="777" >`                  
-        `<name>`testvariable_string`</name>`         
-        `<value>`String value`</value>`
-        `<note>`note about variable`</note>`    
-    `</variable>`
+    <!-- Legacy format  -->
+    <variable type="string" user="12" access-rights="777" >   
+        <name>testvariable_string</name>
+        <value>String value</value>
+        <note>note about variable</note>
+    </variable>
 
-`</variables>`
+</variables>
 ``` 
 
 ## Non-persistent variables
@@ -224,8 +231,8 @@ Here is a list of defined stock variables.
  | **vscp.host.userid**                | String  | The user the VSCP daemon is running as.                                                                                                        | 
  | **vscp.host.username**              | String  | Full name of user.                                                                                                                             | 
  | **vscp.host.guid**                  | GUID    | GUID for VSCP daemon on the standard form AA:BB:CC:DD:EE:....                                                                                  | 
- | **vscp.loglevel**                   | Integer | [Log level](http://www.vscp.org/docs/vscpd/doku.php?id=configuring_the_vscp_daemon#loglevel) for VSCP daemon.                                  | 
- | **vscp.loglevel.str**               | String  | [Log level](http://www.vscp.org/docs/vscpd/doku.php?id=configuring_the_vscp_daemon#loglevel) in string form.                                   | 
+ | **vscp.loglevel**                   | Integer | [Log level](./configuring_the_vscp_daemon.md#loglevel) for VSCP daemon.                                  | 
+ | **vscp.loglevel.str**               | String  | [Log level](./configuring_the_vscp_daemon.md#loglevel) in string form.                                   | 
  | **vscp.client.receivequeue.max**    | Integer | Max allowed events in receive queue.                                                                                                           | 
  | **vscp.host.root.path**             | String  | VSCP daemon working folder                                                                                                                     | 
 
@@ -248,9 +255,6 @@ Here is a list of defined stock variables.
  | --------            | ----    | -----------                       | 
  | **vscp.udp.enable** | Boolean | True if UDP interface is enabled. | 
  | **vscp.udp.addess** | String  | Address for UDP interface.        | 
-
-
-
 
 
 ### Discovery
@@ -558,7 +562,7 @@ For all table variables that work __over a period__ the **vscp.table.from** and 
 
 ## Other way to interact with variables
 
-You are not limited to handle variables in the [decision matrix](http://www.vscp.org/docs/vscpd/doku.php?id=vscp_daemon_decision_matrix).  You can write/read/create variables in the [tcp/ip interface](http://www.vscp.org/docs/vscpd/doku.php?id=vscp_daemon_tcp_ip_control_interface). As the [VSCP helper library](http://www.vscp.org/docs/vscphelper/doku.php?id=non_graphic_lib_api#variable_handling) includes functionality to write/read/create variables you can actually handle them from any program language available. But variables can also written/read/created in the [webserver](http://www.vscp.org/docs/vscpd/doku.php) admin interface, in the [websocket interface](http://www.vscp.org/docs/vscpd/doku.php?id=vscp_daemon_vscp_websocket_interface) and in the [REST interface](http://www.vscp.org/docs/vscpd/doku.php?id=vscp_daemon_vscp_daemon_rest_interface).
+You are not limited to handle variables in the [decision matrix](./decision_matrix.md).  You can write/read/create variables in the [tcp/ip interface](./tcp_ip_control_interface.md). As the [VSCP helper library](https://www.vscp.org/docs/vscphelper/doku.php?id=non_graphic_lib_api#variable_handling) includes functionality to write/read/create variables you can actually handle them from any program language available. But variables can also written/read/created in the [webserver](./web_server_interface.md) admin interface, in the [websocket interface](./websocket_interface.md) and in the [REST interface](rest_interface.md).
 
 Variables is a powerful tool that makes your work easier.
 

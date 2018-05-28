@@ -4,7 +4,7 @@
 
 **Driver for Windows** vscpl1_vectordrv.dll (vscpl1_vectordrv.lib)
 
-This is a device driver for the [Vector Informatik](http://www.vector-informatik.com/english). The driver uses proprietary include files and libraries from Vector which are not included in the distribution.  
+This is a device driver for the [Vector Informatik](https://www.vector-informatik.com/english). The driver uses proprietary include files and libraries from Vector which are not included in the distribution.  
 
 The driver works for the following hardware
 
@@ -101,8 +101,4 @@ The CanalGetStatus call returns the status structure with the channel_status mem
    * Bit 30 Bus Warning status. 
    * Bit 31 Bus off status. 
 
-\\ 
-----
-{{  ::copyright.png?600  |}}
-
-`<HTML>``<p style="color:red;text-align:center;">``<a href="http://www.grodansparadis.com">`Grodans Paradis AB`</a>``</p>``</HTML>`
+{% include "./bottom_copyright.md" %}
