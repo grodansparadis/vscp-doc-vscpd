@@ -208,7 +208,7 @@ Now you can test your sensors with
 which on one of my machines gives a list like this
 
 
-{{:drivers:level2-drivers:lm-sensors:sensors.png?700}}  
+![](./images/drivers/level2-drivers/lm-sensors/sensors.png)  
 
 but on another machine gives this
 
