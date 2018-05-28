@@ -212,7 +212,7 @@ which on one of my machines gives a list like this
 
 but on another machine gives this
 
-{{:drivers:level2-drivers:lm-sensors:sensors2.png?700}}  
+![](./images/drivers/level2-drivers/lm-sensors/sensors2.png)  
 
 ##### Step 2
 
@@ -395,7 +395,7 @@ There is another way to enter code into this file. You can use the daemons web i
     
 you will get a list with defined variables like this one
 
-{{:drivers:level2-drivers:lm-sensors:variable_list.png?700}}
+![](./images/drivers/level2-drivers/lm-sensors/variable_list.png)
 
 To edit a variable just click on it. To enter a new variable use the **Configuration/Variable - new** menu entry. After selecting this you have to select which type of variable you want to create. We make a string variable in this case
 
