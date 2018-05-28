@@ -274,7 +274,7 @@
 
 **Appendix**
 
-* [History](history.md)
+* [History](./history.md)
 * [Variable persistent storage format](variable_persistent_storage_format.md)
 * [Variable write format](variable_types.md)
 * [CANAL](canal_interface_specification.md)

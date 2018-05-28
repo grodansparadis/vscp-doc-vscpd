@@ -62,7 +62,7 @@ dump the content with
 
     .dump
  
-And jelp giveshelp.
+And help gives help.
 
     .help
  
