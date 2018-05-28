@@ -160,16 +160,16 @@ On this picture a standard DS18B20 and a water proof sensor with a DS19B20 is co
 
 *  The reserved 1-Wire pin is GPIO4 which is on pin 4.
 
-A good pin out diagram can be found here {{https://howto8165.files.wordpress.com/2014/08/rpi-pinout.png?600}}
+A good pin out diagram can be found here ![](https://howto8165.files.wordpress.com/2014/08/rpi-pinout.png)
 
 Click to see in full size.
 
-A wiring diagram is here {{http://www.sbprojects.com/projects/raspberrypi/ds1820connect.png?400}}
+A wiring diagram is here ![](https://www.sbprojects.com/projects/raspberrypi/ds1820connect.png)
 
 Note the 4k7 pullup that should be connected from 3.3V to the data line of the sensor.
 
 To be complete we include the DS18B20 pin out also
 
-{{https://www.modmypi.com/image/data/tutorials/DS18B20/DS18B20+.png?200}}
+![](https://www.modmypi.com/image/data/tutorials/DS18B20/DS18B20+.png)
 
 {% include "./bottom_copyright.md" %}
