@@ -282,7 +282,7 @@
 
 ## Other documentation
 
-*  [VSCP Specification](https://www.vscp.org/docs/vscpspec/doku.php?id=start)
+*  [VSCP Specification](https://grodansparadis.gitbooks.io/the-vscp-specification)
 *  [VSCP Helper lib](https://www.vscp.org/docs/vscphelper/doku.php?id=start)
 *  [VSCP Works](https://www.vscp.org/docs/vscpworks/doku.php?id=start)
 *  [VSCP Firmware](https://www.vscp.org/docs/vscpfirmware/doku.php)
