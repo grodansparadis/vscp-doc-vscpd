@@ -182,7 +182,7 @@ The coding of the decision matrix is as a normal Level I decision matrix
  | 7    | action parameter    | 
 
 
-{{:drivers:dm-annotated.png?600|}}
+![](./images/drivers/dm-annotated.png)
 
 
 
