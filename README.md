@@ -4,7 +4,7 @@
 
 This is the official documentation for the VSCP (Very Simple Control Protocol) daemon. Software that is part of the VSCP & Friends package. VSCP is an IoT framework mainly built for resource limited devices.
 
-Apart from going through this document You can read all about and download VSCP from [the VSCP site](https://www.vscp.org "The VSCP site"). 
+Apart from going through this document you can read all about and download VSCP from [the VSCP site](https://www.vscp.org "The VSCP site"). 
 
 **VSCP is free.** Free to use. Free to change. Free to do whatever you want to do with it. VSCP is not owned by anyone. VSCP will stay free and gratis forever.
 
