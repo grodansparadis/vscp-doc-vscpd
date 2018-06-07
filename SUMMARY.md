@@ -283,9 +283,9 @@
 ## Other documentation
 
 *  [VSCP Specification](https://grodansparadis.gitbooks.io/the-vscp-specification)
-*  [VSCP Helper lib](https://www.vscp.org/docs/vscphelper/doku.php?id=start)
+*  [VSCP Helper lib](https://grodansparadis.gitbooks.io/the-vscp-helper-library)
 *  [VSCP Works](https://www.vscp.org/docs/vscpworks/doku.php?id=start)
-*  [VSCP Firmware](https://www.vscp.org/docs/vscpfirmware/doku.php)
+*  [VSCP Firmware](https://grodansparadis.gitbooks.io/vscp-firmware/)
 *  [VSCP L1 Framework](https://github.com/BlueAndi/vscp-framework/blob/master/README.md)
 *  [VSCP Arduino](https://github.com/BlueAndi/vscp-arduino)
 *  [VSCP Javascript lib.](https://grodansparadis.gitbooks.io/the-vscp-javascript-library/)
