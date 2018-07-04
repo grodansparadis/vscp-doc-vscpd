@@ -18,7 +18,7 @@ If the service should be enabled you add one or more channels
 
 *  **Group** is set to the VSCP group. This should normally not be changed.
 
-*  Set **ttl** to the value you want. See [spec](https://grodansparadis.gitbooks.io/the-vscp-specification/content/vscp_multicast.html) for a table of possible values.
+*  Set **ttl** to the value you want. See [spec](https://grodansparadis.gitbooks.io/the-vscp-specification/vscp_multicast.html) for a table of possible values.
 
 *  With **guid** you set the GUID for the interface. If empty or all set to zeros the system will set a GUID for you.
 
@@ -28,7 +28,7 @@ If the service should be enabled you add one or more channels
 
 *  Set **Encryption** to "none"/"AES128"/"AES192"/"AES256" to leave __sent__ frames unencrypted or to encrypt them. 
 
-*  With **bSendAck** you can decide if the node sending an UDP frame should get an acknowledge event back. If set to *"true"* a  [CLASS1.ERROR, Type=0, Success](https://grodansparadis.gitbooks.io/the-vscp-specification/content/class1.error.html#type0-0x00-success) event will be replied on success and a [CLASS1.ERROR, Type=1, Error](https://grodansparadis.gitbooks.io/the-vscp-specification/content/class1.error.html#type1-0x01-error) is sent if something is wrong with the UDP frame. If set no *"false"* no acknowledgement frames will be sent.
+*  With **bSendAck** you can decide if the node sending an UDP frame should get an acknowledge event back. If set to *"true"* a  [CLASS1.ERROR, Type=0, Success](https://grodansparadis.gitbooks.io/the-vscp-specification/class1.error.html#type0) event will be replied on success and a [CLASS1.ERROR, Type=1, Error](https://grodansparadis.gitbooks.io/the-vscp-specification/class1.error.html#type1) is sent if something is wrong with the UDP frame. If set no *"false"* no acknowledgement frames will be sent.
 
 *  The next thing is to decide if you should allow unencrypted frames. You do this by setting **bAllowUnsecure** to *"true"*. If set to *"false"* only encrypted frames will be received. 
 

@@ -43,7 +43,7 @@ The first two bytes is the bit-filed that tells the Code for server capabilities
 In clear text, this server has a VSCP TCP/IP interface available at the standard port.
 Other scenarios could be possible of course such as several servers responding and each of the servers supporting different capabilities.
 
-The High end server probe and High end server response is described here [Class=0 (0x00) VSCP Protocol Functionality - CLASS1.PROTOCOL](https://grodansparadis.gitbooks.io/the-vscp-specification/content/class1.protocol.html#type27-0x1b-high-end-serverservice-probe)
+The High end server probe and High end server response is described here [Class=0 (0x00) VSCP Protocol Functionality - CLASS1.PROTOCOL](https://grodansparadis.gitbooks.io/the-vscp-specification/class1.protocol.html#type27)
 
 A node can react in its own manner on the response. It can connect to the server itself or wait for the server to connect to the node.
 

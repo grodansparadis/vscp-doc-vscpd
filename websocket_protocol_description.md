@@ -412,7 +412,7 @@ Positive/negative response is returned.
 **Arguments:**
 
 
-*  **type** is the [VSCP type value](https://grodansparadis.gitbooks.io/the-vscp-specification/content/class1.measurement.html) specifying which type of measurement this is. Mandatory.
+*  **type** is the [VSCP type value](https://grodansparadis.gitbooks.io/the-vscp-specification/class1.measurement.html) specifying which type of measurement this is. Mandatory.
 
 *  **unit** is the measurement unit for this type of measurement. An be in the range 0-3 for a Level I event and 0-255 for a Level II event. Mandatory.
 

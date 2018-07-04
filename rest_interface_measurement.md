@@ -29,7 +29,7 @@ http://host:port/vscp/rest?
 
 *  **guid** is the GUID for the event. If not given it defaults to all zeros.
 
-*  **type** is the [VSCP type value](https://grodansparadis.gitbooks.io/the-vscp-specification/content/class1.measurement.html) specifying which type of measurement this is. Mandatory.
+*  **type** is the [VSCP type value](https://grodansparadis.gitbooks.io/the-vscp-specification/class1.measurement.html) specifying which type of measurement this is. Mandatory.
 
 *  **eventformat** is optional and can be *string* or *float* to generate a string based or a float based event. If not give the default value, float, will be used.
 

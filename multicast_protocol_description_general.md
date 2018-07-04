@@ -1,6 +1,6 @@
 # Multicast - General description
 
-Multicast is described [here in the VSCP specification](https://grodansparadis.gitbooks.io/the-vscp-specification/content/vscp_multicast.html).
+Multicast is described [here in the VSCP specification](https://grodansparadis.gitbooks.io/the-vscp-specification/vscp_multicast.html).
 
 The multicast interface of the VSCP server uses the VSCP assigned multicast group and consist of two parts. **Multicast announce** and **multicast channels**.
 

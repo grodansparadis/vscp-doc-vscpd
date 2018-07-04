@@ -157,7 +157,7 @@ Send event with UTC time set
 
     send 0,20,3,,2001-11-02T18:00:01,,-,0,1,35<CR><LF>  
 
-Both send the [CLASS1.INFORMATION TYPE=3 ON event](https://grodansparadis.gitbooks.io/the-vscp-specification/content/class1.information.html), for zone=1, sub-zone=35
+Both send the [CLASS1.INFORMATION TYPE=3 ON event](https://grodansparadis.gitbooks.io/the-vscp-specification/class1.information.html), for zone=1, sub-zone=35
 
 **Send event to specific interface**
 It is possible to send Level I events to a specific interface. To do this use the Level II mirror Level I events ( Class=512-1023 VSCP Level II Level I events - CLASS2.LEVELI). This is events with class equal to 512 - 1023 which mirrors the Level I events but have the destination GUID in data bytes 0-15. Thees data-bytes is set to the interface (14 upper bits) and the node-ID for the node one wants to communicate with is in GUID[0]. This event will be sent to the correct interface.
@@ -394,7 +394,7 @@ Positive/negative response is returned.
 **Arguments:**
 
 
-*  **type** is the [VSCP type value](https://grodansparadis.gitbooks.io/the-vscp-specification/content/class1.measurement.html) specifying which type of measurement this is. Mandatory.
+*  **type** is the [VSCP type value](https://grodansparadis.gitbooks.io/the-vscp-specification/class1.measurement.html) specifying which type of measurement this is. Mandatory.
 
 *  **unit** is the measurement unit for this type of measurement. An be in the range 0-3 for a Level I event and 0-255 for a Level II event. Mandatory.
 
