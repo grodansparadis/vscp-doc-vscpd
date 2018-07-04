@@ -37,17 +37,23 @@ One of the obvious differences to Debian based systems, is that Arch is using [p
 
 These commands need to be executed with root privileges, so:
 
+```bash
     su
+```    
     
 and provide your root password.
 
 To run a full system upgrade:
 
-    pacman -Syu
+```bash
+pacman -Syu
+```
 
 To install a package, simply enter:
 
-    pacman -S xxx
+```bash
+pacman -S xxx
+```
 
 where xxx is the package name.
 
@@ -62,7 +68,9 @@ Following packages are required for this guide:
     
 Remember to exit root
 
-    exit
+```bash
+exit
+```
     
 It's a good idea to reboot at this point.
 
@@ -74,12 +82,16 @@ If you want to proceed with the provided wxbase package, you can simply run **pa
 
 To rebuild wxbase:
 
-    git clone git://github.com/archlinuxarm/PKGBUILDs.git
-    cd PKGBUILDs/aur/wxbase
+```bash
+git clone git://github.com/archlinuxarm/PKGBUILDs.git
+cd PKGBUILDs/aur/wxbase
+```
     
 edit the PKGBUILD file 
 
-    nano PKGBUILD
+```bash
+nano PKGBUILD
+```
     
 and add *arch=('armv7h')* to the file, after the other parameters.
 
@@ -87,15 +99,21 @@ Leave nano (CTRL+X) and save the edited file.
 
 Start the build process, using screen:
 
-    screen makepkg
+```bash
+screen makepkg
+```
 
 This build will take a while. The advantage of running this in [screen](https://wiki.archlinux.org/index.php/GNU_Screen) is that you can close the session while the build continues. To exit the screen session, do **CTRL+A** followed by **CTRL+D**. You can now log off or do other stuff. To reconnect, do
 
-    screen -ls
+```bash
+screen -ls
+```
 
 to get a list of active sessions and
 
-    screen -r *session*
+```bash
+screen -r *session*
+```
 
 to reconnect to a session. If there's only one active, you can omit the session number. If the build completed, the session is closed.
 
@@ -103,14 +121,18 @@ In order to speed up the process, you can try to setup a DISTCC environment as d
 
 To install the freshly built library, do
 
-    pacman -U wxbase-3.0.2-3-armv7h.pkg.tar.xz
+```bash
+pacman -U wxbase-3.0.2-3-armv7h.pkg.tar.xz
+```
 
 ##  Step 5: Get the VSCP sources
 
     
 You can follow step 7 above or since we have GIT installed:
 
-    git clone https://github.com/grodansparadis/vscp_software.git
+```bash
+git clone https://github.com/grodansparadis/vscp_software.git
+```
 
 In a location you choose.
 
@@ -118,17 +140,23 @@ In a location you choose.
 
 As root (su), do:
 
-    cd vscp_software
-    ./configure --enable-ssl
+```bash
+cd vscp_software
+./configure --enable-ssl
+```
     
 Modify the makefile so that vscpd is not added to the init.d system, by commenting these two lines in the Makefile.
-    
-    #	$(INSTALL_PROGRAM) -b -m755 vscpd.startup_script_debian /etc/init.d/vscpd
-    #	update-rc.d vscpd defaults
+
+```bash 
+#	$(INSTALL_PROGRAM) -b -m755 vscpd.startup_script_debian /etc/init.d/vscpd
+#	update-rc.d vscpd defaults
+```
     
 Start the installation. Optionally, you can use **screen** again.
 
-    make install
+```bash
+make install
+```
 
 ## Step 7: install vscpd in systemd
 
@@ -149,16 +177,22 @@ Write the following, as root, to
 
 Refresh systemd by running
 
-    systemctl daemon-reload
+```bash
+systemctl daemon-reload
+```
     
 You can now start and stop vscpd by doing
 
-    systemctl start vscpd
-    systemctl stop vscpd
+```bash
+systemctl start vscpd
+systemctl stop vscpd
+```
     
 The service will be automatically started upon powerup when you do
 
-    systemctl enable vscpd
+```bash
+systemctl enable vscpd
+```
     
 
 {% include "./bottom_copyright.md" %}

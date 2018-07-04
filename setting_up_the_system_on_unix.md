@@ -7,23 +7,27 @@ The build process is described in the file **BUILD_UNIX** in the root of the sou
 
 A sample configuration file for Unix is [here](https://github.com/grodansparadis/vscp/blob/master/config_examples/vscpd.conf_unix_distro).
 
-
-
 ## Getting VSCP & Friends working on a Debian system
 
 Until we have a deb installation this is the steps to do to have vscp & friends working on a Debian system.
 
 Your machine need to be connected to the Internet for this to work and you need to become root
 
-    su -
+```bash
+su -
+```    
 
 or if you are on an Ubuntu system add 
 
-    sudo
+```bash
+sudo
+```
 
 in front of the commands below or issue
 
-    sudo -i  
+```bash
+sudo -i
+```
 
 to stay as the root user.
 
@@ -31,16 +35,22 @@ to stay as the root user.
 
 If you don't have a build environment on your system follow the steps on [this page](http://www.cyberciti.biz/faq/debian-linux-install-gnu-gcc-compiler/). Make (below) will complain if you don't. Or just issue
 
-    apt-get update && apt-get upgrade
-    apt-get install build-essential
+```bash
+apt-get update && apt-get upgrade
+apt-get install build-essential
+```    
 
 If you are in a real hurry (*or can't read*) do
 
-    apt-get install git build-essential libwxbase3.0-dev  libssl-dev libpcap0.8-dev libcurl4-openssl-dev libpcap-dev libcurl4-openssl-dev
+```bash
+apt-get install git build-essential libwxbase3.0-dev  libssl-dev libpcap0.8-dev libcurl4-openssl-dev libpcap-dev libcurl4-openssl-dev
+```    
 
 and then
 
-    git clone https://github.com/grodansparadis/vscp.git
+```bash
+git clone https://github.com/grodansparadis/vscp.git
+```    
 
 and **go to step 10**
 
@@ -48,11 +58,15 @@ and **go to step 10**
 
 Install
 
-    apt-get install libwxbase3.0-dev
+```bash
+apt-get install libwxbase3.0-dev
+```
 
 or if you **want graphics support (VSCP Works builds)**
 
-    apt-get install libwxgtk3.0-dev
+```bash
+apt-get install libwxgtk3.0-dev
+```
 
 Building GTK versions will build [VSCP Works](https://www.vscp.org/docs/vscpworks/doku.php) and other graphical components.
 
@@ -60,12 +74,17 @@ If you want wxWidgets 3.0 on Raspberry Pi read note [here](./setting_up_the_syst
 
 ###  Step 3
 
-    apt-get install libssl-dev libpcap0.8-dev libcurl4-openssl-dev
+```bash
+apt-get install libssl-dev libpcap0.8-dev libcurl4-openssl-dev
+```
     
 ###  Step 4
 
 If you want to get the source from GitHub you may want to install Git.
-    apt-get install git
+
+```bash
+apt-get install git
+```
     
 ###  Step 5 (optional)
 
@@ -78,7 +97,9 @@ The installation only affect the build of the MQTT driver so if you don't need t
 
 If you want rawethernet support (recommended).
 
-    apt-get install libpcap-dev
+```bash
+apt-get install libpcap-dev
+```
 
 The installation only affect the build of the raw ethernet driver so if you don't need that driver you can skip this step.
 
@@ -86,7 +107,9 @@ The installation only affect the build of the raw ethernet driver so if you don'
 
 If you want LUA scripting support (recommended).
 
-    apt-get install lua5.2 lua5.2-dev
+```bash
+apt-get install lua5.2 lua5.2-dev
+```
     
     
 
@@ -94,7 +117,9 @@ If you want LUA scripting support (recommended).
 
 If you want SQLite3 database support (recommended).
 
-    apt-get install libsqlite3-0 libsqlite3-dev 
+```bash
+apt-get install libsqlite3-0 libsqlite3-dev 
+```
 
 ### Step 9
 
@@ -102,63 +127,84 @@ Normally you should consider working with one of the stable releases. All packag
 
 You unpack the tgz with
 
-    tar -zxvf vscp_src_0.4.0.11.tgz
+```bash
+tar -zxvf vscp_src_0.4.0.11.tgz
+```
 
 You unzip the  with
-    unzip -vscp_src_0.4.0.11.zip
+
+```bash
+unzip -vscp_src_0.4.0.11.zip
+```
 
 As an alternative you can get the source from Github (need to gave Git installed as of above). If you get head software here you get the latest software but beware it can be unstable. If you clock **releases** you can fins stable software here as well.
 
-    git clone https://github.com/grodansparadis/vscp_software.git
+```bash
+git clone https://github.com/grodansparadis/vscp_software.git
+```
 
 This takes time on slower machines (like Raspberry Pi). Especially "Compressing objects" and "Resolving deltas". Go for a long walk meanwhile. 
 
 An other alternative way is to get the source is to download the zip file from
 
-    https://github.com/grodansparadis/vscp_software and unpack it on your system.
+```bash
+https://github.com/grodansparadis/vscp_software and unpack it on your system.
+```
 
 Do this with 
 
-    wget https://github.com/grodansparadis/vscp_software/archive/master.zip
+```bash
+wget https://github.com/grodansparadis/vscp_software/archive/master.zip
+```
 
 Then unpack the archive with
 
-    unzip master.zip  
+```bash
+unzip master.zip  
+```
 
 There is a scripts that can be used to do these steps automagically for you    
 
-    wget https://sourceforge.net/projects/m2m/files/VSCP%20Software/1.0.0%20Neon/fetch_master/download
-    chmod a+x fetch_master
-    sudo ./fetchmaster
+```bash
+wget https://sourceforge.net/projects/m2m/files/VSCP%20Software/1.0.0%20Neon/fetch_master/download
+chmod a+x fetch_master
+sudo ./fetchmaster
+```    
 
 will fetch the latest code, build it and install it for you. 
 
 or add this to a a file
 
 ```bash
-    #!/bin/sh
-    sudo rm -rf vscp_software-master
-    sudo wget https://github.com/grodansparadis/vscp_software/archive  /master.zip
-    sudo unzip master.zip
-    sudo rm -rf master.zip
-    cd vscp_software-master
-    sudo ./configure
-    sudo make
+#!/bin/sh
+sudo rm -rf vscp_software-master
+sudo wget https://github.com/grodansparadis/vscp_software/archive  /master.zip
+sudo unzip master.zip
+sudo rm -rf master.zip
+cd vscp_software-master
+sudo ./configure
+sudo make
 ```    
 
 make it executable with 
 
-    chmod a+x 'filename'
+```bash
+chmod a+x 'filename'
+```    
 
 and the run the file.  
 
 ###  Step 10
 
-    cd vscp
+```bash
+cd vscp
+bash
 
 ### Step 11
 
-    ./configure
+```bash
+./configure
+bash
 
 If you get warnings about 
 
@@ -168,16 +214,22 @@ being deprecated
 
 use 
 
-    ./configure CFLAGS="-DOPENSSL_API_1_1"
+```bash
+./configure CFLAGS="-DOPENSSL_API_1_1"
+```
 
 to use openssl 1.1 instead of openssl 1.0
 
 You can find out which version of openssl you have installed with
 
+```bash
 openssl version
-    
-    ls /usr/lib/i386-linux-gnu/libssl.so* (pc)
-    ls /usr/lib/arm-linux-gnueabihf/libssl.so* (RPi)
+```
+
+```bash    
+ls /usr/lib/i386-linux-gnu/libssl.so* (pc)
+ls /usr/lib/arm-linux-gnueabihf/libssl.so* (RPi)
+```    
 
 {{after_configure.png?600}}   
 
@@ -185,9 +237,9 @@ openssl version
 
 If you want a debug build use the flag
 
-	
-	--enable-debug
-
+```bash	
+--enable-debug
+```
 
 This flags used without a value is the same as
 
@@ -197,15 +249,17 @@ This flags used without a value is the same as
 
 you can specify values as below
 
- | Value   | Description                                                                                | 
- | -----   | -----------                                                                                | 
- | yes     | Specifying 'yes' adds '-g -O0' to the compilation flags for all languages.                 | 
- | info    | Specifying 'info' adds '-g' to the compilation flags.                                      | 
+ | Value   | Description | 
+ | -----   | ----------- | 
+ | yes     | Specifying 'yes' adds '-g -O0' to the compilation flags for all languages. | 
+ | info    | Specifying 'info' adds '-g' to the compilation flags. | 
  | profile | Specifying 'profile'adds '-g -pg' to the compilation flags and '-pg' to the linking flags. | 
 
 ### Step 12
 
-    make
+```bash
+make
+```    
 
 To make sure everything build OK you can issue make again and check the output for errors. You don't get bombarded with such masses of text on the second run. 
 
@@ -213,28 +267,38 @@ __If you did skip the MQTT installation you will get some complaints when the MQ
     
 It can be hard to see errors in all the text that is output by the build process. If you use
 
-    make | grep error
+```bash
+make | grep error
+```    
 
 it is much easier so see possible errors during the build process.  
 
     
 ###  Step 13
 
-    make install
+```bash
+make install
+```
 
 Instead of first doing *make* and then *make install* you can of course do *make install* directly.
 
-    make install-conf
+```bash
+make install-conf
+```
 
 installs the default configuration files. Can always be used to restore them also.  
 
-    make web-install
+```bash
+make web-install
+```
 
 installs default web content.  
 
 This is done with script 
 
-    do_web_download
+```bash
+./do_web_download
+```
 
 which downloads and installs the latest UX code in the default folder. This script is located in the project root folder and can be used without the makefile also.
 
@@ -249,17 +313,21 @@ After doing this you can set up a working VSCP & Friends system.
  
 Now reboot and the daemon will run. or issue
 
-    /init.d/vscpd start
+```bash
+/init.d/vscpd start
+```
 
 to start the server.  
     
 It is also possible to run the daemon as any other program with  
 
-    /usr/local/bin/vscpd -s
+```bash
+/usr/local/bin/vscpd -s
+```
 
 this is probably the best test to do on a newly installed system to see that the daemon starts properly as error messages will be shown in the terminal windows in this mode.  Terminate the daemon with **ctrl+c**  
     
-Default install directory is /usr/local/bin
+Default install directory is */usr/local/bin*
 
 ###  Step 16
 
@@ -272,15 +340,19 @@ Not taking your newly installed system for a test ride \\  [ Take VSCP & Friends
 ### Extra
 
 **Build wxWidgets 2.8.12**
-    wget https://sourceforge.net/projects/wxwindows/files/2.8.12/wxGTK-2.8.12.tar.gz
+```bash
+wget https://sourceforge.net/projects/wxwindows/files/2.8.12/wxGTK-2.8.12.tar.gz
 ./configure --disable-gui --enable-unicode
+```
 
 Disable GUI only for non GUI builds. Add --enable-debug for debug builds.
 
 **Build wxWidgets 3.0.2**
 
-    wget https://sourceforge.net/projects/wxwindows/files/3.0.2/wxWidgets-3.0.2.tar.bz2
-    ./configure --disable-gui
+```bash
+wget https://sourceforge.net/projects/wxwindows/files/3.0.2/wxWidgets-3.0.2.tar.bz2
+./configure --disable-gui
+```    
     
 Disable GUI only for non GUI builds.
 
@@ -292,17 +364,23 @@ is needed for graphical builds.
 
 If you want to know which version of wxWidgets you have installed
 
-    wx-config --version
+```bash
+wx-config --version
+```
     
 If you want to know which packages are installed  
 
-    dpkg --get-selections
+```bash
+dpkg --get-selections
+```
     
 ----  
  
 Build statically 
 
-    ./configure --enable-unicode --disable-shared --disable-gui
+```bash
+./configure --enable-unicode --disable-shared --disable-gui
+```
     
     
 ----
