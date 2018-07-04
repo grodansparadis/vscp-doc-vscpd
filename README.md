@@ -14,7 +14,7 @@ If you use VSCP components professionally please consider contributing resources
 
 ---
 
-{{gitbook.time}}
+{{gitbook.time}}  
 This document is licensed under [Creative Commons BY 4.0](https://creativecommons.org/licenses/by/4.0/) and can be freely copied, redistributed, remixed, transformed, built upon as long as you give credits to the author.
 
 
