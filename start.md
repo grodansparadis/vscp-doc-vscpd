@@ -2,7 +2,7 @@
 
 # the VSCP Daemon
 
-**Reversion**: 13.0 [history](./history.md)
+**Reversion**: 13.0 {{gitbook.time}} [history](./history.md)
 
 Author 2000-2018 Åke Hedman, [Grodans Paradis AB](https://www.grodansparadis.com), [akhe@grodansparadis.com](akhe@grodansparadis.com)  
 
