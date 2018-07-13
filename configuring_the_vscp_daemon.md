@@ -95,7 +95,7 @@ Read the [security section](./security_general.md) for more information about ho
 Set loglevel n is in range 0-2 where 0 is no logging and the rest of the levels are different levels of logging which will log everything with a higher log value. 
 
  | Numeric level | textual level | Description                                                                | 
- | ------------- | ------------- | -----------                                                                | 
+ | :-------------: | :-------------: | -----------                                                                | 
  | 0             | none          | No logging will be performed. This is not recommended.                     | 
  | 1             | normal        | Normal logging information will be printed. **This is the default level.** | 
  | 2             | debug         | Maximum amount of logging information will be printed.                     | 
@@ -127,7 +127,7 @@ This is the number of days a log entry is allowed to sit in one of the log files
 Set bits in debug flags 1 that when set will output additional logging information,
 
  | Bit  | Description                                    | 
- | ---  | -----------                                    | 
+ | :---:  | -----------                                    | 
  | 0    | Extra info from automation engine.             | 
  | 1    | Extra info from variable handling.             | 
  | 2    | Extra info from Multicast interface.           | 
@@ -151,7 +151,7 @@ Set bits in debug flags 1 that when set will output additional logging informati
 Set bits in debug flags 2 that when set will output additional logging information,
 
  | Bit  | Description | 
- | ---  | ----------- | 
+ | :---:  | ----------- | 
  | 0-31 | Undefined   | 
 
 ### runasuser
@@ -220,7 +220,7 @@ The file used here is a file that will be updated frequently so if you are on a 
 The log types in the database is like the following
 
  | Type                    | Identifier in db | 
- | ----                    | ---------------- | 
+ | ----                    | :----------------: | 
  | DAEMON_LOGTYPE_GENERAL  | 0                | 
  | DAEMON_LOGTYPE_SECURITY | 1                | 
  | DAEMON_LOGTYPE_ACCESS   | 2                | 
@@ -413,7 +413,7 @@ where both server_cert.pem and ca_cert.pem are full paths including filename to
 Normally the tcp/ip communication is in clear text (if not using ssl/tls). It is however possible to use AES encryption for the tcp/ip interface. This is a way for lower end systems, that don't have the full resources to implement ssl/tls, to add security to the connection. Encryption can have four values
 
  | Value          | Description                | 
- | -----          | -----------                | 
+ | :-----:          | -----------                | 
  | Blank/no value | Clear text is used.        | 
  | aes128         | AES128 encryption is used. | 
  | aes192         | AES192 encryption is used. | 
@@ -507,7 +507,7 @@ Valid from version 13.1
 Sets the minimal accepted version of SSL/TLS protocol according to the table:
 
  | Selected protocols             | setting | 
- | ------------------             | ------- | 
+ | ------------------             | :-------: | 
  | SSL2+SSL3+TLS1.0+TLS1.1+TLS1.2 | 0       | 
  | SSL3+TLS1.0+TLS1.1+TLS1.2      | 1       | 
  | TLS1.0+TLS1.1+TLS1.2           | 2       | 
@@ -569,7 +569,7 @@ Time to live for multicast datagrams.
 The following table show the possible settings.
 
  | TTL | Scope                                                                            | 
- | --- | -----                                                                            | 
+ | :---: | -----                                                                            | 
  | 0   | Are restricted to the same host. Won't be output by any interface.               | 
  | 1   | Are restricted to the same subnet. Won't be forwarded by a router. (**default**) | 
  | 32  | Are restricted to the same site, organization or department.                     | 
@@ -627,7 +627,7 @@ Time to live for multicast datagrams.
 The following table show the possible settings.
 
  | TTL | Scope                                                                            | 
- | --- | -----                                                                            | 
+ | :---: | -----                                                                            | 
  | 0   | Are restricted to the same host. Won't be output by any interface.               | 
  | 1   | Are restricted to the same subnet. Won't be forwarded by a router. (**default**) | 
  | 32  | Are restricted to the same site, organization or department.                     | 
@@ -1146,7 +1146,7 @@ See [this entry in OpenSSL documentation](https://www.openssl.org/docs/manmaster
 Sets the minimal accepted version of SSL/TLS protocol according to the table:
 
  | Selected protocols             | setting | 
- | ------------------             | ------- | 
+ | ------------------             | :-------: | 
  | SSL2+SSL3+TLS1.0+TLS1.1+TLS1.2 | 0       | 
  | SSL3+TLS1.0+TLS1.1+TLS1.2      | 1       | 
  | TLS1.0+TLS1.1+TLS1.2           | 2       | 
