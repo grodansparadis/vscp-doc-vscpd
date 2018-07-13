@@ -353,7 +353,7 @@ and on windows
 ```xml
 <tcpif interface=”ip-address:port” 
        encryption=""
-       ssl_certificate="/srv/vscp/serts/tcpip_server.pem"
+       ssl_certificate="/srv/vscp/certs/tcpip_server.pem"
        ssl_certificate_chain=""
        ssl_verify_peer="false"
        ssl_ca_path=""
