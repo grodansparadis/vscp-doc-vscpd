@@ -440,20 +440,20 @@ for a positive reply or
 
 ## Send events {#websocket-send-events}
 
-The same format is used to send events as they are received. 
+The same format is used to send events as they are received.
 
- | 'E';head,vscp_class,vscp_type,obid,datetime,timestamp,GUID,data | 
- | --------------------------------------------------------------- | 
+ | 'E';head,vscp_class,vscp_type,obid,datetime,timestamp,GUID,data |
+ | :--------------------------------------------------------------- |
 
 and
 
- | +;EVENT | 
- | ------- | 
+ | +;EVENT |
+ | :------- |
 
 is received if it got sent and
 
  | -;EVENT;error-code;realtext-error | 
- | --------------------------------- | 
+ | :--------------------------------- | 
 
 is returned if there was a problem sending the event.
 
