@@ -66,15 +66,15 @@ The following commands are currently available. **NOOP** is typically used to te
 
 Variables on the server is a powerful tool. Variables are used by Level II drivers and the internal decision matrix of the daemon. This means that driver parameters can be changes and complex setups can be accomplished together with the decision matrix functionality. As an example you can set a variable to true and have an action executed by the daemon that does something useful. The possibilities are endless. Variables can be persistent meaning they will live over time so it can also be a method to save states.
 
-### NOOP
+### NOOP {#websocket-noop}
 
 No operation. Will always give a positive response.
 
-### CHALLENGE
+### CHALLENGE {#websocket-challange}
 
 Send this command to initiate the authentication. This is process is normally started automatically on a connect.
 
-###  AUTH
+###  AUTH {#websocket-auth}
 
 The AUTH process has changed 2017-10-04 (ux-framwork version 0.2, VSCP& Friends version 12.29.1.13). [Old description is here](http://www.vscp.org/docs/vscpd/doku.php?id=vscp_daemon_websocket_protocol_description&rev=1507044582). 
 
@@ -112,7 +112,7 @@ Note that in addition to the credentials the server IP address must also be vali
 The standard vscp password hash is calculated over "username:authdomain:password". 
 
 *rights* a bit array presented as eight bytes separated with semicolon.
-### OPEN
+### OPEN {#websocket-open}
 
 Start receiving events. Collected events in queue will be sent. Positive/negative response is returned.
 
@@ -124,7 +124,7 @@ response is
 
     “+;OPEN”
 
-###  CLOSE
+###  CLOSE {#websocket-close}
 
 Stop receiving events. Events are still collected in queue on server side. Positive/negative response is returned.
 
@@ -136,7 +136,7 @@ response is
 
     “+;CLOSE”
 
-###  CLRQ 
+###  CLRQ  {#websocket-clrq}
 
 Clear events in input queue. Positive/negative response is returned.
 
@@ -150,7 +150,7 @@ response is
 
     “+;CLRQ”
 
-###  SF
+### SF {#websocket-sf}
 
 Set filter/mask for incoming data. Positive/negative response is returned.
 
@@ -168,7 +168,7 @@ response is
 
 Note that there is a semicolon between filter and mask information and commas between parts of each filter and mask.
 
-###  RVAR
+### RVAR  {#websocket-rvar}
 
 Read a variable. 
 
@@ -204,7 +204,7 @@ etc. See [this page](./remote_variables.md#variable_types) for more information 
 
 **Note:** its is note allowed to have a variable name with a semicolon in the name.
 
-### WVAR
+### WVAR {#websocket-wvar}
 
 Set value for existing variable. The variable must exist.
 
@@ -234,7 +234,7 @@ which set the boolean value to false. The response is
 
     “+;WVAR;name”
     
-### CVAR
+### CVAR {#websocket-cvar}
 
 Add a new variable. A variable that already exists can be updated using this method. Stock variables (name starts with "vscp.") can not be created or updated.
 
@@ -261,7 +261,7 @@ response is
     
 
     
-###  DELVAR
+###  DELVAR {#websocket-delvar}
 
 Remove variable.
 
@@ -284,7 +284,7 @@ response is
 
 **Note: its is note allowed to have a variable name with a semicolon in the name.**  
     
-###  LSTVAR
+###  LSTVAR {#websocket-lstvar}
 
 List currently defined variables selectable by a regular expression. 
 
@@ -320,7 +320,7 @@ response is
 
 
 
-### RSTVAR
+### RSTVAR {#websocket-rstvar}
 
 Reset variable to its default value. Default values can be found [here](./remote_variables#variable_types).
 
@@ -334,7 +334,7 @@ Positive response is returned on success
 
     "+;RSTVAR;variablename;type;value"
 
-### LENVAR
+### LENVAR {#websocket-lenvar}
 
 Return the length for a string variable. Return zero for other types.
 
@@ -351,7 +351,7 @@ Positive response is returned on success
 
 **Note:** its is note allowed to have a variable name with a semicolon in the name.
     
-### LCVAR
+### LCVAR {#websocket-lcvar}
 
 Get the date and time for the last change of a variables value.
 
@@ -368,7 +368,7 @@ Positive response is returned on success
 
 **Note:** its is note allowed to have a variable name with a semicolon in the name.
 
-### GT
+### GT {#websocket-gt}
 
 Get data from a table
  
@@ -396,7 +396,7 @@ followed by none or several
 
 **rows** is the number ow TR responses that will be received. Can be zero. 
 
-### MEASUREMENT
+### MEASUREMENT {#websocket-measurement}
 
 **This command is a future command.**
 
@@ -438,7 +438,7 @@ for a positive reply or
 
 *  **subzone** zone value for Level II events. Defaults to zero. Optional.
 
-## Send events
+## Send events {#websocket-send-events}
 
 The same format is used to send events as they are received. 
 
