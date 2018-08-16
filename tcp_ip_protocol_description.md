@@ -565,7 +565,7 @@ Set list of events user can send. Full format is
 
     REMOTE password “username”,”event-list” 
 
-### filter {#tcpip-remote-filte}
+### filter {#tcpip-remote-filter}
 
 Set user filter. Full format is 
 
