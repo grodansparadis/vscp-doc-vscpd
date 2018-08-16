@@ -172,8 +172,8 @@
         * [mode](tcp_ip_protocol_description.md#tcpip-table-mode)
         * [lowerq](tcp_ip_protocol_description.md#tcpip-table-lowerq)
         * [upperq](tcp_ip_protocol_description.md#tcpip-table-upperq)
-        * [clear](tcp_ip_protocol_description.md#tcpip-tcpip-table-clear)
-        * [create](tcp_ip_protocol_description.md#tcpip-tcpip-table-create)
+        * [clear](tcp_ip_protocol_description.md#tcpip-table-clear)
+        * [create](tcp_ip_protocol_description.md#tcpip-table-create)
 
 ## Websocket interface
 * [Websocket Interface](websocket_interface.md)
