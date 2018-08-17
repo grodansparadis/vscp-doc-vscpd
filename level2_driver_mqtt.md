@@ -385,7 +385,7 @@ The lowest three bits are all zero here but could have been an index (0-7) to a 
 
 
 * [Using the VSCP MQTT driver Part 1](https://grodansparadis.com/wordpress/?p=1533)
-* [Using the VSCO MQTT driver Part 2](https//grodansparadis.com/wordpress/?p=1528)
+* [Using the VSCP MQTT driver Part 2](https//grodansparadis.com/wordpress/?p=1528)
 * MQ Telemetry Transport - https://mqtt.org/
 * MQTT V3.1 Protocol Specification - https://public.dhe.ibm.com/software/dw/webservices/ws-mqtt/mqtt-v3r1.html#keep-alive-timer
 * Mosquitto - https://mosquitto.org/
