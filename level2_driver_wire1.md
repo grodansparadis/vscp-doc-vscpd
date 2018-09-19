@@ -134,6 +134,8 @@ To get it all working
 
 After this is done temperature sensor will be visible in the folder */sys/bus/w1/devices* 
 
+The id will start with the [1-wire family code](https://github.com/owfs/owfs-doc/wiki/1Wire-Device-List) which is **10** for 18S20 and **28** for 18B20.)
+
 For exampel
 
     /sys/bus/w1/devices/10-00080192afa8/w1_slave
@@ -151,7 +153,7 @@ You way want to add the modules to **/etc/modules** so that they load automatica
 
 ![](./images/drivers/level2-drivers/006_small.png)
 
-On this picture a standard DS18B20 and a water proof sensor with a DS19B20 is connected to the Raspberry Pi. The connection is very easy.
+On this picture a standard DS18B20 and a water proof sensor with a DS18B20 is connected to the Raspberry Pi. The connection is very easy.
 
 
 *  Fetch power from pin 1 - 3.3V
