@@ -1,5 +1,6 @@
 # Document History
 
+*  **2018-09-24 AKHE** - Added info about new configurations parameters for the tcp/ip level II link driver.
 
 *  **2018-04-04 AKHE** - build added to tcp/ip "version" command output.
 
