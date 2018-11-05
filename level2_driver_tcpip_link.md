@@ -66,7 +66,7 @@ The configuration  is read in the following order
     <name>tcpiplink1</name>
     <path>/usr/local/lib/vscp2drv_tcpiplink.so</path>
     <config>192.168.1.20;9598;admin;secret</config>
-    <guid>`00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00`</guid>
+    <guid>FF:FF:FF:FF:FF:FF:FF:FC:10:20:30:40:50:60:70:80</guid>
 </driver>
 ```
 

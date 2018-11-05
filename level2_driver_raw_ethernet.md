@@ -54,13 +54,12 @@ A typical configuration example settings for a Windows 7 machines *vscpd.conf* c
 and on a Linux machine        
 
 ```xml
-<vscpdriver enable="true">
-    <driver enable="true">		   	 			
-        <name>raweth1</name> 		   	 		
-        <config>eth0;00:26:55:CA:1F:DA</config>
-        <path>/usr/local/lib/vscp2drv_raweth.so</path>
-    </driver>`
-</vscpdriver>
+
+<driver enable="true">
+    <name>raweth1</name>
+    <config>eth0;00:26:55:CA:1F:DA</config>
+    <path>/usr/local/lib/vscp2drv_raweth.so</path>
+</driver>
 ```
 
 
