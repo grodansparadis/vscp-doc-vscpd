@@ -408,7 +408,7 @@ The semicolon character (`;`) is used as a separator for arguments and if needed
 
 ----
 
-###  NOOP 
+###  NOOP {#VSCP_DAEMON_ACTION_CODE_NOOP}
 
 `VSCP_DAEMON_ACTION_CODE_NOOP    0x00/0`
 
@@ -416,7 +416,7 @@ No operation.
 
 ----
 
-### Execute external program
+### Execute external program {#VSCP_DAEMON_ACTION_CODE_EXECUTE}
 
 `VSCP_DAEMON_ACTION_CODE_EXECUTE    0x10/16`
 
@@ -558,7 +558,7 @@ Start a new instance of gedit every minute at a specific date and time interval.
 
 ----
 
-###  HTTP GET, POST, (PUT)
+###  HTTP GET, POST, (PUT) {#VSCP_DAEMON_ACTION_CODE_GET_PUT_POST_URL}
 
 `VSCP_DAEMON_ACTION_CODE_GET_PUT_POST_URL    0x75/117`
 
@@ -666,7 +666,7 @@ ThingSpeak API is described [here](https://community.thingspeak.com/documentatio
 ----
 
 
-###  Send event to remote VSCP server interface
+###  Send event to remote VSCP server interface {#VSCP_DAEMON_ACTION_CODE_SEND_TO_REMOTE}
 
 `VSCP_DAEMON_ACTION_CODE_SEND_TO_REMOTE    0x43/67`
 
@@ -724,7 +724,7 @@ Here the same event that triggers the action is used. One can of course send ano
 
 ----
 
-###  Store in variable
+###  Store in variable {#VSCP_DAEMON_ACTION_CODE_STORE_VARIABLE}
 
 `VSCP_DAEMON_ACTION_CODE_STORE_VARIABLE    0x50/80`
 
@@ -853,7 +853,7 @@ And a variable with a dynamic name
 
 ----
 
-###  Add to a variable
+###  Add to a variable {#VSCP_DAEMON_ACTION_CODE_ADD_VARIABLE}
 
 `VSCP_DAEMON_ACTION_CODE_ADD_VARIABLE    0x52/82`
 
@@ -924,7 +924,7 @@ The following two DM rows create a long variable when the VSCP servers starts an
 
 ----
 
-### Subtract from a variable 
+### Subtract from a variable  {#VSCP_DAEMON_ACTION_CODE_SUBTRACT_VARIABLE}
 
 `VSCP_DAEMON_ACTION_CODE_SUBTRACT_VARIABLE    0x53/83`
 
@@ -998,7 +998,7 @@ The following two DM rows create a long variable when the VSCP server starts and
 
 ----
 
-### Multiply with a variable
+### Multiply with a variable {#VSCP_DAEMON_ACTION_CODE_MULTIPLY_VARIABLE}
 
 `VSCP_DAEMON_ACTION_CODE_MULTIPLY_VARIABLE    0x54/84`
 
@@ -1075,7 +1075,7 @@ This example creates a long variable when the VSCP server starts up and then mul
 ----
 
 
-### Divide the data with a variable
+### Divide the data with a variable {#VSCP_DAEMON_ACTION_CODE_DIVIDE_VARIABLE}
 
  
 `VSCP_DAEMON_ACTION_CODE_DIVIDE_VARIABLE    0x55/85`
@@ -1153,7 +1153,7 @@ This example creates a floating point variable when the VSCP servers starts up a
 ----
 
 
-### Check variable, set variable
+### Check variable, set variable {#VSCP_DAEMON_ACTION_CODE_CHECK_VARIABLE}
 
 `VSCP_DAEMON_ACTION_CODE_CHECK_VARIABLE    0x58/88`
 
@@ -1193,7 +1193,7 @@ which will compare the value of *variable_name* with the value of *counter*.
 
 ----
 
-### Check variable, set to true
+### Check variable, set to true {#VSCP_DAEMON_ACTION_CODE_CHECK_VARIABLE_TRUE}
 
 `VSCP_DAEMON_ACTION_CODE_CHECK_VARIABLE_TRUE    0x56/86`
 
@@ -1229,7 +1229,7 @@ Will check if 500 is greater then counter and set the variable flag to true if i
 
 ----
 
-### Check variable, set to false
+### Check variable, set to false {#VSCP_DAEMON_ACTION_CODE_CHECK_VARIABLE_FALSE}
 
 `VSCP_DAEMON_ACTION_CODE_CHECK_VARIABLE_FALSE    0x57/87`
 
@@ -1265,7 +1265,7 @@ Will check if 500 is greater then counter and set the variable flag to false if 
 
 ----
 
-### Check Measurement
+### Check Measurement {#VSCP_DAEMON_ACTION_CODE_CHECK_MEASUREMENT}
 
 `VSCP_DAEMON_ACTION_CODE_CHECK_MEASUREMENT    0x59/89`
 
@@ -1361,7 +1361,7 @@ The variable **flag_lt** is set to true if a temperature measurement event is re
 ----
 
 
-### Store minimum
+### Store minimum {#VSCP_DAEMON_ACTION_CODE_STORE_MIN}
 
 `VSCP_DAEMON_ACTION_CODE_STORE_MIN    0x71/113`
 
@@ -1430,10 +1430,11 @@ If the variable is numerical the new value is stored in it. If the variable is a
 </row>
     
 ```xml
+```
 
 ----
 
-### Store maximum
+### Store maximum  {#VSCP_DAEMON_ACTION_CODE_STORE_MAX}
 
 `VSCP_DAEMON_ACTION_CODE_STORE_MAX    0x72/114`
 
@@ -1507,7 +1508,7 @@ If the variable is numerical the new value is stored in it. If the variable is a
 
 ----
 
-###  Send event
+###  Send event  {#VSCP_DAEMON_ACTION_CODE_SEND_EVENT}
 
 `VSCP_DAEMON_ACTION_CODE_SEND_EVENT    0x40/64`
 
@@ -1553,7 +1554,7 @@ This example send the [CLASS1.INFORMATION, Type=4 ON event](https://grodansparad
 
 ----
 
-###  Send event conditional
+###  Send event conditional {#VSCP_DAEMON_ACTION_CODE_SEND_EVENT_CONDITIONAL}
 
 `VSCP_DAEMON_ACTION_CODE_SEND_EVENT_CONDITIONAL    0x41/65`
 
@@ -1580,7 +1581,7 @@ To get all this to work four DM rows are required.
 
 ----
 
-###  Send event(s) from file
+###  Send event(s) from file {#VSCP_DAEMON_ACTION_CODE_SEND_EVENTS_FROM_FILE}
 
 `VSCP_DAEMON_ACTION_CODE_SEND_EVENTS_FROM_FILE    0x42/66`
 
@@ -1648,7 +1649,7 @@ The format for the XML file is
 
 ----
 
-###  Write to file plain
+###  Write to file plain {#VSCP_DAEMON_ACTION_CODE_WRITE_FILE}
 
 `VSCP_DAEMON_ACTION_CODE_WRITE_FILE    0x70/112`
 
@@ -1714,7 +1715,7 @@ which will generate a file with endless lines like this
 
 ----
 
-### Start a timer
+### Start a timer {#VSCP_DAEMON_ACTION_CODE_START_TIMER}
 
 `VSCP_DAEMON_ACTION_CODE_START_TIMER    0x60/96`
 
@@ -1756,7 +1757,7 @@ This is the  same as above but no variable is used.
 
 ----
 
-### Pause a timer
+### Pause a timer {#VSCP_DAEMON_ACTION_CODE_PAUSE_TIMER}
 
 `VSCP_DAEMON_ACTION_CODE_PAUSE_TIMER    0x61/97`
 
@@ -1770,7 +1771,7 @@ This action stops an active timer identified by a numerical ID. If the timer doe
 ----
 
 
-###  Stop a timer
+###  Stop a timer {#VSCP_DAEMON_ACTION_CODE_STOP_TIMER}
 
 `VSCP_DAEMON_ACTION_CODE_STOP_TIMER    0x62/98`
 
@@ -1783,7 +1784,7 @@ This action stops an active timer identified by a numerical ID. If the timer doe
 
 ----
 
-###  Resume a timer
+###  Resume a timer {#VSCP_DAEMON_ACTION_CODE_RESUME_TIMER}
 
 `VSCP_DAEMON_ACTION_CODE_RESUME_TIMER    0x63/99`
 
@@ -1796,7 +1797,7 @@ This action stops an active timer identified by a numerical ID. If the timer doe
 
 ----
 
-### Write Table
+### Write Table {#VSCP_DAEMON_ACTION_CODE_WRITE_TABLE}
 
 `VSCP_DAEMON_ACTION_CODE_WRITE_TABLE    0x80/128`
 
@@ -1859,7 +1860,7 @@ You can read more about tables [here](vscp-tables).
 
 ----
 
-### Clear Table
+### Clear Table {#VSCP_DAEMON_ACTION_CODE_CLEAR_TABLE}
 
 `VSCP_DAEMON_ACTION_CODE_CLEAR_TABLE    0x81/129`
 
@@ -1879,7 +1880,7 @@ You can read more about tables [here](./vscp-tables.md).
 
 ----
     
-###  Run LUA Script
+###  Run LUA Script {#VSCP_DAEMON_ACTION_CODE_RUN_LUASCRIPT}
 
 `VSCP_DAEMON_ACTION_CODE_RUN_LUASCRIPT    0x100/256`   
 
@@ -1894,7 +1895,7 @@ Run a LUA script. The standard VSCP decision matrix escapes can be used to inser
     
 ----
     
-###  Run JavaScript
+###  Run JavaScript {#VSCP_DAEMON_ACTION_CODE_RUN_JAVASCRIPT}
 
 `VSCP_DAEMON_ACTION_CODE_RUN_JAVASCRIPT    0x200/512`  
 
