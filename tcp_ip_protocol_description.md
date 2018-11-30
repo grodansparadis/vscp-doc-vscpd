@@ -378,7 +378,7 @@ The capabilities are described in a 64-bit array (8 bytes). The capabilities is 
 
 where each pair of hex digits is a byte in the 64-bit capabilities structure. MSB is the first byte.
 
-The VSCP server 16-bit capability code is described in the specification document for [CLASS2.PROTOCOL, Type=28, High end server capabilities](). It gives information about the capabilities of a VSCP server.
+The VSCP server 64-bit capability code is described in the specification document for [CLASS2.PROTOCOL, Type=20, High end server/service capabilities](https://grodansparadis.gitbooks.io/the-vscp-specification/class2.protocol.html#type20). It gives information about the capabilities of a VSCP server.
 
 ## MEASUREMENT - Send a measurement {#tcpip-measurement}
 
