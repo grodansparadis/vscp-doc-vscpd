@@ -2,7 +2,11 @@
 
 # the VSCP Daemon
 
-**Reversion**: 13.0 {{gitbook.time}} [history](./history.md)
+**Reversion**:14.0 {{gitbook.time}} [history](./history.md)
+
+Current software release described in [version 13](https://grodansparadis.gitbooks.io/the-vscp-daemon/v/v13.4/)
+
+---
 
 Author 2000-2019 Åke Hedman, [Grodans Paradis AB](https://www.grodansparadis.com), [akhe@grodansparadis.com](akhe@grodansparadis.com)  
 
