@@ -260,6 +260,7 @@
 
 * [Variables Introduced](./remote_variables.md)
 * [Variable Types](./remote_variables.md#variable_types)
+* [Decision matrix variables](./variables_dm.md)
 * [Variable write format](./remote_variables.md#variable_types)
 * [Variable persistent storage format](./remote_variables.md#persistent)
 
