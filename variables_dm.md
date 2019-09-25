@@ -1,6 +1,6 @@
 # Remote variables for decision matrix manipulation
 
-This is remote variables that can be used to read and manipulated the decision matrix. Only remote variables related to the full decision matrix will show up in list. The row specific remote variables (vscp.dm.n......) will not _1.
+This is remote variables that can be used to read and manipulated the decision matrix. Only remote variables related to the full decision matrix will show up in list. The row specific remote variables (vscp.dm.n......) will not .
 
 The *rwx* column below stands for **r**ead **w**rite e**x**ecute and is rights needed to read/write/execute variables for the admin user, group users, all users
 . So rw-rw-rw- means all useras have read/write access. r-------- that only the admin user can read the remote variable.
