@@ -1,24 +1,24 @@
 # CANAL Interface Specification (Level I driver)
 
-![Very Simple Control Protocol](./images/logo_100.png "Very Simple Control Protocol")  
+![Very Simple Control Protocol](./images/logo_100.png "Very Simple Control Protocol")
 
-The CAN Abstraction Layer  
-Version 1.14 (2008-10-28)  
-[akhe@grodansparadis.com](mailto/akhe@grodansparadis.com) [http://www.vscp.org](http://www.vscp.org) 
+The CAN Abstraction Layer
+Version 1.14 (2008-10-28)
+[akhe@grodansparadis.com](mailto/akhe@grodansparadis.com) [http://www.vscp.org](http://www.vscp.org)
 
 
 # What is CANAL
 
-CANAL (CAN Abstraction Layer) is a very simple approach to interfacing a CAN card or some other CAN hardware. It consists mostly of open, close, read, write and filter/mask handling. 
+CANAL (CAN Abstraction Layer) is a very simple approach to interfacing a CAN card or some other CAN hardware. It consists mostly of open, close, read, write and filter/mask handling.
 
-CANAL has been constructed from a need to use CAN in the form of control networks in the SOHO (Small Office/Home) environment. This kind of environment is totally different to the very tough automotive or industry control world where Canal probably would not be the best solution. The goal has not been to construct something that will take over the world just something that does solve a problem at hand. 
+CANAL has been constructed from a need to use CAN in the form of control networks in the SOHO (Small Office/Home) environment. This kind of environment is totally different to the very tough automotive or industry control world where Canal probably would not be the best solution. The goal has not been to construct something that will take over the world just something that does solve a problem at hand.
 
 
 CANAL is tightly coupled with the Very Simple Control Protocol, VSCP and the VSCP daemon. This is a protocol constructed for SOHO control situations. The model has been constructed as a two-layer model so that the VSCP Daemon can also be useful for people that are just  interested in CAN and not in VSCP. You can find more information about vscp at https://www.vscp.org.
 
 CANAL is open and free to use with no restrictions, as is the above software, which is released under GPL/LGPL.
 
-Current information about CANAL, the VSCP Daemon and VSCP (Very Simple Control Protocol) can be found at https://www.vscp.org. 
+Current information about CANAL, the VSCP Daemon and VSCP (Very Simple Control Protocol) can be found at https://www.vscp.org.
 
 # CANAL-API Specification
 
@@ -39,7 +39,7 @@ Device specific flags with a meaning defined by the interface creator.
 
 ### Returns
 
-Handle for open physical interface or < = 0 on error. 
+Handle for open physical interface or < = 0 on error.
 For an interface where there is only one channel the handle has no special meaning and can only be looked upon as a status return parameter.
 
 
@@ -72,9 +72,9 @@ handle – Handle for open physical interface.
 
 Returns the canal level this interface can handle.  An error is indicated by a zero return value. At the moment the following levels are defined
 
- | CANAL_LEVEL_STANDARD   | A starndard CANAL driver as of this specification.  | 
- | --------------------   | -------------------------------------------------- | 
- | CANAL_LEVEL_USES_TCPIP | This driver does not respond to any of the methods, even if they must be implemented. The driver will instead use the TCP/IP interface of the VSCP daemon for its data transfer. This driver type is called a VSCP Level II driver because it is constructed to work just with VSCP Level II events which does not fit in standard CAN frames. This type of driver does not need any buffers as no data is exchanged through the interface. | 
+ | CANAL_LEVEL_STANDARD   | A starndard CANAL driver as of this specification.  |
+ | --------------------   | -------------------------------------------------- |
+ | CANAL_LEVEL_USES_TCPIP | This driver does not respond to any of the methods, even if they must be implemented. The driver will instead use the TCP/IP interface of the VSCP daemon for its data transfer. This driver type is called a VSCP Level II driver because it is constructed to work just with VSCP Level II events which does not fit in standard CAN frames. This type of driver does not need any buffers as no data is exchanged through the interface. |
 
 
 ## int CanalSend( long handle, const PCANALMSG pCanMsg  )
@@ -126,7 +126,7 @@ CANAL_ERROR_SUCCESS, CANAL_ERROR_TIMEOUT on timeout on success or an error code 
 
 CANAL_ERROR_SUCCESS on success or an error code on failure.
 
-**Note** that if bit 2 in flags of the CANAL message is set and error status message is returned from the adapter. 
+**Note** that if bit 2 in flags of the CANAL message is set and error status message is returned from the adapter.
 
 
 
@@ -144,7 +144,7 @@ CANAL_ERROR_SUCCESS on success or an error code on failure.
 
 CANAL_ERROR_SUCCESS on success, CANAL_ERROR_TIMEOUT on timeout or an error code on failure.
 
-**Note** that if bit 2 in flags of the CANAL message is set and error status message is returned from the adapter. 
+**Note** that if bit 2 in flags of the CANAL message is set and error status message is returned from the adapter.
 
 
 
@@ -301,14 +301,14 @@ that is items separated with semicolons. The **pos** attribute for the `<item>` 
 
 All items are sub strings when they are part of the configuration string but can be typed withing the `<item>` tag with the **type** attribute. Valid types are
 
- | Type        | Description                                                                              | 
- | ----        | -----------                                                                              | 
- | **string**  | The should be interpreted as a sting                                                     | 
- | **boolean** | The item should be interpreted as a boolean. Valid values are TRUE, FALSE, 0, 1          | 
- | **int32**   | A signed integer. The attributes **max** and **min** can be used to specify limits       | 
- | **uint32**  | An unsigned integer. The attributes **max** and **min** can be used to specify limits    | 
- | **float**   | A floating point value. The attributes **max** and **min** can be used to specify limits | 
- | **choice**  | Specify a list with choices that can be set                                              | 
+ | Type        | Description                                                                              |
+ | ----        | -----------                                                                              |
+ | **string**  | The should be interpreted as a sting                                                     |
+ | **boolean** | The item should be interpreted as a boolean. Valid values are TRUE, FALSE, 0, 1          |
+ | **int32**   | A signed integer. The attributes **max** and **min** can be used to specify limits       |
+ | **uint32**  | An unsigned integer. The attributes **max** and **min** can be used to specify limits    |
+ | **float**   | A floating point value. The attributes **max** and **min** can be used to specify limits |
+ | **choice**  | Specify a list with choices that can be set                                              |
 
 The **optional** attribute tells if an item is optional. If set on a pos all items on positions after it must also be optional.
 
@@ -316,9 +316,9 @@ The `<flags>` tag describe the bits in the flags value. It should have a `<bit>`
 
 ```xml
 <?xml version = "1.0" encoding = "UTF-8" ?>
-	 
+
 <!-- Version 2.0   2015-10-13   -->
-	
+
 <!-- Configuration strings are given as a semicolon separated list          -->
 <!-- This list is described with and item tag for each configuration option -->
 <!-- Items can be of different types, string, number                        -->
@@ -329,7 +329,7 @@ The `<flags>` tag describe the bits in the flags value. It should have a `<bit>`
 	<infourl>path to url with info about this item</infourl>
 	<!-- pos is the position on the configuration line i.e.
 	     item0;item1;item2;item3;item4.....
-	--> 
+	-->
 	<items>
 	    <item pos="nn"  optional="true|false" type="string" description="Description about this item" infourl=path to url with info about this item"/>
 	    <item pos="nn"  optional="true|false" type="number" min="min-value" max="max-value" infourl=path to url with info about this item" />
@@ -340,7 +340,7 @@ The `<flags>` tag describe the bits in the flags value. It should have a `<bit>`
 	        <choice value="0" description = "Last choice" />
 	    </item>
 	</items>
-	  
+
 	<flags>
 	    <bit pos="0" width="2" type="choice" description="" infourl="" >
 	        <choice value="0" description="First choice." />
@@ -351,9 +351,9 @@ The `<flags>` tag describe the bits in the flags value. It should have a `<bit>`
 	    <bit pos="2" width="1" type="bool" description="" infourl="" >
 	    <bit pos="3" width="3" type="number" description="" infourl="" >
 	</flags>
-</config>	   
+</config>
 ```
-	
+
 
 
 A real world example (the [can4vscp driver](./level1_driver_can4vscp.md) looks like this.
@@ -366,14 +366,14 @@ A real world example (the [can4vscp driver](./level1_driver_can4vscp.md) looks l
     <blocking>`yes`</blocking>
     <infourl>`https://www.grodansparadis.com/frankfurt/rs232/manual/doku.php?id=the_can4vscp_mode</infourl>
     <items>
-        <item pos="0" 
-                type="string" 
+        <item pos="0"
+                type="string"
                 description="Serial port (COM1, COM2...)"
                 infourl="http://www.vscp.org/docs/vscpd/doku.php?id=level1_driver_can4vscp#parameter_string" />
-        <item pos="1" 
-                type="choice" 
-                optional="true" 
-                description="Baudrate to use for communication with the adapter.Default is 115200 baud. " 
+        <item pos="1"
+                type="choice"
+                optional="true"
+                description="Baudrate to use for communication with the adapter.Default is 115200 baud. "
                 infourl="http://www.vscp.org/docs/vscpd/doku.php?id=level1_driver_can4vscp#parameter_string" >
             <choice value="0" description = "115200 baud" />
             <choice value="1" description = "128000 baud" />
@@ -390,7 +390,7 @@ A real world example (the [can4vscp driver](./level1_driver_can4vscp.md) looks l
             <choice value="12" description = "57600 baud" />
         </item>
     </items>
-	
+
     <flags>
         <bit pos="0" width="2" type="choice" description="Select the mode the device should be opened in. The normal mode opens the interface for receive and transmit. The listen mode only listen on traffic on the bus. Loopback just connect the receive and transmit lines without sending anything on the bus. The manual describes the modes in detail." infourl="http://www.vscp.org/docs/vscpd/doku.php?id=level1_driver_can4vscp#flags" >
             <choice value="0" description="Open CAN4VSCP interface in normal mode." />
@@ -436,10 +436,10 @@ Flags for the package.
 
 *  **Bit 0** – if set indicates that an extended identifier (29-bit id) else standard identifier (11-bit) is used.
 *  **Bit 1** – If set indicates a RTR (Remote Transfer) frame.
-*  **Bit 2** – If set indicates that this is an error package. The data byts holds the error information. id is set to zero. For format see CANAL_IDFLAG_STATUS below. 
+*  **Bit 2** – If set indicates that this is an error package. The data byts holds the error information. id is set to zero. For format see CANAL_IDFLAG_STATUS below.
 *  **Bit 3** – Bit 30 Reserved.
 *  **Bit 31** – This bit can be used as a direction indicator for application software. 0 is receive and 1 is transmit.
- 
+
 
 ### unsigned long obid
 
@@ -482,12 +482,12 @@ Current state for CAN channel
     CANAL_STATUS_STOPPED              0x00800000
     CANAL_STATUS_RECEIVE_FIFO_FULL    0x00400000
     CANAL_STATUS_TRANSMIT_FIFO_FULL   0x00200000
-    
-    
+
+
 
 Bits from 16-31 are reserved, bits from 0-15 are user defined and can be defined by the driver maker.
 
-## PCANALSTATISTICS 
+## PCANALSTATISTICS
 
 This is the general statistics structure
 
@@ -495,17 +495,17 @@ This is the general statistics structure
 
 Number of received frames since the channel was opened.
 
-### unsigned long cntTransmittFrames
+### unsigned long cntTransmitFrames
 
-Number of frames transmitted since the channel was opened.
+Number of frames transmited since the channel was opened.
 
 ### unsigned long cntReceiveData
 
 Number of bytes received since the channel was opened.
 
-### unsigned long cntTransmittData
+### unsigned long cntTransmitData
 
-Number of bytes transmitted since the channel was opened.
+Number of bytes transmited since the channel was opened.
 
 ### unsigned long cntOverruns
 
@@ -522,46 +522,46 @@ Number of bus off’s since the channel was opened.
 
 #  Error codes
 
- | Error | Error code | Description                             | 
- | -----  | :----------: | -----------                             | 
- | CANAL_ERROR_SUCCESS | 0 | All is OK. | 
- | CANAL_ERROR_BAUDRATE  | 1   | Baudrate error. | 
- | CANAL_ERROR_BUS_OFF | 2  | Bus off error. | 
- | CANAL_ERROR_BUS_PASSIVE | 3 | Bus Passive error. | 
- | CANAL_ERROR_BUS_WARNING | 4 | Bus warning error. | 
- | CANAL_ERROR_CAN_ID | 5 | Invalid CAN ID. | 
- | CANAL_ERROR_CAN_MESSAGE | 6 | Invalid CAN message. | 
- | CANAL_ERROR_CHANNEL | 7 | Invalid channel. | 
- | CANAL_ERROR_FIFO_EMPTY | 8 | Noting available to read. FIFO is empty. | 
- | CANAL_ERROR_FIFO_FULL | 9 | FIFO is full. | 
- | CANAL_ERROR_FIFO_SIZE | 10 | FIFO size error. | 
- | CANAL_ERROR_FIFO_WAIT | 11 |   | 
- | CANAL_ERROR_GENERIC | 12 | Generic error.  | 
- | CANAL_ERROR_HARDWARE | 13 | A hardware related fault. | 
- | CANAL_ERROR_INIT_FAIL | 14 | Initialization failed. | 
- | CANAL_ERROR_INIT_MISSING | 15 |  | 
- | CANAL_ERROR_INIT_READY | 16 |   | 
- | CANAL_ERROR_NOT_SUPPORTED | 17 | Not supported. | 
- | CANAL_ERROR_OVERRUN | 18 | Overrun. | 
- | CANAL_ERROR_RCV_EMPTY | 19 | Receive buffer empty.  | 
- | CANAL_ERROR_REGISTER | 20 | Register value error. | 
- | CANAL_ERROR_TRM_FULL | 21 |  | 
- | CANAL_ERROR_ERRFRM_STUFF | 22 | Errorframe: stuff error detected. | 
- | CANAL_ERROR_ERRFRM_FORM | 23 | Errorframe: form error detected. | 
- | CANAL_ERROR_ERRFRM_ACK | 24 | Errorframe: acknowledge error.  | 
- | CANAL_ERROR_ERRFRM_BIT1 | 25 | Errorframe: bit 1 error. | 
- | CANAL_ERROR_ERRFRM_BIT0 | 26 | Errorframe: bit 0 error. | 
- | CANAL_ERROR_ERRFRM_CRC | 27 | Errorframe: CRC error. | 
- | CANAL_ERROR_LIBRARY | 28 | Unable to load library. | 
- | CANAL_ERROR_PROCADDRESS | 29 | Unable get library proc address. | 
- | CANAL_ERROR_ONLY_ONE_INSTANCE | 30 | Only one instance allowed. | 
- | CANAL_ERROR_SUB_DRIVER | 31 | Problem with sub driver call. | 
- | CANAL_ERROR_TIMEOUT | 32 | Blocking call timeout. | 
- | CANAL_ERROR_NOT_OPEN | 33 | The device is not open. | 
- | CANAL_ERROR_PARAMETER | 34 | A parameter is invalid. | 
- | CANAL_ERROR_MEMORY | 35 | Memory exhausted. | 
- | CANAL_ERROR_INTERNAL | 36 | Some kind of internal program error. | 
- | CANAL_ERROR_COMMUNICATION | 37 | Some kind of communication error. | 
+ | Error | Error code | Description |
+ | -----  | :----------: | ----------- |
+ | CANAL_ERROR_SUCCESS | 0 | All is OK. |
+ | CANAL_ERROR_BAUDRATE  | 1   | Baudrate error. |
+ | CANAL_ERROR_BUS_OFF | 2  | Bus off error. |
+ | CANAL_ERROR_BUS_PASSIVE | 3 | Bus Passive error. |
+ | CANAL_ERROR_BUS_WARNING | 4 | Bus warning error. |
+ | CANAL_ERROR_CAN_ID | 5 | Invalid CAN ID. |
+ | CANAL_ERROR_CAN_MESSAGE | 6 | Invalid CAN message. |
+ | CANAL_ERROR_CHANNEL | 7 | Invalid channel. |
+ | CANAL_ERROR_FIFO_EMPTY | 8 | Noting available to read. FIFO is empty. |
+ | CANAL_ERROR_FIFO_FULL | 9 | FIFO is full. |
+ | CANAL_ERROR_FIFO_SIZE | 10 | FIFO size error. |
+ | CANAL_ERROR_FIFO_WAIT | 11 |   |
+ | CANAL_ERROR_GENERIC | 12 | Generic error.  |
+ | CANAL_ERROR_HARDWARE | 13 | A hardware related fault. |
+ | CANAL_ERROR_INIT_FAIL | 14 | Initialization failed. |
+ | CANAL_ERROR_INIT_MISSING | 15 |  |
+ | CANAL_ERROR_INIT_READY | 16 |   |
+ | CANAL_ERROR_NOT_SUPPORTED | 17 | Not supported. |
+ | CANAL_ERROR_OVERRUN | 18 | Overrun. |
+ | CANAL_ERROR_RCV_EMPTY | 19 | Receive buffer empty.  |
+ | CANAL_ERROR_REGISTER | 20 | Register value error. |
+ | CANAL_ERROR_TRM_FULL | 21 |  |
+ | CANAL_ERROR_ERRFRM_STUFF | 22 | Errorframe: stuff error detected. |
+ | CANAL_ERROR_ERRFRM_FORM | 23 | Errorframe: form error detected. |
+ | CANAL_ERROR_ERRFRM_ACK | 24 | Errorframe: acknowledge error.  |
+ | CANAL_ERROR_ERRFRM_BIT1 | 25 | Errorframe: bit 1 error. |
+ | CANAL_ERROR_ERRFRM_BIT0 | 26 | Errorframe: bit 0 error. |
+ | CANAL_ERROR_ERRFRM_CRC | 27 | Errorframe: CRC error. |
+ | CANAL_ERROR_LIBRARY | 28 | Unable to load library. |
+ | CANAL_ERROR_PROCADDRESS | 29 | Unable get library proc address. |
+ | CANAL_ERROR_ONLY_ONE_INSTANCE | 30 | Only one instance allowed. |
+ | CANAL_ERROR_SUB_DRIVER | 31 | Problem with sub driver call. |
+ | CANAL_ERROR_TIMEOUT | 32 | Blocking call timeout. |
+ | CANAL_ERROR_NOT_OPEN | 33 | The device is not open. |
+ | CANAL_ERROR_PARAMETER | 34 | A parameter is invalid. |
+ | CANAL_ERROR_MEMORY | 35 | Memory exhausted. |
+ | CANAL_ERROR_INTERNAL | 36 | Some kind of internal program error. |
+ | CANAL_ERROR_COMMUNICATION | 37 | Some kind of communication error. |
 
 Codes up to  0xffff are reserved, codes from 0x10000  and up are user defined.
 
@@ -571,37 +571,37 @@ Codes up to  0xffff are reserved, codes from 0x10000  and up are user defined.
 
 Each message has some flags set to give information about the events. The flags are defined as follow
 
- | Flag                  | Value      | Description                                                       | 
- | ----                  | -----      | -----------                                                       | 
- | CANAL_IDFLAG_STANDARD | 0x00000000 | Standard message id (11-bit)                                      | 
- | CANAL_IDFLAG_EXTENDED | 0x00000001 | Extended message id (29-bit)                                      | 
- | CANAL_IDFLAG_RTR      | 0x00000002 | RTR-Frame                                                         | 
- | CANAL_IDFLAG_STATUS   | 0x00000004 | This package is an error indication (data holds error code,id=0). | 
- | CANAL_IDFLAG_SEND     | 0x80000000 | Reserved for use by application software to indicate send.        | 
+ | Flag                  | Value      | Description                                                       |
+ | ----                  | -----      | -----------                                                       |
+ | CANAL_IDFLAG_STANDARD | 0x00000000 | Standard message id (11-bit)                                      |
+ | CANAL_IDFLAG_EXTENDED | 0x00000001 | Extended message id (29-bit)                                      |
+ | CANAL_IDFLAG_RTR      | 0x00000002 | RTR-Frame                                                         |
+ | CANAL_IDFLAG_STATUS   | 0x00000004 | This package is an error indication (data holds error code,id=0). |
+ | CANAL_IDFLAG_SEND     | 0x80000000 | Reserved for use by application software to indicate send.        |
 
 **CANAL_IDFLAG_SEND** may seam strange but can be very useful for software to use as a way to distinguish between sent and received frames.
 
-CANAL_IDFLAG_STATUS can be used by CAN controllers to report status data back to a host or an application. At the moment  the following error codes are defined. All status events consist of four data bytes where the first byte tell the status code, the second is the receive error counter, the third the transmit error counter and the fourth byte is reserved and should be set to zero. 
+CANAL_IDFLAG_STATUS can be used by CAN controllers to report status data back to a host or an application. At the moment  the following error codes are defined. All status events consist of four data bytes where the first byte tell the status code, the second is the receive error counter, the third the transmit error counter and the fourth byte is reserved and should be set to zero.
 
- | Flag | Value | Description | 
- | ---- | :-----: | ----------- | 
- | CANAL_STATUSMSG_OK       | 0x00  | Normal condition. | 
- | CANAL_STATUSMSG_OVERRUN  | 0x01  | Overrun occured when sending data to CAN bus. | 
- | CANAL_STATUSMSG_BUSLIGHT | 0x02  | Error counter has reached 96. | 
- | CANAL_STATUSMSG_BUSHEAVY | 0x03  | Error counter has reached 128.  | 
- | CANAL_STATUSMSG_BUSOFF   | 0x04  | Device is in BUSOFF. CANAL_STATUSMSG_OK is sent when returning to operational mode. | 
- | CANAL_STATUSMSG_STUFF    | 0x20  | Stuff Error. | 
- | CANAL_STATUSMSG_FORM     | 0x21  | Form Error. | 
- | CANAL_STATUSMSG_ACK      | 0x23  | Ack Error. | 
- | CANAL_STATUSMSG_BIT0     | 0x24  | Bit1 Error. | 
- | CANAL_STATUSMSG_BIT1     | 0x25  | Bit0 Error. | 
- | CANAL_STATUSMSG_CRC      | 0x26  | CRC Error. | 
+ | Flag | Value | Description |
+ | ---- | :-----: | ----------- |
+ | CANAL_STATUSMSG_OK       | 0x00  | Normal condition. |
+ | CANAL_STATUSMSG_OVERRUN  | 0x01  | Overrun occured when sending data to CAN bus. |
+ | CANAL_STATUSMSG_BUSLIGHT | 0x02  | Error counter has reached 96. |
+ | CANAL_STATUSMSG_BUSHEAVY | 0x03  | Error counter has reached 128.  |
+ | CANAL_STATUSMSG_BUSOFF   | 0x04  | Device is in BUSOFF. CANAL_STATUSMSG_OK is sent when returning to operational mode. |
+ | CANAL_STATUSMSG_STUFF    | 0x20  | Stuff Error. |
+ | CANAL_STATUSMSG_FORM     | 0x21  | Form Error. |
+ | CANAL_STATUSMSG_ACK      | 0x23  | Ack Error. |
+ | CANAL_STATUSMSG_BIT0     | 0x24  | Bit1 Error. |
+ | CANAL_STATUSMSG_BIT1     | 0x25  | Bit0 Error. |
+ | CANAL_STATUSMSG_CRC      | 0x26  | CRC Error. |
 
 # History
 
 * 2018-05-28 - Moved document too Markdown
-*  2015-10-19 - Added some more info to CanalGetDriverInfo 
-*  2008-10-28 - Fixed error in status flags. Clarified error status return. 
+*  2015-10-19 - Added some more info to CanalGetDriverInfo
+*  2008-10-28 - Fixed error in status flags. Clarified error status return.
 *  2008-04-15 - Added Message ID flags description. CANAL_IDFLAG_ERROR changed to CANAL_IDFLAG_STATUS
 *  2008-04-04 - Driver description format final.
 *  2007-12-08 - CanalGetDriverInfo does not need a handle.
@@ -617,8 +617,8 @@ CANAL_IDFLAG_STATUS can be used by CAN controllers to report status data back to
 *  2005-03-17 - CanalBlockingOpen call added.
 *  2004-07-08 – Bit 31 of the canmsg flag defined as direction bit for application software use.
 *  2004-07-01 – Added some clarifications on the CanalSetMask, CanalSetFilter and 	CanalSetBaudrate methods
-*  2004-06-07 – CANALASTATUS had a typo and was called CANALSTATE. Fixed. 
+*  2004-06-07 – CANALASTATUS had a typo and was called CANALSTATE. Fixed.
 *  2004-06-07 – Recovery from version lost in hard disk crash and realest as version 1.00
-*  2003-02-18 – Initial version. 
+*  2003-02-18 – Initial version.
 
 {% include "./bottom_copyright.md" %}
