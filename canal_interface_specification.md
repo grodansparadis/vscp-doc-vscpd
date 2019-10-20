@@ -535,7 +535,7 @@ Number of bus off’s since the channel was opened.
 #  Error codes
 
  | Error | Error code | Description |
- | -----  | :----------: | ----------- |
+ | :-----  | :----------: | :----------- |
  | CANAL_ERROR_SUCCESS | 0 | All is OK. |
  | CANAL_ERROR_BAUDRATE  | 1   | Baudrate error. |
  | CANAL_ERROR_BUS_OFF | 2  | Bus off error. |
