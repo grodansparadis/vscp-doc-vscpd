@@ -425,8 +425,7 @@ CANAL_ERROR_SUCCESS on success or an error code on failure.
 
 ## CANMSG
 
-This is the general message structure
-
+This is the general CANAL message structure
 
 
 ### unsigned long flags
@@ -443,7 +442,7 @@ Flags for the package.
 
 ### unsigned long obid
 
-Used by the driver or higher layer protocols.
+Driver specific. Used by the driver or higher layer protocols.
 
 ### unsigned long id
 
@@ -453,7 +452,7 @@ The 11-bit or 29 bit message id.
 
 Eight bytes of data.
 
-### unsigned char count
+### unsigned char sizeData
 
 Number of data bytes 0-8
 
@@ -463,8 +462,14 @@ A time stamp on the message from the driver or the interface expressed in micros
 
 ## CANALSTATUS
 
-
-
+```c
+typedef struct structCanalStatus {
+    unsigned long channel_status;           /* Current state for channel */
+    unsigned long lasterrorcode;            /* Last error code */
+    unsigned long lasterrorsubcode;         /* Last error sub code */
+    char lasterrorstr[80];                  /* Last error string */
+} canalStatus;
+```
 
 ### unsigned long channel_status
 
@@ -483,9 +488,16 @@ Current state for CAN channel
     CANAL_STATUS_RECEIVE_FIFO_FULL    0x00400000
     CANAL_STATUS_TRANSMIT_FIFO_FULL   0x00200000
 
-
-
 Bits from 16-31 are reserved, bits from 0-15 are user defined and can be defined by the driver maker.
+
+### lasterrorcode
+Code for lats error. See error coded.
+
+### lasterrorsubcode
+Device specific sub error code describing 'lasterror' in more detail.
+
+### lasterrorstr
+Zero terminated clear text string in UTF8 describing 'lasterror'.
 
 ## PCANALSTATISTICS
 
