@@ -12,4 +12,4 @@ Remote user settings are configured [here](./configuring_the_vscp_daemon.md#remo
 
 Put together this makes the VSCP Daemon one of the safest systems to use for remote maintenance of IoT/m2m systems.
 
-{% include "./bottom_copyright.md" %}
+[filename](./bottom_copyright.md ':include')

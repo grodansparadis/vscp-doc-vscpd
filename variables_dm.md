@@ -61,4 +61,4 @@ Writing some variables execute commands such as adding or deleting something. Ex
 | **vscp.dm.n.error**                      | string   | r--r--r--  | Read the last error string for a decision matrix row.                                                                                                                                                                                                                   |
 | **vscp.dm.n.error-string**               | string   | r--r--r--  | Read the last error string for a decision matrix row.                                                                                                                                                                                                                   |
 
-{% include "./bottom_copyright.md" %}
+[filename](./bottom_copyright.md ':include')

@@ -2,7 +2,7 @@
 
 **Available for:** Windows
 
-The Bluetooth proximity driver can be used to detect Bluetooth devices. It can send out the ID of the device using [CLASS1.INFORMATION=20, Type=37](https://grodansparadis.gitbooks.io/the-vscp-specification/class1.information.html#type37) when it enters/leave the detection zone and also a a detect event [CLASS1.INFOMATION=20, Type=49](https://grodansparadis.gitbooks.io/the-vscp-specification/class1.information.html#type49) if configured to do so.
+The Bluetooth proximity driver can be used to detect Bluetooth devices. It can send out the ID of the device using [CLASS1.INFORMATION=20, Type=37](http://docs.vscp.org/spec/latest/#/./class2.level1.information1?id=type37-0x25-token-activity) when it enters/leave the detection zone and also a a detect event [CLASS1.INFOMATION=20, Type=49](http://docs.vscp.org/spec/latest/#/./class2.level1.information1?id=type49-0x31-detect) if configured to do so.
 
 A call of method **VSCPBlockingSend** will always return **CANAL_ERROR_NOT_SUPPORTED** as this driver just receive events.
 
@@ -118,4 +118,4 @@ Bluetooth device is within range. The id is the Bluetooth id of the device.
 ```
 
 
-{% include "./bottom_copyright.md" %}
+[filename](./bottom_copyright.md ':include')

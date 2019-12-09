@@ -157,7 +157,7 @@ Send event with UTC time set
 
     send 0,20,3,,2001-11-02T18:00:01,,-,0,1,35<CR><LF>
 
-Both send the [CLASS1.INFORMATION TYPE=3 ON event](https://grodansparadis.gitbooks.io/the-vscp-specification/class1.information.html), for zone=1, sub-zone=35
+Both send the [CLASS1.INFORMATION TYPE=3 ON event](http://docs.vscp.org/spec/latest/#/./class2.level1.information1), for zone=1, sub-zone=35
 
 **Send event to specific interface**
 It is possible to send Level I events to a specific interface. To do this use the Level II mirror Level I events ( Class=512-1023 VSCP Level II Level I events - CLASS2.LEVELI). This is events with class equal to 512 - 1023 which mirrors the Level I events but have the destination GUID in data bytes 0-15. Thees data-bytes is set to the interface (14 upper bits) and the node-ID for the node one wants to communicate with is in GUID[0]. This event will be sent to the correct interface.
@@ -379,7 +379,7 @@ The capabilities are described in a 64-bit array (8 bytes). The capabilities is 
 
 where each pair of hex digits is a byte in the 64-bit capabilities structure. MSB is the first (left most) byte.
 
-The VSCP server 64-bit capability code is described in the specification document for [CLASS2.PROTOCOL, Type=20, High end server/service capabilities](https://grodansparadis.gitbooks.io/the-vscp-specification/class2.protocol.html#type20). It gives information about the capabilities of a VSCP server.
+The VSCP server 64-bit capability code is described in the specification document for [CLASS2.PROTOCOL, Type=20, High end server/service capabilities](http://docs.vscp.org/spec/latest/#/./class2.protocol?id=type20-0x14-high-end-serverservice-capabilities). It gives information about the capabilities of a VSCP server.
 
 **note**
 
@@ -402,7 +402,7 @@ Positive/negative response is returned.
 **Arguments:**
 
 
-*  **type** is the [VSCP type value](https://grodansparadis.gitbooks.io/the-vscp-specification/class1.measurement.html) specifying which type of measurement this is. Mandatory.
+*  **type** is the [VSCP type value](http://docs.vscp.org/spec/latest/#/./class1.measurement) specifying which type of measurement this is. Mandatory.
 
 *  **unit** is the measurement unit for this type of measurement. An be in the range 0-3 for a Level I event and 0-255 for a Level II event. Mandatory.
 
@@ -1246,4 +1246,4 @@ Clear records in table, possibly to-from a date time range.
 
 
 
-{% include "./bottom_copyright.md" %}
+[filename](./bottom_copyright.md ':include')

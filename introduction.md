@@ -31,4 +31,4 @@ And there is more as we said above...
 
 
 
-{% include "./bottom_copyright.md" %}
+[filename](./bottom_copyright.md ':include')

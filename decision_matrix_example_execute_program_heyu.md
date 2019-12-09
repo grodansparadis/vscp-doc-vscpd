@@ -75,4 +75,4 @@ allow the action to occur from October first to April first.
 ```
 
 
-{% include "./bottom_copyright.md" %}
+[filename](./bottom_copyright.md ':include')

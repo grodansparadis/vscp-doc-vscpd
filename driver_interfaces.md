@@ -6,4 +6,4 @@ The VSCP daemon recognize two types of drivers. **Level I drivers** that confirm
 * [Level II Drivers](./level_ii_drivers.md)
 
 
-{% include "./bottom_copyright.md" %}
+[filename](./bottom_copyright.md ':include')

@@ -567,4 +567,4 @@ You are not limited to handle variables in the [decision matrix](./decision_matr
 Variables is a powerful tool that makes your work easier.
 
 
-{% include "./bottom_copyright.md" %}
+[filename](./bottom_copyright.md ':include')

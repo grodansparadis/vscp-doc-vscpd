@@ -19,5 +19,5 @@ VSCP & Friends has been tested and works very well on Beaglebone Black. The setu
 *  Touch screen - http://www.carcomputer.co.uk/index.php?/monitors/hdmi-monitors/lilliput-fa1011-np/c/t-10.1-hdmi-touch-screen-monitor
 *  
 
-{% include "./bottom_copyright.md" %}
+[filename](./bottom_copyright.md ':include')
  

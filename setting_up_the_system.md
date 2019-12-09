@@ -4,4 +4,4 @@ The VSCP Daemon is a complex software which can be configured to do many things 
 
 
 
-{% include "./bottom_copyright.md" %}
+[filename](./bottom_copyright.md ':include')

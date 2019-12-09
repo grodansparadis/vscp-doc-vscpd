@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `temperature` (
 
 Simple enough. It has a unique **id** for each record. The **GUID** to identify the device that sens the measurement. **SensorIndex** to identify the sensor on that device. And then **date** to time stamp the measurement that is named **value**.
 
-Even if this is a temperature measurement example it works for all [measurement types](https://grodansparadis.gitbooks.io/the-vscp-specification/class1.measurement.html) of course. As all SI units is defined everything can be logged with a bunch of standard events in a well defined way and everyone will understand what we talk about. 
+Even if this is a temperature measurement example it works for all [measurement types](http://docs.vscp.org/spec/latest/#/./class1.measurement) of course. As all SI units is defined everything can be logged with a bunch of standard events in a well defined way and everyone will understand what we talk about. 
 
 You may notice that we don't use a **unit** field in this database. This would indicate that we store values using the default unit which is **Kelvin** for a temperature measurement but we are a bit sloppy in this sample as we only is interested in Celsius readings and therefore just store values in degrees Celsius. In a general case that would be a bad idea but this is just an example and as all of them they need to leave som room for improvements.
 
@@ -110,7 +110,7 @@ Your own user information goes in here as
 
 ## Step 3
 
-Oh well there is no step 3. That is all that is needed.   What you need now is events that trigger the DM-row. In this case temperature events [CLASS1.MEASUREMENT, Type=6,Temperature](https://grodansparadis.gitbooks.io/the-vscp-specification/class1.measurement.html#type6) from a unit with nickname 1 on any interface. Notice the GUID mask which only says the LSB of the GUID should be checked. In a live situation you probably should check the full GUID of course. 
+Oh well there is no step 3. That is all that is needed.   What you need now is events that trigger the DM-row. In this case temperature events [CLASS1.MEASUREMENT, Type=6,Temperature](http://docs.vscp.org/spec/latest/#/./class1.measurement#type6) from a unit with nickname 1 on any interface. Notice the GUID mask which only says the LSB of the GUID should be checked. In a live situation you probably should check the full GUID of course. 
 
 And the end result is data filled into your database.
 
@@ -118,4 +118,4 @@ And the end result is data filled into your database.
 
 
 
-{% include "./bottom_copyright.md" %}
+[filename](./bottom_copyright.md ':include')

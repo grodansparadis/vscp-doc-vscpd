@@ -111,5 +111,5 @@ Fix mtab
 
 
 
-{% include "./bottom_copyright.md" %}
+[filename](./bottom_copyright.md ':include')
  

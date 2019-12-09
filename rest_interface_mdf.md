@@ -147,4 +147,4 @@ typeof handler === 'function' && handler({"vscp":
 });
 ```
 
-{% include "./bottom_copyright.md" %}
+[filename](./bottom_copyright.md ':include')

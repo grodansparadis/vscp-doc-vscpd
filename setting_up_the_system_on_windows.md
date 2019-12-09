@@ -121,4 +121,4 @@ This can also be done in the service applet (//Control Panel/System and Security
 
 
 
-{% include "./bottom_copyright.md" %}
+[filename](./bottom_copyright.md ':include')

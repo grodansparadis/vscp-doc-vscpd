@@ -44,4 +44,4 @@ The log file have the following format and consist of the following parts
    * Databytes 
 
 
-{% include "./bottom_copyright.md" %}
+[filename](./bottom_copyright.md ':include')

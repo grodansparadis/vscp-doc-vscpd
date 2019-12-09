@@ -110,4 +110,4 @@ uses the USB2CAN compact USB adapter with a bus-speed off 500kbps and the first 
 
     15;0;0;0;125
 
-{% include "./bottom_copyright.md" %}
+[filename](./bottom_copyright.md ':include')

@@ -81,5 +81,5 @@ To list a specific log type between two datestimes use
 Well you got the drill.
 
     
-{% include "./bottom_copyright.md" %}
+[filename](./bottom_copyright.md ':include')
 

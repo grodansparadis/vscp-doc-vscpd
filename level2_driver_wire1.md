@@ -6,7 +6,7 @@
 
 The wire1 driver is built to take advantage of the 1-wire support that is available in the Linux kernel from version 2.6.29.
 
-This driver reports temperature from any number of DS18B20 temperature sensors connected to a Linux system. The reported event is [CLASS1.MEASUREMENT, Type=6 temperature](https://grodansparadis.gitbooks.io/the-vscp-specification/class1.measurement.html#type6).
+This driver reports temperature from any number of DS18B20 temperature sensors connected to a Linux system. The reported event is [CLASS1.MEASUREMENT, Type=6 temperature](http://docs.vscp.org/spec/latest/#/./class1.measurement#type6).
 
 **Driver Linux**: vscpl2_wire1.so
 
@@ -174,4 +174,4 @@ To be complete we include the DS18B20 pin out also
 
 ![](https://www.modmypi.com/image/data/tutorials/DS18B20/DS18B20+.png)
 
-{% include "./bottom_copyright.md" %}
+[filename](./bottom_copyright.md ':include')

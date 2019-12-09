@@ -29,7 +29,7 @@ http://host:port/vscp/rest?
 
 *  **guid** is the GUID for the event. If not given it defaults to all zeros.
 
-*  **type** is the [VSCP type value](https://grodansparadis.gitbooks.io/the-vscp-specification/class1.measurement.html) specifying which type of measurement this is. Mandatory.
+*  **type** is the [VSCP type value](http://docs.vscp.org/spec/latest/#/./class1.measurement) specifying which type of measurement this is. Mandatory.
 
 *  **eventformat** is optional and can be *string* or *float* to generate a string based or a float based event. If not give the default value, float, will be used.
 
@@ -125,4 +125,4 @@ There is a a [demo app](https://github.com/grodansparadis/vscp-ux/tree/master/re
 
 ```
 
-{% include "./bottom_copyright.md" %}
+[filename](./bottom_copyright.md ':include')

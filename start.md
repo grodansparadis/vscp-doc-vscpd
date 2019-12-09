@@ -1,12 +1,10 @@
 ![Very Simple Control Protocol](./images/logo_100.png "Very Simple Control Protocol") 
 
-# the VSCP Daemon
+# The VSCP Daemon
 
-**Reversion**:14.0 {{gitbook.time}} [history](./history.md)
-
-Current software release described in [version 13](https://grodansparadis.gitbooks.io/the-vscp-daemon/v/v13.4/)
-
----
+**Describe software version**:${/var/document-version}      
+**Doc update:** ${/var/creation-time}       
+[history](./history.md)
 
 Author 2000-2019 Åke Hedman, [Grodans Paradis AB](https://www.grodansparadis.com), [akhe@grodansparadis.com](akhe@grodansparadis.com)  
 
@@ -26,6 +24,6 @@ The daemon uses simple to construct, yet very capable, drivers to talk to the re
 
 
 
-{% include "./bottom_copyright.md" %}
+[filename](./bottom_copyright.md ':include')
 
 

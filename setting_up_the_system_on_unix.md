@@ -387,4 +387,4 @@ Build statically
 
 If your system does not have C++11 (Ubuntu Trusty) see this https://askubuntu.com/questions/428198/getting-installing-gcc-g-4-9-on-ubuntu  
 
-{% include "./bottom_copyright.md" %}
+[filename](./bottom_copyright.md ':include')

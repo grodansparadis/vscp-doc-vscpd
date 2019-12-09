@@ -15,4 +15,4 @@ Default port for the webserver is
 but other ports can be configured in the [configuration file](./configuring_the_vscp_daemon.md#the_general_section).  
 
 
-{% include "./bottom_copyright.md" %}
+[filename](./bottom_copyright.md ':include')

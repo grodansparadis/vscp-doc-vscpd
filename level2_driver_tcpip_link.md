@@ -72,4 +72,4 @@ The configuration  is read in the following order
 
 
 
-{% include "./bottom_copyright.md" %}
+[filename](./bottom_copyright.md ':include')

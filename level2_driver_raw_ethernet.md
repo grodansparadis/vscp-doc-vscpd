@@ -2,7 +2,7 @@
 
  Available for: **Linux**, **Windows**
  
-This driver gives support for nodes that communicate using the [VSCP raw Ethernet format](https://grodansparadis.gitbooks.io/the-vscp-specification/vscp_over_ethernet_raw_ethernet.html) and it makes it possible to build nodes that use the vscp protocol and behave like high level nodes without the extra burden of a TCP/IP stack. 
+This driver gives support for nodes that communicate using the [VSCP raw Ethernet format](http://docs.vscp.org/spec/latest/#/./vscp_over_ethernet_raw_ethernet) and it makes it possible to build nodes that use the vscp protocol and behave like high level nodes without the extra burden of a TCP/IP stack. 
 
 To use this driver on Windows the [winpcap](https://www.winpcap.org) package must be installed.  To use it on Linux the daemon must be run as root and you need the **libpaps-dev** package installed.
 
@@ -65,10 +65,10 @@ and on a Linux machine
 
 #####  Frame format
 
-The full description of the VSCP raw ethernet format is [here](https://grodansparadis.gitbooks.io/the-vscp-specification/vscp_over_ethernet_raw_ethernet.html).
+The full description of the VSCP raw ethernet format is [here](http://docs.vscp.org/spec/latest/#/./vscp_over_ethernet_raw_ethernet).
 
 ##### Client support
 
 For Arduino devices you can find a library [here](http://www.airspayce.com/mikem/arduino/EtherRaw/index.html). There is some sample code [here](https://forum.arduino.cc/index.php?topic=74547.0).
 
-{% include "./bottom_copyright.md" %}
+[filename](./bottom_copyright.md ':include')

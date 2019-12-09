@@ -147,4 +147,4 @@ typeof handler === 'function' && handler({"success":true,"code":1,"message":"suc
 ```
 
 
-{% include "./bottom_copyright.md" %}
+[filename](./bottom_copyright.md ':include')

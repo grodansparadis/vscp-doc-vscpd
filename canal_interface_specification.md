@@ -4,10 +4,10 @@
 
 ----
 
-[The CANAL specification has been moved here.](https://grodansparadis.gitbooks.io/canal-can-abstraction-layer/content/)
+[The CANAL specification has been moved here.](http://docs.vscp.org/canal/latest)
 
 ----
 
 
 
-{% include "./bottom_copyright.md" %}
+[filename](./bottom_copyright.md ':include')

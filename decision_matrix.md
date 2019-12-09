@@ -101,7 +101,7 @@ This is the 32-bit DM control word.
 
 **Index** is in the first data byte for events that support it. If  specified a check will be done to check if the value set here is equal to the first byte of the incoming events data. 
 
-If **measurementindex** attribute is set to *true* the measurement index will be checked instead of the event index. Measurement events (for example [CLASS1.MEASUREMENT events](https://grodansparadis.gitbooks.io/the-vscp-specification/class1.measurement.html)) usually have an index that identify a specific sensor (0-7 or 0-255). A check will be done to check if the measurement index of the incoming event have a value equal to the one set here. 
+If **measurementindex** attribute is set to *true* the measurement index will be checked instead of the event index. Measurement events (for example [CLASS1.MEASUREMENT events](http://docs.vscp.org/spec/latest/#/./class1.measurement)) usually have an index that identify a specific sensor (0-7 or 0-255). A check will be done to check if the measurement index of the incoming event have a value equal to the one set here. 
 
 ### zone
 
@@ -159,7 +159,7 @@ You can omit this tag or set it to '*' which means always.
 
 *Added in version 1.12.11.0*
 
-This makes it possible to compare a measurement value for measurement events (for example [CLASS1.MEASUREMENT events](https://grodansparadis.gitbooks.io/the-vscp-specification/class1.measurement.html)) with a pre-set value defined here. 
+This makes it possible to compare a measurement value for measurement events (for example [CLASS1.MEASUREMENT events](http://docs.vscp.org/spec/latest/#/./class1.measurement)) with a pre-set value defined here. 
 
 Format is
 
@@ -595,7 +595,7 @@ but should remember that this method is deprecated in RFC-1396
 
 ##### Example 1
 
-Use a HTTP POST to update a [Thingspeak](https://thingspeak.com) channel every minute. We use [CLASS2.VSCPD Type=6, MINUTE](https://grodansparadis.gitbooks.io/the-vscp-specification/class2.vscpd.html#type6) to update field1 which get the current minute value written using the escape **%minute**. The event is executed all time, every day, from beginning of time to the end of time.  
+Use a HTTP POST to update a [Thingspeak](https://thingspeak.com) channel every minute. We use [CLASS2.VSCPD Type=6, MINUTE](http://docs.vscp.org/spec/latest/#/./class2.vscpd?id=type6-0x06-minute) to update field1 which get the current minute value written using the escape **%minute**. The event is executed all time, every day, from beginning of time to the end of time.  
 
 Replacing the current event with a measurement event and using %measurement.string instead of %minute for field1 is an easy way to get a dynamic diagram from measurement data.
 
@@ -1523,7 +1523,7 @@ Send event when another event is received.
 
 **Example**
 
-This example send the [CLASS1.INFORMATION, Type=4 ON event](https://grodansparadis.gitbooks.io/the-vscp-specification/class1.information.html#type3) every ten seconds. The optional variable beventsent variable is set to true when the event has been sent.
+This example send the [CLASS1.INFORMATION, Type=4 ON event](http://docs.vscp.org/spec/latest/#/./class1.information?id=type3-0x03-on) every ten seconds. The optional variable beventsent variable is set to true when the event has been sent.
 
 ```xml
 <row enable=true" groupid="Send event">
@@ -1739,7 +1739,7 @@ You don't have to give a variable nor a reload flag when you start a timer. If n
 
     1;10
 
-The timer with id 1 will be  created and count down from 10 seconds. The [timer started event](https://grodansparadis.gitbooks.io/the-vscp-specification/class2.vscpd.html#type25) is sent when it is started and the [timer elapse event](https://grodansparadis.gitbooks.io/the-vscp-specification/class2.vscpd.html#type29) is sent when the time elapsed.
+The timer with id 1 will be  created and count down from 10 seconds. The [timer started event](http://docs.vscp.org/spec/latest/#/./class2.vscpd?id=type25-0x19-timer-started) is sent when it is started and the [timer elapse event](http://docs.vscp.org/spec/latest/#/./class2.vscpd?id=type29-0x1d-timer-elapsed) is sent when the time elapsed.
 
 ##### Parameter example
 
@@ -1907,7 +1907,7 @@ The script can use internal [VSCP functions](./javascript_callbacks.md) to read 
 
 The JavaScript engine used is [Duktape](http://duktape.org/) ([ECMAScript 5.1](https://www.ecma-international.org/ecma-262/6.0/)), with some semantics updated from ES2015+ . 
 
-The JavaScript is executed on it's own thread. This means that it is possible to construct a script that is started when the VSCP daemon is started and will run until it is killed. All that is need to do this is to trigger on the internal [CLASS2.VSCPD, Type=23 Starting up event](https://grodansparadis.gitbooks.io/the-vscp-specification/class2.vscpd.html#type23).
+The JavaScript is executed on it's own thread. This means that it is possible to construct a script that is started when the VSCP daemon is started and will run until it is killed. All that is need to do this is to trigger on the internal [CLASS2.VSCPD, Type=23 Starting up event](http://docs.vscp.org/spec/latest/#/./class2.vscpd?id=type23-0x17-starting-up).
 
 ##### Parameters
 
@@ -1963,11 +1963,11 @@ BASE64:dmFyIGRkID0gdnNjcF9yZWFkVmFyaWFibGUodnNjcF9jbGllbnRJdGVtLCJ0ZXN0MSIpOw0KI
 
     CLASS2.VSCPD (65535)
 
-[CLASS2.VSCPD](https://grodansparadis.gitbooks.io/the-vscp-specification/class2.vscpd.html#type29) is reserved for internal events used by the decision matrix mechanism of the VSCP daemon. Events of this type is never be visible on a physical bus. 
+[CLASS2.VSCPD](http://docs.vscp.org/spec/latest/#/./class2.vscpd?id=type29-0x1d-timer-elapsed) is reserved for internal events used by the decision matrix mechanism of the VSCP daemon. Events of this type is never be visible on a physical bus. 
 
-Events of this type can be used for timekeeping and many more things. As an example the [CLASS2.VSCP, Type=7, Hour](https://grodansparadis.gitbooks.io/the-vscp-specification/class2.vscpd.html#type7) can be used to perform things on a specific hour of the day. 
+Events of this type can be used for timekeeping and many more things. As an example the [CLASS2.VSCP, Type=7, Hour](http://docs.vscp.org/spec/latest/#/./class2.vscpd?id=type7-0x07-hour) can be used to perform things on a specific hour of the day. 
 
 
-{% include "./bottom_copyright.md" %}
+[filename](./bottom_copyright.md ':include')
 
 

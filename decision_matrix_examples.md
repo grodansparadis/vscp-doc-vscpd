@@ -12,4 +12,4 @@
 *  [Logging data to a remote MySQL database](./decision_matrix_example_database_mysql.md)
 
 
-{% include "./bottom_copyright.md" %}
+[filename](./bottom_copyright.md ':include')

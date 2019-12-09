@@ -39,4 +39,4 @@ For Python developers [python-can](http://python-can.readthedocs.io/en/latest/in
 
 *  [Zanthic CAN Driver](http://www.vscp.org/docs/vscpd/doku.php?id=level1_driver_zanthic)
  
-{% include "./bottom_copyright.md" %}
+[filename](./bottom_copyright.md ':include')

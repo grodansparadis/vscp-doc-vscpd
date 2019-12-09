@@ -412,7 +412,7 @@ Positive/negative response is returned.
 **Arguments:**
 
 
-*  **type** is the [VSCP type value](https://grodansparadis.gitbooks.io/the-vscp-specification/class1.measurement.html) specifying which type of measurement this is. Mandatory.
+*  **type** is the [VSCP type value](http://docs.vscp.org/spec/latest/#/./class1.measurement) specifying which type of measurement this is. Mandatory.
 
 *  **unit** is the measurement unit for this type of measurement. An be in the range 0-3 for a Level I event and 0-255 for a Level II event. Mandatory.
 
@@ -474,4 +474,4 @@ This table list the errors that currently is defined
  | 6          | Authentication error         | 
 
 
-{% include "./bottom_copyright.md" %}
+[filename](./bottom_copyright.md ':include')

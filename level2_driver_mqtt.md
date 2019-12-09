@@ -59,7 +59,7 @@ For a publishing channel it may be wise to set a filter in the driver so only th
 
 The format for the simplicity variable varies for the VSCP class one want to use
 
-**[CLASS1.MEASUREMENT](https://grodansparadis.gitbooks.io/the-vscp-specification/class1.measurement.html)**
+**[CLASS1.MEASUREMENT](http://docs.vscp.org/spec/latest/#/./class1.measurement)**
 
 Only **string** and **float** coding is allowed. For string the number can be a maximum of seven characters.
 
@@ -67,15 +67,15 @@ The variable format is
 
     10, vscp-type,float|string, sensoridx(0-7), unit(0-7)
 
-([VSCP types are here](https://grodansparadis.gitbooks.io/the-vscp-specification/class1.measurement.html)) so if you code a simplify variable as
+([VSCP types are here](http://docs.vscp.org/spec/latest/#/./class1.measurement)) so if you code a simplify variable as
 
     10,6,float,3,1
 
-for a subscribe setup a number like "23.78" send over MQTT will be converted to a valid VSCP event [CLASS1.MEASUREMENT, Type=6, temperature](https://grodansparadis.gitbooks.io/the-vscp-specification/class1.measurement.html#type6) and with unit set to degrees Celsius and sensor index set to 2 and where the data is a single precision floating point number (32-bit). The setup is of course the same for a publish setup. __The GUID for the interface will be used__.
+for a subscribe setup a number like "23.78" send over MQTT will be converted to a valid VSCP event [CLASS1.MEASUREMENT, Type=6, temperature](http://docs.vscp.org/spec/latest/#/./class1.measurement#type6) and with unit set to degrees Celsius and sensor index set to 2 and where the data is a single precision floating point number (32-bit). The setup is of course the same for a publish setup. __The GUID for the interface will be used__.
 
 If you select a float or a string is just a matter of preference in most cases but the floating point value is often the best choice.
 
-**[CLASS2.MEASUREMENT_FLOAT](https://grodansparadis.gitbooks.io/the-vscp-specification/class2.measurement_float.html)**
+**[CLASS2.MEASUREMENT_FLOAT](http://docs.vscp.org/spec/latest/#/./class2.measurement_float)**
 
 If you need a floating point value with more precision this is the choice. It uses a double (64-bit) double precision floating point number.
 
@@ -83,9 +83,9 @@ The variable format is
 
     1060, vscp-type, sensoridx(0-255), unit(0-255), zone(0-255), subzone(0-255)
 
-([VSCP types are here](https://grodansparadis.gitbooks.io/the-vscp-specification/class1.measurement.html))
+([VSCP types are here](http://docs.vscp.org/spec/latest/#/./class1.measurement))
 
-**[CLASS2.MEASUREMENT_STR](https://grodansparadis.gitbooks.io/the-vscp-specification/class2.measurement_str.html)**
+**[CLASS2.MEASUREMENT_STR](http://docs.vscp.org/spec/latest/#/./class2.measurement_str)**
 
 This measurement format allow for a decimal measurement ("." is decimal separator) which allow for a maximum of 483 digits including a possible decimal point. So if you need a lot of numbers this is the format for you.
 
@@ -93,7 +93,7 @@ The variable format is
 
     1040, vscp-type, sensoridx(0-255), unit(0-255), zone(0-255), subzone(0-255)
 
-([VSCP types are here](https://grodansparadis.gitbooks.io/the-vscp-specification/class1.measurement.html))
+([VSCP types are here](http://docs.vscp.org/spec/latest/#/./class1.measurement))
 
 ## vscpd.conf example
 
@@ -256,7 +256,7 @@ or
 
     $ mosquitto_pub -d -t vscp -m "0,20,3,0,0,-,0,1,35"
 
-both of these will publish the VSCP event [CLASS1.INFORMATION TYPE=3 ON](https://grodansparadis.gitbooks.io/the-vscp-specification/class1.information.html#type3) event, for zone=1, sub-zone=35 typically used to tell that something has been turned on in zone=1, subzone=35. In the first case a specific GUID is used (0:1:2:3:4:5:6:7:8:9:10:11:12:13:14:15) and in the second the GUID of the interface has been used. You can use the interface GUID also by specifying the GUID to all nills (00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00) as always.
+both of these will publish the VSCP event [CLASS1.INFORMATION TYPE=3 ON](http://docs.vscp.org/spec/latest/#/./class1.information?id=type3-0x03-on) event, for zone=1, sub-zone=35 typically used to tell that something has been turned on in zone=1, subzone=35. In the first case a specific GUID is used (0:1:2:3:4:5:6:7:8:9:10:11:12:13:14:15) and in the second the GUID of the interface has been used. You can use the interface GUID also by specifying the GUID to all nills (00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00) as always.
 
 Use VSCP Works to examine published events received by the MQTT driver in a user friendly way or telnet to the TCP/IP interface of the daemon
 
@@ -394,4 +394,4 @@ The lowest three bits are all zero here but could have been an index (0-7) to a 
 
 
 
-{% include "./bottom_copyright.md" %}
+[filename](./bottom_copyright.md ':include')

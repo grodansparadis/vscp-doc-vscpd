@@ -29,4 +29,4 @@ To make a Level II driver just create a dynamically linked library that export t
    * [Simulation driver](./level2_driver_simulation.md)
 
 
-{% include "./bottom_copyright.md" %}
+[filename](./bottom_copyright.md ':include')

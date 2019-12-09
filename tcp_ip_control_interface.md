@@ -43,7 +43,7 @@ The first two bytes is the bit-filed that tells the Code for server capabilities
 In clear text, this server has a VSCP TCP/IP interface available at the standard port.
 Other scenarios could be possible of course such as several servers responding and each of the servers supporting different capabilities.
 
-The High end server probe and High end server response is described here [Class=0 (0x00) VSCP Protocol Functionality - CLASS1.PROTOCOL](https://grodansparadis.gitbooks.io/the-vscp-specification/class1.protocol.html#type27)
+The High end server probe and High end server response is described here [Class=0 (0x00) VSCP Protocol Functionality - CLASS1.PROTOCOL](http://docs.vscp.org/spec/latest/#/./class1.protocol?id=type27-0x1b-high-end-serverservice-probe)
 
 A node can react in its own manner on the response. It can connect to the server itself or wait for the server to connect to the node.
 
@@ -73,4 +73,4 @@ This is the access level this user have. This is a 32-bit value where the lower 
 Level II drivers is started through the normal driver interface, but after the start it also do some of its communication through the TCP/IP interface. It can also use the variables defined in the system for its own configuration and state. A driver of this type needs a username/password pair and it could be defined for the driver in the configuration but an internal schema create these credentials automatically if they are not manually configured. The Host-list for the user drivers to be used, should always be the Localhost to increase security.
 
 
-{% include "./bottom_copyright.md" %}
+[filename](./bottom_copyright.md ':include')

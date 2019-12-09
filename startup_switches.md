@@ -12,4 +12,4 @@
  | -w     | Hide the console window on window. Can be useful if running the app. in a “service way”. |
  | -k     | 256-bit hexadecimal string used for encryption/decryption  |
 
-{% include "./bottom_copyright.md" %}
+[filename](./bottom_copyright.md ':include')

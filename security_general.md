@@ -50,5 +50,5 @@ Password is the MD5 over *username:authdomain:password*
 
 
 
-{% include "./bottom_copyright.md" %}
+[filename](./bottom_copyright.md ':include')
 

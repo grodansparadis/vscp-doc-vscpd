@@ -100,4 +100,4 @@ The driver understands four events
 Replies from the module are not really replies from the controlled nodes themselves as they don't issue a confirm. VSCP devices should ALWAYS reply back there state after a request to change it so here the driver take this responsibility. 
 
 
-{% include "./bottom_copyright.md" %}
+[filename](./bottom_copyright.md ':include')

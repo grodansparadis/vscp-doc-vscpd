@@ -40,4 +40,4 @@ The format for this file is XML and is defined as follows:
 
 [See source](https://github.com/grodansparadis/vscp_software/tree/master/src/vscp/drivers/level1/lirc)
 
-{% include "./bottom_copyright.md" %}
+[filename](./bottom_copyright.md ':include')

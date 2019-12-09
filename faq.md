@@ -12,4 +12,4 @@ Use
 > sudo update-rc.d vscpd remove
 
 
-{% include "./bottom_copyright.md" %}
+[filename](./bottom_copyright.md ':include')

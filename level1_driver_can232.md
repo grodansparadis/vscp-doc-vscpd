@@ -83,4 +83,4 @@ Uses COM5 at 115200 with filters/masks open and with 1Mbps CAN bit rate.
 Uses COM1 at 57600 with filters/masks open and with bit-rate set to 50Kbps using btr0/btr1
 
 
-{% include "./bottom_copyright.md" %}
+[filename](./bottom_copyright.md ':include')

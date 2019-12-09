@@ -717,7 +717,7 @@ Error message on failure.
 
 ### Example 1
 
-send [CLASS1.MEASUREMENT, TYpe=6,Temperature](https://grodansparadis.gitbooks.io/the-vscp-specification/class1.measurement.html#type6) event. The temperature 20.4C is sent (unit=1 which is centigrades).
+send [CLASS1.MEASUREMENT, TYpe=6,Temperature](http://docs.vscp.org/spec/latest/#/./class1.measurement#type6) event. The temperature 20.4C is sent (unit=1 which is centigrades).
 
 Note that no values are given for obid,timestamp,datetime and GUID. This will set them to default values. obid is set to the interface id, timestamp to a current timestamp, datetime to the UTC date + time, GUID to the GUID of the interface.
 
@@ -733,7 +733,7 @@ vscp.log("Event successfully sent from Lua script.")
 
 ### Example 2
 
-send [CLASS1.MEASUREMENT, TYpe=6,Temperature](https://grodansparadis.gitbooks.io/the-vscp-specification/class1.measurement.html#type6) event from XML string. The temperature 20.4C is sent (unit=1 which is centigrades).
+send [CLASS1.MEASUREMENT, TYpe=6,Temperature](http://docs.vscp.org/spec/latest/#/./class1.measurement#type6) event from XML string. The temperature 20.4C is sent (unit=1 which is centigrades).
 
 ```lua
 local strevent 
@@ -755,7 +755,7 @@ vscp.log("Event successfully sent from Lua script.")
 
 ###  Example 3
 
-send [CLASS1.MEASUREMENT, TYpe=6,Temperature](https://grodansparadis.gitbooks.io/the-vscp-specification/class1.measurement.html#type6) event from JSON string. The temperature 20.4C is sent (unit=1 which is centigrades).
+send [CLASS1.MEASUREMENT, TYpe=6,Temperature](http://docs.vscp.org/spec/latest/#/./class1.measurement#type6) event from JSON string. The temperature 20.4C is sent (unit=1 which is centigrades).
 
 ```lua
 
@@ -936,7 +936,7 @@ Return an error on failure.
 
 ### Example 1
 
-Using format=0 (string) set filer so that only [CLASS1.MEASUREMENT](https://grodansparadis.gitbooks.io/the-vscp-specification/class1.measurement.html) events is received.
+Using format=0 (string) set filer so that only [CLASS1.MEASUREMENT](http://docs.vscp.org/spec/latest/#/./class1.measurement) events is received.
 
 ```javascript
 local filter
@@ -948,7 +948,7 @@ vscp.log("Done!\n")
 
 ### Example 2
 
-Using format=2 (XML) set filer so that only [CLASS1.MEASUREMENT](https://grodansparadis.gitbooks.io/the-vscp-specification/class1.measurement.html) events is received.
+Using format=2 (XML) set filer so that only [CLASS1.MEASUREMENT](http://docs.vscp.org/spec/latest/#/./class1.measurement) events is received.
 
 ```lua
 local filter
@@ -967,7 +967,7 @@ vscp.log("Done!\n")
 
 ### Example 3
 
-Using format=2 (JSON) set filer so that only [CLASS1.MEASUREMENT](https://grodansparadis.gitbooks.io/the-vscp-specification/class1.measurement.html) events is received. 
+Using format=2 (JSON) set filer so that only [CLASS1.MEASUREMENT](http://docs.vscp.org/spec/latest/#/./class1.measurement) events is received. 
 
 ```lua
 -- Allow only CLASS1.MEASUREMENT events, from all, 
@@ -1003,7 +1003,7 @@ vscp.sendmeasurement( level, bString, value, guid, vscp-type[, unit, sensor-inde
 
 *  **level** Set to 1 to send a level I event, set to 2 to send a level II event.
 
-*  **bString** Only valid for Level II events. If true a [CLASS2.MEASUREMENT_STR](https://grodansparadis.gitbooks.io/the-vscp-specification/class2.measurement_str.html). If false a [CLASS2.MEASUREMENT_FLOAT](https://grodansparadis.gitbooks.io/the-vscp-specification/class2.measurement_float.html).
+*  **bString** Only valid for Level II events. If true a [CLASS2.MEASUREMENT_STR](http://docs.vscp.org/spec/latest/#/./class2.measurement_str). If false a [CLASS2.MEASUREMENT_FLOAT](http://docs.vscp.org/spec/latest/#/./class2.measurement_float).
 
 *  **value** A double representing the measurement value. __ **Note** as with all decimal numbers in VSCP a period is used as decial separator.__ 
 
@@ -1456,6 +1456,6 @@ See documentation [here](https://github.com/LuaDist/luaxml).
 See documentation [here](https://github.com/LuaDist/lsqlite3).
 
 
-{% include "./bottom_copyright.md" %}
+[filename](./bottom_copyright.md ':include')
 
 

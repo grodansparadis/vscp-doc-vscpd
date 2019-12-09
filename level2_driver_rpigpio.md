@@ -350,4 +350,4 @@ action parameter: pin, zone, subzone
 
 ```
 
-{% include "./bottom_copyright.md" %}
+[filename](./bottom_copyright.md ':include')

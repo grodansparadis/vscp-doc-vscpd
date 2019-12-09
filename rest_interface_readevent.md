@@ -540,4 +540,4 @@ typeof handler === 'function' && handler(
 } );
 ```
 
-{% include "./bottom_copyright.md" %}
+[filename](./bottom_copyright.md ':include')

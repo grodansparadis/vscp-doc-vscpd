@@ -78,4 +78,4 @@ The CanalGetStatus call returns the status structure with the channel_status mem
 *  Bit 30 - Bus Warning status 
 *  Bit 31 - Bus off status 
 
-{% include "./bottom_copyright.md" %}
+[filename](./bottom_copyright.md ':include')

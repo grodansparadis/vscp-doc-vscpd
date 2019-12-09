@@ -22,7 +22,7 @@ vscp_print("Hello World!");
 
 ## vscp_log
 
-Log data to the VSCP daemon logs. Very well suited for reporting errors and log information. As an alternative one can send VSCP events instead. [CLASS1.LOG](https://grodansparadis.gitbooks.io/the-vscp-specification/class1.log.html) and [CLASS1.ERROR](https://grodansparadis.gitbooks.io/the-vscp-specification/class1.error.html) is intended for this use.
+Log data to the VSCP daemon logs. Very well suited for reporting errors and log information. As an alternative one can send VSCP events instead. [CLASS1.LOG](http://docs.vscp.org/spec/latest/#/./class1.log) and [CLASS1.ERROR](http://docs.vscp.org/spec/latest/#/./class1.error) is intended for this use.
 
 ### Parameters
 
@@ -309,7 +309,7 @@ Return boolean *true* on success and *false* on failure.
 
 ### Example
 
-Send [Turn-On-event](https://grodansparadis.gitbooks.io/the-vscp-specification/class1.control.html#type5).
+Send [Turn-On-event](http://docs.vscp.org/spec/latest/#/./class1.control?id=type5-0x05-turnon).
 
 ```javascript
 // Send CLASS1.CONTROL, Type=5, TurnOn, Zone=11, Subzone=3
@@ -347,7 +347,7 @@ Return VSCP Event object on success and NULL on failure. See vscp_sendEvent for 
 
 ### Example
 
-Print out received events on the log until the event [CLASS1.INFORMATION, Type=Stop, 8](https://grodansparadis.gitbooks.io/the-vscp-specification/class1.control.html#type8) is received.  Note that the loop construct here without a delay is not to recommend as it eats a lot of CPU time.
+Print out received events on the log until the event [CLASS1.INFORMATION, Type=Stop, 8](http://docs.vscp.org/spec/latest/#/./class1.control?id=type8-0x08-stop) is received.  Note that the loop construct here without a delay is not to recommend as it eats a lot of CPU time.
 
 ```javaScript
 var vscpEventObj;       // JSON object containing VSCP event
@@ -481,7 +481,7 @@ Return boolean *true* on success and *false* on failure.
 
 ### Example
 
-Set filer so that only [CLASS1.MEASUREMENT](https://grodansparadis.gitbooks.io/the-vscp-specification/class1.measurement.html) events is received. 
+Set filer so that only [CLASS1.MEASUREMENT](http://docs.vscp.org/spec/latest/#/./class1.measurement) events is received. 
 
 ```javascript
 // Allow only CLASS1.MEASUREMENT events, from all, 
@@ -540,7 +540,7 @@ vscp_sendMeasurement( vscp_ClientItem, vscpMeasurementObject );
 
 *  **level** is either 1 or 2 for Level I or level II events or if not given it defaults to 2.
 
-*  **bstring** Only valid for Level II events. If true a [CLASS2.MEASUREMENT_STR](https://grodansparadis.gitbooks.io/the-vscp-specification/class2.measurement_str.html). If false a [CLASS2.MEASUREMENT_FLOAT](https://grodansparadis.gitbooks.io/the-vscp-specification/class2.measurement_float.html). If not given defaults to false-
+*  **bstring** Only valid for Level II events. If true a [CLASS2.MEASUREMENT_STR](http://docs.vscp.org/spec/latest/#/./class2.measurement_strl). If false a [CLASS2.MEASUREMENT_FLOAT](http://docs.vscp.org/spec/latest/#/./class2.measurement_float). If not given defaults to false-
 
 *  **value** A double representing the measurement value. A required value.
 
@@ -592,7 +592,7 @@ This is how the resulting event looks like in VSCP Works.
 
 ![](./images/javascript/temperature_event_level1_float.png)
 
-And this is the decision matrix row. Not that [CLASS2.VSCPD,Type=Second,5 event](https://grodansparadis.gitbooks.io/the-vscp-specification/class2.vscpd.html#type5) is used to send the measurement event every second. There are many possibilities here such as once on start up, every hour etc.
+And this is the decision matrix row. Not that [CLASS2.VSCPD,Type=Second,5 event](http://docs.vscp.org/spec/latest/#/./class2.vscpd?id=type5-0x05-second) is used to send the measurement event every second. There are many possibilities here such as once on start up, every hour etc.
 
 ![](./images/javascript/dm_test_one_second_sendmeasurement.png)
 
@@ -823,6 +823,6 @@ var event = JSON.parse( eventTxt );
 vscp_log("Subzone = " + vscp_getMeasurementSubZone( event ).toString() + "\n");
 ```
 
-{% include "./bottom_copyright.md" %}
+[filename](./bottom_copyright.md ':include')
 
 

@@ -42,4 +42,4 @@ If your driver name contains spaces, for example "name of driver" it will get a 
 </driver>
 ```
 
-{% include "./bottom_copyright.md" %}
+[filename](./bottom_copyright.md ':include')

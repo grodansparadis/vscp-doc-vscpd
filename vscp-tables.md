@@ -48,4 +48,4 @@ The table definitions in [the configuration file is described here](./configurin
 
 [described here](./decision_matrix.md#write_table).
 
-{% include "./bottom_copyright.md" %}
+[filename](./bottom_copyright.md ':include')

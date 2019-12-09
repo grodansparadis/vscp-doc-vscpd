@@ -97,4 +97,4 @@
 *  **2015-04-28 AKHE** - Stated Document history.
 
 
-{% include "./bottom_copyright.md" %}
+[filename](./bottom_copyright.md ':include')

@@ -34,4 +34,4 @@ The CanalGetStatus call returns the status structure with the channel_status mem
 
    * Bit 0-31 Reserved.
 
-{% include "./bottom_copyright.md" %}
+[filename](./bottom_copyright.md ':include')

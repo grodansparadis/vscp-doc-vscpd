@@ -6,7 +6,7 @@
 
 **Driver for Linux** vscpl1_can4vscpdrv.so (*/usr/local/lib/vscpl1_can4vscpdrv.so*) When using the drive on Linux remember to set rw permissions for the user that the VSCP daemon and VSCP works run under (*chmod a+rw /dev/ttyUSB0* for example).
 
-This is a driver for the low cost **Frankfurt RS-232 module** that us the [VSCP serial protocol](https://grodansparadis.gitbooks.io/the-vscp-specification/vscp_over_a_serial_channel_rs-232.html). The Frankfurt RS-232 module is described [here](https://www.grodansparadis.com/can4vscp_rs232/can4vscp_rs232.html) where there also is a description of how to use it with VSCP Works and the VSCP daemon.
+This is a driver for the low cost **Frankfurt RS-232 module** that us the [VSCP serial protocol](http://docs.vscp.org/spec/latest/#/./vscp_over_a_serial_channel_rs-232). The Frankfurt RS-232 module is described [here](https://www.grodansparadis.com/can4vscp_rs232/can4vscp_rs232.html) where there also is a description of how to use it with VSCP Works and the VSCP daemon.
 
 As the VSCP serial protocol is very generic this may also be the driver to use for your own hardware that have a serial port available.
 
@@ -107,4 +107,4 @@ The CanalGetStatus call returns the status structure with the channel_status mem
 
 You can find the description of the VSCP serial protocol in the [VSCP specification](http://www.vscp.org/docs/vscpspec/doku.php?id=physical_level_lower_level_protocols#vscp_over_a_serial_channel_rs-232).
 
-{% include "./bottom_copyright.md" %}
+[filename](./bottom_copyright.md ':include')

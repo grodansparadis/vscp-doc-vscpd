@@ -2259,4 +2259,4 @@ This is a description of the table.
 />
 ```
 
-{% include "./bottom_copyright.md" %}
+[filename](./bottom_copyright.md ':include')

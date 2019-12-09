@@ -33,4 +33,4 @@ Next set **ttl (time to live)** for multicast frames.
 You can find sample code (C/C++/Python) [here](https://github.com/grodansparadis/vscp/tree/master/tests/multicast) for both multicast announce and multicast channel interfacing. More will follow.
 
 
-{% include "./bottom_copyright.md" %}
+[filename](./bottom_copyright.md ':include')

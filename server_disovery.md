@@ -5,5 +5,5 @@ Server discovery is a mechanism in VSCP used to discover servers in a system. A 
 The alternative to the use of the discovery mechanism is to wait for devices to identify themselves with there heartbeats and server capability events.
 
 
-{% include "./bottom_copyright.md" %}
+[filename](./bottom_copyright.md ':include')
 

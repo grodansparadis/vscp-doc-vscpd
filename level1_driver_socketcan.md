@@ -30,4 +30,4 @@ Not used, set to 0.
 
 *  Some notes about socketcan is [here](https://www.akehedman.se/wiki/doku.php/socketcan). 
 
-{% include "./bottom_copyright.md" %}
+[filename](./bottom_copyright.md ':include')

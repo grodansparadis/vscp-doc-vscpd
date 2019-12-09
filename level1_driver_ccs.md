@@ -18,4 +18,4 @@ Not used set to 0.
 
 Currently undefined.
 
-{% include "./bottom_copyright.md" %}
+[filename](./bottom_copyright.md ':include')

@@ -15,4 +15,4 @@ in the `<head>`..`</head>` section.
 For samples check the testws folder of the [VSCP HTML5 project at GitHub](https://github.com/grodansparadis/vscp_html5). There is many samples here both with the vscpws library and with other libraries such as [Google Charts](https://developers.google.com/chart/).
 
  
-{% include "./bottom_copyright.md" %}
+[filename](./bottom_copyright.md ':include')

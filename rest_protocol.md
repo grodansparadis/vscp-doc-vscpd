@@ -122,4 +122,4 @@ A requested variable can't be found and is probably undefined.
 
 A variable could not be created. This can be a memory or a naming problem.
 
-{% include "./bottom_copyright.md" %}
+[filename](./bottom_copyright.md ':include')

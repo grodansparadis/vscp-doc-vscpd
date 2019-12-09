@@ -4,11 +4,11 @@
 
 UDP communication is simple and easy to set up but also unsecure in the way that you do not know if a datagram is received or not. This is normally not a problem for VSCP as there is almost always a way to determine that an event has been received. A typical example is a lamp that should be turned on. The controller typically send
 
-[CLASS1.CONTROL, Type=5 ,TurnOn](https://grodansparadis.gitbooks.io/the-vscp-specification/class1.control.html#type5)
+[CLASS1.CONTROL, Type=5 ,TurnOn](http://docs.vscp.org/spec/latest/#/./class2.level1.control?id=type5-0x05-turnon)
 
 we then expect the receiving node to reply with 
 
-[CLASS1.INFORMATION, Type=3, On](https://grodansparadis.gitbooks.io/the-vscp-specification/class1.information.html#type3)
+[CLASS1.INFORMATION, Type=3, On](http://docs.vscp.org/spec/latest/#/./class2.level1.information1?id=type3-0x03-on)
 
 to verify that the lamp was turned on. It is therefore easy to make sure a command has been received by a remote node and has been carried out and if not resend.
 
@@ -38,7 +38,7 @@ The configuration consist of two parts.
 
 *  The next thing is to decide if you should allow unencrypted frames. You do this by setting **bAllowUnsecure** to *"true"*. If set to *"false"* only encrypted frames will be received.
 
-*  With **bSendAck** you can decide if the node sending an UDP frame should get an acknowledge event back. If set to **//"true"//** a  [CLASS1.ERROR, Type=0, Success](https://grodansparadis.gitbooks.io/the-vscp-specification/class1.error.html#type0) event will be replied on success and a [CLASS1.ERROR, Type=1, Error](https://grodansparadis.gitbooks.io/the-vscp-specification/class1.error.html#type1) is sent if something is wrong with the UDP frame. If set no **//"false"//** no acknowledgement frames will be sent.
+*  With **bSendAck** you can decide if the node sending an UDP frame should get an acknowledge event back. If set to **//"true"//** a  [CLASS1.ERROR, Type=0, Success](http://docs.vscp.org/spec/latest/#/./class2.level1.error?id=type0-0x00-success) event will be replied on success and a [CLASS1.ERROR, Type=1, Error](http://docs.vscp.org/spec/latest/#/./class2.level1.error?id=type1-0x01-error) is sent if something is wrong with the UDP frame. If set no **//"false"//** no acknowledgement frames will be sent.
 
 *  By setting the **filter/mask** you can filter out unwanted events. Both filter and mask is set as text strings on the form "priority;class;type;guid"
 
@@ -62,4 +62,4 @@ Receiving UDP nodes are nodes that will get events from the VSCP server. You can
 You can find some sample/test code [here](https://github.com/grodansparadis/vscp/tree/master/tests/udp).
 
 
-{% include "./bottom_copyright.md" %}
+[filename](./bottom_copyright.md ':include')

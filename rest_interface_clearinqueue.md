@@ -145,4 +145,4 @@ var do_clrQueue = function() {
 typeof handler === 'function' && handler({"success":true,"code":1,"message":"success","description":"Success"});
 ```
 
-{% include "./bottom_copyright.md" %}
+[filename](./bottom_copyright.md ':include')

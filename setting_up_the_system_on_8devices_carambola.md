@@ -214,4 +214,4 @@ and your system would build with VSCP support.
 
 
 
-{% include "./bottom_copyright.md" %}
+[filename](./bottom_copyright.md ':include')

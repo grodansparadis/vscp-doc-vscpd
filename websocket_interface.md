@@ -8,6 +8,6 @@ One important design goal when this interface was designed was to create an inte
 
 If you want to test this there is a simple [walkthrough](./new_system_install_test_ride.md#the_websocket_interface).  The Javascript library and samples can be found on [GitHub](https://github.com/grodansparadis/vscp_html5) 
 
-{% include "./bottom_copyright.md" %}
+[filename](./bottom_copyright.md ':include')
 
 

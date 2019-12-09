@@ -110,4 +110,4 @@ There is a a [demo app](https://github.com/grodansparadis/vscp-ux/tree/master/re
 
 
 
-{% include "./bottom_copyright.md" %}
+[filename](./bottom_copyright.md ':include')

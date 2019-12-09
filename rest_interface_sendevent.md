@@ -27,7 +27,7 @@ Arguments:
 
 *  **vscpsession** - A valid session key received from the open method.
 
-*  **vscpevent** - Event in string form. That is *head,class,type,obid,time-stamp,GUID,data1,data2,data3.... * for example *0,20,3,0,,0,0:1:2:3:4:5:6:7:8:9:10:11:12:13:14:15,0,1,35* to send [CLASS1.INFORMATION TYPE=3 ON event](https://grodansparadis.gitbooks.io/the-vscp-specification/class1.information.html#type3), for zone=1, sub-zone=35. Can also be sent as *0,20,3,0,0,-,0,1,35* which will use the GUID of the interface.
+*  **vscpevent** - Event in string form. That is *head,class,type,obid,time-stamp,GUID,data1,data2,data3.... * for example *0,20,3,0,,0,0:1:2:3:4:5:6:7:8:9:10:11:12:13:14:15,0,1,35* to send [CLASS1.INFORMATION TYPE=3 ON event](http://docs.vscp.org/spec/latest/#/./class1.information?id=type3-0x03-on), for zone=1, sub-zone=35. Can also be sent as *0,20,3,0,0,-,0,1,35* which will use the GUID of the interface.
 
 ## HTTP Request with GET
 
@@ -151,4 +151,4 @@ typeof handler === 'function' && handler({"success":true,"code":1,"message":"suc
 
 
 
-{% include "./bottom_copyright.md" %}
+[filename](./bottom_copyright.md ':include')

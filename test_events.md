@@ -357,4 +357,4 @@ Turn off  Zone=1, subzone=2
 send 96,30,6,0,,,FF:FF:FF:FF:FF:FF:FF:FE:B8:27:EB:0A:00:02:00:05,0,1,2
 
 
-{% include "./bottom_copyright.md" %}
+[filename](./bottom_copyright.md ':include')

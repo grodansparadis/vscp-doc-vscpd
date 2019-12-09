@@ -5,4 +5,4 @@ Oh well this is not tested yet. The reason is we have no Macintosh hardware.  If
 Probably a standard [Linux/Unix installation](./setting_up_the_system_on_unix.md) will work though.
 
 
-{% include "./bottom_copyright.md" %}
+[filename](./bottom_copyright.md ':include')

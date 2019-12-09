@@ -145,4 +145,4 @@ If you have two adapters use
 for the second adapter.
 
 
-{% include "./bottom_copyright.md" %}
+[filename](./bottom_copyright.md ':include')

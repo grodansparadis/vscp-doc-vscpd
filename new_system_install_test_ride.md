@@ -301,9 +301,9 @@ It may be good to have the JavaScript console open in your browser when you test
     
 ### Sending events and more
 
-Events is a central thing for VSCP. There are many, many events defined and the number grows all the time. A typical event is the [Turn-On event](https://grodansparadis.gitbooks.io/the-vscp-specification/class1.control.html#type5) which switch something on. When Turn-on is sent by something in a VSCP system it normally expects the switching device to respond with an [On event](https://grodansparadis.gitbooks.io/the-vscp-specification/class1.information.html#type3). 
+Events is a central thing for VSCP. There are many, many events defined and the number grows all the time. A typical event is the [Turn-On event](http://docs.vscp.org/spec/latest/#/./class1.control?id=type5-0x05-turnon) which switch something on. When Turn-on is sent by something in a VSCP system it normally expects the switching device to respond with an [On event](http://docs.vscp.org/spec/latest/#/./class1.information?id=type3-0x03-on). 
 
-Events belong to a **class** and have a **type** and use some data. The above events is normally is written **CLASS1.CONTROL, Type=5, TurnOn**  and the responding event is written **CLASS1.INFORMATION, Type=3, ON**. You can read all about this [the VSCP specification](https://grodansparadis.gitbooks.io/the-vscp-specification).
+Events belong to a **class** and have a **type** and use some data. The above events is normally is written **CLASS1.CONTROL, Type=5, TurnOn**  and the responding event is written **CLASS1.INFORMATION, Type=3, ON**. You can read all about this [the VSCP specification](http://docs.vscp.org/spec/latest/#).
 
 So lets test the On-Event. Open the page
 
@@ -469,4 +469,4 @@ the five minutes is up. There is plenty of possibilities and either you uninstal
 Cheers
 /Ake 
     
-{% include "./bottom_copyright.md" %}
+[filename](./bottom_copyright.md ':include')

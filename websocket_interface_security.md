@@ -32,4 +32,4 @@ There is also a [privilege system](./configuring_the_vscp_daemon.md#remote_user_
 
 Put together this makes the VSCP Daemon one of the safest systems to use for remote maintenance of IoT/m2m systems.
 
-{% include "./bottom_copyright.md" %}
+[filename](./bottom_copyright.md ':include')

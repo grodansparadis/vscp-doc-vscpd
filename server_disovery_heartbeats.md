@@ -1,11 +1,11 @@
 # Hearbeats and announcements
 
-A level I node sends [CLASS1.INFORMATION, Type=9, node heartbeats](https://grodansparadis.gitbooks.io/the-vscp-specification/class1.information.html#type9) on the segment it is connected to. muticast announce channel.  
+A level I node sends [CLASS1.INFORMATION, Type=9, node heartbeats](http://docs.vscp.org/spec/latest/#/./class1.information?id=type9-0x09-node-heartbeat) on the segment it is connected to. muticast announce channel.  
 
-A level II node sends [CLASS2.INFORMATION, Type=2, Level II Node Heartbeat](https://grodansparadis.gitbooks.io/the-vscp-specification/class2.information.html#type2)
+A level II node sends [CLASS2.INFORMATION, Type=2, Level II Node Heartbeat](http://docs.vscp.org/spec/latest/#/./class2.information?id=type2-0x02-level-ii-node-heartbeat)
 
-A level II node in addition sends [CLASS2.PROTOCOL, Type=20, High end server/service capabilities](https://grodansparadis.gitbooks.io/the-vscp-specification/class2.protocol.html#type20) on the multicast announce channel.
+A level II node in addition sends [CLASS2.PROTOCOL, Type=20, High end server/service capabilities](http://docs.vscp.org/spec/latest/#/./class2.protocol?id=type20-0x14-high-end-serverservice-capabilities) on the multicast announce channel.
 
-A level II node, like the VSCP server, that act as a gateway for other nodes send [CLASS2.Information, Type=3, Level II Proxy Node Heartbeat](https://grodansparadis.gitbooks.io/the-vscp-specification/class2.information.html#type3).
+A level II node, like the VSCP server, that act as a gateway for other nodes send [CLASS2.Information, Type=3, Level II Proxy Node Heartbeat](http://docs.vscp.org/spec/latest/#/./class2.information?id=type3-0x03-level-ii-proxy-node-heartbeat).
 
-{% include "./bottom_copyright.md" %}
+[filename](./bottom_copyright.md ':include')

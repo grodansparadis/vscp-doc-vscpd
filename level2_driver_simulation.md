@@ -40,8 +40,8 @@ The parameter *NumberOfNodes* (which is optional) is the number of simulated dev
  | _index[0..n]            | integer | Measurement index 0-7. Default is 0. | 
  | _coding[0..n]           | integer | Message coding 0-2. Default is 0. Allowed values 0=Normalized integer, 1=floating point, 2=string. | 
  | _decisionmatrix[0..n]   | string  | Comma separated list with decision matrix elements. Values can be decimal or hexadecimal and should, if hexadecimal, be preceded with "0x".  | 
- | _measurementclass[0..n] | long    | Class used for sent measurement events. Default is [CLASS1.MEASUREMENT](https://grodansparadis.gitbooks.io/the-vscp-specification/class1.measurement.html)                                                                                                          | 
- | _measurementtype[0..n]  | long    | Type used for sent measurement events. Default is [Type=6, Temperature](https://grodansparadis.gitbooks.io/the-vscp-specification/class1.measurement.html#type6-0x06-temperature)                                                                                                          | 
+ | _measurementclass[0..n] | long    | Class used for sent measurement events. Default is [CLASS1.MEASUREMENT](http://docs.vscp.org/spec/latest/#/./class1.measurement)                                                                                                          | 
+ | _measurementtype[0..n]  | long    | Type used for sent measurement events. Default is [Type=6, Temperature](http://docs.vscp.org/spec/latest/#/./class1.measurement#type6-0x06-temperature)                                                                                                          | 
 
 The full variable name is built from the name you give the driver (prefix before _variablename) in vscpd.conf. So in the examples below the driver have the name **sim1** and the full variable name for the **_zone0** will thus be 
 
@@ -205,4 +205,4 @@ The coding of the decision matrix is as a normal Level I decision matrix
 
 
 
-{% include "./bottom_copyright.md" %}
+[filename](./bottom_copyright.md ':include')
