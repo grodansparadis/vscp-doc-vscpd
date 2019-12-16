@@ -1,7 +1,0 @@
-{
-    "title":"The VSCP Daemon",
-    "description":"This document describes the VSCP daemon (vscpd).",
-    "author":"Ake Hedman, Grodans Paradis AB",
-    "language":"en",
-    "plugins" : ["anchors"]
-}
