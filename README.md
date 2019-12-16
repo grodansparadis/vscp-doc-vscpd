@@ -2,6 +2,9 @@
 
 ![VSCP logo](./images/logo_100.png)
 
+**Describe software version**:${/var/document-version}      
+**Doc update:** ${/var/creation-time}       
+
 This is the official documentation for the VSCP (Very Simple Control Protocol) daemon. Software that is part of the VSCP & Friends package. VSCP is an IoT framework mainly built for resource limited devices.
 
 Apart from going through this document you can read all about and download VSCP from [the VSCP site](https://www.vscp.org "The VSCP site"). 

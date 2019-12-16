@@ -1,49 +1,31 @@
 # Setting up the system on Unix
 
- 
-To install VSCP & Friends on Unix you need to build the system from source. The build process is simple and it usually don't give any problems. All packages are available for download at [Sourceforge](https://sourceforge.net/projects/m2m/files/VSCP%20Software/). Download the .zip or the .tgz archives of the package.
+To install VSCP & Friends on Unix you need to install the binary package or build the system from source. The build process is simple and it usually don't give any problems. You can find binary and source files [here](https://github.com/grodansparadis/vscp/releases)
 
-The build process is described in the file **BUILD_UNIX** in the root of the source folder. You find the source in the same folder as the installation packages. The source for the system is also available on [GitHub](https://github.com/grodansparadis/vscp_software) if you want to use unstable code or just prefers GitHub for some other reason.
+## Installing from binary package
 
-A sample configuration file for Unix is [here](https://github.com/grodansparadis/vscp/blob/master/config_examples/vscpd.conf_unix_distro).
+The binary package is supplied as a Debian package and as a snap image. Select one of them.
 
-## Getting VSCP & Friends working on a Debian system
+### Debian package installation
+This should work as an installation method on all distribution's that can handle Debian packages.
 
-Until we have a deb installation this is the steps to do to have vscp & friends working on a Debian system.
+### Snap istallation
+This should work on all distributions that support the snap packages.
 
-Your machine need to be connected to the Internet for this to work and you need to become root
+## Building from source
 
-```bash
-su -
-```    
+The build process is described in the file **BUILD_UNIX** in the root of the source folder. You find the source in the same folder as the installation packages. 
 
-or if you are on an Ubuntu system add 
-
-```bash
-sudo
-```
-
-in front of the commands below or issue
-
-```bash
-sudo -i
-```
-
-to stay as the root user.
+The source for the system is also available on [GitHub](https://github.com/grodansparadis/vscp_software) if you want to use unstable code or just prefers GitHub for some other reason.
 
 ### Step 1
 
-If you don't have a build environment on your system follow the steps on [this page](http://www.cyberciti.biz/faq/debian-linux-install-gnu-gcc-compiler/). Make (below) will complain if you don't. Or just issue
+If you don't have a build environment on your system follow the steps on [this page](https://www.cyberciti.biz/faq/debian-linux-install-gnu-gcc-compiler/). 
+
+### Step 2
 
 ```bash
-apt-get update && apt-get upgrade
-apt-get install build-essential
-```    
-
-If you are in a real hurry (*or can't read*) do
-
-```bash
-apt-get install git build-essential libwxbase3.0-dev  libssl-dev libpcap0.8-dev libcurl4-openssl-dev libpcap-dev libcurl4-openssl-dev
+apt-get install git build-essential libopenssl-dev 
 ```    
 
 and then
@@ -54,7 +36,7 @@ git clone https://github.com/grodansparadis/vscp.git
 
 and **go to step 10**
 
-### Step 2
+
 
 Install
 

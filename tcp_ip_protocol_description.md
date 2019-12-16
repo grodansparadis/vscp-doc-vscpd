@@ -60,20 +60,20 @@ The daemon interface can be visible also on lower end (typically TC/IP) nodes. A
  | [TABLE](./tcp_ip_protocol_description.md#tcpip-table)                                                                                                               | 4         | no   | 0.4.29       | Table handling.  Have secondary commands.                                                          |
  | [WCYD/WHATCANYOUDO](./tcp_ip_protocol_description.md#tcpip-whatcanyoudo) ((Both versions of the command should be supported)) | 0         | yes  | 0.4.29       | Request what this sever can do                                                                     |
 
-## NOOP - No operation {#tcpip-noop}
+## NOOP - No operation :id=tcpip-noop
 
  This operation does nothing. It just replies with ”**+OK**”.
 
-##  QUIT - Close the connection {#tcpip-quit}
+##  QUIT - Close the connection :id=tcpip-quit
 
 Close the connection to the host.
 
 
-##  HELP - Give help {#tcpip-help}
+##  HELP - Give help :id=tcpip-help
 
 'HELP' alone givs help about all commands. 'HELP command" gives command specific help.
 
-## USER - Username for login {#tcpip-user}
+## USER - Username for login :id=tcpip-user
 
 Used to enter username for a password protected server.
 
@@ -81,7 +81,7 @@ Used on the following form:
 
     USER username<CR><LF>
 
-## PASS - Password for login {#tcpip-pass}
+## PASS - Password for login :id=tcpip-pass
 
 Used to enter username for a password protected server.
 
@@ -89,7 +89,7 @@ Used on the following form:
 
     PASS password<CR><LF>
 
-## CHALLENGE - Get challenge session id {#tcpip-challenge}
+## CHALLENGE - Get challenge session id :id=tcpip-challenge
 
 Used to get a session unique id
 
@@ -103,15 +103,15 @@ and give a response such as
 
 where "e14712fa9d6a62ff388a701848e24a32" is the 32 byte sid.
 
-## RESTART - Restart daemon {#tcpip-restart}
+## RESTART - Restart daemon :id=tcpip-restart
 
 Restart the daemon. Must have highest privilege to be able to do this.
 
-##  SHUTDOWN - Shutdown daemon {#tcpip-shutdown}
+##  SHUTDOWN - Shutdown daemon :id=tcpip-shutdown
 
 shutdown the daemon. Must have highest privilege to be able to do this.
 
-## SEND - Send an event {#tcpip-send}
+## SEND - Send an event :id=tcpip-send
 
 Used on the following form:
 
@@ -175,7 +175,7 @@ where class becomes *532* (512 + 20) and where *15,14,13,12,11,10,9,8,7,6,5,4,3,
 
 In this example the content of the variable tempevent1 is sent. The variable is of type event.
 
-## RETR - Retrieve one or several event(s) {#tcpip-retr}
+## RETR - Retrieve one or several event(s) :id=tcpip-retr
 
 This command can be used to retrieve one or several events from the input queue. Events are returned as
 
@@ -222,7 +222,7 @@ If no argument is given one event is fetched even if there are more in the queue
 
 If you try to receive more events then there is events in the buffer -OK will be returned after the available number of events have been retrieved and been listed.
 
-## RCVLOOP - Send events to client as soon as they arrive {#tcpip-rcvloop}
+## RCVLOOP - Send events to client as soon as they arrive :id=tcpip-rcvloop
 
 This command set the channel in a closed loop that only can be interrupted by a client closing the connection or by sending the CLOSELOOP command. The server will now send out an event as soon as it is reserved. This is done in a very effective way with high throughput. This means the client does not have to poll for new events. It just open one channel where it sends events and do control tasks and one channel where it receive evens.
 
@@ -238,11 +238,11 @@ Some applications may not implement this feature and should output
 
 to indicate this.
 
-## QUITLOOP - quit receiving loop {#tcpip-quitloop}
+## QUITLOOP - quit receiving loop :id=tcpip-quitloop
 
 Quit a receive loop started by the RCVLOOP command.
 
-## CDTA/CHKDATA - Check if there are events to retrieve {#tcpip-chkdata}
+## CDTA/CHKDATA - Check if there are events to retrieve :id=tcpip-chkdata
 
 This command are used to check how many events are in the input queue waiting for retrieval.
 
@@ -255,7 +255,7 @@ and reply is
     8 <CR><LF>
     +OK<CR><LF>
 
-## CLRA/CLRALL - Clear all events in in-queue {#tcpip-clrall}
+## CLRA/CLRALL - Clear all events in in-queue :id=tcpip-clrall
 
 This command are used to clear all events in the input queue.
 
@@ -267,7 +267,7 @@ and reply is
 
     +OK - All events cleared.<CR><LF>
 
-## STAT - Get statistics information {#tcpip-stat}
+## STAT - Get statistics information :id=tcpip-stat
 
 Get interface statistics information. The returned format is
 
@@ -283,7 +283,7 @@ reply is
     0,0,0,12356,56,9182,20<CR><LF>
     +OK - <CR><LF>
 
-## INFO - Get status information {#tcpip-info}
+## INFO - Get status information :id=tcpip-info
 
 This command fetch the status information for the interface. Returned format is
 
@@ -298,7 +298,7 @@ and the reply is
     7812,12,0,"Overrun"<CR><LF>
     +OK - <CR><LF>
 
-## CHID - Get channel ID {#tcpip-chid}
+## CHID - Get channel ID :id=tcpip-chid
 
 Get the channel ID for the communication channel. This is the same parameter as the obid which is present in events.
 
@@ -311,7 +311,7 @@ and the reply is
     1234<CR><LF>
     +OK<CR><LF>
 
-## SGID/SETGUID - Set GUID for channel {#tcpip-setguid}
+## SGID/SETGUID - Set GUID for channel :id=tcpip-setguid
 
 Set the GUID for this channel. The GUID is given on the form
 
@@ -326,14 +326,14 @@ and reply is
 
     +OK<CR><LF>
 
-## GGID/GETGUID - Get GUID for channel {#tcpip-getguid}
+## GGID/GETGUID - Get GUID for channel :id=tcpip-getguid
 
 Get the GUID for this channel. The GUID is received on the form
 
     0:1:2:3:4:5:6:7:8:9:10:11:12:13:14:15<CR><LF>
     +OK<CR><LF>
 
-## VERS/VERSION - Get VSCP daemon version {#tcpip-version}
+## VERS/VERSION - Get VSCP daemon version :id=tcpip-version
 
 Get the current version for the daemon. The returned format is
 
@@ -341,7 +341,7 @@ Get the current version for the daemon. The returned format is
 
 **Note:** *build-version* added in version 13.0.0.14
 
-## SFLT/SETFILTER - Set incoming event filter {#tcpip-setfilter}
+## SFLT/SETFILTER - Set incoming event filter :id=tcpip-setfilter
 
 Set the incoming filter. The format is
 
@@ -354,7 +354,7 @@ Set the incoming filter. The format is
 Note: The GUID values always is given as hexadecimal values without a preceding “0x”.
 Note: If you want to filter on nickname-ID you should filter on GUID LSB byte.
 
-## SMSK/SETMASK - Set incoming event mask {#tcpip-setmask}
+## SMSK/SETMASK - Set incoming event mask :id=tcpip-setmask
 
 Set the incoming mask. The format is
 
@@ -368,7 +368,7 @@ Note: that the GUID values always is given as hexadecimal values without a prece
 Note: If you want to mask on nickname-ID you should mask on GUID LSB byte.
 
 
-## WCYD / WHATCANYOUDO - Ask the capabilities of this server {#tcpip-whatcanyoudo}
+## WCYD / WHATCANYOUDO - Ask the capabilities of this server :id=tcpip-whatcanyoudo
 
 This command reports server capabilities of this server.
 
@@ -388,7 +388,7 @@ This response was changed in version 14.0.0 from
     +OK - 00-00-00-00-00-00-00-00
 
 
-## MEASUREMENT - Send a measurement {#tcpip-measurement}
+## MEASUREMENT - Send a measurement :id=tcpip-measurement
 
 Send a measurement. The measurement will be sent as either as a Level I event or a Level II event.
 
@@ -420,17 +420,17 @@ Positive/negative response is returned.
 
 *  **subzone** zone value for Level II events. Defaults to zero. Optional.
 
-## DRIVER {#tcpip-driver}
+## DRIVER :id=tcpip-driver
 
 ** The commands described here has not been activated yet due to security issues **
 
 With this command drivers can be handled. The argument defines which operation is performed.
 
-### install {#tcpip-driver-install}
+### install :id=tcpip-driver-install
 
 Install a new driver. Full format is DRIVER install “path to driver package”. It's possible to just install a driver temporarily or make it persistent to the system so it is loaded when the daemon starts. The driver package is a zip'ed file with a manifest file in XML format that tells where different components should go.
 
-### uninstall {#tcpip-driver-uninstall}
+### uninstall :id=tcpip-driver-uninstall
 
 Uninstall a driver that is currently installed.
 
@@ -438,7 +438,7 @@ Full format is
 
     DRIVER uninstall “drivername”/id.
 
-### upgrade {#tcpip-driver-upgrade}
+### upgrade :id=tcpip-driver-upgrade
 
 Upgrade a driver that is currently installed.
 
@@ -446,7 +446,7 @@ Full format is
 
     DRIVER upgrade “drivername”/id.
 
-### start {#tcpip-driver-start}
+### start :id=tcpip-driver-start
 
 Start an installed driver.
 
@@ -454,7 +454,7 @@ Full format is
 
     DRIVER start “drivername”/id.
 
-### stop {#tcpip-driver-stop}
+### stop :id=tcpip-driver-stop
 
 Stop an installed driver.
 
@@ -462,7 +462,7 @@ Full format is
 
     RIVER stop “drivername”/id.
 
-### reload {#tcpip-driver-reload}
+### reload :id=tcpip-driver-reload
 
 Reload an installed driver.
 
@@ -470,35 +470,35 @@ Full format is
 
    DRIVER reload “drivername”/id.
 
-## FILE {#tcpip-file}
+## FILE :id=tcpip-file
 
 ** Not active at the moment **
 
 With this command files can be handled. It is implemented to enable an administrator to handle driver and configuration files from a remote location and for client applications so they can dump collected data. Only files relative to the configured root folder (in and under) can be handled.
 
-### dir {#tcpip-file-dir}
+### dir :id=tcpip-file-dir
 
 Show a directory listing for a folder given by the argument.
 
-### copy {#tcpip-file-copy}
+### copy :id=tcpip-file-copy
 
 Copy a file from one location to another.
 
-### move {#tcpip-file-move}
+### move :id=tcpip-file-move
 
 Move a file from one location to another.
 
-### delete {#tcpip-file-delete}
+### delete :id=tcpip-file-delete
 
 Delete a file.
 
-### list {#tcpip-file-list}
+### list :id=tcpip-file-list
 
 List content of file.
 
-## UDP {#tcpip-udp}
+## UDP :id=tcpip-udp
 
-### enable {#tcpip-udp-enable}
+### enable :id=tcpip-udp-enable
 
 Enable the UDP interface.
 
@@ -506,7 +506,7 @@ Full format is
 
     UDP enable
 
-### disable {#tcpip-udp-disable}
+### disable :id=tcpip-udp-disable
 
 Disable the UDP interface.
 
@@ -514,13 +514,13 @@ Full format is
 
     UDP disable
 
-## REMOTE {#tcpip-remote}
+## REMOTE :id=tcpip-remote
 
 ** The commands described here has not been activated yet due to security issues **
 
 Remote user manipulation.
 
-### list {#tcpip-remote-list}
+### list :id=tcpip-remote-list
 
 List user(s). Full format is
 
@@ -535,7 +535,7 @@ The list user command has the following format
     usern<CR><LF>
     +OK<CR><LF>
 
-### add {#tcpip-remote-add}
+### add :id=tcpip-remote-add
 
 Add a user. Full format is
 
@@ -543,53 +543,53 @@ Add a user. Full format is
 
 The add user parts of the arguments can be left out after password. All arguments below the one that is left out must be present. No argument in the middle can be taken away.
 
-### remove {#tcpip-remote-remove}
+### remove :id=tcpip-remote-remove
 
 Remove a user. Full format is
 
     REMOTE remove “username”
 
-### privilege {#tcpip-remote-privelege}
+### privilege :id=tcpip-remote-privelege
 
 Set new privilege for a user. Full format is
 
     REMOTE privilege “username”,”access-right-list”
 
-### password {#tcpip-remote-password}
+### password :id=tcpip-remote-password
 
 Set new privilege for a user. Full format is
 
     REMOTE password “username”,”MD5 for password”
 
-### host-list {#tcpip-remote-host-list}
+### host-list :id=tcpip-remote-host-list
 
 Set locations user can connect from. Full format is
 
     REMOTE password “username”,”host-list”
 
-### event-list {#tcpip-remote-event-list}
+### event-list :id=tcpip-remote-event-list
 
 Set list of events user can send. Full format is
 
     REMOTE password “username”,”event-list”
 
-### filter {#tcpip-remote-filter}
+### filter :id=tcpip-remote-filter
 
 Set user filter. Full format is
 
     REMOTE password “username”,”filter”
 
-### mask {#tcpip-remote-mask}
+### mask :id=tcpip-remote-mask
 
 Set user mask. Full format is
 
     REMOTE password “username”,”mask”
 
-## INTERFACE {#tcpip-interface}
+## INTERFACE :id=tcpip-interface
 
 Handle the interfaces on the VSCP daemon.
 
-### list {#tcpip-interface-list}
+### list :id=tcpip-interface-list
 
 List interfaces.
 
@@ -616,7 +616,7 @@ type is
  | 6    | Websocket interface client     |
  | 7    | REST interface client          |
 
-###  close {#tcpip-interface-close}
+###  close :id=tcpip-interface-close
 
 Close interfaces.
 
@@ -626,17 +626,17 @@ Full format is
 
 Unique access to an interface can only be queried once for one interface. So two unique operations after each other deselects the first chosen interface before acquire the second.
 
-## DM {#tcpip-dm}
+## DM :id=tcpip-dm
 
-### enable {#tcpip-dm-enable}
+### enable :id=tcpip-dm-enable
 
 Enable a decision matrix row. Argument is a comma separated list with DM row number(s) or “ALL” for all rows.
 
-### disable {#tcpip-dm-disable}
+### disable :id=tcpip-dm-disable
 
 Disable a decision matrix row. Argument is a comma separated list with DM row number(s) or “ALL” for all rows.
 
-### list {#tcpip-dm-list}
+### list :id=tcpip-dm-list
 
 Show a decision matrix row number. Argument is DM row number(s) or “ALL” for all rows.
 
@@ -681,7 +681,7 @@ The list command gives a list of the following format
 
 See the DM description in the VSCP specification for information about the content of the control code etc.
 
-### add {#tcpip-dm-add}
+### add :id=tcpip-dm-add
 
 Add a decision matrix row. The add-command needs a parameter of the following format
 
@@ -689,42 +689,42 @@ Add a decision matrix row. The add-command needs a parameter of the following fo
 
 See the list command [des:decision matrix list command] for a detailed description of the items.
 
-###  delete {#tcpip-dm-delete}
+###  delete :id=tcpip-dm-delete
 
 Delete a decision matrix row.
 
 Argument is a comma separated list with DM row number(s).
 
-### reset {#tcpip-dm-reset}
+### reset :id=tcpip-dm-reset
 
 Resets all variables and read in persistent values.
 
-### clrtrig {#tcpip-dm-clrtrig}
+### clrtrig :id=tcpip-dm-clrtrig
 
 Clear trig counter for a decision matrix row.
 
 Argument is a comma separated list with DM row number(s) or “ALL” for all rows.
 
-### clrerr {#tcpip-dm-clrerr}
+### clrerr :id=tcpip-dm-clrerr
 
 Clear error counter for a decision matrix row.
 
 Argument is a comma separated list with DM row number(s) or “ALL” for all rows.
 
-### save {#tcpip-dm-save}
+### save :id=tcpip-dm-save
 
 Save current decision matrix to a file. If no filename is given dm.xml is used with the path set to the configuration folder. Se [sub:The-decision-matrix-file-format] for decision matrix file format.
 
-### load {#tcpip-dm-load}
+### load :id=tcpip-dm-load
 
 Load decision matrix from a file. If no filename is given dm.xml is used with the path set to the configuration folder. A path + filename can be used and this file will be used instead. The last argument is replace or add (default). replace - replaces the old decision matrix content with the new and the option add adds the decision matrix from the file at the end of the current decision matrix. Se [sub:The-decision-matrix-file-format] for decision matrix file format.
 
-## VAR / VARIABLE {#tcpip-variable}
+## VAR / VARIABLE :id=tcpip-variable
 
 Note: Changed to "VAR" from "VARIABLE" in version 1.12.15 but both works.
 
 
-### list {#tcpip-variable-list}
+### list :id=tcpip-variable-list
 
 List all defined variables selected by an optional [regular expression](https://www.cheatography.com/davechild/cheat-sheets/regular-expressions/). Default is that all variables is listed (no argument).
 
@@ -763,7 +763,7 @@ If there is no variables that meet the regular expression
 
 is returned.
 
-### write {#tcpip-variable-write}
+### write :id=tcpip-variable-write
 
 Write a variable. If the variable is not already defined it is created.  Argument is
 
@@ -807,7 +807,7 @@ else error
 
 	  -OK - 'some message describing error'.
 
-### read {#tcpip-variable-read}
+### read :id=tcpip-variable-read
 
 Read a variable. Argument is “name of variable”.
 
@@ -832,7 +832,7 @@ if the variable is non existent.
 **Note:** Prior to build 13.0.1 the variable info string was perpended with "+OK - ". This has been removed for consistency with other parts of the link interface.
 
 
-### readvalue {#tcpip-variable-readvalue}
+### readvalue :id=tcpip-variable-readvalue
 
 Read a variables value. The value is BASE64 encoded if internally stored as such (type=string etc). Arguments is “name of variable” The response is
 
@@ -848,7 +848,7 @@ or if the variable is not defined
 
 
 
-### writevalue {#tcpip-variable-writevalue}
+### writevalue :id=tcpip-variable-writevalue
 
 Write a variables value. Arguments is “name of variable” and "value".
 
@@ -868,7 +868,7 @@ or if the variable is not defined
 
 The format for different variable types is [here](./remote_variables.md#variable_types).
 
-### readnote {#tcpip-variable-readnote}
+### readnote :id=tcpip-variable-readnote
 
 Read a variables note. The note is always returned BASE64 encoded. Arguments is “name of variable” The response is
 
@@ -884,7 +884,7 @@ or if the variable is not defined
 
 
 
-### writenote {#tcpip-variable-writenote}
+### writenote :id=tcpip-variable-writenote
 
 Write a variables note. Arguments is “name of variable” and "note".
 
@@ -902,7 +902,7 @@ or if the variable is not defined
 	  -OK - Variable is not defined.<CR><LF>
 
 
-### reset {#tcpip-variable-reset}
+### reset :id=tcpip-variable-reset
 
 Variable  value is set to its default value. The default values for different variables types can be found [here](./remote_variables.md#reset_variable_values). Command does not work with stock variables ad they can not be reseted.
 
@@ -917,7 +917,7 @@ else error
 
 	  -OK - 'some message describing error'.
 
-### readreset {#tcpip-variable-readreset}
+### readreset :id=tcpip-variable-readreset
 
 This is a combination of **read** + **reset** doing them together in an atomic way. Command does not work with stock variables ad they can not be reseted.
 
@@ -933,7 +933,7 @@ else error
 	  -OK - 'some message describing error'.
 
 
-### remove {#tcpip-variable-remove}
+### remove :id=tcpip-variable-remove
 
 Removes a variable. Argument is name of the variable. Command does not work with stock variables ad they can not be removed.
 
@@ -948,7 +948,7 @@ else error
 
 	  -OK - 'some message describing error'.
 
-### readremove {#tcpip-variable-readremove}
+### readremove :id=tcpip-variable-readremove
 
 This is a combination of **read** + **remove** doing them together in an atomic way. Command does not work with stock variables ad they can not be removed.
 
@@ -960,7 +960,7 @@ else error
 
 	  -OK - 'some message describing error'.
 
-### length {#tcpip-variable-length}
+### length :id=tcpip-variable-length
 
 Get the length for a string variable. No effect for other variable types (returns 0 ).
 
@@ -977,7 +977,7 @@ else error
 
 	  -OK - 'some message describing error'.
 
-### save {#tcpip-variable-save}
+### save :id=tcpip-variable-save
 
 Save persistent, non-persistent or both variable types to an external XML file.
 
@@ -1002,7 +1002,7 @@ else error
 
 	  -OK - 'some message describing error'.
 
-### load {#tcpip-variable-load}
+### load :id=tcpip-variable-load
 
 Load variables from XML file on disk.
 
@@ -1023,7 +1023,7 @@ else error
 
 	  -OK - 'some message describing error'.
 
-## TABLE {#tcpip-table}
+## TABLE :id=tcpip-table
 
 The VSCP daemon can handle [three types of tables](./vscp-tables.md).
 
@@ -1036,7 +1036,7 @@ The VSCP daemon can handle [three types of tables](./vscp-tables.md).
 
 Both are intended as a way for time stamp ,measurement pairs to be logged in an easy way and then being displayed in diagram form in a user UI. The most convenient way to handle this information from a web base application is through the [REST api](./rest_interface.md) or the [websocket interface](./websocket_interface) but sometime the tcp/ip interface is more convenient to use and it is thus possible to get table data also here.
 
-### create 'table-name' 'create-parameters...' {#tcpip-table-create}
+### create 'table-name' 'create-parameters...' :id=tcpip-table-create
 
 Create a new table with name 'table-name' using the supplied parameters described below.
 
@@ -1066,13 +1066,13 @@ The parameters is given as a comma separated list. Some parameters which could h
  | zone        | Zone use for data in the table (optional).                                                                                      |
  | subzone     | Subzone used for data in the table (optional).                                                                                  |
 
-### delete 'table-name' [true] {#tcpip-table-delete}
+### delete 'table-name' [true] :id=tcpip-table-delete
 
 Delete an existing table and optional remove it's associating database file if the last argument is 'true'. Default is to leave the database file. If this is done and a new table with the same name later is created this file will be reused. This can cause troubles if the two tables have different columns defined.
 
 **'del'** can be used instead of **'delete'**
 
-### list {#tcpip-table-list}
+### list :id=tcpip-table-list
 
 List all available tables.
 
@@ -1087,7 +1087,7 @@ Where type is either 'dynamic', 'static' or "max".
 
 Description will be BASE64 encoded.
 
-### list 'table-name' [xml] {#tcpip-table-list-name}
+### list 'table-name' [xml] :id=tcpip-table-list-name
 
 List full information for a specific table with name 'table-name'. The standard output is
 
@@ -1151,7 +1151,7 @@ which will be outputed as
 	  +OK - Success.<CR><LF>
 
 
-### get 'table-name' 'from' 'to' ["full"] {#tcpip-table-get}
+### get 'table-name' 'from' 'to' ["full"] :id=tcpip-table-get
 
 Get table data from a named table over an optional interval **to - from** which each should be on the form (ISO 8601) YY-MM-DDTHH:MM:SS.
 
@@ -1168,78 +1168,78 @@ The output will look like this
     +OK - Success.<CR><LF>
 
 
-### getraw 'table-name' 'from' 'to' {#tcpip-table-getraw}
+### getraw 'table-name' 'from' 'to' :id=tcpip-table-getraw
 
 Get table data from a named table over an optional interval **to - from** which each should be on the form (ISO 8601) YY-MM-DDTHH:MM:SS.
 
 The difference between get and getraw is that getraw always outputs all fields of a table as a comma separated list while get treat datetime and value as special values and put them before all other values.
-### log 'table-name' value [datetime] {#tcpip-table-log}
+### log 'table-name' value [datetime] :id=tcpip-table-log
 
 log data to a named table.
 
 Table-name and value must be given. Table-name must be a valid and existing table. The value should be a floating point value. A period ('.') is always used as a decimal separator regardless of language settings. The datettime value is on standard ISO date/time format (YYYY-MM-DDTHH:MM:SS.sssZ) and should always be given as UTC time. The "sss" is millisecond part.
 
 If datetime is not given the current UTC time will be used.
-### logsql 'table-name' 'sql' {#tcpip-table-logsql}
+### logsql 'table-name' 'sql' :id=tcpip-table-logsql
 
 Log data to a named table using custom SQL expression.
 
 Regardless to say this is a **very dangerous** command and you need the highest privileges to use it as a user which normally means admin privileges.
 
-### records 'table-name' [from to] {#tcpip-table-records}
+### records 'table-name' [from to] :id=tcpip-table-records
 
 Statistical function that return the number of records in the database over a date range *from to* or over the full table if no range is given. The date time ranges should be given in ISO format YYYYMMDDTHH:MM:SS as usual.
 
-### firstdate 'table-name' [from to] {#tcpip-table-firstdate}
+### firstdate 'table-name' [from to] :id=tcpip-table-firstdate
 
 Statistical function that return the first date in a date range *from to* or over the full table if no range is given. The date time ranges should be given in ISO format YYYYMMDDTHH:MM:SS as usual.
 
-### lastdate 'table-name' [from to] {#tcpip-table-lastdate}
+### lastdate 'table-name' [from to] :id=tcpip-table-lastdate
 
 Statistical function that return the last date in a date range *from to* or over the full table if no range is given. The date time ranges should be given in ISO format YYYYMMDDTHH:MM:SS as usual.
 
-### sum 'table-name' [from to] {#tcpip-table-sum}
+### sum 'table-name' [from to] :id=tcpip-table-sum
 
 Statistical function that return the sum of all values over a date range *from to* or over the full table if no range is given. The date time ranges should be given in ISO format YYYYMMDDTHH:MM:SS as usual.
 
-### min 'table-name' [from to] {#tcpip-table-min}
+### min 'table-name' [from to] :id=tcpip-table-min
 
 Statistical function that return the minimum value of all values over a date range *from to* or over the full table if no range is given. The date time ranges should be given in ISO format YYYYMMDDTHH:MM:SS as usual.
 
-### max 'table-name' [from to] {#tcpip-table-max}
+### max 'table-name' [from to] :id=tcpip-table-max
 
 Statistical function that return the max of all values over a date range *from to* or over the full table if no range is given. The date time ranges should be given in ISO format YYYYMMDDTHH:MM:SS as usual.
 
-### average 'table-name' [from to] {#tcpip-table-average}
+### average 'table-name' [from to] :id=tcpip-table-average
 
 Statistical function that return the average of all values over a date range *from to* or over the full table if no range is given. The date time ranges should be given in ISO format YYYYMMDDTHH:MM:SS as usual.
 
-### median 'table-name' [from to] {#tcpip-table-median}
+### median 'table-name' [from to] :id=tcpip-table-median
 
 Statistical function that return the median / third quartile of all values over a date range *from to* or over the full table if no range is given. The date time ranges should be given in ISO format YYYYMMDDTHH:MM:SS as usual.
 
 
-### stddev 'table-name' [from to] {#tcpip-table-stddev}
+### stddev 'table-name' [from to] :id=tcpip-table-stddev
 
 Statistical function that return the standard deviation of all values over a date range *from to* or over the full table if no range is given. The date time ranges should be given in ISO format YYYYMMDDTHH:MM:SS as usual.
 
-### variance 'table-name' [from to] {#tcpip-table-variance}
+### variance 'table-name' [from to] :id=tcpip-table-variance
 
 Statistical function that return the variance of all values over a date range *from to* or over the full table if no range is given. The date time ranges should be given in ISO format YYYYMMDDTHH:MM:SS as usual.
 
-### mode 'table-name' [from to] {#tcpip-table-mode}
+### mode 'table-name' [from to] :id=tcpip-table-mode
 
 Statistical function that return the mode of all values over a date range *from to* or over the full table if no range is given. The date time ranges should be given in ISO format YYYYMMDDTHH:MM:SS as usual.
 
-### lowerq 'table-name' [from to] {#tcpip-table-lowerq}
+### lowerq 'table-name' [from to] :id=tcpip-table-lowerq
 
 Statistical function that return the first quartile / lower quartile of all values over a date range *from to* or over the full table if no range is given. The date time ranges should be given in ISO format YYYYMMDDTHH:MM:SS as usual.
 
-### upperq 'table-name' [from to] {#tcpip-table-upperq}
+### upperq 'table-name' [from to] :id=tcpip-table-upperq
 
 Statistical function that return the third quartile / upper quartile of all values over a date range *from to* or over the full table if no range is given. The date time ranges should be given in ISO format YYYYMMDDTHH:MM:SS as usual.
 
-### clear 'table-name' [to from] {#tcpip-table-clear}
+### clear 'table-name' [to from] :id=tcpip-table-clear
 
 Clear records in table, possibly to-from a date time range.
 
