@@ -61,6 +61,9 @@
   * [gt](websocket_protocol_description.md#websocket-gt )
   * [measurement](websocket_protocol_description.md#websocket-measurement )
 
+* Rest Interface
+ * [Rest Interface](rest_protocol.md)
+
 * Drivers
  *  [Driver Interfaces](driver_interfaces.md)
    * [Level I Drivers](level_i_drivers.md)
