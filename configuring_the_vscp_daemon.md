@@ -12,7 +12,7 @@ The location that is searched to find the configuration file can be changed with
 
 The configuration file have a path to a sql database file that store configuration setting among other things. Many configuration items are possible to set in both the xml file and in sql file. If a setting is present in both the setting in the xml file will be used. 
 
-##  Configuration
+##  Description of the onfiguration
 
 The configuration file is a standard XML file that contains information that tells the VSCP daemon what to do and how it should be done. The information in it is divided into sections and this documentation and each section and it's content is described below.
 
