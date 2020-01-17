@@ -9,12 +9,43 @@ The binary package is supplied as a Debian package.
 ### Debian package installation
 This should work as an installation method on all distribution's that can handle Debian packages.
 
+You find the Debian package [here](https://github.com/grodansparadis/vscp/releases). Download the package for your architecture and install with
+
+```
+sudo dpkg -i vscpd....
+```
+
+The VSCP project also have a private package repository which currently is experimental. The repository holds files for amd64/i385/armhf that should work on all debian derived systems such as Ubuntu and Raspbian as well as on Debian itself. The repository holds all drivers, the VSCP daemon and many other packages.
+
+To use it you must add a signing key to your apt install system. You do this with
+
+```
+curl -s http://apt.vscp.org/apt.vscp.org.gpg.key | sudo apt-key add -
+```
+
+then add (replace 'buster' with code name for your system (get code name with 'lsb_release -c'))
+
+```
+deb http://apt.vscp.org/debian buster main
+```
+
+to the file
+
+```
+/etc/apt/sources.list
+```
+
+After the setup you can install with
+
+```
+sudo apt update
+sudo apt install vscpd
+```
+
+and upgrades will be handled for you.
+
 
 ## Building from source
-
-The build process is described in the file **BUILD_UNIX** in the root of the source folder. You find the source in the same folder as the installation packages. 
-
-The source for the system is also available on [GitHub](https://github.com/grodansparadis/vscp) if you want to use unstable code or just prefers GitHub for some other reason.
 
 ### Step 1
 
@@ -29,33 +60,37 @@ to install the build tools.
 
 ### Step 2
 
-Get the latest source release package from [https://github.com/grodansparadis/vscp/releases] and unpack it in the folder of your choice. 
+The source tar/zip files for vscpd is available at [GitHub](https://github.com/grodansparadis/vscp/releases). Download the latest version and unpack in the folder of your choice. .
 
-You unpack the tgz with
+Unpack the source in a folder of your choice with
 
 ```bash
-tar -zxvf file.tgz
+tar -zxvf file
 ```
+
 or
 
-```
-unzip file.zip
+```bash
+unzip file
 ```
 
-(use v)
 
-As an alternative if you want bleeding edge software, go to a folder of your choice, and do
+If you want to use bleeding edge source use git and clone the repository with
 
 ```bash
 git clone https://github.com/grodansparadis/vscp.git
 ```    
 
-For a production system choosing a release version is recommended.
+*Note* For a production system choosing a stable release version is strongly recommended.
 
+You can also download a zip of the latest bleeding edge source by clicking ion the 'clone and download' button at
+[GitHub](https://github.com/grodansparadis/vscp).
+
+Enter the 'vscp' folder created by the unpacking/clone process
 
 ###  Step 3
 
-Enter the VSCP project folder and do
+Enter the VSCP project folder ('vscp') and do
 
 ```bash
 cd vscp
