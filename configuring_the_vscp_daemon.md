@@ -12,122 +12,40 @@ The location that is searched to find the configuration file can be changed with
 
 The configuration file have a path to a sql database file that store configuration setting among other things. Many configuration items are possible to set in both the xml file and in sql file. If a setting is present in both the setting in the xml file will be used. 
 
-##  Description of the onfiguration
+##  Description of the configuration :id=config-description
 
 The configuration file is a standard XML file that contains information that tells the VSCP daemon what to do and how it should be done. The information in it is divided into sections and this documentation and each section and it's content is described below.
 
 You can view a sample configuration file [here](Sample vscpd configuration file).
 
-## The general section
+## The general section :id=config-general
 
 In the general section you find settings that are common to all components of the VSCP daemon software. 
 
-### security
+```xml
+<general clientbuffersize="1024"
+    runasuser="vscp"
+    guid="FF:FF:FF:FF:FF:FF:FF:F5:00:00:00:00:00:00:00:01"
+    servername="The VSCP daemon" />
+```
+
+### clientbuffersize
 
 ```xml
-<security admin="username" 
-    password="450ADCE88F2FDBB20F3318B65E53CA4A;06D3311CC2195E80BE4F8EB12931BFEB5C630F6B154B2D644ABE29CEBDBFB545" 
-    allowfrom="list of remotes" 
-    vscptoken="Carpe diem quam minimum credula postero"
-    vscpkey="/etc/vscp/certs/vscp.key"
-    digest=""
-/>
+<clientbuffersize>1024</clientbuffersize>
 ```
 
-The admin user and other security settings can only be defined in the configuration file. It is __VERY important__ that this file only can be read by users that are allowed to do so.
+This is the default buffer size (number of events) for all clients in the system. Everything from a driver to a TCP/IP user is regarded as a client. Default is 1024. 
 
-#####  admin
 
-Name of admin user. Default is "admin". **Use something else. PLEASE!**
 
-##### password
+### runasuser :id=config-general-runasuser
 
-Password for admin user. Default is "secret". __Use something else. PLEASE!**  The password consist of a 16-byte salt and a 32 byte has on the form salt;hash. pbkdf2 is used for password handling with SHA256,
+__Only on Unix/Linux__. User to run the VSCP daemon as.
 
-Use the **vscpmkpasswd** tool supplied with VSCP & Friends to generate the password (called mkpasswd in earlier versions).
 
-Before version 1.12.26 the password stored here is formed by taking an MD5 over *username:authdomain:password*.
 
-##### allowfrom
-
-A comma separated list (IPv4 and IPv6) of remote machines from which the admin user can log in. Wild-cards can be use. "192.168.1.*" means all machines on the 192.168.1.0 subnet. "*" means all remote machines and is the default.  
-
-##### vscptoken
-
-This is used as a secret token (**key**) in traffic between server and client. Use any string you like and keep it secret. It should never be sent unencrypted over the wire.
-
-##### vscpkey
-
-This entry points to a file containing a 256-bit, 32-byte, hexadecimal string that is used a the key for encryption/decryption. It can also be set as a command line switch for the VSCP server. Default is 
-
-    A4A86F7D7E119BA3F0CD06881E371B989B33B6D606A863B633EF529D64544F8E
-    
-or 
-
-```cpp  
-uint8_t key[] = { 0xA4,0xA8,0x6F,0x7D,0x7E,0x11,0x9B,0xA3,
-                   0xF0,0xCD,0x06,0x88,0x1E,0x37,0x1B,0x98,
-                   0x9B,0x33,0xB6,0xD6,0x06,0xA8,0x63,0xB6,
-                   0x33,0xEF,0x52,0x9D,0x64,0x54,0x4F,0x8E };
-```
-
-The **vscpkey** is normally located in the file /etc/vscp/certs/vscp.key. This filder should only be readable by the vscp user.
-
-Read the [security section](./security_general.md) for more information about how the different values is used.
-
-----
-
-### debugflags1
-
-** Can only be set in XML configuration file **
-
-```xml
-<debugflags1>n</debugflags1>
-```
-
-Set bits in debug flags 1 that when set will output additional logging information,
-
- | Bit  | Description                                    | 
- | :---:  | -----------                                    | 
- | 0    | Extra info from automation engine.             | 
- | 1    | Extra info from variable handling.             | 
- | 2    | Extra info from Multicast interface.           | 
- | 3    | Extra info from UDP interface.                 | 
- | 4    | Extra info from TCP/IP interface.              | 
- | 5    | Extra info from decision matrix engine.        | 
- | 6    | Extra info from decision matrix timers.        | 
- | 7    | Extra info from driver load/unload/start/stop. | 
- | 8-31 | Undefined                                      | 
-
-----
-
-### debugflags2
-
-** Can only be set in XML configuration file **
-
-```xml
-<debugflags2>n</debugflags2>
-```
-
-Set bits in debug flags 2 that when set will output additional logging information,
-
- | Bit  | Description | 
- | :---:  | ----------- | 
- | 0-31 | Undefined   | 
-
-### runasuser
-
-** Can only be set in XML configuration file **
-
-```xml
-<runasuser>n</runasuser>
-```
-
-__Only on Unix/Linux__ user to run the VSCP daemon as.
-
-----
-
-### guid
+### guid :id=config-gerneral-guid
 
 ```xml
 <guid>
@@ -146,14 +64,112 @@ Clients will be identified with a GUID that consist of this GUID plus an on the 
 
 ----
 
-### Servername
+### Servername :id=config-general-servername
 
 If set this real text name will be used as an identifier for the server along with the GUID. The default name will be something like
 
     VSCP Daemon @ FF:FF:FF:FF:FF:FF:FF:FE:00:26:55:CA:1F:DA:00:00
 
 
-##  tcp/ip client interface
+## security :id=config-security
+
+```xml
+<security admin="username" 
+    password="450ADCE88F2FDBB20F3318B65E53CA4A;06D3311CC2195E80BE4F8EB12931BFEB5C630F6B154B2D644ABE29CEBDBFB545" 
+    allowfrom="list of remotes" 
+    vscptoken="Carpe diem quam minimum credula postero"
+    vscpkey="/etc/vscp/certs/vscp.key"
+    digest=""
+/>
+```
+
+The admin user and other security settings can only be defined in the configuration file. It is __VERY important__ that this file only can be read by users that are allowed to do so.
+
+###  admin :id=config-security-admin
+
+Name of admin user. Default is "admin". **Use something else. PLEASE!**
+
+### password :id=config-security-password
+
+Password for admin user. Default is "secret". __Use something else. PLEASE!**  The password consist of a 16-byte salt and a 32 byte has on the form salt;hash. pbkdf2 is used for password handling with SHA256,
+
+Use the **vscpmkpasswd** tool supplied with VSCP & Friends to generate the password (called mkpasswd in earlier versions).
+
+Before version 1.12.26 the password stored here is formed by taking an MD5 over *username:authdomain:password*.
+
+### allowfrom :id=config-security-allowfrom
+
+A comma separated list (IPv4 and IPv6) of remote machines from which the admin user can log in. Wild-cards can be use. "192.168.1.*" means all machines on the 192.168.1.0 subnet. "*" means all remote machines and is the default.  
+
+### vscptoken :id=config-security-vscptoken
+
+This is used as a secret token (**key**) in traffic between server and client. Use any string you like and keep it secret. It should never be sent unencrypted over the wire.
+
+### vscpkey :id=config-security-vscpkey
+
+This entry points to a file containing a 256-bit, 32-byte, hexadecimal string that is used a the key for encryption/decryption. It can also be set as a command line switch for the VSCP server. Default is 
+
+    A4A86F7D7E119BA3F0CD06881E371B989B33B6D606A863B633EF529D64544F8E
+    
+or 
+
+```cpp  
+uint8_t key[] = { 0xA4,0xA8,0x6F,0x7D,0x7E,0x11,0x9B,0xA3,
+                   0xF0,0xCD,0x06,0x88,0x1E,0x37,0x1B,0x98,
+                   0x9B,0x33,0xB6,0xD6,0x06,0xA8,0x63,0xB6,
+                   0x33,0xEF,0x52,0x9D,0x64,0x54,0x4F,0x8E };
+```
+
+The **vscpkey** is normally located in the file /etc/vscp/certs/vscp.key. This folder should only be readable by the vscp user.
+
+Read the [security information](./security_general.md) for more information about how the different values is used.
+
+----
+
+## debugflags :id=config-debugflags
+
+Debugflags can be enabled to customize what is output to the syslog file. Beware that some (rx/tx) will output a lot of information to the log file. 
+
+The debug flags are defined in eight bytes where each byte holds flags for a specific functionality.
+
+```xml
+<debugflags byte1="0"
+            byte2="0"
+            byte3="0"
+            byte4="0"
+            byte5="0"
+            byte6="0"
+            byte7="0"
+            byte8="0"
+/>
+```
+
+Set bits in the eight debug flag bytes that when set will output additional logging information,
+
+| Byte | Bit | Description | 
+| :---: | :---: | ----------- | 
+| 0 | 0 | **extra general** debug info. |
+| 0 | 1 | **automation** debug info. |
+| 0 | 2 | **configuration** debug info. |
+| 1 | 0 | **tcp/ip** interface debug info. |
+| 1 | 1 | **tcp/ip receive** debug info. |
+| 1 | 2 | **tcp/ip transmit** debug info. |
+| 2 | 0 | **web server** interface debug info. |
+| 2 | 1 | **REST** interface debug info. |
+| 2 | 2 | **webserver access** debug info. |
+| 3 | 0 | **websocket** interface debug info. |
+| 3 | 1 | **websocket receive** debug info. |
+| 3 | 2 | **websocket transmit** debug info. |
+| 4 | 0 | **level 1 driver** debug info. |
+| 4 | 1 | **level 2 driver** debug info. |
+| 4 | 2 | **level 1 driver receive** debug info. |
+| 4 | 3 | **level 1 driver transmit** debug info. |
+| 4 | 4 | **level 2 driver receive** debug info. |
+| 4 | 5 | **level 2 driver transmit** debug info. |
+
+
+
+##  tcp/ip client interface :id=config-tcpip
 
 ```xml
 <tcpif interface=”ip-address:port” 
@@ -334,31 +350,13 @@ Disk IO performance can be improved when keeping the certificates and keys store
 
 
 
-
-----
-
-
-----
-
-
-
-### clientbuffersize
-
-```xml
-<clientbuffersize>1024</clientbuffersize>
-```
-
-This is the default buffer size (number of events) for all clients in the system. Everything from a driver to a TCP/IP user is regarded as a client. Default is 1024. 
-
-----
-
-##   webserver
+##   webserver :id=config-webserver
 
 ```xml
 <webserver enable="true" 
               document_root="/srv/vscp/www"
-              listening_ports="[::]:8888r,[::]:8843s,8884"                  
-              index_files="index.xhtml,index.html,index.htm,index.lp,index.lsp,index.lua,index.cgi,index.shtml,index.php"             
+              listening_ports="[::]:8888r,[::]:8843s,8884"
+              index_files="index.xhtml,index.html,index.htm,index.lp,index.lsp,index.lua,index.cgi,index.shtml,index.php"
               authentication_domain="mydomain.com"
               enable_auth_domain_check="false"
               ssl_certificate="/srv/vscp/serts/server.pem"
@@ -370,7 +368,7 @@ This is the default buffer size (number of events) for all clients in the system
               ssl_default_verify_paths="true"
               ssl_cipher_list="DES-CBC3-SHA:AES128-SHA:AES128-GCM-SHA256"
               ssl_protocol_version="3"
-              ssl_short_trust="false"              
+              ssl_short_trust="false"
               cgi_interpreter=""
               cgi_patterns="**.cgi$|**.pl$|**.php|**.py" 
               cgi_environment=""
@@ -453,7 +451,7 @@ It is possible to use network interface addresses (e.g., 192.0.2.3:80, [2001:0db
 
 **Default:** [::]:8888r,[::]:8843s,8884
 
-###   index_files
+### index_files
 
 Comma-separated list of files to be treated as directory index files. If more than one matching file is present in a directory, the one listed to the left is used as a directory index.
 
@@ -592,21 +590,20 @@ On UNIX it is also LD_LIBRARY_PATH. On Windows it is also COMSPEC, SYSTEMROOT, S
 
 There is no requirement for CGI scripts to be located in a special directory. CGI scripts can be anywhere. CGI (and SSI) files are recognized by the file name pattern. Shell-like glob patterns is used. Pattern match starts at the beginning of the string, so essentially patterns are prefix patterns. Syntax is as follows:
     
- | Pattern             | Description                                                  |                                                               
- | :-------:             | -----------                                                  |                                                               
- | \*\* | Matches everything                                           |                                                               
- | \*  | Matches everything but slash character, `<nowiki>`/`</nowiki>` |                                                               
- | ?  | Matches any character                                        |                                                               
- | $   | Matches the end of the string                                |                                                               
- | \|                                                    | Matches if pattern on the left side or the right side matches. | 
+ | Pattern | Description |
+ | :-------: | ----------- |
+ | \*  | Matches everything but slash character, `<nowiki>`/`</nowiki>` |
+ | ?   | Matches any character |
+ | $   | Matches the end of the string |
+ | \|  | Matches if pattern on the left side or the right side matches. | 
 
 All other characters in the pattern match themselves. Examples:
 
- | Pattern | Description |                                 
+ | Pattern | Description |
  | :-------:    | ----------- |
- | \*\*.cgi$ | Any string that ends with .cgi   |                                 
- | /foo    | Any string that begins with /foo |                                 
- | \*\*a$\|\*\*b$  | Any string that ends with a or b | 
+ | \*\*.cgi$ | Any string that ends with .cgi |
+ | /foo    | Any string that begins with /foo |
+ | \*\*a$\|\*\*b$  | Any string that ends with a or b |
 
 
 
@@ -631,8 +628,8 @@ This is a comma separated list of URI=PATH pairs, specifying that given URIs mus
 
 Limit download speed for clients. throttle is a comma-separated list of key=value pairs, where key could be:
 
- | key                | Description                      | 
- | :---:                | -----------                      | 
+ | key  | Description | 
+ | :---: | ----------- | 
  | \* | limit speed for all connections  | 
  | x.x.x.x/mask       | limit speed for specified subnet | 
  | uri_prefix_pattern | limit speed for given URIs       | 
@@ -884,7 +881,7 @@ Enable TCP_NODELAY socket option on client connections.
 If set the socket option will disable Nagle's algorithm on the connection which means that packets will be sent as soon as possible instead of waiting for a full buffer or timeout to occur.
 
  | Setting | Description                                 | 
- | :-------: | -----------                                 | 
+ | :-------: | -----------                               | 
  | 0       | Keep the default: Nagel's algorithm enabled | 
  | 1       | Disable Nagel's algorithm for all sockets   | 
 
@@ -1071,7 +1068,7 @@ Timeout for websocket calls.
 
 
 
-## Remote user settings
+## Remote user settings :id=config-remote-user
 
 Example
 
@@ -1166,13 +1163,9 @@ This is the event filter. Set the filter for incoming events to a client. The fo
 
 
 ----
-##  Level I Drivers
+##  Level I Drivers :id=config-level1-driver
 
 Enable/disable daemon Level I driver interface. If disabled no Level I drivers will be loaded. Default is enabled. This is the driver type that in the past used to be called CANAL (CAN Abstraction Layer) drivers.
-
-
-
-### level1driver
 
 ```xml
 <level1driver enable=”true|false” />
@@ -1180,11 +1173,11 @@ Enable/disable daemon Level I driver interface. If disabled no Level I drivers w
 
 The content consist of one or several driver entries each representing a level 1 driver that should be used. 
 
-##### enable
+### enable
 
 Set to true to enable level I driver functionality , set to false to disable. This is convenient if one wants to disable all level I drivers without removing them from the configuration file.
 
-#### driver
+### driver
 
 ```xml
 <driver enable="false">
@@ -1192,11 +1185,11 @@ Set to true to enable level I driver functionality , set to false to disable. Th
 
 A level I driver entry.
 
-##### enable
+### enable
 
 The driver should be loaded if set to true. If set to false the driver will not be loaded.
 
-##### name
+### name
 
 ```xml
 <name>driver-name</name>
@@ -1204,7 +1197,7 @@ The driver should be loaded if set to true. If set to false the driver will not 
 
 A name given by the user for the driver. This is the name by which the driver is identified by the system.
 
-##### config
+### config
 
 ```xml
 <config>config1;config2</config>
@@ -1212,7 +1205,7 @@ A name given by the user for the driver. This is the name by which the driver is
 
 The semicolon separated configuration string for the driver. The meaning of this string is driver specific.
 
-##### flags
+### flags
 
 ```xml
 <flags>0</flags>
@@ -1220,7 +1213,7 @@ The semicolon separated configuration string for the driver. The meaning of this
 
 A 32 bit driver specific number that have bits set that have special meaning for a driver. See the documentation for a specific driver for an explanation of the meaning of each flag bit for that driver.
 
-##### path
+### path
 
 ```xml
 <path>path-to-driver</path>
@@ -1228,7 +1221,7 @@ A 32 bit driver specific number that have bits set that have special meaning for
 
 Path to where the driver is located. A dll file on Windows or a .so dl file on Linux etc.
 
-##### guid
+### guid
 
 ```xml
 <guid>guid-for-driver</guid>
@@ -1238,7 +1231,7 @@ The GUID that the driver will use for it's interface. This means that this is th
 
 Note that the GUID set here will have the two least significant bytes replaced by the node id so when set here they should be set to zero.
 
-##### Translation
+### Translation
 
 `<translation>` is a list of semicolon separated fields with translations that should be carried out by the system on event passing through driver.
 
@@ -1286,13 +1279,10 @@ Note that the GUID set here will have the two least significant bytes replaced b
 
 ----
 
-## Level II drivers
+## Level II drivers :id=config-level2-driver
 
 Level II drivers can handle the full VSCP abstraction and don't have the limitation of the Level I drivers. 
 
-
-
-###  level2driver 
 
 ```xml
 <leve2driver enable=”true|false” />
@@ -1300,7 +1290,6 @@ Level II drivers can handle the full VSCP abstraction and don't have the limitat
 
 Enable/disable daemon Level II driver interface. If disabled no Level II drivers will be loaded. Default is enabled. 
 
-#### driver
 
 ```xml
 `<driver enable="false">`
@@ -1308,11 +1297,11 @@ Enable/disable daemon Level II driver interface. If disabled no Level II drivers
 
 The content consist of one or several driver entries each representing a driver that should be used. 
 
-##### enable
+### enable
 
 The driver should be loaded if set to true. If false the driver will not be loaded.
 
-##### name
+### name
 
 ```xml
 `<name>`driver-name`</name>`
@@ -1320,7 +1309,7 @@ The driver should be loaded if set to true. If false the driver will not be load
 
 A name given by the user for the driver.
 
-##### config
+### config
 
 ```xml
 `<config>`config1;config2`</config>`
@@ -1328,7 +1317,7 @@ A name given by the user for the driver.
 
 The semi colon separated configuration string for the driver. The meaning of this string is driver specific.
 
-#####  guid
+###  guid
 
 ```xml
 `<guid>`guid-for-driver`</guid>`
@@ -1336,11 +1325,11 @@ The semi colon separated configuration string for the driver. The meaning of thi
 
 The GUID that the driver will use for it's interface.
 
-##### translation
+### translation
 
 See explanation for Level I drivers above.
 
-##### known-nodes
+### known-nodes
 
 See explanation for Level I drivers above.
 
@@ -1365,192 +1354,5 @@ See explanation for Level I drivers above.
 </level2driver>
 ```
 
-----
-
-## tables
-
-```xml
-<tables>
-    <table ....... />
-    <table ....... />
-    <table ....... />
-    ...    
-</tables>
-```
-
-Tables makes it possible to define tables that collect data (measurements). Tables can be of three types. **Type="dynamic"** which is a standard table that grows over time and **type="static"** which is a static table that have a fixed size and **type="max"** which is a table that grows up to a specified size and then is cleared and start to fill the table again.
-
-You can access the written table data through the websocket, TCP/IP or the REST interface.
-
-#### table
-
-```xml
-<table enable="true|false"
-    name="testtable1"
-    bmemory="false|true"
-    type="dynamic|static|max"
-    size="0"
-    
-    owner="admin"
-    permission="0x777"
-    
-    vscp-class="10"
-    vscp-type="6"
-    vscp-sensor-index="0"
-    vscp-unit="1"
-    vscp-zone="0"
-    vscp-subzone="0"
-
-    xname="x-label name"
-    yname="y-label name"
-    title="Title for diagram"
-    note="Note for diagram"
-
-    sql-create="SQL expression to create table"
-    sql-insert="SQL expression to insert value into table"
-    sql-delete="SQL expression to delete table"
-
-    description="Description of database"
-/>
-```
-
-This is the definition of a table. It defines the information for the table but does not enable any writing of data to the table. This must be done with a VSCP decision matrix entry and is [described here](http://www.vscp.org/docs/vscpd/doku.php?id=vscp_daemon_decision_matrix#write_table).
-
-##### enable
-
-If set to true (enable="true") the table will be read in. If set to false (enable="false" the table will not be read in.
-
-##### name
-
-This is the name of the table. It must be unique in the system and this is also the name the database file will get.
-
-##### bmemory
-
-If bMemory is set to true (bMemory="true") the database will be created in memory. This s a very fast database but the data will be lost when the VSCP daemon is restarted. Care must also be taken on how much you let this database grow in size and therefore it may we wise to make this database static. 
-
-If set to "false" (bMemory="false") the database will be created on disk. This means it will be possible to work with by other tools as well and that it is persistent over time.
-
-##### type
-
-This is the type for the table. Two types are available. The first is **dynamic** (type="dynamic") which is a table that grows over time with not limits. The second type is **static** (type="static") which is a table with a fixed size. A fixed size table is perfect if you want to collect data for the last 24 hours, the last week or similar while the normal table is more like a traditional database.
-
-##### size
-
-Size only have meaning for a table with type="static" and then set the max size for the table. Every time data is added to the table the size will be checked and the oldest records will be removed until the size is equal to the value set here.
-
-##### owner
-
-Is the user that owns this table.
-
-##### permission
-
-Is the rights for users to read/write records in this table.
-
-##### vscp-class
-
-This is the VSCP class data is collected from.
-
-##### vscp-type
-
-This is the type of the VSCP class data is collected from.
-
-##### vscp-sensor-index
-
-This is the sensor index for the sensor data is collected from. Default to zero. Can be max 7 for Level I events and have a value of max 255 for Level II events.
-
-##### vscp-unit
-
-This is the unit data is collected for. Defaults to the default unit zero. Not used if the event dos not have a zone specified. Can be max 3 for Level I events and have a value of max 255 for Level II events.
-
-##### vscp-zone
-
-This is the zone the sensor data is collected from should be part of. Defaults to 255 (all zones). Not used if the event dos not have a zone specified.
-
-##### vscp-subzone
-
-This is the subzone the sensor data is collected from should be part of. Defaults to 255 (all subzones).
-
-##### xname
-
-This is the x label name for a UI diagram or the column name for a UI table. Used for click and play diagrams and tables.
-
-##### yname
-
-This is the Y label name for a UI diagram or the column name for a UI table. Used for click and play diagrams and tables.
-
-##### title
-
-This is the title for a UI diagram or a UI table. Used for click and play diagrams and tables.
-
-##### note
-
-This is a note for a UI diagram or a UI table. Used for click and play diagrams and tables.
-
-##### sql-create (optional)
-
-This is the SQL expression used to create the database for the table if it does not exist. For a in memory table this means every time the VSCP daemon is started. If this attribute is left blank it will be set to the following SQL expression
-
-```sql
-CREATE TABLE 'vscptable' ( 
-    `idx` INTEGER NOT NULL PRIMARY KEY UNIQUE,   
-    `datetime` TEXT, 
-    `value` REAL DEFAULT 0 );
-```
-
-But you can use your own SQL expression to create tables with other fields. The following restrictions is the only ones
-
-
-*  One table must be named **vscptable** but you are free to create any number of tables with other names in the database.
-
-*  The vscptable must have the field **datetime** defined which is of type **TEXT** and the field **value** defined which is of type **REAL**.
-
-Before the expression is executed by the SLQ engine [VSCP decision matrix escapes](./decision_matrix.md#variable_substitution_for_parameters_escapes) are replaced with real values.
-
-##### sql-insert (optional)
-
-This is the SQL expression used to insert data into the table. If this attribute is left blank it will be set to the following SQL expression
-
-```sql
-INSERT INTO 'vscptable' (datetime,value) VALUES ('%%s','%%f');
-```
-
-You can set your own SQL expression. But **datetime** must be followed by a %%s somewhere and in the same way the **value** need to be followed by %%f somewhere. The order does not matter. %%s will be replaced by %s (string insert) by the [VSCP decision matrix escapes](./decision_matrix.md#variable_substitution_for_parameters_escapes) handling and %%f will be replaced by %lf (floating point (double) value insert) by the [VSCP decision matrix escapes](./decision_matrix.md#variable_substitution_for_parameters_escapes) handling.
-
-Before the expression is executed by the SQL engine [VSCP decision matrix escapes](./decision_matrix.md#variable_substitution_for_parameters_escapes) are replaced with real values. So any number of other values and content of variables can be inserted in the table when a new data point is inserted.
-
-##### sql-delete (optional)
-
-To be defined
-
-#####  description (optional)
-
-This is a description of the table.
-
-##  Example 1 
-
-```xml
-<table enable="true" 
-    bmemory="false"
-    type="static"
-    name="test1"
-    owner="admin"
-    permission="0x777"
-    labelx="Time"
-    labely="Temperature in degrees Celsius"
-    title="Temperature outside"
-    note="Diagram showing temperature outside at Donald Ducks house at the North pole fetched from a Kelvin NTC10K module."
-    size="0"
-    sqlcreate="CREATE TABLE 'vscptable' ( `idx` INTEGER NOT NULL PRIMARY KEY UNIQUE, `datetime` TEXT, `value` REAL DEFAULT 0, `event` TEXT, 'timestamp  INTEGER DEFAULT 0' );"
-    sqlinsert="INSERT INTO 'vscptable' (datetime,value,event,timestamp) VALUES ('%%s','%%f','%event','%event.timestamp');"
-    sqldelete="DELETE FROM 'vscptable' WHERE idx IN (SELECT idx FROM temp ORDER BY idx ASC LIMIT 1);"    
-    vscpclass="10"
-    vscptype="6"
-    vscpsensorindex="0"
-    vscpunit="1"
-    vscpzone="255"
-    vscpsubzone="255"
-    description="Temperature data collections from the North pole s:t Clause house, Kelvin NTC10K, Sensor 3"
-/>
-```
 
 [filename](./bottom_copyright.md ':include')

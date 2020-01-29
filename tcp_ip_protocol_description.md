@@ -433,8 +433,8 @@ For the list interfaces command the daemon respond with
 
 type is
 
- | Type | Description                    |
- | :----: | -----------                    |
+ | Type | Description |
+ | :----: | ----------- |
  | 0    | Unknown (should not see this). |
  | 1    | Internal daemon client         |
  | 2    | Level I driver                 |
