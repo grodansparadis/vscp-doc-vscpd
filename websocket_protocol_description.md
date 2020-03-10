@@ -91,7 +91,15 @@ Variables on the server is a powerful tool. Variables are used by Level II drive
 
 No operation. Will always give a positive response.
 
+```
+C;NOOP
+```
+
 #### CHALLENGE :id=ws1-challenge
+
+```
+C;CHALLENGE
+```
 
 Send this command to initiate the authentication. This is process is normally started automatically on a connect.
 
@@ -555,6 +563,9 @@ The reply is the following object
 A simple ws2 interface connection example is [here](https://github.com/grodansparadis/vscp/blob/master/tests/websockets/ws2.html)
 
 #### Python
-A dummy command that issue some commands, send an event and waiting for incoming events is [here](https://github.com/grodansparadis/vscp/blob/master/tests/websockets/test_ws2.py)
+Code that issue some commands, send an event and waiting for incoming events is [here](https://github.com/grodansparadis/vscp/blob/master/tests/websockets/test_ws2.py)
+
+#### node.js
+Code that issue some commands, send an event and waiting for incoming events is [here](https://github.com/grodansparadis/vscp/blob/master/tests/websockets/test_ws2.js)
 
 [filename](./bottom_copyright.md ':include')

@@ -15,6 +15,10 @@ You find the Debian package [here](https://github.com/grodansparadis/vscp/releas
 sudo dpkg -i vscpd....
 ```
 
+### Private Debian package repository - Experimental
+
+**Note:** Use only for testing
+
 The VSCP project also have a private package repository which currently is experimental. The repository holds files for amd64/i385/armhf that should work on all debian derived systems such as Ubuntu and Raspbian as well as on Debian itself. The repository holds all drivers, the VSCP daemon and many other packages.
 
 To use it you must add a signing key to your apt install system. You do this with
@@ -45,7 +49,7 @@ sudo apt install vscpd
 and upgrades will be handled for you.
 
 
-## Building from source
+## Building binaries from source
 
 ### Step 1
 
@@ -54,7 +58,7 @@ Prepare the build environment with
 ```bash
 sudo apt update
 sudo apt install build-essential
-sudo apt install git build-essential libopenssl-dev libexpat
+sudo apt install git build-essential libopenssl-dev libexpat libsystemd-dev libwrap0-dev libz-dev
 ```    
 to install the build tools. 
 
