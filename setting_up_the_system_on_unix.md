@@ -4,20 +4,46 @@ To install VSCP & Friends on Unix you need to install the binary package or buil
 
 ## Installing from binary package
 
-The binary package is supplied as a Debian package. 
+The binary package is supplied as a Debian package. There are several variants available. 
+
+**x86_64** should work on a Debian/Ubuntu or other Debian derived 64-bit system.
+
+**amd64** should work on a Debian/Ubuntu or other Debian derived 32-bit system.
+
+**arm7hf** should work on any arm7 system like Raspberry Pi.
 
 ### Debian package installation
 This should work as an installation method on all distribution's that can handle Debian packages.
 
 You find the Debian package [here](https://github.com/grodansparadis/vscp/releases). Download the package for your architecture and install with
 
+When this is written the 14.0.0 release is the latest and the Debian package for Raspberry Pi is named **vscpd_14.0.0-1_amd64.deb** Installing this package with
+
+```bash
+    sudo dpkg -i vscpd_14.0.0-1_amd64.deb
+    sudo apt-get install -f
 ```
-sudo dpkg -i vscpd....
+
+or 
+
+```bash
+    sudo apt install vscpd_14.0.0-1_amd64.deb
 ```
+
+the last method is [recommended](https://unix.stackexchange.com/questions/159094/how-to-install-a-deb-file-by-dpkg-i-or-by-apt).
+
+
+After installing the package you can start the VSCP daemon with
+
+```bash
+systemctl start vscpd
+```
+
+Thats it! You can start to work with VSCP.
 
 ### Private Debian package repository - Experimental
 
-**Note:** Use only for testing
+**Note:** Use only for testing !!!!
 
 The VSCP project also have a private package repository which currently is experimental. The repository holds files for amd64/i385/armhf that should work on all debian derived systems such as Ubuntu and Raspbian as well as on Debian itself. The repository holds all drivers, the VSCP daemon and many other packages.
 
@@ -58,7 +84,7 @@ Prepare the build environment with
 ```bash
 sudo apt update
 sudo apt install build-essential
-sudo apt install git build-essential libopenssl-dev libexpat libsystemd-dev libwrap0-dev libz-dev
+sudo apt install git libssl-dev libexpat-dev libsystemd-dev libwrap0-dev libz-dev
 ```    
 to install the build tools. 
 
@@ -115,7 +141,7 @@ use
 ./configure CFLAGS="-DOPENSSL_API_1_1"
 ```
 
-to use openssl 1.1 instead of openssl 1.0
+to force use of openssl 1.1 instead of openssl 1.0
 
 You can find out which version of openssl you have installed with
 
@@ -197,7 +223,7 @@ installs systemd startup scripts.
 Reboot or start service with
 
 ```
-sudo systemcrl start vscpd
+sudo systemctl start vscpd
 ```
 
 ```bash

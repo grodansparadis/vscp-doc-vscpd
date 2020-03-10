@@ -17,98 +17,33 @@ If you plan to use a Raspberry Pi in a control situation you will probably want 
 
 Expect the build of VSCP to take half an hour on a Pi version 2 and an hour and a half on Pi version 1.
 
-##  Compile wxWidgets 3.0 on Raspberry Pi
+## Install vscpd
 
-**wxWidgets 3.0 is now available as a package also in Raspian.**
-
-Instead of 2.8.12 you may want the latest version (3.0.2 as of this writing) instead. If so follow these steps
+The easiest way to install vscpd is to install the armhf Debian package. The alternative option is to compile from source (see the [generic Unix installation](./setting_up_the_system_on_unix.md)).
     
-    sudo apt-get install build-essential  
-    
-Install gtk library
+Look up the armhf package in the [repository release section](https://github.com/grodansparadis/vscp/releases). When this is written the 14.0.0 release is the latest and the Debian package for Raspberry Pi is named **vscpd_14.0.0-1_armhf.deb** Installing this package with
 
-    sudo apt-get install libgtk2.0-dev
-    
-Compile wxWidgets
-
-```bash    
-    cd /path/to/wxWidgets-3.0.x
-    mkdir gtk-build
-    gtk-build
-    ../configure
-    make
-    make install
+```bash
+    sudo dpkg -i vscpd_14.0.0-1_armhf.deb
+    sudo apt-get install -f
 ```
-    
-## Read only SD on Raspberry Pi
 
-For the full story read [this](https://wiki.debian.org/ReadonlyRoot)
+or 
 
-Short instructions form [here](https://www.raspberrypi.org/forums/viewtopic.php?p=213440). There is an alternative solution [here](https://www.raspberrypi.org/forums/viewtopic.php?f=29&t=23154)
+```bash
+    sudo apt install vscpd_14.0.0-1_armhf.deb
+```
 
-When working with this and you need to add a driver or something you can always mount the filesystem rw again with
-
-    mount -o remount,rw /
-
-### Step 1
-
-mount /var/log and /tmp in ram (here 30MB per each) by adding 
-
-    # Tempfiles in RAM
-    RAMTMP=yes
-
-to 
-
-   /etc/default/rcS 
-
-### Step 2
-
-Change 
-
-    /etc/fstab 
-    
-to
-
-     tmpfs           /tmp            tmpfs   nodev,nosuid,size=30M,mode=1777          0    0
-     tmpfs           /var/log        tmpfs   nodev,nosuid,size=30M,mode=1777          0    0
-     #/dev/mmcblk0p1 /boot           vfat    defaults                                 0    2
-     /dev/mmcblk0p2  /               ext2    defaults,ro,noatime,errors=remount-ro    0    1
-     #/dev/mmcblk0p3 /home           ext4    defaults,noatime                         0    1
-     # a swapfile is not a swap partition, so no using swapon|off from here on, use  dphys-swapfile swap[on|off]  for that
-
-It is good to have a rw home partition, or desktop session will fail to start. With this configuration you won't be able to upgrade packages, as apt and dpkg need */var/lib* and */var/cache* writable. Consider using a rw /var or per-subdirectory configuration.
-
-### Step 3
-
-edit
-
-    /etc/init.d/hwclock.sh
+the last method is [recommended](https://unix.stackexchange.com/questions/159094/how-to-install-a-deb-file-by-dpkg-i-or-by-apt).
 
 
-in line 60 (the first of start case) change "-f" to "-L"
+After installing the package you can start the VSCP daemon with
 
-### Step 4
+```bash
+systemctl start vscpd
+```
 
-edit 
-
-    /etc/environment 
-    
-and add
-
-    BLKID_FILE="/var/local/blkid.tab"
-
-### Step 5
-
-Fix mtab
-
-    sudo rm /etc/mtab
-    sudo ln -s /proc/self/mounts /etc/mtab
-    
-###  Step 6
-
-*  Make sure VSCP log files go to /var/log or that they are turned off.
-*  Remember that any logger driver has to log to a r/w location.
-
+Thats it! You can start to work with VSCP.
 
 
 [filename](./bottom_copyright.md ':include')
