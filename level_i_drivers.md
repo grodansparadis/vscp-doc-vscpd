@@ -10,37 +10,37 @@ The good thing with the Level I interface is that you can add the .dll or .so as
 
 The drivers are configured in the vscpd.conf file (format is [here](http://www.vscp.org/docs/vscpd/doku.php?id=configuring_the_vscp_daemon)). 
 
-To make your own Level I driver just create a dynamically linked library that export the CANAL interface. There are plenty of examples to use as a starting point for creating your own driver in the [source tree for the VSCP & Friends package at GitHub](https://github.com/grodansparadis?utf8=%E2%9C%93&tab=repositories&q=vscpl1drv-&type=&language=). 
+To make your own Level I driver just create a dynamically linked library that export the CANAL interface. There are plenty of examples to use as a starting point for creating your own driver in the [source tree for the VSCP & Friends package at GitHub](https://github.com/grodansparadis?tab=repositories&q=vscpl1drv&type=&language=). 
 
-For Python developers [python-can](http://python-can.readthedocs.io/en/latest/index.html) is a good tool. __Unfortunately__ the CANAL interface is named USB2CAN but it is there.
+For Python developers [python-can](https://python-can.readthedocs.io/en/master/) is a good tool. __Unfortunately__ the CANAL interface is named USB2CAN but it is there.
 
 
-*  [8Devices USB2CAN Driver](http://www.vscp.org/docs/vscpd/doku.php?id=level1_driver_usb2can)
+*  [8Devices USB2CAN Driver](https://github.com/grodansparadis/vscpl1drv-usb2can)
 
-*  [Apox Driver](http://www.vscp.org/docs/vscpd/doku.php?id=level1_driver_apox)
+*  [Apox Driver](https://github.com/grodansparadis/vscpl1drv-apox)
 
-*  [CAN4VSCP Driver](http://www.vscp.org/docs/vscpd/doku.php?id=level1_driver_can4vscp)
+*  [CAN4VSCP Driver](https://github.com/grodansparadis/vscpl1drv-can4vscp)
 
-*  [CCS CAN Driver](http://www.vscp.org/docs/vscpd/doku.php?id=level1_driver_ccs)
+*  [CCS CAN Driver](https://github.com/grodansparadis/vscpl1drv-ccs)
 
-*  [IXATT VCI Driver](http://www.vscp.org/docs/vscpd/doku.php?id=level1_driver_ixxat)
+*  [IXATT VCI Driver](https://github.com/grodansparadis/vscpl1drv-ixxatvc2)
 
-*  [Lawicel CAN232 Driver](http://www.vscp.org/docs/vscpd/doku.php?id=level1_driver_can232)
+*  [Lawicel CAN232 Driver](https://github.com/grodansparadis/vscpl1drv-can232)
 
-*  [Lawicel CANUSB Driver](http://www.vscp.org/docs/vscpd/doku.php?id=level1_driver_canusb)
+*  [Lawicel CANUSB Driver](https://www.can232.com/?page_id=75)
 
-*  [LIRC Driver](http://www.vscp.org/docs/vscpd/doku.php?id=level1_driver_lirc)
+*  [LIRC Driver](https://github.com/grodansparadis/vscpl1drv-lirc)
 
-*  [Logger Driver](http://www.vscp.org/docs/vscpd/doku.php?id=level1_driver_logger)
+*  [Logger Driver](https://github.com/grodansparadis/vscpl1drv-logger)
 
-*  [PEAK CAN Adapter Driver](http://www.vscp.org/docs/vscpd/doku.php?id=level1_driver_peak)
+*  [PEAK CAN Adapter Driver](https://github.com/grodansparadis/vscpl1drv-peak)
 
-*  [Socketcan Driver](http://www.vscp.org/docs/vscpd/doku.php?id=level1_driver_socketcan)
+*  [Socketcan Driver](https://github.com/grodansparadis/vscpl1drv-socketcan)
 
-*  [Tellstick Driver](http://www.vscp.org/docs/vscpd/doku.php?id=level1_driver_tellstick)
+*  [Tellstick Driver](https://github.com/grodansparadis/vscpl1drv-tellstick)
 
-*  [Vector CAN Driver](http://www.vscp.org/docs/vscpd/doku.php?id=level1_driver_vector)
+*  [Vector CAN Driver](https://github.com/grodansparadis/vscpl1drv-vector)
 
-*  [Zanthic CAN Driver](http://www.vscp.org/docs/vscpd/doku.php?id=level1_driver_zanthic)
+*  [Zanthic CAN Driver](https://github.com/grodansparadis/vscpl1drv-zanthic)
  
 [filename](./bottom_copyright.md ':include')

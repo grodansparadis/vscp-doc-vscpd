@@ -1,5 +1,7 @@
 # Document History
 
+*  **2020-10-06 AKHE** - Added UDP server info.
+
 *  **2019-12-16 AKHE** - Started work on 14.0 documentation.
 
 *  **2018-09-24 AKHE** - Added info about new configurations parameters for the tcp/ip level II link driver.

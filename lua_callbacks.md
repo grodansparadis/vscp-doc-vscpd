@@ -696,7 +696,7 @@ head,class,type,obid,datetime,timestamp,GUID,data1,data2,data3....
 
 #### JSON format
 
-```lua
+```json
 {
     "datetime": "20161102T190032",
     "head": 96,

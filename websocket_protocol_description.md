@@ -331,15 +331,15 @@ This is either an event from a client to the VSCP daemon or an event from the da
 {
     "type" : "EVENT",
     "event" :  {
-       "head": 0,
-       "obid":  5,
-       "datetime": "2020-01-27T20:47:55Z",
-       "timestamp": 3906069311,
-       "class": 20,
-       "type": 3,
-       "guid": "FF:FF:FF:FF:FF:FF:FF:F5:00:00:00:00:00:05:00:00",
-       "data": [15,14,13,12,11,10,9,8,7,6,5,4,3,2,0,0,1,35],
-       "note": "An event note"
+       "vscpHead": 0,
+       "vscpObId":  5,
+       "vscpDateTime": "2020-01-27T20:47:55Z",
+       "vscpTimeStamp": 3906069311,
+       "vscpClass": 20,
+       "vscpType": 3,
+       "vscpGuid": "FF:FF:FF:FF:FF:FF:FF:F5:00:00:00:00:00:05:00:00",
+       "vscpData": [15,14,13,12,11,10,9,8,7,6,5,4,3,2,0,0,1,35],
+       "vscpNote": "An event note"
    }
 }
 ```
@@ -353,6 +353,7 @@ The client send the _AUTH_ command to create a session with the server. This ses
 Two arguments must be supplied
 
 **iv** :id=ws2-commands-auth-sid
+**crypto**
 
 When connecting to a ws2 websocket the VSCP daemon will send something like
 
@@ -360,9 +361,10 @@ When connecting to a ws2 websocket the VSCP daemon will send something like
 {    
     "type" : "+",
     "command": "AUTH0", 
-    "args" : {
-        "sid" : "3ded39018dbf0e8e4512a7cac79fd487"
-    }
+    "args" : [
+    	"AUTH0",
+        "5a475c082c80dcdf7f2dfbd976253b24"
+    ]
 }
 ```
 
@@ -398,7 +400,7 @@ A client that want to create a new session should send an authentication message
     "type": "cmd",
     "command": "auth",
     "args": {
-        "sid":"5a475c082c80dcdf7f2dfbd976253b24",
+        "iv":"5a475c082c80dcdf7f2dfbd976253b24",
         "crypto":657u0"69b1180d2f4809d39be34e19c750107f"
     }
 }
@@ -569,3 +571,18 @@ Code that issue some commands, send an event and waiting for incoming events is 
 Code that issue some commands, send an event and waiting for incoming events is [here](https://github.com/grodansparadis/vscp/blob/master/tests/websockets/test_ws2.js)
 
 [filename](./bottom_copyright.md ':include')
+
+
+
+
+
+Created symlink /etc/systemd/system/multi-user.target.wants/vscpd.service → /lib
+/systemd/system/vscpd.service.
+Job for vscpd.service failed because the service did not take the steps required
+ by its unit configuration.
+See "systemctl status vscpd.service" and "journalctl -xe" for details.
+Processing triggers for man-db (2.8.5-2) ...
+N: Download is performed unsandboxed as root as file '/root/vscpd_14.0.5-4_amd64.deb' couldn't be accessed by user '_apt'. - pkgAcquire::Run (13: Permission denied)
+
+
+No files in /usr/share/vscp/vscpd/certs/
