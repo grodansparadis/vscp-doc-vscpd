@@ -348,6 +348,133 @@ Disk IO performance can be improved when keeping the certificates and keys store
 **Default:** false
 
 
+##  udp interface :id=config-udp
+
+The UDP interface, if enabled, consist of two parts. The first is the receiving interface which receive UDP datagrams from remote clients. The second is one or many clients that receive UDP datagrams from the VSCP daemon. 
+
+```xml
+<udp enable="true|false" 
+    interface=”[udp://]ip-address:port” 
+    encryption="none|aes128|aes192|aes256"
+    user="udp"
+    bAllowUnsecure="false"
+    bSendAck="true"
+    filter=""
+    mask=""
+    guid="00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00" >
+
+    <!-- Nodes that will receive VSCP Server events -->
+    <client enable="false"
+        interface="udp://127.0.0.1:9999"
+        filter=""
+        mask=""
+        encryption="none|aes128|aes192|aes256"
+        bSetBroadcast="false"
+    />
+</udp>
+```
+
+### enable
+
+Enable the udp functionality. If disabled both receiving and sending of udp datagrams will be disabled.
+
+### interface
+
+This is the interface on which the VSCP daemon will listen for udp datagrams. It should be specified on the form
+
+   [udp://]ip-addr:port
+
+The "udp://" can be left out.
+
+**ip-addr** is the interface on the server to bind to. If left out all interfaces will be listened on.
+
+**port** is the port used. Port defaults to 44444 and can be left out.
+
+If left empty. The udp server will listen on port 44444 on all interfaces.
+
+If just a port is specified the udp server will listen on that port on all interfaces.
+
+### encryption
+
+This is the encryption level that incoming frames must be encoded with to be accepted. 
+
+Can be set to
+
+| Setting | Encryption |
+| :-----: | ---------- |
+| none | No encyption |
+| aes128 | Content in frame is encrypted with AES128 encryption. |
+| aes192 | Content in frame is encrypted with AES192 encryption. |
+| aes256 | Content in frame is encrypted with AES256 encryption. |
+
+### user
+
+Specify the user account that the udp server is tied to. This allow for remote ip-checks and event checks among other things.
+
+### bAllowUnsecure
+
+Set to true to allow unencrypted frames.
+
+### bSendAck
+Send ACK/NACK udp frames to clients sending frames to udp server.
+
+### filter
+Filter for received events on string form. 
+
+> priority;class;type;guid
+
+### mask
+Filter for received events on string form.
+
+> priority;class;type;guid
+
+### guid
+GUID to use for udp interface.
+
+## client
+
+Clients are nodes that receive UDP datagrams from the VSCP daemon. You can have as many udp clients defined as you like.
+
+### enable
+Enable the client when set to true. This means that the sever will send events to the client.
+
+### interface
+
+This is the address on which the client is expected to listen for udp datagrams. It should be specified on the form
+
+   [udp://]ip-addr:port
+
+The "udp://" can be left out.
+
+**ip-addr** is the ipo.address for the client. It must be specified.
+
+**port** is the port used. Port defaults to 44444 and can be left out.
+
+### filter
+Filter for sent events on string form. 
+
+> priority;class;type;guid
+
+### mask
+Filter for sent events on string form.
+
+> priority;class;type;guid
+
+### encryption
+
+This is the encryption level that sent frames will be encoded with. 
+
+Can be set to
+
+| Setting | Encryption |
+| :-----: | ---------- |
+| none | No encyption |
+| aes128 | Content in frame is encrypted with AES128 encryption. |
+| aes192 | Content in frame is encrypted with AES192 encryption. |
+| aes256 | Content in frame is encrypted with AES256 encryption. |
+
+### bSetBroadcast
+The broadcast bit of the datagram will be set if set to true. Default is false.
 
 
 ##   webserver :id=config-webserver
@@ -1074,19 +1201,24 @@ Example
 
 ```xml
 <remoteuser>
-    <user>
-        <name>admin</name>
-        <password>d50c3180375c27927c22e42a379c3f67</password>
-        <privilege>admin</privilege>
-        <allowfrom>127.0.0.1,192.168.1.</allowfrom>
-    </user>
-    <user>
-        <name>user</name>
-        <password>ee11cbb19052e40b07aac0ca060c23ee</password>
-        <privilege>admin</privilege>
-        <allowfrom>127.0.0.1,192.168.1.</allowfrom>
-        <allowevent>10:6,10:7</allowevent>
-    </user>
+    <user name="mrsmith"                    
+                password="0F7AB661663B5BCA3B9B725F933B39A0;1F1D138C273A3FBB66A2CFB9120512F8BC825F88B9C1AEF7091679237515CCF2"
+                privilege="user"
+                allowfrom=""
+                filter=""
+                events=""
+                fullname="Sample user"
+                note="A normal user. username="user" password='secret'"
+        />
+    <user name="udp"                
+                password="BCE76E44226D1DEC47E9E3C5C6BEDBE1;A3A546E00E13B60A1F5A6AAA92B78251925E79A43253CD2AE56D43109CD1B138"
+                privilege="udp"
+                allowfrom=""
+                filter=""
+                events=""
+                fullname="UDP user"
+                note="A normal user. username="user" password='secret'"
+        />
 </remoteuser>
 ```
 
@@ -1108,7 +1240,7 @@ Username for this user.
 
 The password hash for the user. This hash should be the md5 over "username:vscptoken:password". The **mkpasswd**  utility that is distributed with the VSCP & Friends package can be user to generate the password. There are also plenty of services on the net that can be used. One example is [here](http://www.md5online.org/md5-encrypt.html).  
 
-The vscptoken is set in the `<securitytab>` and it should never be sent on it's own over the wire.
+The vscptoken is set in the `<securitytab>` and it should be kept secret and never be sent on it's own over the wire.
 
 ###  privilege
 
@@ -1116,7 +1248,67 @@ The vscptoken is set in the `<securitytab>` and it should never be sent on it's 
 <privilege>level</privilege>
 ```
 
-Privilege is the security level for this user. Users can have privileges from 0-15 that allow them to do command that are equal to or less then the set privilege level. Enter a privilege level as 0-15 here or in symbolic form as "//admin//" (==15) or "//user//" (==4) or "//driver//" (==6). Default is 4. 
+Privilege defines what a user can do. This is 32-bits defining different privileges.
+
+This value can either be set from a 32-bit value or as a forward slahs '/' separated list of values where each item is either a numerical value or a token (See token definitions below).
+
+| Bit | Priviledge |
+| :---: | -------------- |
+| 0 | User can log in on tcp/ip interface. |
+| 1 | User can log in on websocket interface (ws1/ws2). |
+| 2 | User can log in on web interface. |
+| 3 | User can log in on rest interface. |
+| 4 | User can log in on udp interface. |
+| 5 | User can log in on mqtt interface. |
+| 6 | Reserved. |
+| 7 | Reserved. |
+| 8 | Reserved. |
+| 9 | Reserved. |
+| 10 | Reserved. |
+| 11 | Reserved. |
+| 12 | Reserved. |
+| 13 | Reserved. |
+| 14 | Reserved. |
+| 15 | Reserved. |
+| 16 | User allowed to send events. |
+| 17 | User allowed to send Level I protocol events. |
+| 18 | User allowed to send Level II protocol events. |
+| 19 | User allowed to send HLO events. |
+| 20 | User can receive events. |
+| 21 | Reserved. |
+| 22 | Reserved. |
+| 23 | Reserved. |
+| 24 | Reserved. |
+| 25 | Reserved. |
+| 26 | User can set filters. |
+| 27 | User can set interface GUID. |
+| 28 | User allowed to use 'test' command. |
+| 29 | User allowed to use 'interface' command. |
+| 30 | User allowed to use 'restart' command. |
+| 31 | User allowed to use 'shutdown' command. |
+
+There are some shortcut btokens defined
+
+| Token | Priviledge |
+| :---: | -------------- |
+| admin | This user is allowed to do anything. |
+| user | This user is allowed to use tcp/ip, websockets, webinterface, rest, udp, mqtt and also to send and receive events and level I and send level II protocol events. |
+| driver | This user is allowed to send and receive events and level I and send level II protocol events and HLO events. |
+| tcp | This user is allowed to login on the tcp/ip interface and send and receive events and level I and send level II protocol events and HLO events. |
+| websocket | This user is allowed to login on the websockets (ws1/ws2) interface and send and receive events and level I and send level II protocol events and HLO events. |
+| web | This user is allowed to login on the web interface and send and receive events and level I and send level II protocol events and HLO events. |
+| rest | This user is allowed to login on the rest interface and send and receive events and level I and send level II protocol events and HLO events. |
+| udp | This user is allowed to login on the udp interface and send and receive events and level I and send level II protocol events and HLO events. |
+| mqtt | This user is allowed to login on the mqtt interface and send and receive events and level I and send level II protocol events and HLO events. |
+| send-events | This user is allowed to send events. |
+| receive-events | This user is allowed to receive events. |
+| l1ctrl-events | This user is allowed to send level I protocol events. |
+| l2ctrl-events | This user is allowed to send level II protocol events. |
+| hlo-events | This user is allowed to send HLO events. |
+| shutdown | This user is allowed to use the 'shutdown' command. |
+| restart | This user is allowed to use the 'restart' command. |
+| interface | This user is allowed to use the 'interface' command. |
+| test | This user is allowed to use the 'test' command. |
 
 ###  allowfrom
 

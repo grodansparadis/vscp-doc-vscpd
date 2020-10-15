@@ -18,6 +18,9 @@
  * [Configuration file format](configuring_the_vscp_daemon.md)
  * [Startup switches](startup_switches.md)
 
+* Logging, diagnostic and debugging
+  * [logging](logging.md)
+
 * Server/Service Discovery
  * [General](server_disovery.md)
  * [High end server probe](server_disovery_probe.md)

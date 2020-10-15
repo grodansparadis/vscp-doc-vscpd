@@ -1,5 +1,9 @@
 # Document History
 
+*  **2020-10-15 AKHE** - Added logging section.
+
+*  **2020-10-09 AKHE** - User privilege info for configuration file updated.
+
 *  **2020-10-06 AKHE** - Added UDP server info.
 
 *  **2019-12-16 AKHE** - Started work on 14.0 documentation.

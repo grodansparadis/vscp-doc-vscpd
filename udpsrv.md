@@ -17,6 +17,26 @@ Security
 
 One can send unencrypted frames to the VSCP server. The problem with this is that anyone can send a VSCP event to a central VSCP server/system. This will of course be very dangerous on most setups. To improve on this you can specify a user that the UDP sub system will be acting as and this gives some possibilities to limit what can be sent and be received over the UDP interface. Best is to use encrypted frames. Here the remote node and the server share a secret key and therefore they can trust each other using state of the art encryption. This also makes it impossible for someone that is not authorized to see what is sent on the wire or over the air.
 
+VSCP UDP frame format is specified in the VSCP specification [here](https://docs.vscp.org/spec/latest/#/./vscp_over_udp).
+
+## How does UDP work on the VSCP daemon
+
+The VSCP UDP subsystem consist of two parts a server and clients that are totally separated from each other. You can therefore just decide to receive UDP frames or just to send them or both.
+
+### Server
+
+If enabled the VSCP daemon accept UDP frames from clients. Frames can be be plain or encrypted. You must configure what type if frames your setup accept. A specific user is tied to udp so you can define which client to accept events from etc. The UDP server can ACL/NACk incoming frames.
+
+By default the server listens on port 44444.
+
+When an encrypted frame is received it will be encrypted with the vscpkey a secret 128-bit key that is common to server and client.
+
+### Clients
+
+You can define as many udp clients as you want. An udp client is a receiving udp remote node that can accept UDP frames that is either plain or encrypted. This node will receive events just as any other client. A filter can be setup. Encryption can be none/aes128/aes192/aes256.
+
+When an encrypted frame is sent it will be encrypted with the vscpkey a secret 128-bit key that is common to server and client.
+
 ## Configuration
 
 The configuration of the UDP server is in the standard vscpd configuration file (in XML format) which usually us located at **/etc/vscp/vscpd.conf**. THe format for the section is like this
@@ -32,9 +52,11 @@ The configuration of the UDP server is in the standard vscpd configuration file 
     mask=""
     guid="00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00" >
 
-    <!-- Nodes that will receive VSCP Server events -->
-    <rxnode enable="false"
-        interface="udp://127.0.0.1:9999"
+    <!-- 
+        Nodes that will receive VSCP Server events 
+        Any number of clients can be defined.
+    -->
+    <client enable="false"
         filter=""
         mask=""
         encryption=""
