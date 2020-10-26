@@ -1,23 +1,16 @@
 # Document History
 
+
+*  **2020-10-26 AKHE** - Added section about how to enable Google test
 *  **2020-10-15 AKHE** - Added logging section.
-
 *  **2020-10-09 AKHE** - User privilege info for configuration file updated.
-
 *  **2020-10-06 AKHE** - Added UDP server info.
-
 *  **2019-12-16 AKHE** - Started work on 14.0 documentation.
-
 *  **2018-09-24 AKHE** - Added info about new configurations parameters for the tcp/ip level II link driver.
-
 *  **2018-04-04 AKHE** - build added to tcp/ip "version" command output.
-
 *  **2018-04-04 AKHE** - VAR READ response changed from build 13.0.0.4  Added response info for items that missed such info.
-
 *  **2018-02-16 AKHE** - **DM** and **VAR** commands are now part of the [VSCP Link Interface](http://www.vscp.org/docs/vscpd/doku.php?id=vscp_daemon_tcp_ip_protocol_description).
-
 *  **2018-01-04 AKHE** - [debugflags where named logflags](http://www.vscp.org/docs/vscpd/doku.php?id=configuring_the_vscp_daemon#debugflags1). Changed.
-
 *  **2017-12-28 AKHE** - Added configuration for [logflags](http://www.vscp.org/docs/vscpd/doku.php?id=configuring_the_vscp_daemon#logflags1).
 
 *  **2017-12-15 AKHE** - Added [logdays](http://www.vscp.org/docs/vscpd/doku.php?id=configuring_the_vscp_daemon#logdays) to autoclear logs if they dont hold to to old enteries and get to big.
