@@ -84,7 +84,7 @@ Prepare the build environment with
 ```bash
 sudo apt update
 sudo apt install build-essential
-sudo apt install git libssl-dev libexpat-dev libsystemd-dev libwrap0-dev libz-dev
+sudo apt install git libssl-dev libexpat-dev libsystemd-dev libwrap0-dev libz-dev libmosquitto-dev
 ```    
 to install the build tools. 
 
