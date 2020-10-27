@@ -15,17 +15,17 @@ The level II driver is, just as the Level I driver, a dynamic link library with 
 
 The configuration for a typical VSCP driver in the vscpd.conf file looks like this
 
-`<code="xml">`
-`<vscpdriver>`  `<!-- Information about VSCP Level II drivers -->`
-    `<driver prefix="logger1" >`
-        `<name>`l2logger`</name>`
-        `<config>`d:\vscplog.txt;1`</config>`
-        `<path>`
+```xml
+<vscpdriver>  <!-- Information about VSCP Level II drivers -->
+    <driver prefix="logger1" >
+        <name>l2logger</name>
+        <config>d:\vscplog.txt;1</config>
+        <path>
             /us/local/lib/vscpl2logger.so
-        `</path>`
-        `<guid>`00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00`</guid>` 
-    `</driver>`
-`</vscpdriver>`
+        </path>
+        <guid>00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00</guid>
+    </driver>
+</vscpdriver>
 ```
 
 The driver name is used when the driver is presented to the world such as in the tcp/ip interface. The name should be unique within the system. The prefix is added in front of variable names the driver fetch or write to. Typically variables have names like “_variable” and the actual variable fetches is thus “prefix_variable”. “prefix” is set to the driver name set in the VSCP daemon configuration file for this driver. If the same driver is used for several times this name should be different for each driver if different configuration data should be read in for the drivers. The prefix is used in front of configuration variables and it will be used on the form prefix_variablename when the driver reads in additional driver configuration data.
@@ -40,7 +40,7 @@ A smaller variant of the driver (Limited Level II driver) is available which is 
 
 # VSCPOpen
 
-`<code="c">`
+```c
 long VSCPOpen( const char *pUsername,
                   const char *pPassword, 
                   const char *pHost, 
@@ -70,7 +70,7 @@ For the limited type of driver pUsername, pPassword, pHost, port, pPrefix all is
 
 # VSCPClose
 
-`<code="c">`
+```c
 int VSCPClose( long handle );
 ```
 
@@ -79,10 +79,10 @@ If the driver can close/stop the driver it will return TRUE (non zero) on succes
 
 # VSCPBlockingSend
 
-`<code="c">`
+```c
 int VSCPBlockingSend( long handle, 
-                         const vscpEvent *pEvent, 
-                         unsigned long timeout );
+                        const vscpEvent *pEvent, 
+                        unsigned long timeout );
 ```
 
 
@@ -90,7 +90,7 @@ Send an event while blocking for timeout (forever if timeout=0).
 
 # VSCPBlockingReceive
 
-`<code="c">`
+```c
 int VSCPBlockingReceive( long handle, 
                            vscpEvent *pEvent, 
                            unsigned long timeout );
@@ -103,7 +103,7 @@ CANAL_ERROR_SUCCESS is received if an event is received and CANAL_ERROR_TIMEOUT 
 
 # VSCPGetLevel
 
-`<code="c">`
+```c
 unsigned long VSCPGetLevel( long handle ) 
 ```
 
@@ -113,7 +113,8 @@ Will return CANAL_LEVEL_USES_TCPIP for a full Level II driver and CANAL_LEVEL_NO
 # VSCPGetWebPageTemplate
 
 Only available for a full Level II driver, limited drivers just return from the call without any internal action.
-`<code="c">`
+
+```c
 long VSCPGetWebPageTemplate( long handle, 
                                 const char *url, 
                                 char **ppage )
@@ -141,7 +142,8 @@ The standard menu will be shown on top of each page.
 # VSCPGetWebPageInfo
 
 Only available for a full Level II driver, limited drivers just return from the call without any internal action.
-`<code="c">`
+
+```c
 int VSCPGetWebPageInfo( long handle, 
                           const struct vscpextwebpageinfo *info )
 ```
@@ -153,7 +155,7 @@ This call can be used to get information about what pages the driver will recogn
 
 Only available for a full Level II driver, limited drivers just return from the call without any internal action.
 
-`<code="c">`
+```c
 int VSCPWebPageupdate( long handle, const char *url )
 ```
 
@@ -162,7 +164,7 @@ When a page is posted to a driver url variable data will be written to server va
 
 # VSCPGetDllVersion
 
-`<code="c">`
+```c
 unsigned long VSCPGetDllVersion ( void )
 ```
 
@@ -171,169 +173,209 @@ Gets the version for the driver dll/dl.
 
 # VSCPGetVendorString
 
-`<code="c">`
-const char * VSCPGetVendorString ( void )
+```c
+const char *VSCPGetVendorString ( void )
 ```
 
 
 Get a string that identifies the creator of the driver.
 
-# 1 VSCPGetDriverInfo 
+# VSCPGetDriverInfo 
 
-`<code="c">`
+```c
 const char * VSCPGetDriverInfo( void )
 ```
 
 
 Get information about the interface. Either NULL if there is no information or a pointer to a string with XML information.
 
-`<code="xml">`
-`<?xml version = "1.0" encoding = "UTF-8" ?>`   
+```xml
+<?xml version = "1.0" encoding = "UTF-8" ?>
 
 <!-- Version 0.0.2     2009-11-17    
-   "string"    Text string. 
-   "bool"      1 bit number specified as true or false.
-   "char"      8 bit number. Hexadecimal if it starts with "0x" else decimal.
-   "uchar"     Unsigned 8  bit number. Hexadecimal if it starts with "0x" 
-				 else decimal.
-   "short"     16 bit signed number. Hexadecimal if it starts with "0x" 
-			     else decimal.
-   "ushort"    16 bit unsigned number. Hexadecimal if it starts with "0x" 
-                 else decimal.
-   "int"       32 bit signed number. Hexadecimal if it starts with "0x" 
-                 else decimal. 
-   "uint"      32 bit unsigned number. Hexadecimal if it starts with "0x"  
-				 else decimal. 
-   "long"      64 bit signed number. Hexadecimal if it starts with "0x" 
-				 else decimal. 
-   "ulong"     64 bit unsigned number. Hexadecimal if it starts with "0x" 
-				 else decimal.
-   "decimal"   128 bit number. Hexadecimal if it starts with "0x" else decimal.  
-   "date"      Must be passed in the format dd-mmm-yyyy.
-   "time"      Must be passed in the format hh:mm:ss where hh is 24 hour clock.   
+    "string"    Text string. 
+    "bool"      1 bit number specified as true or false.
+    "char"      8 bit number. Hexadecimal if it starts 
+                with "0x" else decimal.
+    "uchar"     Unsigned 8  bit number. Hexadecimal if it 
+                starts with "0x" else decimal.
+    "short"     16 bit signed number. Hexadecimal if it 
+                starts with "0x" else decimal.
+    "ushort"    16 bit unsigned number. Hexadecimal if it 
+                starts with "0x" else decimal.
+    "int"       32 bit signed number. Hexadecimal if it 
+                starts with "0x" else decimal. 
+    "uint"      32 bit unsigned number. Hexadecimal if it 
+                starts with "0x" else decimal. 
+    "long"      64 bit signed number. Hexadecimal if it 
+                starts with "0x" 
+				else decimal. 
+    "ulong"     64 bit unsigned number. Hexadecimal if it 
+                starts with "0x" 
+			    else decimal.
+    "decimal"   128 bit number. Hexadecimal if it starts 
+                with "0x" else decimal.  
+    "date"      Must be passed in the format dd-mmm-yyyy.
+    "time"      Must be passed in the format hh:mm:ss 
+                where hh is 24 hour clock.   
 -->   
 
-`<vacpdriver>`
-    `<drivername>`aaaaaaaa`</drivername>` 
-    `<arch>`WIN32|WIN64|LINUX`</arch>` 
-    `<model>`bbbbb`</model>` 
-    `<version>`cccccc`</version>` 
-    `<description lang = "en">`yyyyyyyyyyyyyyyyyyyyyyyyyyyy`</description>`   
+<vscpdriver>
+    <drivername>aaaaaaaa</drivername>
+    <arch>WIN32|WIN64|LINUX</arch>
+    <model>bbbbb</model>
+    <version>cccccc</version>
+    <description lang ="en">
+        yyyyyyyyyyyyyyyyyyyyyyyyyyyy
+    </description>`   
 	
-    `<!-- Site with info about the product -->` 
-    `<infourl>`http://www.somewhere.com`</infourl>`   
+    <!-- Site with info about the product -->
+    <infourl>`http://www.somewhere.com`</infourl>
 	
-    `<!-- Information about CANAL driver maker -->` 
-    `<maker>`        
-        `<name>`tttttttttttttttttttt`</name>`         
-        `<address>`              
-            `<street>`ttttttttttttt`</street>`            
-            `<town>`llllllllll`</town>`            
-            `<city>`London`</city>`            
-            `<postcode>`HH1234`</postcode>`            
-            `<!-- Use region or state -->`            
-            `<state>``</state>`            
-            `<region>``</region>`            
-            `<country>`ttttt`</country>`        
-        `</address>`        
+    <!-- Information about CANAL driver maker -->
+    <maker>
+        <name>tttttttttttttttttttt</name>
+        <address>
+            <street>ttttttttttttt</street>
+            <town>llllllllll</town>
+            <city>London</city>
+            <postcode>HH1234</postcode>
+            <!-- Use region or state -->
+            <state>sssss</state>
+            <region>rrrrr</region>      
+            <country>ttttt</country>
+        </address>
 		
-        `<!-- One or many -->`        
-        `<telephone>`            
-            `<number>`123456789`</number>`            
-            `<description lang="en" >`Main Reception`</description>`        
-        `</telephone>`        
+        <!-- One or many -->
+        <telephone>     
+            <number>123456789</number>
+            <description lang="en" >
+                Main Reception
+            </description>
+        </telephone>
 		
-        `<!-- One or many -->`        
-        `<fax>`            
-            `<number>`1234567879`</number>`            
-            `<description lang="en">`Main Fax Number`</description>`        
-        `</fax>`        
+        <!-- One or many -->
+        <fax>
+            <number>1234567879</number>
+            <description lang="en">
+                Main Fax Number
+            </description>
+        </fax>
 		
-        `<!-- One or many -->`        
-        `<email>`someone@somwhere.com`</email>`        
+        <!-- One or many -->
+        <email>someone@somwhere.com</email>
 		
-        `<!-- One or many -->`        
-	<web>www.somewhere.com</web> </maker>     
+        <!-- One or many -->   
+	    <web>www.somewhere.com</web> 
+
+    </maker>     
 	
 	<configstring>     
 
-            `<!-- Option example with selectable values -->`   
-            `<option pos="0" type="string">`       
-                `<name lang="en">`aaaaa`</name>`     
-                `<description lang="en">`yyy`</description>`       
-                `<valuelist>`   
-                    
-                    `<item value="CANUSB" />`         
-                        `<name lang="en">`USB Adapter`</name>`         
-                        `<description lang="en">`yyy`</description>`       
-                     `</item>`    
+        <!-- Option example with selectable values -->
+        <option pos="0" type="string">
+            <name lang="en">`aaaaa`</name>
+            <description lang="en">
+                yyy
+            </description>
+            <valuelist>                    
+                <item value="CANUSB" />
+                    <name lang="en">
+                        USB Adapter</name>
+                    <description lang="en">
+                        yyy
+                    </description>
+                </item>
                         
-		     <item value="CANPCI" />         
-                         `<name lang="en">`PCI Adapter`</name>`         
-                         `<description lang="en">`yyy`</description>`       
-                     `</item>`  
+		        <item value="CANPCI" />         
+                    <name lang="en">
+                        PCI Adapter
+                    </name>
+                    <description lang="en">
+                        yyy
+                    </description>
+                </item>
                           
-                     `<item value="CAN232" />`         
-                         `<name lang="en">`Serial Adapter`</name>`         
-                         `<description lang="en">`yyy`</description>`       
-                     `</item>`     
-                `</valuelist>`
+                <item value="CAN232" />
+                    <name lang="en">
+                        Serial Adapter
+                    </name>
+                    <description lang="en">
+                        yyy
+                    </description>
+                </item>
+            </valuelist>
                 
-            `</option>`     
+        </option>
 		
-            `<!-- Option example with numerical value -->`   
-            `<option pos="1" type="uchar" min="0" max="4">`     
-                 `<name lang="en">`aaaaa`</name>`     
-                 `<description lang="en">`yyy`</description>`   
-            `</option>`  
+        <!-- Option example with numerical value -->
+        <option pos="1" 
+                type="uchar" 
+                min="0" 
+                max="4">
+            <name lang="en">aaaaa</name>
+            <description lang="en">
+                yyy
+            </description>
+        </option>
              
-         `</configstring>`   
+    </configstring>
 		
-         `<!-- Flags part (32-bit value) of the device information -->` 
-         `<flags>`     
-             `<description lang="en">`yyy`</description>` 
+    <!-- Flags part (32-bit value) of the device information -->
+    <flags>
+        <description lang="en">yyy</description>
                  
-             `<bit pos="0">`     
-                 `<name lang="en">`tttt`</name>`     
-                 `<description lang="en">`yyy`</description>`   
-             `</bit>`     
+        <bit pos="0">
+            <name lang="en">tttt</name>
+            <description lang="en">
+                yyy
+            </description>
+        </bit>
              
-             `<!-- example for bit groups, in this case bit 1,2,3,4 -->` 
-            `<bit pos="1" width="4">`
-                `<name lang="en">`tttt`</name>`     
-                `<description lang="en">`yyy`</description>`   
-             `</bit>`   
+        <!-- example for bit groups, in this case 
+             bit 1,2,3,4 
+        -->
+        <bit pos="1" width="4">
+            <name lang="en">`tttt`</name>
+            <description lang="en">
+                yyy
+            </description>`   
+        </bit>
              
-        `</flags>`   
+    </flags>
 		
-        `<!-- Status return value (32-bit value) -->` 
-        `<status>`     
-            `<bit pos="0">`     
-                `<name lang="en">`tttt`</name>`     
-                `<description lang="en">`yyy`</description>`   
-            `</bit>`     
+    <!-- Status return value (32-bit value) -->
+    <status>
+        <bit pos="0">
+            <name lang="en">tttt</name>
+                <description lang="en">
+                    yyy
+                </description>
+        </bit>
 
-            `<bit pos="1" width="4">`     
-                `<name lang="en">`tttt`</name>`     
-                `<description lang="en">`yyy`</description>`   
-            `</bit>` 
+        <bit pos="1" width="4">
+            <name lang="en">tttt</name>
+            <description lang="en">
+                yyy
+            </description>
+        </bit>
             
-        `</status>`
+    </status>
 
-        `<!-- Description of variable the driver reads in -->`
-        `<variable>`
-             `<name>`ksdkjskjskdjksdjks`</name>`
-             `<type>`bool|string|etc etc`</type>`
-             `<description>`ksksjdksjkdjs`</description>`
-        `</variable>`
+    <!-- Description of variable the driver reads in -->
+    <variable>
+        <name>ksdkjskjskdjksdjks</name>
+        <type>bool|string|etc etc</type>
+        <description>ksksjdksjkdjs</description>
+    </variable>
 
-`</vscpdriver>`
+</vscpdriver>
 ```
 
 
 # VSCPGetStatus
 
-`<code="c">`
+```c
 const char * VSCPGetStatus( unsigned long* pErrorCode )
 ```
 
@@ -341,7 +383,6 @@ const char * VSCPGetStatus( unsigned long* pErrorCode )
 Get status information from a device in real text or as a code. Set the pErrorCode variable to NULL if no error code is needed. The errocode CANAL_ERROR_SUCCESS and “OK” is returned if everything is OK and there is no error code waiting to be received. If another code is returned other codes may be queued up and can be received in successive reads. For severe errors and states, such as bus off on a can-bus, the state code should be returned until the state is cleared and the devices is working properly again.
 
 
-\\ 
-----
-Copyright (c) 2000-2014 [Åke Hedman](mailto/akhe@grodansparadis.com), [Paradise of the Frog / Grodans Paradis AB](http://www.grodansparadis.com)
+
+[filename](./bottom_copyright.md ':include')
 
