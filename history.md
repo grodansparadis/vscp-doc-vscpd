@@ -1,6 +1,6 @@
 # Document History
 
-
+*  **2020-10-27 AKHE** - Formatted Level II API docs.
 *  **2020-10-26 AKHE** - Added section about how to enable Google test
 *  **2020-10-15 AKHE** - Added logging section.
 *  **2020-10-09 AKHE** - User privilege info for configuration file updated.
