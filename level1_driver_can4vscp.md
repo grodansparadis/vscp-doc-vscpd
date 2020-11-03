@@ -76,7 +76,7 @@ Typical settings for VSCP daemon config
  | Bit 5    | Enable hardware handshake.  |
  | Bit 6 | Enable strict mode. Driver will terminate on all errors.  |
  | Bit 7-30 | Reserved.  |
- | Bit 31 | Enable debug messages to LOG_DEBUG, syslog.  |
+ | Bit 31 | Enable debug messages to LOG_DEBUG, syslog. (0x80000000 in hex) |
 
 ## Status return
 
@@ -106,5 +106,93 @@ The CanalGetStatus call returns the status structure with the channel_status mem
 ## Serial Protocol
 
 You can find the description of the VSCP serial protocol in the [VSCP specification](http://www.vscp.org/docs/vscpspec/doku.php?id=physical_level_lower_level_protocols#vscp_over_a_serial_channel_rs-232).
+
+## Permissions to use serial port
+
+On Linux you need to have permission to use the serial port. If you have debug enabled for the driver you will see something like this in /var/log/syslog if you have problem with serila port permissons
+
+```
+Nov  3 14:12:58 pi3 vscpd: Devicethread: Starting driver_can4vscp
+Nov  3 14:12:58 pi3 vscpd: Loading level I driver: can4vscp
+Nov  3 14:12:58 pi3 vscpd: [vscpl1drv-can4vscp] Debug mode enabled.
+Nov  3 14:12:58 pi3 vscpd: [vscpl1drv-can4vscp] Open driver /dev/ttyUSB0 0x80000000
+Nov  3 14:12:58 pi3 vscpd: [vscpl1drv-can4vscp] Open [/dev/ttyUSB0] failed
+Nov  3 14:12:58 pi3 vscpd: [vscpl1drv-can4vscp] Open of port [/dev/ttyUSB0] successful
+Nov  3 14:12:59 pi3 vscpd: Send event to client [driver_can4vscp]
+Nov  3 14:12:59 pi3 vscpd: Send event to client [driver_can4vscp]
+Nov  3 14:12:59 pi3 vscpd: Send event to client [driver_can4vscp]
+Nov  3 14:12:59 pi3 vscpd: Send event to client [driver_can4vscp]
+Nov  3 14:13:00 pi3 vscpd: [vscpl1drv-can4vscp] NOOP initial command test failed.
+Nov  3 14:13:01 pi3 vscpd: [vscpl1drv-can4vscp] Failed to open device in standard mode.
+Nov  3 14:13:01 pi3 vscpd: [vscpl1drv-can4vscp] Open success
+Nov  3 14:13:01 pi3 vscpd: can4vscp: [Device tread] Level I Driver open.
+Nov  3 14:13:01 pi3 vscpd: can4vscp: [Device tread] Level I blocking version.
+Nov  3 14:13:01 pi3 vscpd: deviceLevel1WriteThread - m_proc_CanalBlockingSend failed
+Nov  3 14:13:01 pi3 vscpd: deviceLevel1WriteThread - m_proc_CanalBlockingSend failed
+```
+
+In this case the user the VSCP daemon run as (vscp) does not have rights to use the serial port. If you check permissions with
+
+```bash
+sudo ls /dev/ttyUSB0
+```
+
+you may see 
+
+```
+Crw-rw---- 1 root dialout 4, 64 November 4 14:08 /dev/ttyUSB0
+```
+
+meaning you must be root user or part of the **dialout** group to use it. A temporary solution is to make the port accessible by all with
+
+```bash
+sudo chmod 777 /dev/ttyUSB0
+```
+
+but this has the drawback that you must set this permission every time the serial device is inserted.
+
+A better solution is to solve this by adding the user **vscp** to the **dialout** group with
+
+```bash
+sudo usermod -aG dialout vscp
+```
+
+## Serial device path
+
+Another problem that can occur with usb serial ports is that the device path change. Your serial port can come up as */dev/ttyUSB0* one time and */dev/ttyUSB1* another time. 
+
+To solve this you can add an udev rule for the device.
+
+First find the device
+
+```
+lsusb -v
+```
+
+find idVendor and idProduct for your device,
+
+Then do
+
+```
+udevadm info -a -n /dev/ttyUSB0 | grep '{serial}' | head -n1
+```
+
+which resilt in something like
+
+```
+ATTRS{serial}=="3f980000.usb"
+```
+
+Now add the line
+
+```
+SUBSYSTEM=="tty", ATTRS{idVendor}=="1a86", ATTRS{idProduct}=="7523", ATTRS{serial}=="3f980000.usb", SYMLINK+="ttyCAN4VSCP"
+```
+
+to **/etc/udev/rules.d/99-usb-serial.rules**
+
+changing idVendor/idProduct and ATTRS to the values you obtained.
+
+Now the serial port is accessible as **/dev/ttyCAN4VSCP** even if the the adapter change.
 
 [filename](./bottom_copyright.md ':include')
