@@ -572,17 +572,3 @@ Code that issue some commands, send an event and waiting for incoming events is 
 
 [filename](./bottom_copyright.md ':include')
 
-
-
-
-
-Created symlink /etc/systemd/system/multi-user.target.wants/vscpd.service → /lib
-/systemd/system/vscpd.service.
-Job for vscpd.service failed because the service did not take the steps required
- by its unit configuration.
-See "systemctl status vscpd.service" and "journalctl -xe" for details.
-Processing triggers for man-db (2.8.5-2) ...
-N: Download is performed unsandboxed as root as file '/root/vscpd_14.0.5-4_amd64.deb' couldn't be accessed by user '_apt'. - pkgAcquire::Run (13: Permission denied)
-
-
-No files in /usr/share/vscp/vscpd/certs/
